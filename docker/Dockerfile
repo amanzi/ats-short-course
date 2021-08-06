@@ -57,7 +57,7 @@ RUN apt-get update --fix-missing && \
 # =================================================== #
 # Build Miniconda =================================== #
 # =================================================== #
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     /opt/conda/bin/conda clean -tipsy && \
@@ -78,7 +78,7 @@ RUN . /opt/conda/etc/profile.d/conda.sh && conda activate base
 # =================================================== #
 WORKDIR ${DIR_BUILD}
 RUN python -m pip install GDAL==`gdal-config --version` && \
-    conda install -c conda-forge boost && \
+    conda install -y -c conda-forge boost && \
     python -m pip --no-cache-dir install --upgrade \
        fiona \
        rasterio \
@@ -91,7 +91,7 @@ RUN python -m pip install GDAL==`gdal-config --version` && \
         --python-exe=${CONDA_DIR}/bin/python \
         --boost-inc-dir=${CONDA_DIR}/include \
         --boost-lib-dir=${CONDA_DIR}/lib \
-        --boost-python-libname=boost_python39 \
+        --boost-python-libname=boost_python38 \
         --disable-static \
         --enable-shared \
         && \
@@ -127,8 +127,8 @@ ENV AMANZI_PREFIX=${DIR_INSTALL} \
     #AMANZI_SEACAS_LIBS=$AMANZI_TPLS_DIR/SEACAS/lib
 
 RUN git clone https://github.com/amanzi/amanzi.git ${DIR_BUILD}/amanzi --depth 1 && \
-    cd ${DIR_BUILD}/amanzi/
-RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
+    cd ${DIR_BUILD}/amanzi/ && ls -alt && \
+    ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
    --parallel=4 \
    # --opt \
    --amanzi-build-dir=${DIR_BUILD}/amanzi \
