@@ -77,9 +77,9 @@ RUN . /opt/conda/etc/profile.d/conda.sh && conda activate base
 # Build Watershed Workflow ========================== #
 # =================================================== #
 WORKDIR ${DIR_BUILD}
-RUN pip install GDAL==`gdal-config --version` && \
+RUN python -m pip install GDAL==`gdal-config --version` && \
     conda install -c conda-forge boost && \
-    pip --no-cache-dir install --upgrade \
+    python -m pip --no-cache-dir install --upgrade \
        fiona \
        rasterio \
        shapely \
@@ -109,7 +109,7 @@ ENV PYTHONPATH=${DIR_BUILD}:${PYTHONPATH}
 # =================================================== #
 RUN git clone https://github.com/lanl/tinerator.git ${DIR_BUILD}/tinerator --depth 1 && \
     cd ${DIR_BUILD}/tinerator && \
-    pip install -r requirements.txt && \
+    python -m pip install -r requirements.txt && \
     ./tpls/build-tpls.sh -A -M
 
 ENV PYTHONPATH=${DIR_BUILD}/tpls/seacas/install/lib:${PYTHONPATH}
