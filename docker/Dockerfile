@@ -71,6 +71,8 @@ RUN chmod +x /usr/bin/tini
 
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
+RUN . /opt/conda/etc/profile.d/conda.sh && conda activate base
+
 # =================================================== #
 # Build Watershed Workflow ========================== #
 # =================================================== #
