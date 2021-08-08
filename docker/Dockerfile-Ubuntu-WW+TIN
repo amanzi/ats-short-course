@@ -1,0 +1,119 @@
+#FROM continuumio/miniconda3
+FROM ubuntu:20.04
+
+LABEL Description="Amanzi/ATS/WatershedWorkflow/TINerator Docker container"
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
+
+ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 \
+    https_proxy=$https_proxy \
+    http_proxy=$http_proxy \
+    DIR_BUILD=${HOME}/.build \
+    DIR_INSTALL=${HOME}/.install
+
+ENV PATH /opt/conda/bin:$PATH
+
+RUN apt-get update --fix-missing && \
+    apt-get install -y \
+
+    # Shared
+    apt-utils \
+    patch \
+    g++ \
+    gfortran \
+    git \
+    make \
+    cmake \
+    emacs \
+    vim \
+    less \
+    curl \
+    wget \
+    libz-dev \
+    openssl \
+    m4 \
+    bzip2 \
+    ca-certificates \
+
+    # Amanzi/ATS
+    groff \
+    rsync \
+    mpich \
+    libblas-dev \
+    liblapack-dev \
+    libmpich-dev \
+    libssl-dev \
+    zlib1g-dev \
+    libcurl4-openssl-dev \
+
+    # TINerator/Watershed Workflow
+    libgdal-dev \
+    unzip \
+    bison \
+    libgl1-mesa-glx \
+    xvfb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# =================================================== #
+# Build Miniconda =================================== #
+# =================================================== #
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    /opt/conda/bin/conda clean -tipsy && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
+
+# ENV TINI_VERSION v0.16.1
+# ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
+# RUN chmod +x /usr/bin/tini
+# ENTRYPOINT [ "/usr/bin/tini", "--" ]
+
+RUN . /opt/conda/etc/profile.d/conda.sh && conda activate base
+# RUN conda update -n base -c defaults conda
+
+# =================================================== #
+# Build Watershed Workflow ========================== #
+# =================================================== #
+WORKDIR ${DIR_BUILD}
+RUN python -m pip install GDAL==`gdal-config --version` && \
+    conda install -c conda-forge boost && \
+    python -m pip --no-cache-dir install --upgrade \
+       fiona \
+       rasterio \
+       shapely \
+       pyproj \
+       && \
+    git clone https://github.com/ecoon/meshpy.git --depth 1 && \
+    cd meshpy && \
+    ./configure.py \
+        --python-exe=${CONDA_DIR}/bin/python \
+        --boost-inc-dir=${CONDA_DIR}/include \
+        --boost-lib-dir=${CONDA_DIR}/lib \
+        --boost-python-libname=boost_python38 \
+        --disable-static \
+        --enable-shared \
+        && \
+    python setup.py build && \
+    python setup.py install && \
+    cd .. && \
+
+    # IDEAL-OCTO-WAFFLE
+    git clone https://github.com/ecoon/ideal-octo-waffle.git --depth 1
+
+ENV PYTHONPATH=${DIR_BUILD}:${PYTHONPATH}
+
+# =================================================== #
+# Build TINerator =================================== #
+# =================================================== #
+RUN git clone https://github.com/lanl/tinerator.git ${DIR_BUILD}/tinerator --depth 1 && \
+    cd ${DIR_BUILD}/tinerator && \
+    python -m pip install -r requirements.txt && \
+    ./tpls/build-tpls.sh -A -M
+
+ENV PYTHONPATH=${DIR_BUILD}/tpls/seacas/install/lib:${PYTHONPATH}
+
+# CMD ["/bin/bash"]
