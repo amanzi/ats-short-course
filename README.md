@@ -1,6 +1,6 @@
 # ATS Shortcourse
 
-[![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg)](https://github.com/ats-short-course/workshop/actions/workflows/docker-test.yml)
+[![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
 
 Files related to the Amanzi Workshop.
 
