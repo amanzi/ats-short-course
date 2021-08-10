@@ -4,6 +4,11 @@
 `
 Files related to the Amanzi Workshop.
 
+## Prerequisites for the Short Course
+* Docker
+* VisIt (or ParaView if you prefer and know what you are doing)
+* git (so you can clone this repo)
+
 ## Docker
 
 To build,
