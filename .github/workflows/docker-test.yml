@@ -20,7 +20,7 @@ jobs:
       #     username: ${{ secrets.DOCKERHUB_USERNAME }}
       #     password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build Watershed Workflow + TINerator
-        id: docker_build
+        id: docker_build_wwtin
         uses: docker/build-push-action@v2
         with:
           file: docker/Dockerfile-Ubuntu-WW+TIN
@@ -28,7 +28,7 @@ jobs:
           tags: metsi/workshop21:wwtin-latest
 
       - name: Build TPLs
-        id: docker_build
+        id: docker_build_tpls
         uses: docker/build-push-action@v2
         with:
           file: docker/Dockerfile-Workshop-TPLs
@@ -36,7 +36,7 @@ jobs:
           tags: metsi/workshop21:TPLs-latest
 
       - name: Build Amanzi
-        id: docker_build
+        id: docker_build_amanzi
         uses: docker/build-push-action@v2
         with:
           file: docker/Dockerfile-Workshop-Amanzi
@@ -44,7 +44,7 @@ jobs:
           tags: metsi/workshop21:Amanzi-latest
 
       - name: Build ATS
-        id: docker_build
+        id: docker_build_ats
         uses: docker/build-push-action@v2
         with:
           file: docker/Dockerfile-Workshop-ATS
