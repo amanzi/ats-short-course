@@ -26,9 +26,9 @@ RUN git branch --list
 RUN git checkout $amanzi_branch
 RUN git pull
 RUN git rev-parse --short HEAD
-  
+
 RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
-   --amanzi-build-dir=/home/amanzi_user/amanzi_builddir/amanzi \
+   --amanzi-build-dir=${HOME}/amanzi_builddir/amanzi \
    --tpl-config-file=${AMANZI_TPLS_DIR}/share/cmake/amanzi-tpl-config.cmake \
    --parallel=4 --opt \
    --disable-structured \
@@ -36,14 +36,14 @@ RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
    --enable-alquimia --enable-pflotran --enable-crunchtope \
    --with-mpi=/usr \
    --enable-shared \
-   && rm -r /home/amanzi_user/amanzi_builddir/
+   && rm -r ${HOME}/amanzi_builddir/
 
 # Set path to make it easier to run amanzi
-ENV PATH=/home/amanzi_user/install/bin:${PATH}
+ENV PATH=${HOME}/install/bin:${PATH}
 RUN echo $PATH
 
 # Create mount point for work on the host
-RUN mkdir /home/amanzi_user/work
+RUN mkdir ${HOME}/work
 
 # Unset proxy
 ENV https_proxy= \

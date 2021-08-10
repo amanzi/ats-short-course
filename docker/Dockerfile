@@ -44,6 +44,7 @@ RUN apt-get update --fix-missing && \
     libssl-dev \
     zlib1g-dev \
     libcurl4-openssl-dev \
+    rsync \
 
     # TINerator/Watershed Workflow
     libgdal-dev \
