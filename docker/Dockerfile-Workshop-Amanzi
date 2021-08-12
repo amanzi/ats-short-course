@@ -1,4 +1,4 @@
-FROM metsi/workshop:TPLs-latest
+FROM metsi/workshop21:TPLs-latest
 LABEL Description="Amanzi: Build and install Amanzi in a Docker image."
 
 # Switch to amanzi_user

@@ -1,4 +1,4 @@
-FROM metsi/workshop:Amanzi-latest
+FROM metsi/workshop21:Amanzi-latest
 LABEL Description="ATS CI: Build ATS in a Docker image."
 
 # Switch to amanzi_user
