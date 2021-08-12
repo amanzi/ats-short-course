@@ -68,4 +68,3 @@ RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
 ENV https_proxy= \
     http_proxy=
 
-CMD jupyter lab --port=8888

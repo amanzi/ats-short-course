@@ -138,3 +138,5 @@ RUN mkdir ~/.jupyter && \
     echo "c.NotebookApp.ip = '*'" >> $jupyter_cfg && \
     echo "c.NotebookApp.terminado_settings = { \"shell_command\": [\"/usr/bin/bash\"] }" >> $jupyter_cfg && \
     echo "c.NotebookApp.token = u''" >> $jupyter_cfg
+
+CMD ["jupyter", "lab", "--port=8888"]
