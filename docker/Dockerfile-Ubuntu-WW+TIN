@@ -81,7 +81,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux
     chgrp -R $user /opt/conda/
 
 USER $user
-#ENV HOME=/home/$user
+ENV HOME=/home/$user
 
 RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc && \
