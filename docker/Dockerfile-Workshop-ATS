@@ -68,3 +68,4 @@ RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
 ENV https_proxy= \
     http_proxy=
 
+WORKDIR ${HOME}/short-course
