@@ -1,9 +1,6 @@
 FROM metsi/workshop21:TPLs-latest
 LABEL Description="Amanzi: Build and install Amanzi in a Docker image."
 
-# Switch to amanzi_user
-USER amanzi_user
-
 RUN echo "${AMANZI_PREFIX}"
 RUN echo "${AMANZI_TPLS_DIR}"
 
@@ -13,7 +10,7 @@ ARG https_proxy=
 ARG http_proxy=
 
 # Change the Working Directory and update amanzi
-WORKDIR /home/amanzi_user/amanzi
+WORKDIR ${HOME}/amanzi
 
 ENV https_proxy=$https_proxy \
     http_proxy=$http_proxy

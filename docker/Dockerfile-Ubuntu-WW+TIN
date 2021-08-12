@@ -3,6 +3,11 @@ LABEL Description="Amanzi/ATS/WatershedWorkflow/TINerator Docker container"
 
 EXPOSE 8888
 
+# Sets the user
+# docker build --build-arg user=username
+ENV ${user:-ats_sc_user}
+ARG user
+
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     DEBIAN_FRONTEND=noninteractive \
@@ -65,19 +70,19 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 RUN chmod +x /usr/bin/tini
 ENTRYPOINT [ "/usr/bin/tini", "--" ]
 
-# Add an unprivileged user and group: amanzi_user, amanzi_user
-RUN groupadd -r amanzi_user && \
-    useradd -r -m -g amanzi_user amanzi_user
+# Add an unprivileged user and group
+RUN groupadd -r $user && \
+    useradd -r -m -g $user $user
 
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh -O ~/miniconda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh && \
     /opt/conda/bin/conda clean -tipsy && \
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    chown -R amanzi_user /opt/conda/ && \
-    chgrp -R amanzi_user /opt/conda/
+    chown -R $user /opt/conda/ && \
+    chgrp -R $user /opt/conda/
 
-USER amanzi_user
+USER $user
 
 RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc && \

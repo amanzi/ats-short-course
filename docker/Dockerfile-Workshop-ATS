@@ -1,9 +1,6 @@
 FROM metsi/workshop21:Amanzi-latest
 LABEL Description="ATS CI: Build ATS in a Docker image."
 
-# Switch to amanzi_user
-USER amanzi_user
-
 RUN echo "${AMANZI_PREFIX}"
 RUN echo "${AMANZI_TPLS_DIR}"
 
@@ -67,16 +64,8 @@ RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
    --enable-reg_tests \
    && rm -r ${HOME}/amanzi_builddir/
 
-# Set path to make it easier to run amanzi
-# ENV PATH=/home/amanzi_user/install/bin:${PATH}
-# RUN echo $PATH
-
-# Create mount point for work on the host
-# RUN mkdir /home/amanzi_user/work
-
 # Unset proxy
 ENV https_proxy= \
     http_proxy=
-
 
 CMD jupyter lab --port=8888

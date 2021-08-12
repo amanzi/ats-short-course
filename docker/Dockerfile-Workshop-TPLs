@@ -6,7 +6,7 @@ ARG petsc_ver=3.13
 ARG trilinos_ver=13-0-afc4e525
 ARG amanzi_branch=master
 
-ENV HOME=/home/amanzi_user
+ENV HOME=/home/$(whoami)
 
 # Installation paths
 ENV AMANZI_PREFIX=${HOME}/install \
@@ -17,15 +17,6 @@ ENV AMANZI_PREFIX=${HOME}/install \
 ENV AMANZI_PETSC_LIBS=$AMANZI_TPLS_DIR/petsc-${petsc_ver}/lib \
     AMANZI_TRILINOS_LIBS=$AMANZI_TPLS_DIR/trilinos-${trilinos_ver}/lib \
     AMANZI_SEACAS_LIBS=$AMANZI_TPLS_DIR/SEACAS/lib
-
-# Reset PATH
-# ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-# ENV PYTHONPATH=
-
-# Add an unprivileged user and group: amanzi_user, amanzi_user
-#RUN groupadd -r amanzi_user \
-#  && useradd -r -m -g amanzi_user amanzi_user
-#USER amanzi_user
 
 # Set the current working directory as the users home directory
 # (creates the directory if it doesn't exist)
