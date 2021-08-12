@@ -15,8 +15,6 @@ ENV LANG=C.UTF-8 \
     PYTHONDONTWRITEBYTECODE=true \
     https_proxy=$https_proxy \
     http_proxy=$http_proxy \
-    DIR_BUILD=${HOME}/build \
-    DIR_INSTALL=${HOME}/install \
     PATH=/opt/conda/bin:$PATH
 
 RUN apt-get update --fix-missing && \
@@ -83,6 +81,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py38_4.9.2-Linux
     chgrp -R $user /opt/conda/
 
 USER $user
+#ENV HOME=/home/$user
 
 RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc && \
@@ -96,7 +95,7 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 # =================================================== #
 # Build Watershed Workflow ========================== #
 # =================================================== #
-WORKDIR ${DIR_BUILD}
+WORKDIR ${HOME}/build
 RUN python -m pip install GDAL==`gdal-config --version` && \
     python -m pip --no-cache-dir install --upgrade \
        fiona \
@@ -122,18 +121,17 @@ RUN python -m pip install GDAL==`gdal-config --version` && \
     # IDEAL-OCTO-WAFFLE
     git clone https://github.com/ecoon/ideal-octo-waffle.git --depth 1
 
-ENV PYTHONPATH=${DIR_BUILD}:${PYTHONPATH}
+ENV PYTHONPATH=${HOME}/build:${PYTHONPATH}
 
 # =================================================== #
 # Build TINerator =================================== #
 # =================================================== #
-RUN git clone https://github.com/lanl/tinerator.git ${DIR_BUILD}/tinerator --depth 1 && \
-    cd ${DIR_BUILD}/tinerator && \
+RUN git clone https://github.com/lanl/tinerator.git ${HOME}/build/tinerator --depth 1 && \
+    cd ${HOME}/build/tinerator && \
     python -m pip install --no-cache-dir -r requirements.txt && \
     ./tpls/build-tpls.sh -A -M
 
-ENV PYTHONPATH=${DIR_BUILD}/tpls/seacas/install/lib:${PYTHONPATH}
-
+ENV PYTHONPATH=${HOME}/build/tpls/seacas/install/lib:${PYTHONPATH}
 
 # Configure Jupyter Notebook/Jupyter Lab settings
 RUN mkdir ~/.jupyter && \
