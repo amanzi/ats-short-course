@@ -5,8 +5,8 @@ EXPOSE 8888
 
 # Sets the user
 # docker build --build-arg user=username
-ENV ${user:-ats_sc_user}
 ARG user
+ENV user=${user:-ats_sc_user}
 
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
