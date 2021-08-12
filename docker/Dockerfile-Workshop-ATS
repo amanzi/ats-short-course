@@ -1,4 +1,4 @@
-FROM metsi/workshop21:Amanzi-latest
+FROM metsi/ats-short-course:Amanzi-latest
 LABEL Description="ATS CI: Build ATS in a Docker image."
 
 RUN echo "${AMANZI_PREFIX}"
