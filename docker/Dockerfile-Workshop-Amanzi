@@ -5,7 +5,7 @@ RUN echo "${AMANZI_PREFIX}"
 RUN echo "${AMANZI_TPLS_DIR}"
 
 # Arguments
-ARG amanzi_branch=master
+ARG amanzi_branch=amanzi-1.2
 ARG https_proxy=
 ARG http_proxy=
 

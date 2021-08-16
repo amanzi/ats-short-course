@@ -4,7 +4,7 @@ LABEL Description="Build TPLs on top of Watershed Workflow and TINerator"
 # Versions change and we cannot set environment variables from command output.
 ARG petsc_ver=3.13
 ARG trilinos_ver=13-0-afc4e525
-ARG amanzi_branch=master
+ARG amanzi_branch=amanzi-1.2
 
 # Installation paths
 ENV AMANZI_PREFIX=${HOME}/install \
