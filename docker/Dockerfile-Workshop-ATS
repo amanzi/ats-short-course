@@ -38,7 +38,7 @@ RUN git rev-parse --short HEAD
 
 WORKDIR ${HOME}/amanzi/src/physics/ats/testing/ats-regression-tests
 
-RUN git checkout @ats_regression_branch
+RUN git checkout $ats_regression_branch
 RUN git pull
 RUN git rev-parse --short HEAD
 
