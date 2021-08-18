@@ -73,7 +73,7 @@
     <Parameter name="start time units" type="string" value="d" />
     <Parameter name="end time" type="double" value="639" />
     <Parameter name="end time units" type="string" value="d" />
-    <Parameter name="end cycle" type="int" value="10000" />
+    <Parameter name="end cycle" type="int" value="308" />
     <Parameter name="max time step size [s]" type="double" value="86400" />
     <ParameterList name="required times">
       <Parameter name="times start period stop" type="Array(double)" value="{ 0, 1,-1}" />
@@ -215,7 +215,7 @@
       <Parameter name="permeability rescaling" type="double" value="10000000" />
       <Parameter name="surface rel perm strategy" type="string" value="clobber" />
       <Parameter name="relative permeability method" type="string" value="upwind with Darcy flux" />
-      <Parameter name="debug cells" type="Array(int)" value="{0,1314}" />
+      <Parameter name="debug cells" type="Array(int)" value="{1314}" />
       <ParameterList name="diffusion" type="ParameterList">
         <Parameter name="discretization primary" type="string" value="mfd: two-point flux approximation" />
       </ParameterList>

@@ -90,7 +90,7 @@ def plot(data, name, linestyle='-', fig=None, axs=None, legend=True):
     axs[2].plot(data['time'], error, marker='x', markevery=10, color='grey', label='error')
     if legend:
         axs[2].legend()
-    axs[2].set_ylabel('cumulative flux [m]')
+    axs[2].set_ylabel('cumulative flux (snow) [m]')
     axs[2].set_xlabel('time [d]')
     axs[2].xaxis.set_major_formatter(plt.FuncFormatter(format_ticks))
     axs[2].xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(integer=True))
