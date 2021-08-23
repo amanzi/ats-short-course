@@ -2,21 +2,28 @@
 
 [![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
 
-To follow along with the demonstrations, you will perform simulatons and visualization from Jupyter notebooks running under JupyterLab within a Docker container. 
+To follow along with the demonstrations, you will perform simulations and visualization results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
 
+* A Linux-based operating system, including common command line tools.
+* A build of Amanzi-ATS, with corresponding commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
+* All needed Third-Party Libraries and utilities (`h5dump`, `ncdump`, `meshconvert`, etc)
+* A python3 build with all needed libraries for common ATS-based tasks.
+* Watershed Workflow and Tinerator, two common ATS meshing workflow tools.
 
-# Participants
+# Participant: set up for a short course
+
+This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems.  The expectation is that this short course should work on any of these systems, but it is our first short course, so please be patient.  If you find bugs in the docker container or this material, please feel free to ask for help on the [ATS user's group](mailto:ats-users@googlegroups.com) or by submitting an Issue here.
 
 ## Required Software
 As a first step you need to have the following tools installed on your system
 
-* Docker [Download](https://www.docker.com/get-started)
-* VisIt [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables)
-  * (or ParaView [Download](https://www.paraview.org/download/) if you prefer and know what you are doing)
-* git (so you can clone this repo)
-  * Mac OSX git is included in the _command line tools_ with XCode
-  * Linux git is included as a standard package
-  * Windows - not sure what to recommend here?
+* Docker: [Download](https://www.docker.com/get-started)
+* VisIt: [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables)
+  * (or ParaView: [Download](https://www.paraview.org/download/) if you prefer it and already know how to use it)
+* git (so you can clone this repo):
+  * Mac OSX: git is included in the _command line tools_, installed via `xcode-select --install`, or in XCode itself.
+  * Linux: git is included as a standard package under most package managers, e.g. `sudo apt-get install git`
+  * Windows: see [Git Downloads](https://github.com/git-guides/install-git)
 
 ## Getting the Short-course Files
 
@@ -70,13 +77,15 @@ Note also that OSX machines can blank the screen or sleep, both of which can pau
 
 ## Run JupyterLab under Docker
 
-The goal is for you to enable JupyterLab to interact with the ats-short-course repository files on your local system.  This accomplished with the _-v_ or _--volume_ option which shares your _present working directory_ ($pwd) with the Docker container.  So make sure your $pwd is the top-level of the ats-short-course repository and cut-and-paste one of the following commands:
+The goal is for you to enable JupyterLab to interact with the ats-short-course repository files on your local system.  This is accomplished through the `-v` or `--volume` option which shares your _present working directory_ (`$pwd`) with the Docker container.  So make sure your `$pwd` is the top-level of the `ats-short-course` repository and cut-and-paste one of the following commands:
 
 ```sh
 docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8888:8888 metsi/ats-short-course:latest
+```
 
-# OR if you prefer the verbose version
+OR if you prefer the verbose version
 
+```sh
 docker run \
     --interactive \
     --tty \
@@ -89,7 +98,6 @@ docker run \
 This will output several status messages to the screen, one of which is about the Jupyter server that it started.  For example, you should see something like 
 
 ``` sh
-
 [I 2021-08-17 21:59:38.111 ServerApp] Jupyter Server 1.10.2 is running at:
 # This address is unique to each system, so don't copy this one in your case
 [I 2021-08-17 21:59:38.111 ServerApp] http://58557662c177:8888/lab
@@ -97,10 +105,9 @@ This will output several status messages to the screen, one of which is about th
 [I 2021-08-17 21:59:38.111 ServerApp]  or http://127.0.0.1:8888/lab
 # To kill this server
 [I 2021-08-17 21:59:38.111 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-
 ```
 
-Once this is running you can copy the URL (http://127.0.0.1:8888/lab) into your browser and you're ready to go - you should see JupyterLab and the files from this repository.
+Once this is running you can open this URL: (http://127.0.0.1:8888/lab) in your browser and you're ready to go - you should see JupyterLab and the files from this repository.
 
 # Developers
 
@@ -114,8 +121,8 @@ If you are interested in building the Docker image, follow these steps:
 #
 # Assuming your PWD is the top-level of the repository
 #
-$ cd docker/
-$ make all
+cd docker/
+make all
 
 # Or...
 docker build -t metsi/ats-short-course:wwtin-latest -f Dockerfile-Ubuntu-WW+TIN ./
