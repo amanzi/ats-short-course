@@ -2,7 +2,7 @@
 
 [![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
 
-To follow along with the demonstrations, you will perform simulations and visualization results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
+To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
 
 * A Linux-based operating system, including common command line tools.
 * A build of Amanzi-ATS, with corresponding commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
