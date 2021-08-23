@@ -42,40 +42,42 @@ The Docker container for this short-course includes installations of Watershed W
 
 
 ``` sh
-$ docker pull metsi/ats-short-course:latest
+docker pull metsi/ats-short-course:latest
 ```
 
 If this downloads successful, let's check the version of ATS:
 
 ``` sh
-$ docker run -it --rm metsi/ats-short-course:latest ats --version
-ATS version 1.2.0_db31397f
+docker run -it --rm metsi/ats-short-course:latest ats --version
+> ATS version 1.2.0_db31397f
 ```
 
 If this worked - great!  Move on to "Run JupyterLab under Docker".  But if you ran into trouble with the download and/or docker storage on your system check your configuration with 
 
 ``` sh
-$ docker system df
+docker system df
 ```
 
 And compare the usage ("SIZE") with what you have allocated for space in your Docker "Preferences".  You may see significant space is "RECLAIMABLE".  As a start consider pruning the image layers that aren't connected to images that are being used:
 
 ``` sh
-$ docker system prune -f 
+docker system prune -f 
 ```
 
 If you need more space, consider purging all unused images with "-a".
+
+Note also that OSX machines can blank the screen or sleep, both of which can pause the download and not recover.  Setting the battery settings to never blank the screen (preferably when plugged in) and potentially running the ``caffeinate`` command to stop OSX from sleeping may be helpful on slow internet connections.
 
 ## Run JupyterLab under Docker
 
 The goal is for you to enable JupyterLab to interact with the ats-short-course repository files on your local system.  This accomplished with the _-v_ or _--volume_ option which shares your _present working directory_ ($pwd) with the Docker container.  So make sure your $pwd is the top-level of the ats-short-course repository and cut-and-paste one of the following commands:
 
 ```sh
-$ docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8888:8888 metsi/ats-short-course:latest
+docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8888:8888 metsi/ats-short-course:latest
 
 # OR if you prefer the verbose version
 
-$ docker run \
+docker run \
     --interactive \
     --tty \
     --volume $(pwd):/home/ats_sc_user/short-course:delegated \
@@ -116,9 +118,9 @@ $ cd docker/
 $ make all
 
 # Or...
-$ docker build -t metsi/ats-short-course:wwtin-latest -f Dockerfile-Ubuntu-WW+TIN ./
-$ docker build -t metsi/ats-short-course:TPLs-latest -f Dockerfile-Workshop-TPLs ./
-$ docker build -t metsi/ats-short-course:Amanzi-latest -f Dockerfile-Workshop-Amanzi ./
-$ docker build -t metsi/ats-short-course:latest -f Dockerfile-Workshop-ATS ./
+docker build -t metsi/ats-short-course:wwtin-latest -f Dockerfile-Ubuntu-WW+TIN ./
+docker build -t metsi/ats-short-course:TPLs-latest -f Dockerfile-Workshop-TPLs ./
+docker build -t metsi/ats-short-course:Amanzi-latest -f Dockerfile-Workshop-Amanzi ./
+docker build -t metsi/ats-short-course:latest -f Dockerfile-Workshop-ATS ./
 
 ```
