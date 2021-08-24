@@ -1,0 +1,30 @@
+CHEMISTRY
+PRIMARY_SPECIES
+  Tracer1
+
+/
+GENERAL_REACTION
+  REACTION Tracer1 <-> 
+  FORWARD_RATE 0 ! 1/s
+
+/
+
+LOG_FORMULATION
+DATABASE hanford.dat
+END
+
+
+CONSTRAINT upstreambc
+  CONCENTRATIONS
+    Tracer1 50
+
+  /
+END
+CONSTRAINT initial
+  CONCENTRATIONS
+    Tracer1 1.0e-20
+  
+  /
+END
+
+
