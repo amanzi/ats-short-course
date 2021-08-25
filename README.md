@@ -10,6 +10,8 @@ To follow along with the demonstrations, participants will perform simulations a
 * A python3 build with all needed libraries for common ATS-based tasks.
 * Watershed Workflow and Tinerator, two common ATS meshing workflow tools.
 
+The [short course files](#getting-the-short-course-files) will reside on the participants' computers and any changes will be available after exiting the Docker container.
+
 # Participant: set up for a short course
 
 This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems.  The expectation is that this short course should work on any of these systems, but it is our first short course, so please be patient.  If you find bugs in the docker container or this material, please feel free to ask for help on the [ATS user's group](mailto:ats-users@googlegroups.com) or by submitting an Issue here.
@@ -18,14 +20,17 @@ This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems
 As a first step you need to have the following tools installed on your system
 
 * Docker: [Download](https://www.docker.com/get-started)
+  * Windows: Note that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL. [steps 4 and 5](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package).
 * VisIt: [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables)
   * (or ParaView: [Download](https://www.paraview.org/download/) if you prefer it and already know how to use it)
 * git (so you can clone this repo):
   * Mac OSX: git is included in the _command line tools_, installed via `xcode-select --install`, or in XCode itself.
   * Linux: git is included as a standard package under most package managers, e.g. `sudo apt-get install git`
-  * Windows: see [Git Downloads](https://github.com/git-guides/install-git)
+  * Windows: See [Git Downloads](https://github.com/git-guides/install-git). Note that the GitHub Desktop is also an option for Windows users and provides a GUI.
 
 ## Getting the Short-course Files
+
+<a name="files"></a>
 
 The jupyter notebooks, as well as the corresponding input files and data, are provided in this git repository. To get started you need to clone this repository:
 
@@ -93,6 +98,12 @@ docker run \
     --publish 8888:8888 \
     --workdir /home/ats_sc_user/short-course \
     metsi/ats-short-course:latest
+```
+
+OR if you are using Windows 10's Command Prompt or PowerShell, where the variable `$(pwd)` is not be recognized, it may be easier to simply type the location of ats-short-course explicitly, for example if `C:\Users\USERNAME\ats-short-course` is the top-level of the `ats-short-course` repository, then:
+
+```sh
+docker run -it -v C:\Users\USERNAME\ats-short-course:/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8888:8888 metsi/ats-short-course:latest
 ```
 
 This will output several status messages to the screen, one of which is about the Jupyter server that it started.  For example, you should see something like 
