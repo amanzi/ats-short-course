@@ -496,10 +496,10 @@
 
     <ParameterList name="chemistry subsurface" type="ParameterList">
       <Parameter name="PK type" type="string" value="chemistry alquimia" />
-      <Parameter name="engine" type="string" value="PFloTran" />
+      <Parameter name="engine" type="string" value="CrunchFlow" />
       <Parameter name="chemistry model" type="string" value="Alquimia" />
       <Parameter name="domain name" type="string" value="domain" />
-      <Parameter name="engine input file" type="string" value="./data/1d-calcite.in" />
+      <Parameter name="engine input file" type="string" value="./data/1d-calcite-crunch.in" />
       <Parameter name="minerals" type="Array(string)" value="{Calcite}" />
       <Parameter name="activity model" type="string" value="unit" />
       <Parameter name="maximum Newton iterations" type="int" value="100" />
@@ -531,11 +531,11 @@
 
     <ParameterList name="chemistry surface" type="ParameterList">
       <Parameter name="PK type" type="string" value="chemistry alquimia" />
-      <Parameter name="engine" type="string" value="PFloTran" />
+      <Parameter name="engine" type="string" value="CrunchFlow" />
       <Parameter name="chemistry model" type="string" value="Alquimia" />
       <Parameter name="domain name" type="string" value="surface" />
       <Parameter name="saturation liquid key" type="string" value="surface-ponded_depth" />
-      <Parameter name="engine input file" type="string" value="./data/1d-calcite.in" />
+      <Parameter name="engine input file" type="string" value="./data/1d-calcite-crunch.in" />
       <Parameter name="minerals" type="Array(string)" value="{Calcite}" />
       <Parameter name="activity model" type="string" value="unit" />
       <Parameter name="maximum Newton iterations" type="int" value="100" />
