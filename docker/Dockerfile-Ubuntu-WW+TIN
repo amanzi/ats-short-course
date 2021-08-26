@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 LABEL Description="Amanzi/ATS/WatershedWorkflow/TINerator Docker container"
 
-EXPOSE 8888
+EXPOSE 8899
 ARG container_user=ats_sc_user
 
 ENV LANG=C.UTF-8 \
@@ -133,6 +133,11 @@ RUN python -m pip install GDAL==`gdal-config --version` && \
 
     git clone --depth 1 https://github.com/ecoon/watershed-workflow ${HOME}/watershed-workflow && \
     cp ${HOME}/watershed-workflow/watershed_workflowrc ${HOME}/.watershed_workflowrc && \
+    # get Rosetta pedotransfer functions
+    cd ${HOME}/watershed-workflow/workflow_tpls && \
+    mkdir rosetta && cd rosetta && \
+    wget http://www.u.arizona.edu/~ygzhang/rosettav3/Rosetta-3.0beta-py3.tar.gz && \
+    tar xzf Rosetta-3.0beta-py3.tar.gz && \
     # Add PYTHONPATHs to ~/.bashrc
     echo "export PYTHONPATH=${HOME}/watershed-workflow:PYTHONPATH=${HOME}/watershed-workflow/workflow_tpls:\${PYTHONPATH}" >> ~/.bashrc
     # Run tests
@@ -162,4 +167,4 @@ RUN mkdir ~/.jupyter && \
     echo "c.NotebookApp.terminado_settings = { \"shell_command\": [\"/usr/bin/bash\"] }" >> $jupyter_cfg && \
     echo "c.NotebookApp.token = u''" >> $jupyter_cfg
 
-CMD ["jupyter", "lab", "--port=8888"]
+CMD ["jupyter", "lab", "--port=8899"]
