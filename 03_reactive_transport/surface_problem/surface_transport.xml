@@ -3,7 +3,7 @@
     <ParameterList name="surface" type="ParameterList">
       <Parameter name="mesh type" type="string" value="aliased" />
       <ParameterList name="aliased parameters">
-        <Parameter name="alias" type="string" value="domain" />
+        <Parameter name="target" type="string" value="domain" />
       </ParameterList>
     </ParameterList>
     <ParameterList name="domain" type="ParameterList">

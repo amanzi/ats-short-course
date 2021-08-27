@@ -139,7 +139,7 @@ RUN python -m pip install GDAL==`gdal-config --version` && \
     wget http://www.u.arizona.edu/~ygzhang/rosettav3/Rosetta-3.0beta-py3.tar.gz && \
     tar xzf Rosetta-3.0beta-py3.tar.gz && \
     # Add PYTHONPATHs to ~/.bashrc
-    echo "export PYTHONPATH=${HOME}/watershed-workflow:PYTHONPATH=${HOME}/watershed-workflow/workflow_tpls:\${PYTHONPATH}" >> ~/.bashrc
+    echo "export PYTHONPATH=${HOME}/watershed-workflow:${HOME}/watershed-workflow/workflow_tpls:\${PYTHONPATH}" >> ~/.bashrc
     # Run tests
     #pytest workflow/test/test_hilev.py
     #pytest workflow
