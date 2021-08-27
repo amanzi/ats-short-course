@@ -64,7 +64,7 @@ docker run -it --rm metsi/ats-short-course:latest ats --version
 > ATS version 1.2.0_db31397f
 ```
 
-If this worked - great!  Move on to "Run JupyterLab under Docker".  But if you ran into trouble with the download and/or docker storage on your system check your configuration with 
+If this worked - great!  Move on to [Run JupyterLab under Docker](#run-jupyterlab-under-docker).  But if you ran into trouble with the download and/or docker storage on your system check your configuration with 
 
 ``` sh
 docker system df
@@ -118,7 +118,12 @@ This will output several status messages to the screen, one of which is about th
 [I 2021-08-17 21:59:38.111 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 ```
 
-Once this is running you can open this URL: (http://127.0.0.1:8899/lab) in your browser and you're ready to go - you should see JupyterLab and the files from this repository.
+Once this is running you can open this URL: (http://127.0.0.1:8899/lab) in your browser and you're ready to go - you should see JupyterLab and the files from this repository.  Note that most users see the message:
+
+```
+No web browser found: could not locate runnable browser.
+```
+This message is safe to ignore -- by manually copying and pasting the above address into your browser, you should see the Jupyter Lab instance.
 
 # Developers
 
