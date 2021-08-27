@@ -144,7 +144,7 @@ RUN python -m pip install GDAL==`gdal-config --version` && \
     #pytest workflow/test/test_hilev.py
     #pytest workflow
 
-ENV PYTHONPATH=${HOME}/watershed-workflow:PYTHONPATH=${HOME}/watershed-workflow/workflow_tpls:${PYTHONPATH}
+ENV PYTHONPATH=${HOME}/watershed-workflow:${HOME}/watershed-workflow/workflow_tpls:${PYTHONPATH}
 
 # =================================================== #
 # Build TINerator =================================== #
