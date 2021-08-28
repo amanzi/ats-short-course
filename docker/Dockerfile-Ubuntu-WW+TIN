@@ -138,13 +138,13 @@ RUN python -m pip install GDAL==`gdal-config --version` && \
     mkdir rosetta && cd rosetta && \
     wget http://www.u.arizona.edu/~ygzhang/rosettav3/Rosetta-3.0beta-py3.tar.gz && \
     tar xzf Rosetta-3.0beta-py3.tar.gz && \
+    # PROJ_LIB to rasterio's version of proj, which seems to conflict otherwise
+    echo "export PROJ_LIB=/opt/conda/lib/python3.8/site-packages/rasterio/proj_data/" >> ~/.bashrc \
     # Add PYTHONPATHs to ~/.bashrc
     echo "export PYTHONPATH=${HOME}/watershed-workflow:${HOME}/watershed-workflow/workflow_tpls:\${PYTHONPATH}" >> ~/.bashrc
-    # Run tests
-    #pytest workflow/test/test_hilev.py
-    #pytest workflow
 
 ENV PYTHONPATH=${HOME}/watershed-workflow:${HOME}/watershed-workflow/workflow_tpls:${PYTHONPATH}
+ENV PROJ_LIB=/opt/conda/lib/python3.8/site-packages/rasterio/proj_data/
 
 # =================================================== #
 # Build TINerator =================================== #
@@ -168,6 +168,6 @@ RUN mkdir ~/.jupyter && \
     echo "c.NotebookApp.token = u''" >> $jupyter_cfg
 
 # emacs
-COPY docker/files/emacs_d_init.el ~/.emacs.d/
+COPY docker/files/emacs_d_init.el ${HOME}/.emacs.d/
 
 CMD ["jupyter", "lab", "--port=8899"]
