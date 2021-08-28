@@ -167,4 +167,8 @@ RUN mkdir ~/.jupyter && \
     echo "c.NotebookApp.terminado_settings = { \"shell_command\": [\"/usr/bin/bash\"] }" >> $jupyter_cfg && \
     echo "c.NotebookApp.token = u''" >> $jupyter_cfg
 
+# emacs
+RUN mkdir ~/.emacs.d
+COPY files/emacs_d_init.el ~/.emacs.d/init.el
+
 CMD ["jupyter", "lab", "--port=8899"]
