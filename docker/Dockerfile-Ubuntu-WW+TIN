@@ -169,6 +169,6 @@ RUN mkdir ~/.jupyter && \
 
 # emacs
 RUN mkdir ~/.emacs.d
-COPY files/emacs_d_init.el ~/.emacs.d/init.el
+COPY docker/files/emacs_d_init.el ~/.emacs.d/init.el
 
 CMD ["jupyter", "lab", "--port=8899"]
