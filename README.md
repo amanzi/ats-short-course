@@ -8,7 +8,7 @@ To follow along with the demonstrations, participants will perform simulations a
 * A build of Amanzi-ATS, with corresponding commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
 * All needed Third-Party Libraries and utilities (`h5dump`, `ncdump`, `meshconvert`, etc)
 * A python3 build with all needed libraries for common ATS-based tasks.
-* Watershed Workflow and Tinerator, two common ATS meshing workflow tools.
+* Watershed Workflow and TINerator, two common ATS meshing workflow tools.
 
 The [short course files](#getting-the-short-course-files) will reside on the participants' computers and any changes will be available after exiting the Docker container.
 
@@ -97,6 +97,8 @@ Note also that OSX machines can blank the screen or sleep, both of which can pau
 
 The goal is for you to enable JupyterLab to interact with the ats-short-course repository files on your local system.  This is accomplished through the `-v` or `--volume` option which shares your _present working directory_ (`$pwd`) with the Docker container.  So make sure your `$pwd` is the top-level of the `ats-short-course` repository and cut-and-paste one of the following commands:
 
+### OSX
+
 ```sh
 docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
 ```
@@ -113,11 +115,29 @@ docker run \
     metsi/ats-short-course:latest
 ```
 
-OR if you are using Windows 10's Command Prompt or PowerShell, where the variable `$(pwd)` is not be recognized, it may be easier to simply type the location of ats-short-course explicitly, for example if `C:\Users\USERNAME\ats-short-course` is the top-level of the `ats-short-course` repository, then:
+### Windows 10
+
+If you are using Windows 10's Command Prompt or PowerShell, where the variable `$(pwd)` is not be recognized, it may be easier to simply type the location of ats-short-course explicitly, for example if `C:\Users\USERNAME\ats-short-course` is the top-level of the `ats-short-course` repository, then:
 
 ```sh
 docker run -it -v C:\Users\USERNAME\ats-short-course:/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
 ```
+
+### Linux
+
+Linux is a little tricky and requires an additional update to the Docker image.  So first, pull this update,
+
+``` sh
+docker pull metsi/ats-short-course:latest-linux
+```
+
+Then the command to run the jupyter needs one additional option to specify your user id (on the linux side) and the ats_sc_user group (on the container side):
+
+```sh
+docker run --user $(id -u):999 -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest-linux
+```
+
+
 
 This will output several status messages to the screen, one of which is about the Jupyter server that it started.  For example, you should see something like 
 
@@ -131,7 +151,9 @@ This will output several status messages to the screen, one of which is about th
 [I 2021-08-17 21:59:38.111 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
 ```
 
-Once this is running you can open this URL: (http://127.0.0.1:8899/lab) in your browser and you're ready to go - you should see JupyterLab and the files from this repository.  Note that most users see the message:
+Once this is running you can open this URL: (http://127.0.0.1:8899/lab) in your browser and you're ready to go - you should see JupyterLab and the files from this repository.  
+
+Note that most users see the message:
 
 ```
 No web browser found: could not locate runnable browser.
