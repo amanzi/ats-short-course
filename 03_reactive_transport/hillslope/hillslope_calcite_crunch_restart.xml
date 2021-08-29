@@ -115,8 +115,10 @@
 
   <ParameterList name="cycle driver">
     <Parameter name="start time" type="double" value="0.0" />
-    <Parameter name="end time" type="double" value="200.0" />
+    <Parameter name="end time" type="double" value="175.0" />
     <Parameter name="end time units" type="string" value="d" />
+    <Parameter name="restart from checkpoint file" type="string" value="./restart/checkpoint00051_crunch.h5" />
+
     <ParameterList name="PK tree">
       <ParameterList name="flow and transport">
         <Parameter name="PK type" type="string" value="flow reactive transport" />
