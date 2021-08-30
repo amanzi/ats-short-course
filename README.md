@@ -73,15 +73,15 @@ cd ats-short-course
 The Docker container for this short-course includes installations of Watershed Workflow, TINerator, amanzi, and ats.  As a result it is fairly large and best to separate the initial download and testing before we run JupyterLab.  To get started lets download the container:
 
 
-``` sh
+```sh
 docker pull metsi/ats-short-course:latest
 ```
 
 If this downloads successful, let's check the version of ATS:
 
-``` sh
+```shell
 docker run -it --rm metsi/ats-short-course:latest ats --version
-> ATS version 1.2.0_db31397f
+> ATS version 1.2.0_c043aec4
 ```
 
 If this worked - great!  Move on to [Run JupyterLab under Docker](#run-jupyterlab-under-docker).  But if you ran into trouble with the download and/or docker storage on your system check some of the [troubleshooting tips](DockerTips.md).
