@@ -423,7 +423,7 @@
     </ParameterList>
   </ParameterList>
   <ParameterList name="checkpoint" type="ParameterList">
-    <Parameter name="times start period stop" type="Array(double)" value="{0,1,-1}" />
+    <Parameter name="times start period stop" type="Array(double)" value="{0,10,-1}" />
     <Parameter name="times start period stop units" type="string" value="h" />
   </ParameterList>
   <ParameterList name="visualization" type="ParameterList">

@@ -115,8 +115,11 @@
 
   <ParameterList name="cycle driver">
     <Parameter name="start time" type="double" value="0.0" />
-    <Parameter name="end time" type="double" value="300.0" />
+    <Parameter name="end time" type="double" value="175.0" />
     <Parameter name="end time units" type="string" value="d" />
+    <Parameter name="restart from checkpoint file" type="string" value="./restart/checkpoint00051.h5" />	    
+
+
     <ParameterList name="PK tree">
       <ParameterList name="flow and transport">
         <Parameter name="PK type" type="string" value="flow reactive transport" />
@@ -429,7 +432,7 @@
       </ParameterList>
 
       <ParameterList name="verbose object">
-        <Parameter name="verbosity level" type="string" value="extreme" />
+        <Parameter name="verbosity level" type="string" value="default" />
       </ParameterList>
 
       <ParameterList name="reconstruction">
@@ -569,7 +572,7 @@
 
   <ParameterList name="state">
     <ParameterList name="verbose object">
-      <Parameter name="verbosity level" type="string" value="extreme" />
+      <Parameter name="verbosity level" type="string" value="default" />
     </ParameterList>
     <ParameterList name="field evaluators">
 
@@ -599,8 +602,9 @@
             <Parameter name="component" type="string" value="cell" />
             <ParameterList name="function">
               <ParameterList name="function-tabular">
-                <Parameter name="x values" type="Array(double)" value="{0.0,4320000,8640000,12960000,17280000,21600000}" />
-                <Parameter name="y values" type="Array(double)" value="{0e-07,5e-07,0e-07,5e-07,0e-7,1e-06}" />
+                <Parameter name="x values" type="Array(double)" value="{0.0,4320000,6480000,8640000,10800000,12960000
+}" />
+                <Parameter name="y values" type="Array(double)" value="{0e-07,1e-06,0e-07,2e-06,0e-7,1e-06}" />
                 <Parameter name="forms" type="Array(string)" value="{constant,constant,constant,constant,constant}" />
               </ParameterList>
             </ParameterList>
@@ -823,11 +827,11 @@
 
     </ParameterList>
   </ParameterList>
-<!--
+
   <ParameterList name="checkpoint">
-    <Parameter name="cycles" type="Array(int)" value="{0,7,10,13,16,19,22,25,28,31,34}" />
+    <Parameter name="times start period stop" type="Array(double)" value="{0.0,2160000,-1.0}" />
   </ParameterList>
--->
+
   <ParameterList name="visualization" type="ParameterList">
     <Parameter name="visualize on 3D mesh" type="bool" value="true"/>
     <ParameterList name="domain" type="ParameterList">

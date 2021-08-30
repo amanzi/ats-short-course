@@ -975,15 +975,15 @@
   </ParameterList>
   <ParameterList name="visualization" type="ParameterList">
     <ParameterList name="domain" type="ParameterList">
-      <Parameter name="times start period stop 0" type="Array(double)" value="{0.0,1.0,-1.0}" />
+      <Parameter name="times start period stop 0" type="Array(double)" value="{0.0,10.,-1.0}" />
       <Parameter name="times start period stop 0 units" type="string" value="d" />
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
-      <Parameter name="times start period stop 0" type="Array(double)" value="{0.0,1.0,-1.0}" />
+      <Parameter name="times start period stop 0" type="Array(double)" value="{0.0,10.,-1.0}" />
       <Parameter name="times start period stop 0 units" type="string" value="d" />
     </ParameterList>
     <ParameterList name="snow" type="ParameterList">
-      <Parameter name="times start period stop 0" type="Array(double)" value="{0.0,1.0,-1.0}" />
+      <Parameter name="times start period stop 0" type="Array(double)" value="{0.0,10.,-1.0}" />
       <Parameter name="times start period stop 0 units" type="string" value="d" />
     </ParameterList>
   </ParameterList>
@@ -1235,7 +1235,7 @@
     </ParameterList>
   </ParameterList>
   <ParameterList name="checkpoint" type="ParameterList">
-    <Parameter name="times start period stop" type="Array(double)" value="{0.0,10,-1.0}" />
+    <Parameter name="times start period stop" type="Array(double)" value="{0.0,30,-1.0}" />
     <Parameter name="times start period stop units" type="string" value="d" />
   </ParameterList>
 </ParameterList>
