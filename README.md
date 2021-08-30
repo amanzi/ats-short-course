@@ -42,7 +42,7 @@ This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems
 As a first step you need to have the following tools installed on your system
 
 * Docker: [Download](https://www.docker.com/get-started)
-  * Windows: Note that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL and follow [steps 4 and 5](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package).
+  * Windows: If you are not using an Administrator account, you will have add your user account to the docker-users group as outlined [here](https://docs.docker.com/desktop/faqs/#why-do-i-see-the-docker-desktop-access-denied-error-message-when-i-try-to-start-docker-desktop). Note also that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL and follow [steps 4 and 5](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package).
 * VisIt: [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables)
   * (or ParaView: [Download](https://www.paraview.org/download/) if you prefer it and already know how to use it)
 * git (so you can clone this repo):
