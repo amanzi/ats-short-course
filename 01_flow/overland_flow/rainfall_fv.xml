@@ -37,6 +37,20 @@
     </ParameterList>
   </ParameterList>
 
+  <ParameterList name="observations" type="ParameterList">
+    <ParameterList name="surface outlet flux" type="ParameterList">
+      <Parameter name="variable" type="string" value="surface-mass_flux" />
+      <Parameter name="direction normalized flux" type="bool" value="true" />
+      <Parameter name="region" type="string" value="right side" />
+      <Parameter name="functional" type="string" value="extensive integral" />
+      <Parameter name="delimiter" type="string" value=" " />
+      <Parameter name="location name" type="string" value="face" />
+      <Parameter name="write interval" type="int" value="1" />
+      <Parameter name="observation output filename" type="string" value="surface_outlet_flux.dat" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,600.0,-1.0}" />
+    </ParameterList>
+  </ParameterList>
+
   <ParameterList name="cycle driver" type="ParameterList">
     <Parameter name="start time" type="double" value="0.0" />
     <Parameter name="start time units" type="string" value="s" />
@@ -149,7 +163,7 @@
             <Parameter name="component" type="string" value="cell" />
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0.0,1800.0}" />
+                <Parameter name="x values" type="Array(double)" value="{0.0,7200.0}" />
                 <Parameter name="y values" type="Array(double)" value="{3e-05,0.0}" />
                 <Parameter name="forms" type="Array(string)" value="{constant}" />
               </ParameterList>
@@ -237,7 +251,7 @@
                   <ParameterList name="function-linear" type="ParameterList">
                     <Parameter name="y0" type="double" value="0.0" />
                     <Parameter name="gradient" type="Array(double)" value="{-0.1,0.0}" />
-                    <Parameter name="x0" type="Array(double)" value="{1.0,0.0}" />
+                    <Parameter name="x0" type="Array(double)" value="{0.0,0.0}" />
                   </ParameterList>
                 </ParameterList>
               </ParameterList>

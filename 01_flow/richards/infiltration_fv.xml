@@ -45,7 +45,7 @@
 
 
   <ParameterList name="observations" type="ParameterList">
-    <ParameterList name="observation surface" type="ParameterList">
+    <ParameterList name="observation mass flux" type="ParameterList">
       <Parameter name="variable" type="string" value="mass_flux" />
       <Parameter name="direction normalized flux" type="bool" value="true" />
       <Parameter name="region" type="string" value="observation region" />
