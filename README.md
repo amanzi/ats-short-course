@@ -10,7 +10,7 @@ To follow along with the demonstrations, participants will perform simulations a
 * A python3 build with all needed libraries for common ATS-based tasks.
 * Watershed Workflow and TINerator, two common ATS meshing workflow tools.
 
-The [short course files](#clone-the-ats-short-course-demos-repository) will reside on the participants' computers and any changes will be available after exiting the Docker container.
+The short course demo files will reside on the participants' computers and any changes will be available after exiting the Docker container.
 
 # Participant: Set up for this short course
 
@@ -42,7 +42,7 @@ This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems
 As a first step you need to have the following tools installed on your system
 
 * Docker: [Download](https://www.docker.com/get-started)
-  * Windows: Note that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL. [steps 4 and 5](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package).
+  * Windows: Note that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL and follow [steps 4 and 5](https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package).
 * VisIt: [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables)
   * (or ParaView: [Download](https://www.paraview.org/download/) if you prefer it and already know how to use it)
 * git (so you can clone this repo):
