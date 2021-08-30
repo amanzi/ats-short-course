@@ -87,21 +87,10 @@ docker run -it --rm metsi/ats-short-course:latest ats --version
 > ATS version 1.2.0_db31397f
 ```
 
-If this worked - great!  Move on to [Run JupyterLab under Docker](#run-jupyterlab-under-docker).  But if you ran into trouble with the download and/or docker storage on your system check your configuration with 
+If this worked - great!  Move on to [Run JupyterLab under Docker](#run-jupyterlab-under-docker).  But if you ran into trouble with the download and/or docker storage on your system check some of the troubleshooting tips 
+[troubleshooting tips](DockerTips.md)
 
-``` sh
-docker system df
-```
 
-And compare the usage ("SIZE") with what you have allocated for space in your Docker "Preferences".  You may see significant space is "RECLAIMABLE".  As a start consider pruning the image layers that aren't connected to images that are being used:
-
-``` sh
-docker system prune -f 
-```
-
-If you need more space, consider purging all unused images with "-a".
-
-Note also that OSX machines can blank the screen or sleep, both of which can pause the download and not recover.  Setting the battery settings to never blank the screen (preferably when plugged in) and potentially running the ``caffeinate`` command to stop OSX from sleeping may be helpful on slow internet connections.
 
 ## Run JupyterLab under Docker
 
