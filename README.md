@@ -12,24 +12,34 @@ To follow along with the demonstrations, participants will perform simulations a
 
 The [short course files](#getting-the-short-course-files) will reside on the participants' computers and any changes will be available after exiting the Docker container.
 
-# Participant: set up for a short course
+# Participant: Set up for this short course
 
 This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems.  The expectation is that this short course should work on any of these systems, but it is our first short course, so please be patient.  If you find bugs in the docker container or this material, please feel free to ask for help on the [ATS user's group](mailto:ats-users@googlegroups.com) or by submitting an Issue here.
 
-## TL;DR
+## Quickstart
 
-Install [Docker](https://www.docker.com/get-started), [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/executables), and [git](https://github.com/git-guides/install-git)
+Install external tools: [Docker](https://www.docker.com/get-started), [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/executables), and [git](https://github.com/git-guides/install-git)
+
+Perfom the following steps:
+
+ * Clone the ats-short-course repository
+ * Download the short course Docker Image
+ * Run the docker container and open Jupyter Lab in your browser
+
+with the following commands:
 
 ```sh
 git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
 docker pull metsi/ats-short-course:latest
 docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
 ```
+
 Open the [Jupyter lab instance](http://127.0.0.1:8899/lab)
 
 If that didn't work or didn't make sense, see the long form below.
 
 ## Required Software
+
 As a first step you need to have the following tools installed on your system
 
 * Docker: [Download](https://www.docker.com/get-started)
