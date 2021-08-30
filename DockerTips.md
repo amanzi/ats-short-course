@@ -59,11 +59,11 @@ This command reports the status, container ID, and container NAME of any active 
 
 If a container is already stopped we can remove it.
 
-```sh
+```
 docker container rm <ID>
 ```
 
-```sh
+```
 docker container rm <NAME>
 ```
 
