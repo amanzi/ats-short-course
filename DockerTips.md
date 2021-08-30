@@ -67,6 +67,32 @@ docker container rm <ID>
 docker container rm <NAME>
 ```
 
+### Start a shell on a running container
+
+You are running the ats-short-course image in a container when your run your Jupyter Lab session, and you can run terminals from within JupyterLab. But it you may want to get an additional command line shell in this running container.   In this case you use the _docker exec_ command.   But first we need a bit more info about the running image, so we use the _docker container ls_, e.g.,
+
+```sh
+docker container ls
+
+moulton@pn2003009 ~ % docker container ls
+CONTAINER ID   IMAGE                           COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+7a92c170d309   metsi/ats-short-course:latest   "/usr/bin/tini -- ju…"   10 minutes ago   Up 10 minutes   0.0.0.0:8899->8899/tcp, :::8899->8899/tcp   affectionate_colden
+```
+
+We can refer to this container by name (which are created at random and in this case is _affectionate_colden_) or id (which is 7a92c170d309). Here we'll use the name, run an interactive session _-i_, with a terminal _-t_ and a bash shell,
+
+```sh
+docker exec -it affectionate_colden /bin/bash
+
+(base) ats_sc_user@7a92c170d309:~/short-course$ whoami
+ats_sc_user
+(base) ats_sc_user@7a92c170d309:~/short-course$
+```
+
+Here we just ran the whoami command as an example, but at this point you could run commands such as git, or execute an ATS simulation.
+
+Note in this case we appeared as the default user defined in the container (ats_sc_user), however, you can specify the user for the exec session using the -u or --user option. 
+
 # Troubleshooting
 
 ## Download from DockerHub failed?
@@ -86,7 +112,6 @@ docker system prune -f
 If you need more space, consider purging all unused images with "-a".
 
 Note also that OSX machines can blank the screen or sleep, both of which can pause the download and not recover.  Setting the battery settings to never blank the screen (preferably when plugged in) and potentially running the ``caffeinate`` command to stop OSX from sleeping may be helpful on slow internet connections.
-
 
 ## Tutorials
 
