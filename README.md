@@ -87,8 +87,7 @@ docker run -it --rm metsi/ats-short-course:latest ats --version
 > ATS version 1.2.0_db31397f
 ```
 
-If this worked - great!  Move on to [Run JupyterLab under Docker](#run-jupyterlab-under-docker).  But if you ran into trouble with the download and/or docker storage on your system check some of the troubleshooting tips 
-[troubleshooting tips](DockerTips.md)
+If this worked - great!  Move on to [Run JupyterLab under Docker](#run-jupyterlab-under-docker).  But if you ran into trouble with the download and/or docker storage on your system check some of the [troubleshooting tips](DockerTips.md).
 
 
 
@@ -136,9 +135,9 @@ Then the command to run the jupyter needs one additional option to specify your 
 docker run --user $(id -u):999 -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest-linux
 ```
 
+## Connect to the JupyterLab session from your local web browser
 
-
-This will output several status messages to the screen, one of which is about the Jupyter server that it started.  For example, you should see something like 
+Independent of the OS you're using, the docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.  For example, you should see something like 
 
 ``` sh
 [I 2021-08-17 21:59:38.111 ServerApp] Jupyter Server 1.10.2 is running at:
