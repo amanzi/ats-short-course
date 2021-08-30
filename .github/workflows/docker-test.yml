@@ -5,8 +5,7 @@ on:
     paths:
       - 'docker/**'
     branches:
-      - 'master'
-      - 'main'
+      - 'dockerfile_ww_mixup'
 
 jobs:
   docker:
