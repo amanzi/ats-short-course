@@ -87,7 +87,9 @@ Tracer2          1.e-10
 Calcite          0.0                bulk_surface_area  0.0
 END
 
-!-----
+!--------------------------------------------------------------
+! not needed for Alquimia
+! makes it possible to run 1D stand-alone CrunchFlow simulation
 
 OUTPUT
 time_units               years

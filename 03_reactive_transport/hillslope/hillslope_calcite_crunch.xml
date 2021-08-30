@@ -822,6 +822,7 @@
 
 
     </ParameterList>
+    <Parameter name="blacklist" type="Array(string)" value="{alquimia_aux.*, primary.*, secondary.*, ion_exchange_ref.*, pH*, mineral_reaction.*, mineral_saturation_index.*,mineral_rate_constant.*,total_component_quantity.*}" />
   </ParameterList>
 
   <ParameterList name="checkpoint">
@@ -831,14 +832,14 @@
   <ParameterList name="visualization" type="ParameterList">
     <Parameter name="visualize on 3D mesh" type="bool" value="true"/>
     <ParameterList name="domain" type="ParameterList">
-      <Parameter name="file name base" type="string" value="plot_subs" />
+      <Parameter name="file name base" type="string" value="output-crunch/plot_subs" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,864000,-1.0}" />
 <!--
       <Parameter name="cycles start period stop" type="Array(int)" value="{0,1,200}" />
 -->
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
-      <Parameter name="file name base" type="string" value="plot_surf" />
+      <Parameter name="file name base" type="string" value="output-crunch/plot_surf" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,864000,-1.0}" />
 <!--
       <Parameter name="cycles start period stop" type="Array(int)" value="{0,1,200}" />
@@ -856,7 +857,7 @@
       <Parameter name="delimiter" type="string" value=" " />
       <Parameter name="location name" type="string" value="face" />
       <Parameter name="write interval" type="int" value="30" />
-      <Parameter name="observation output filename" type="string" value="surface_outlet_flux.dat" />
+      <Parameter name="observation output filename" type="string" value="surface_outlet_flux_crunch.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
 
@@ -868,7 +869,7 @@
       <Parameter name="location name" type="string" value="cell" />
       <Parameter name="write interval" type="int" value="1" />
       <Parameter name="number of vectors" type="int" value="5" />
-      <Parameter name="observation output filename" type="string" value="surface_total_concentration.dat" />
+      <Parameter name="observation output filename" type="string" value="surface_total_concentration_crunch.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
 
@@ -880,7 +881,7 @@
       <Parameter name="location name" type="string" value="cell" />
       <Parameter name="write interval" type="int" value="1" />
       <Parameter name="number of vectors" type="int" value="5" />
-      <Parameter name="observation output filename" type="string" value="surface_free_ion_species.dat" />
+      <Parameter name="observation output filename" type="string" value="surface_free_ion_species_crunch.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
   </ParameterList>

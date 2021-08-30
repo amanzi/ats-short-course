@@ -10,33 +10,32 @@ To follow along with the demonstrations, participants will perform simulations a
 * A python3 build with all needed libraries for common ATS-based tasks.
 * Watershed Workflow and TINerator, two common ATS meshing workflow tools.
 
-The [short course files](#getting-the-short-course-files) will reside on the participants' computers and any changes will be available after exiting the Docker container.
+The [short course files](#clone-the-ats-short-course-demos-repository) will reside on the participants' computers and any changes will be available after exiting the Docker container.
 
 # Participant: Set up for this short course
 
-This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems.  The expectation is that this short course should work on any of these systems, but it is our first short course, so please be patient.  If you find bugs in the docker container or this material, please feel free to ask for help on the [ATS user's group](mailto:ats-users@googlegroups.com) or by submitting an Issue here.
-
 ## Quickstart
 
-Install external tools: [Docker](https://www.docker.com/get-started), [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/executables), and [git](https://github.com/git-guides/install-git)
+1. Install external tools: [Docker](https://www.docker.com/get-started), [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit/executables), and [git](https://github.com/git-guides/install-git)
 
-Perfom the following steps:
-
- * Clone the ats-short-course repository
- * Download the short course Docker Image
- * Run the docker container and open Jupyter Lab in your browser
-
-with the following commands:
+2. Clone the ats-short-course demos repository
 
 ```sh
 git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
+```
+3. Download the short course Docker image and run the container 
+
+```sh
 docker pull metsi/ats-short-course:latest
 docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
 ```
+4. Open the [Jupyter lab instance](http://127.0.0.1:8899/lab)
 
-Open the [Jupyter lab instance](http://127.0.0.1:8899/lab)
+## Troubleshoot
 
-If that didn't work or didn't make sense, see the long form below.
+If that didn't work or didn't make sense, see the expanded version of these points below.
+
+This has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems.  The expectation is that this short course should work on any of these systems, but it is our first short course, so please be patient.  If you find bugs in the docker container or this material, please feel free to ask for help on the [ATS user's group](mailto:ats-users@googlegroups.com) or by submitting an Issue here.
 
 ## Required Software
 
@@ -52,8 +51,6 @@ As a first step you need to have the following tools installed on your system
   * Windows: See [Git Downloads](https://github.com/git-guides/install-git). Note that the GitHub Desktop is also an option for Windows users and provides a GUI.
 
 ## Getting the Short-course Files
-
-<a name="files"></a>
 
 The jupyter notebooks, as well as the corresponding input files and data, are provided in this git repository. To get started you need to clone this repository:
 
