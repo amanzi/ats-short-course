@@ -77,8 +77,7 @@ CONSTRAINT surfini
   /
 END
 
-
-CONSTRAINT INITIAL
+CONSTRAINT initial 
   CONCENTRATIONS
     H+      1.d-8      Z   
     HCO3    1.d-3      M  Calcite

@@ -886,6 +886,18 @@
       <Parameter name="observation output filename" type="string" value="surface_free_ion_species_crunch.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
+
+    <ParameterList name="surface-precipitation" type="ParameterList">
+      <Parameter name="variable" type="string" value="surface-water_source" />
+      <Parameter name="region" type="string" value="computational domain" />
+      <Parameter name="functional" type="string" value="average" />
+      <Parameter name="delimiter" type="string" value=" " />
+      <Parameter name="location name" type="string" value="cell" />
+      <Parameter name="write interval" type="int" value="30" />
+      <Parameter name="observation output filename" type="string" value="surface-water_source.dat" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
+    </ParameterList>
+
   </ParameterList>
 
 </ParameterList>

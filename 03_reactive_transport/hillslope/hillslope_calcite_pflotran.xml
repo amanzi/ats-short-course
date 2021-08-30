@@ -117,8 +117,9 @@
     <Parameter name="start time" type="double" value="0.0" />
     <Parameter name="end time" type="double" value="175.0" />
     <Parameter name="end time units" type="string" value="d" />
+<!--
     <Parameter name="restart from checkpoint file" type="string" value="./restart/checkpoint00051.h5" />	    
-
+-->
 
     <ParameterList name="PK tree">
       <ParameterList name="flow and transport">
@@ -835,14 +836,14 @@
   <ParameterList name="visualization" type="ParameterList">
     <Parameter name="visualize on 3D mesh" type="bool" value="true"/>
     <ParameterList name="domain" type="ParameterList">
-      <Parameter name="file name base" type="string" value="plot_subs" />
+      <Parameter name="file name base" type="string" value="output-pflotran/plot_subs" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,864000,-1.0}" />
 <!--
       <Parameter name="cycles start period stop" type="Array(int)" value="{0,1,200}" />
 -->
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
-      <Parameter name="file name base" type="string" value="plot_surf" />
+      <Parameter name="file name base" type="string" value="output-pflotran/plot_surf" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,864000,-1.0}" />
 <!--
       <Parameter name="cycles start period stop" type="Array(int)" value="{0,1,200}" />
@@ -860,7 +861,7 @@
       <Parameter name="delimiter" type="string" value=" " />
       <Parameter name="location name" type="string" value="face" />
       <Parameter name="write interval" type="int" value="30" />
-      <Parameter name="observation output filename" type="string" value="surface_outlet_flux.dat" />
+      <Parameter name="observation output filename" type="string" value="surface_outlet_flux_pflotran.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
 
@@ -872,7 +873,7 @@
       <Parameter name="location name" type="string" value="cell" />
       <Parameter name="write interval" type="int" value="1" />
       <Parameter name="number of vectors" type="int" value="5" />
-      <Parameter name="observation output filename" type="string" value="surface_total_concentration.dat" />
+      <Parameter name="observation output filename" type="string" value="surface_total_concentration_pflotran.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
 
@@ -884,9 +885,21 @@
       <Parameter name="location name" type="string" value="cell" />
       <Parameter name="write interval" type="int" value="1" />
       <Parameter name="number of vectors" type="int" value="5" />
-      <Parameter name="observation output filename" type="string" value="surface_free_ion_species.dat" />
+      <Parameter name="observation output filename" type="string" value="surface_free_ion_species_pflotran.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
+
+    <ParameterList name="surface-precipitation" type="ParameterList">
+      <Parameter name="variable" type="string" value="surface-water_source" />
+      <Parameter name="region" type="string" value="computational domain" />
+      <Parameter name="functional" type="string" value="average" />
+      <Parameter name="delimiter" type="string" value=" " />
+      <Parameter name="location name" type="string" value="cell" />
+      <Parameter name="write interval" type="int" value="30" />
+      <Parameter name="observation output filename" type="string" value="surface-water_source.dat" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
+    </ParameterList>
+
   </ParameterList>
 
 </ParameterList>
