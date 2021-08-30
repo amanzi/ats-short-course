@@ -105,8 +105,22 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
         libarchive \
         h5py \
         netCDF4 \
-        pytest && \
-    conda clean -afy
+        pytest \
+        ipython \
+        jupyterlab \
+        pexpect \
+        Pillow \
+        rich \
+        vtk \
+        pyvista \
+        pyshp \
+        gdal \
+        setuptools \
+        ipywidgets \
+        ipympl \
+        panel && \
+    conda clean -afy && \
+    python -m pip install richdem snowy
 
 # =================================================== #
 # Build Watershed Workflow ========================== #
@@ -132,7 +146,6 @@ ENV PROJ_LIB=/opt/conda/lib/python3.8/site-packages/rasterio/proj_data/
 # =================================================== #
 RUN git clone https://github.com/lanl/tinerator.git ${HOME}/tinerator --depth 1 && \
     cd ${HOME}/tinerator && \
-    python -m pip install --no-cache-dir -r requirements.txt && \
     ./tpls/build-tpls.sh -A -M && \
     echo "export PYTHONPATH=${HOME}/tinerator:${HOME}/tinerator/tpls/seacas/install/lib:${HOME}/tinerator/tpls/jigsaw-python:\${PYTHONPATH}" >> ~/.bashrc
 
