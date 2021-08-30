@@ -27,28 +27,5 @@ jobs:
         with:
           file: docker/Dockerfile-Ubuntu-WW+TIN
           push: true
-          tags: metsi/ats-short-course:wwtin-latest
+          tags: metsi/ats-short-course:wwtin-mixup
 
-      - name: Build TPLs
-        id: docker_build_tpls
-        uses: docker/build-push-action@v2
-        with:
-          file: docker/Dockerfile-Workshop-TPLs
-          push: true
-          tags: metsi/ats-short-course:TPLs-latest
-
-      - name: Build Amanzi
-        id: docker_build_amanzi
-        uses: docker/build-push-action@v2
-        with:
-          file: docker/Dockerfile-Workshop-Amanzi
-          push: true
-          tags: metsi/ats-short-course:Amanzi-latest
-
-      - name: Build ATS
-        id: docker_build_ats
-        uses: docker/build-push-action@v2
-        with:
-          file: docker/Dockerfile-Workshop-ATS
-          push: true
-          tags: metsi/ats-short-course:latest
