@@ -47,7 +47,6 @@ RUN apt-get update --fix-missing && \
     libcurl4-openssl-dev \
 
     # TINerator/Watershed Workflow
-    libgdal-dev \
     unzip \
     bison \
     libgl1-mesa-glx \
@@ -94,10 +93,10 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
         geopandas \
         meshpy \
         cartopy \
-	fiona \
-	rasterio \
-	shapely \
-	pyproj \
+        fiona \
+        rasterio \
+        shapely \
+        pyproj \
         pyepsg \
         descartes \
         requests \
