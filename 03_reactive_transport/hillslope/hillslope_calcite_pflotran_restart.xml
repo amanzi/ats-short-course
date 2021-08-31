@@ -826,6 +826,7 @@
 
 
     </ParameterList>
+    <Parameter name="blacklist" type="Array(string)" value="{alquimia_aux.*, primary.*, secondary.*, ion_exchange_ref.*, pH*, mineral_reaction.*, mineral_saturation_index.*,mineral_rate_constant.*,total_component_quantity.*}" />
   </ParameterList>
 
   <ParameterList name="checkpoint">
