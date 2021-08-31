@@ -96,6 +96,7 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
         fiona \
         rasterio \
         shapely \
+        proj \
         pyproj \
         pyepsg \
         descartes \
