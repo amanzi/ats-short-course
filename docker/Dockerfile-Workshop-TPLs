@@ -1,4 +1,4 @@
-FROM metsi/ats-short-course:wwtin-latest
+FROM metsi/ats-short-course:wwtin-mixup
 LABEL Description="Build TPLs on top of Watershed Workflow and TINerator"
 
 # Versions change and we cannot set environment variables from command output.

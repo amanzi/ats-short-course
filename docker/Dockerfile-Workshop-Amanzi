@@ -1,4 +1,4 @@
-FROM metsi/ats-short-course:TPLs-latest
+FROM metsi/ats-short-course:TPLs-mixup
 LABEL Description="Amanzi: Build and install Amanzi in a Docker image."
 
 RUN echo "${AMANZI_PREFIX}"

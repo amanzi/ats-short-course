@@ -1,4 +1,4 @@
-FROM metsi/ats-short-course:Amanzi-latest
+FROM metsi/ats-short-course:Amanzi-mixup
 LABEL Description="ATS CI: Build ATS in a Docker image."
 
 RUN echo "${AMANZI_PREFIX}"
