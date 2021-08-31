@@ -3,7 +3,7 @@
     <ParameterList name="surface" type="ParameterList">
       <Parameter name="mesh type" type="string" value="surface" />
       <ParameterList name="surface parameters" type="ParameterList">
-        <Parameter name="surface sideset names" type="Array(string)" value="{surface_east,surface_west}" />
+        <Parameter name="surface sideset names" type="Array(string)" value="{surface}" />
       </ParameterList>
       <ParameterList name="surface">
       </ParameterList>
@@ -12,7 +12,7 @@
       <Parameter name="build columns from set" type="string" value="surface" />
       <Parameter name="mesh type" type="string" value="read mesh file" />
       <ParameterList name="read mesh file parameters" type="ParameterList">
-        <Parameter name="file" type="string" value="../data/open-book-2D.exo" />
+        <Parameter name="file" type="string" value="../data/Open-Book-3D-nx12.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
       </ParameterList>
     </ParameterList>
@@ -20,99 +20,93 @@
 
   <ParameterList name="regions" type="ParameterList">
     <ParameterList name="computational domain" type="ParameterList">
-      <ParameterList name="region: box" type="ParameterList">
-        <Parameter name="low coordinate" type="Array(double)" value="{0.0,0.0,0.0}" />
-        <Parameter name="high coordinate" type="Array(double)" value="{10.0,1.0,10.0}" />
+      <ParameterList name="region: all">
       </ParameterList>
     </ParameterList>
     <ParameterList name="east face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{10.0,1.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{1.0,0.0,0.0}" />
+      <ParameterList name="region: labeled set" type="ParameterList">
+        <Parameter name="label" type="string" value="32" />
+        <Parameter name="file" type="string" value="./mesh/Open-Book-3D-nx12.exo" />
+        <Parameter name="format" type="string" value="Exodus II" />
+        <Parameter name="entity" type="string" value="Face" />
       </ParameterList>
     </ParameterList>
     <ParameterList name="west face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{0.0,0.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{-1.0,0.0,0.0}" />
-      </ParameterList>
+      <ParameterList name="region: labeled set" type="ParameterList">
+        <Parameter name="label" type="string" value="33" />
+        <Parameter name="file" type="string" value="./mesh/Open-Book-3D-nx12.exo" />
+        <Parameter name="format" type="string" value="Exodus II" />
+        <Parameter name="entity" type="string" value="Face" />
+      </ParameterList>            
     </ParameterList>
     <ParameterList name="north face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{10.0,1.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{0.0,1.0,0.0}" />
-      </ParameterList>
+      <ParameterList name="region: labeled set" type="ParameterList">
+        <Parameter name="label" type="string" value="30" />
+        <Parameter name="file" type="string" value="./mesh/Open-Book-3D-nx12.exo" />
+        <Parameter name="format" type="string" value="Exodus II" />
+        <Parameter name="entity" type="string" value="Face" />
+      </ParameterList>            
     </ParameterList>
     <ParameterList name="south face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{0.0,0.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{0.0,-1.0,0.0}" />
-      </ParameterList>
+      <ParameterList name="region: labeled set" type="ParameterList">
+        <Parameter name="label" type="string" value="31" />
+        <Parameter name="file" type="string" value="./mesh/Open-Book-3D-nx12.exo" />
+        <Parameter name="format" type="string" value="Exodus II" />
+        <Parameter name="entity" type="string" value="Face" />
+      </ParameterList>            
     </ParameterList>
     <ParameterList name="bottom face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{0.0,0.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{0.0,0.0,-1.0}" />
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="surface_east" type="ParameterList">
       <ParameterList name="region: labeled set" type="ParameterList">
-        <Parameter name="label" type="string" value="6" />
-        <Parameter name="file" type="string" value="../data/open-book-2D.exo" />
+        <Parameter name="label" type="string" value="35" />
+        <Parameter name="file" type="string" value="./mesh/Open-Book-3D-nx12.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
         <Parameter name="entity" type="string" value="Face" />
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="surface_west" type="ParameterList">
-      <ParameterList name="region: labeled set" type="ParameterList">
-        <Parameter name="label" type="string" value="7" />
-        <Parameter name="file" type="string" value="../data/open-book-2D.exo" />
-        <Parameter name="format" type="string" value="Exodus II" />
-        <Parameter name="entity" type="string" value="Face" />
-      </ParameterList>
+      </ParameterList>            
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
-      <ParameterList name="region: logical" type="ParameterList">
-        <Parameter name="operation" type="string" value="union"/>
-        <Parameter name="regions" type="Array(string)" value="{surface_west, surface_east}"/>
-      </ParameterList>
+      <ParameterList name="region: labeled set" type="ParameterList">
+        <Parameter name="label" type="string" value="36" />
+        <Parameter name="file" type="string" value="./mesh/Open-Book-3D-nx12.exo" />
+        <Parameter name="format" type="string" value="Exodus II" />
+        <Parameter name="entity" type="string" value="Face" />
+      </ParameterList>            
     </ParameterList>
+    
     <ParameterList name="surface domain" type="ParameterList">
+      <ParameterList name="region: all">
+      </ParameterList>      
+    </ParameterList>
+
+    <ParameterList name="surface outlet" type="ParameterList">
       <ParameterList name="region: box" type="ParameterList">
         <Parameter name="low coordinate" type="Array(double)" value="{0.0,0.0}" />
-        <Parameter name="high coordinate" type="Array(double)" value="{10.0,1.0}" />
+        <Parameter name="high coordinate" type="Array(double)" value="{10.0,0.0}" />
       </ParameterList>
     </ParameterList>
-    <ParameterList name="north edge" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{10.0,1.0}" />
-        <Parameter name="normal" type="Array(double)" value="{0.0,1.0}" />
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="south edge" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{0.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{0.0,-1.0}" />
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="east edge" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{10.0,1.0}" />
-        <Parameter name="normal" type="Array(double)" value="{1.0,0.0}" />
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="west edge" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{0.0,0.0}" />
-        <Parameter name="normal" type="Array(double)" value="{-1.0,0.0}" />
-      </ParameterList>
+
+  </ParameterList>
+
+
+  <ParameterList name="observations" type="ParameterList">
+    <ParameterList name="surface outlet flux" type="ParameterList">
+      <Parameter name="variable" type="string" value="surface-mass_flux" />
+      <Parameter name="direction normalized flux" type="bool" value="true" />
+      <Parameter name="region" type="string" value="surface outlet" />
+      <Parameter name="functional" type="string" value="extensive integral" />
+      <Parameter name="delimiter" type="string" value=" " />
+      <Parameter name="location name" type="string" value="face" />
+      <Parameter name="write interval" type="int" value="1" />
+      <Parameter name="observation output filename" type="string" value="surface_outlet_flux.dat" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,600.0,-1.0}" />
     </ParameterList>
   </ParameterList>
 
+
+  
   <ParameterList name="cycle driver" type="ParameterList">
     <Parameter name="start time" type="double" value="0.0" />
     <Parameter name="start time units" type="string" value="s" />
-    <Parameter name="end time" type="double" value="10.0" />
+    <Parameter name="end time" type="double" value="0.8" />
     <Parameter name="end time units" type="string" value="d" />
     <ParameterList name="PK tree" type="ParameterList">
       <ParameterList name="surface-subsurface coupler" type="ParameterList">
@@ -175,7 +169,7 @@
           <Parameter name="min iterations" type="int" value="10" />
           <Parameter name="time step reduction factor" type="double" value="0.5" />
           <Parameter name="time step increase factor" type="double" value="2.0" />
-          <Parameter name="max time step" type="double" value="600" />
+          <Parameter name="max time step" type="double" value="600.0" />
           <Parameter name="min time step" type="double" value="1e-4" />
           <Parameter name="growth wait after fail" type="int" value="2" />
           <Parameter name="count before increasing increase factor" type="int" value="2" />
@@ -194,14 +188,14 @@
       </ParameterList>
       
       <ParameterList name="diffusion" type="ParameterList">
-        <Parameter name="discretization primary" type="string" value="mfd: optimized for sparsity" />        
+        <Parameter name="discretization primary" type="string" value="mfd: optimized for sparsity" />
       </ParameterList>
 
       <ParameterList name="boundary conditions" type="ParameterList">
       </ParameterList>
 
       <ParameterList name="initial condition" type="ParameterList">
-        <Parameter name="hydrostatic water level [m]" type="double" value="2.0" />
+        <Parameter name="hydrostatic water level [m]" type="double" value="6.0" />
         <Parameter name="hydrostatic water density [kg m^-3]" type="double" value="1000.0" />
       </ParameterList>
 
@@ -242,6 +236,11 @@
       </ParameterList>
 
       <ParameterList name="boundary conditions" type="ParameterList">
+        <ParameterList name="zero gradient" type="ParameterList">
+          <ParameterList name="outlet" type="ParameterList">
+            <Parameter name="regions" type="Array(string)" value="{surface outlet}" />
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
 
       <ParameterList name="initial condition" type="ParameterList">
@@ -281,8 +280,8 @@
             <Parameter name="component" type="string" value="cell" />
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0.0,4320000.0}" />
-                <Parameter name="y values" type="Array(double)" value="{1e-06,0.0}" />
+                <Parameter name="x values" type="Array(double)" value="{0.0,36000.0}" />
+                <Parameter name="y values" type="Array(double)" value="{5e-05,0.0}" />
                 <Parameter name="forms" type="Array(string)" value="{constant}" />
               </ParameterList>
             </ParameterList>
@@ -386,7 +385,7 @@
             <Parameter name="components" type="Array(string)" value="{cell,boundary_face}" />
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="0.15" />
+                <Parameter name="value" type="double" value="0.5" />
               </ParameterList>
             </ParameterList>
           </ParameterList>
@@ -431,7 +430,7 @@
             <Parameter name="component" type="string" value="cell" />
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="1e-13" />
+                <Parameter name="value" type="double" value="5e-12" />
               </ParameterList>
             </ParameterList>
           </ParameterList>
@@ -519,12 +518,13 @@
   <ParameterList name="visualization">
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="file name base" type="string" value="ih_subsurface"/>
-      <Parameter name="times start period stop" type="Array(double)" value="{0.0,1,-1.0}" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,0.02,-1.0}" />
       <Parameter name="times start period stop units" type="string" value="d" />
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
       <Parameter name="file name base" type="string" value="ih_surface"/>
-      <Parameter name="times start period stop" type="Array(double)" value="{0.0,1,-1.0}" />
+      <!-- <Parameter name="cycles start period stop" type="Array(int)" value="{0, 10, 200}" /> -->
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,0.02,-1.0}" />
       <Parameter name="times start period stop units" type="string" value="d" />
       <Parameter name="visualize on 3D mesh" type="bool" value="false" />
     </ParameterList>
