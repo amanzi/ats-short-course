@@ -1,0 +1,623 @@
+
+ ! ************************************************************************** !
+
+ Initial Basis
+
+ Primary Species:
+  H+
+    Charge:   1.00
+    Molar Mass:    1.0079 [g/mol]
+    Debye-Huckel a0:    9.0000 [Angstrom]
+
+  HCO3
+    Charge:  -1.00
+    Molar Mass:   61.0171 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+
+  Ca++
+    Charge:   2.00
+    Molar Mass:   40.0780 [g/mol]
+    Debye-Huckel a0:    6.0000 [Angstrom]
+
+  Tracer1
+    Charge:   0.00
+    Molar Mass:    1.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+
+ Secondary Species:
+  OH-
+    Charge:  -1.00
+    Molar Mass:   17.0073 [g/mol]
+    Debye-Huckel a0:    3.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  OH-                             
+        -1.0000  H+                              
+         1.0000  H2O                             
+      logK:    14.9398    13.9951    13.0272    12.2551    11.6308    11.2836    11.1675    11.3002
+
+  CO3--
+    Charge:  -2.00
+    Molar Mass:   60.0092 [g/mol]
+    Debye-Huckel a0:    4.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO3--                           
+        -1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    10.6241    10.3288    10.1304    10.0836    10.2003    10.4648    10.8707    11.4638
+
+  CO2(aq)
+    Charge:   0.00
+    Molar Mass:   44.0098 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO2(aq)                         
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -6.5804    -6.3447    -6.2684    -6.3882    -6.7235    -7.1969    -7.7868    -8.5280
+
+  CaOH+
+    Charge:   1.00
+    Molar Mass:   57.0853 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaOH+                           
+        -1.0000  H+                              
+         1.0000  Ca++                            
+         1.0000  H2O                             
+      logK:   500.0000    12.8500   500.0000   500.0000   500.0000   500.0000   500.0000   500.0000
+
+  CaHCO3+
+    Charge:   1.00
+    Molar Mass:  101.0951 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaHCO3+                         
+         1.0000  Ca++                            
+         1.0000  HCO3                            
+      logK:    -1.0951    -1.0467    -1.1592    -1.4181    -1.8587    -2.4000    -3.0514    -3.8725
+
+  CaCO3(aq)
+    Charge:   0.00
+    Molar Mass:  100.0872 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaCO3(aq)                       
+        -1.0000  H+                              
+         1.0000  Ca++                            
+         1.0000  HCO3                            
+      logK:     7.5021     7.0017     6.4516     5.9636     5.4683     5.0185     4.5355     3.9118
+
+
+ Gas Components:
+  CO2(g)
+    Molar Mass:   44.0098 [g/mol]
+    Gas Reaction: 
+        -1.0000  CO2(g)                          
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -7.6765    -7.8136    -8.0527    -8.3574    -8.7692    -9.2165    -9.7202   -10.3393
+
+
+ Minerals:
+  Calcite
+    Molar Mass:  100.0872 [g/mol]
+    Molar Volume:  3.6934E-05 [m^3/mol]
+    Mineral Reaction: 
+        -1.0000  Calcite                         
+        -1.0000  H+                              
+         1.0000  Ca++                            
+         1.0000  HCO3                            
+      logK:     2.2257     1.8487     1.3330     0.7743     0.0999    -0.5838    -1.3262    -2.2154
+
+
+ Surface Complexation Reactions: None
+
+   Surface Complexes: None
+
+ Ion Exchange Reactions: None
+
+ ! ************************************************************************** !
+
+
+ ! ************************************************************************** !
+
+ Final Basis
+
+ Primary Species:
+  H+
+    Charge:   1.00
+    Molar Mass:    1.0079 [g/mol]
+    Debye-Huckel a0:    9.0000 [Angstrom]
+
+  HCO3
+    Charge:  -1.00
+    Molar Mass:   61.0171 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+
+  Ca++
+    Charge:   2.00
+    Molar Mass:   40.0780 [g/mol]
+    Debye-Huckel a0:    6.0000 [Angstrom]
+
+  Tracer1
+    Charge:   0.00
+    Molar Mass:    1.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+
+ Secondary Species:
+  OH-
+    Charge:  -1.00
+    Molar Mass:   17.0073 [g/mol]
+    Debye-Huckel a0:    3.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  OH-                             
+         1.0000  H2O                             
+        -1.0000  H+                              
+      logK:    14.9398    13.9951    13.0272    12.2551    11.6308    11.2836    11.1675    11.3002
+
+  CO3--
+    Charge:  -2.00
+    Molar Mass:   60.0092 [g/mol]
+    Debye-Huckel a0:    4.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO3--                           
+        -1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    10.6241    10.3288    10.1304    10.0836    10.2003    10.4648    10.8707    11.4638
+
+  CO2(aq)
+    Charge:   0.00
+    Molar Mass:   44.0098 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO2(aq)                         
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -6.5804    -6.3447    -6.2684    -6.3882    -6.7235    -7.1969    -7.7868    -8.5280
+
+  CaOH+
+    Charge:   1.00
+    Molar Mass:   57.0853 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaOH+                           
+         1.0000  H2O                             
+        -1.0000  H+                              
+         1.0000  Ca++                            
+      logK:   500.0000    12.8500   500.0000   500.0000   500.0000   500.0000   500.0000   500.0000
+
+  CaHCO3+
+    Charge:   1.00
+    Molar Mass:  101.0951 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaHCO3+                         
+         1.0000  HCO3                            
+         1.0000  Ca++                            
+      logK:    -1.0951    -1.0467    -1.1592    -1.4181    -1.8587    -2.4000    -3.0514    -3.8725
+
+  CaCO3(aq)
+    Charge:   0.00
+    Molar Mass:  100.0872 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaCO3(aq)                       
+        -1.0000  H+                              
+         1.0000  HCO3                            
+         1.0000  Ca++                            
+      logK:     7.5021     7.0017     6.4516     5.9636     5.4683     5.0185     4.5355     3.9118
+
+
+ Gas Components:
+  CO2(g)
+    Molar Mass:   44.0098 [g/mol]
+    Gas Reaction: 
+        -1.0000  CO2(g)                          
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -7.6765    -7.8136    -8.0527    -8.3574    -8.7692    -9.2165    -9.7202   -10.3393
+
+
+ Minerals:
+  Calcite
+    Molar Mass:  100.0872 [g/mol]
+    Molar Volume:  3.6934E-05 [m^3/mol]
+    Mineral Reaction: 
+        -1.0000  Calcite                         
+        -1.0000  H+                              
+         1.0000  HCO3                            
+         1.0000  Ca++                            
+      logK:     2.2257     1.8487     1.3330     0.7743     0.0999    -0.5838    -1.3262    -2.2154
+
+
+ Surface Complexation Reactions: None
+
+   Surface Complexes: None
+
+ Ion Exchange Reactions: None
+
+ ! ************************************************************************** !
+
+--------------------------------------------------------------------------------
+
+     4  Primary Species
+
+              H+                    HCO3                  Ca++                
+              Tracer1             
+
+     6  Secondary Complex Species
+
+              OH-                   CO3--                 CO2(aq)             
+              CaOH+                 CaHCO3+               CaCO3(aq)           
+
+
+     0  Active Gas Species
+
+
+
+     1  Passive Gas Species
+
+              CO2(g)              
+
+     1  Reference Minerals
+
+              Calcite             
+
+     1  Kinetic Mineral Reactions
+
+              Calcite             
+
+     0  Ion Exchange Reactions
+
+     0  Ion Exchange Cations
+--------------------------------------------------------------------------------
+
+ ! ************************************************************************** !
+
+ Initial Basis
+
+ Primary Species:
+  H+
+    Charge:   1.00
+    Molar Mass:    1.0079 [g/mol]
+    Debye-Huckel a0:    9.0000 [Angstrom]
+
+  HCO3
+    Charge:  -1.00
+    Molar Mass:   61.0171 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+
+  Ca++
+    Charge:   2.00
+    Molar Mass:   40.0780 [g/mol]
+    Debye-Huckel a0:    6.0000 [Angstrom]
+
+  Tracer1
+    Charge:   0.00
+    Molar Mass:    1.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+
+ Secondary Species:
+  OH-
+    Charge:  -1.00
+    Molar Mass:   17.0073 [g/mol]
+    Debye-Huckel a0:    3.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  OH-                             
+        -1.0000  H+                              
+         1.0000  H2O                             
+      logK:    14.9398    13.9951    13.0272    12.2551    11.6308    11.2836    11.1675    11.3002
+
+  CO3--
+    Charge:  -2.00
+    Molar Mass:   60.0092 [g/mol]
+    Debye-Huckel a0:    4.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO3--                           
+        -1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    10.6241    10.3288    10.1304    10.0836    10.2003    10.4648    10.8707    11.4638
+
+  CO2(aq)
+    Charge:   0.00
+    Molar Mass:   44.0098 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO2(aq)                         
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -6.5804    -6.3447    -6.2684    -6.3882    -6.7235    -7.1969    -7.7868    -8.5280
+
+  CaOH+
+    Charge:   1.00
+    Molar Mass:   57.0853 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaOH+                           
+        -1.0000  H+                              
+         1.0000  Ca++                            
+         1.0000  H2O                             
+      logK:   500.0000    12.8500   500.0000   500.0000   500.0000   500.0000   500.0000   500.0000
+
+  CaHCO3+
+    Charge:   1.00
+    Molar Mass:  101.0951 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaHCO3+                         
+         1.0000  Ca++                            
+         1.0000  HCO3                            
+      logK:    -1.0951    -1.0467    -1.1592    -1.4181    -1.8587    -2.4000    -3.0514    -3.8725
+
+  CaCO3(aq)
+    Charge:   0.00
+    Molar Mass:  100.0872 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaCO3(aq)                       
+        -1.0000  H+                              
+         1.0000  Ca++                            
+         1.0000  HCO3                            
+      logK:     7.5021     7.0017     6.4516     5.9636     5.4683     5.0185     4.5355     3.9118
+
+
+ Gas Components:
+  CO2(g)
+    Molar Mass:   44.0098 [g/mol]
+    Gas Reaction: 
+        -1.0000  CO2(g)                          
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -7.6765    -7.8136    -8.0527    -8.3574    -8.7692    -9.2165    -9.7202   -10.3393
+
+
+ Minerals:
+  Calcite
+    Molar Mass:  100.0872 [g/mol]
+    Molar Volume:  3.6934E-05 [m^3/mol]
+    Mineral Reaction: 
+        -1.0000  Calcite                         
+        -1.0000  H+                              
+         1.0000  Ca++                            
+         1.0000  HCO3                            
+      logK:     2.2257     1.8487     1.3330     0.7743     0.0999    -0.5838    -1.3262    -2.2154
+
+
+ Surface Complexation Reactions: None
+
+   Surface Complexes: None
+
+ Ion Exchange Reactions: None
+
+ ! ************************************************************************** !
+
+
+ ! ************************************************************************** !
+
+ Final Basis
+
+ Primary Species:
+  H+
+    Charge:   1.00
+    Molar Mass:    1.0079 [g/mol]
+    Debye-Huckel a0:    9.0000 [Angstrom]
+
+  HCO3
+    Charge:  -1.00
+    Molar Mass:   61.0171 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+
+  Ca++
+    Charge:   2.00
+    Molar Mass:   40.0780 [g/mol]
+    Debye-Huckel a0:    6.0000 [Angstrom]
+
+  Tracer1
+    Charge:   0.00
+    Molar Mass:    1.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+
+ Secondary Species:
+  OH-
+    Charge:  -1.00
+    Molar Mass:   17.0073 [g/mol]
+    Debye-Huckel a0:    3.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  OH-                             
+         1.0000  H2O                             
+        -1.0000  H+                              
+      logK:    14.9398    13.9951    13.0272    12.2551    11.6308    11.2836    11.1675    11.3002
+
+  CO3--
+    Charge:  -2.00
+    Molar Mass:   60.0092 [g/mol]
+    Debye-Huckel a0:    4.5000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO3--                           
+        -1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    10.6241    10.3288    10.1304    10.0836    10.2003    10.4648    10.8707    11.4638
+
+  CO2(aq)
+    Charge:   0.00
+    Molar Mass:   44.0098 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CO2(aq)                         
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -6.5804    -6.3447    -6.2684    -6.3882    -6.7235    -7.1969    -7.7868    -8.5280
+
+  CaOH+
+    Charge:   1.00
+    Molar Mass:   57.0853 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaOH+                           
+         1.0000  H2O                             
+        -1.0000  H+                              
+         1.0000  Ca++                            
+      logK:   500.0000    12.8500   500.0000   500.0000   500.0000   500.0000   500.0000   500.0000
+
+  CaHCO3+
+    Charge:   1.00
+    Molar Mass:  101.0951 [g/mol]
+    Debye-Huckel a0:    4.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaHCO3+                         
+         1.0000  HCO3                            
+         1.0000  Ca++                            
+      logK:    -1.0951    -1.0467    -1.1592    -1.4181    -1.8587    -2.4000    -3.0514    -3.8725
+
+  CaCO3(aq)
+    Charge:   0.00
+    Molar Mass:  100.0872 [g/mol]
+    Debye-Huckel a0:    3.0000 [Angstrom]
+    Equilibrium Aqueous Reaction: 
+        -1.0000  CaCO3(aq)                       
+        -1.0000  H+                              
+         1.0000  HCO3                            
+         1.0000  Ca++                            
+      logK:     7.5021     7.0017     6.4516     5.9636     5.4683     5.0185     4.5355     3.9118
+
+
+ Gas Components:
+  CO2(g)
+    Molar Mass:   44.0098 [g/mol]
+    Gas Reaction: 
+        -1.0000  CO2(g)                          
+        -1.0000  H2O                             
+         1.0000  H+                              
+         1.0000  HCO3                            
+      logK:    -7.6765    -7.8136    -8.0527    -8.3574    -8.7692    -9.2165    -9.7202   -10.3393
+
+
+ Minerals:
+  Calcite
+    Molar Mass:  100.0872 [g/mol]
+    Molar Volume:  3.6934E-05 [m^3/mol]
+    Mineral Reaction: 
+        -1.0000  Calcite                         
+        -1.0000  H+                              
+         1.0000  HCO3                            
+         1.0000  Ca++                            
+      logK:     2.2257     1.8487     1.3330     0.7743     0.0999    -0.5838    -1.3262    -2.2154
+
+
+ Surface Complexation Reactions: None
+
+   Surface Complexes: None
+
+ Ion Exchange Reactions: None
+
+ ! ************************************************************************** !
+
+--------------------------------------------------------------------------------
+
+     4  Primary Species
+
+              H+                    HCO3                  Ca++                
+              Tracer1             
+
+     6  Secondary Complex Species
+
+              OH-                   CO3--                 CO2(aq)             
+              CaOH+                 CaHCO3+               CaCO3(aq)           
+
+
+     0  Active Gas Species
+
+
+
+     1  Passive Gas Species
+
+              CO2(g)              
+
+     1  Reference Minerals
+
+              Calcite             
+
+     1  Kinetic Mineral Reactions
+
+              Calcite             
+
+     0  Ion Exchange Reactions
+
+     0  Ion Exchange Cations
+--------------------------------------------------------------------------------
+
+  Constraint: rain
+  ----------------------------------------------------------------------------
+        iterations:    24
+                pH:   5.6572
+    ionic strength:   2.2061E-06 [mol/L]
+    charge balance:  -4.3853E-22
+          pressure:   1.9862-311 [Pa]
+       temperature:    25.00 [C]
+       density H2O:   997.16 [kg/m^3]
+ ln / activity H2O:   0.0000E+00  1.0000E+00    [---]
+ mole fraction H2O:   1.0000E+00    [---]
+ mass fraction H2O:   1.0000E+00    [---]
+  ----------------------------------------------------------------------------
+
+  primary                   free        total
+  species                   molal       molal       act coef     constraint
+  ----------------------------------------------------------------------------
+  H+                        2.2057E-06  1.2939E-05  9.9826E-01    chrg
+  HCO3                      2.2012E-06  1.2939E-05  9.9826E-01    CO2(g)
+  Ca++                      9.9998E-11  1.0028E-10  9.9305E-01    total aq
+  Tracer1                   1.0000E-10  1.0028E-10  1.0000E+00    total aq
+
+  complex                   molality    act coef        logK
+  ----------------------------------------------------------------------------
+  CO2(aq)                   1.0701E-05  1.0000E+00   -6.3447E+00
+  OH-                       4.6011E-09  9.9826E-01    1.3995E+01
+  CO3--                     4.7135E-11  9.9304E-01    1.0329E+01
+  CaHCO3+                   2.4340E-15  9.9826E-01   -1.0467E+00
+  CaCO3(aq)                 9.8713E-18  1.0000E+00    7.0017E+00
+  CaOH+                     6.3814E-18  9.9826E-01    1.2850E+01
+
+
+  ----------------------------------------------------------------------------
+  primary species: H+                         total conc:   1.2902E-05
+  complex species           percent   molality
+  ----------------------------------------------------------------------------
+  CO2(aq)                    82.88    1.0701E-05
+  H+                         17.08    2.2057E-06
+  OH-                         0.04    4.6011E-09
+  ----------------------------------------------------------------------------
+  primary species: HCO3                       total conc:   1.2902E-05
+  complex species           percent   molality
+  ----------------------------------------------------------------------------
+  CO2(aq)                    82.94    1.0701E-05
+  HCO3                       17.06    2.2012E-06
+  ----------------------------------------------------------------------------
+  primary species: Ca++                       total conc:   1.0000E-10
+  complex species           percent   molality
+  ----------------------------------------------------------------------------
+  Ca++                      100.00    9.9998E-11
+  ----------------------------------------------------------------------------
+  primary species: Tracer1                    total conc:   1.0000E-10
+  complex species           percent   molality
+  ----------------------------------------------------------------------------
+  Tracer1                   100.00    1.0000E-10
+
+  mineral                             log SI       Affinity     log K
+                                                   [kJ/mol]
+  ----------------------------------------------------------------------------
+  Calcite                             -11.8526  67654.8910    1.8487E+00
+
+  gas        log part. press.  part. press. [bars]      log K
+  ----------------------------------------------------------------------------
+  CO2(g)       -3.5017E+00        3.1500E-04         -7.8136E+00

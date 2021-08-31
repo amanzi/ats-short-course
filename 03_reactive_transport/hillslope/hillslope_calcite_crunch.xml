@@ -311,7 +311,6 @@
       <Parameter name="PK type" type="string" value="surface subsurface transport" />
       <Parameter name="PK name" type="string" value="surface subsurface transport" />
       <Parameter name="PKs order" type="Array(string)" value="{subsurface transport, surface transport}" />
-      <Parameter name="component names" type="Array(string)" value="{Tracer}" />
       <ParameterList name="verbose object">
         <Parameter name="name" type="string" value="Coupled TransportPK" />
         <Parameter name="verbosity level" type="string" value="default" />
@@ -325,15 +324,15 @@
       <Parameter name="previous saturation liquid key" type="string" value="prev_saturation_liquid" />
       <Parameter name="flux_key" type="string" value="mass_flux" />
       <Parameter name="molar_density_key" type="string" value="molar_density_liquid" />
-      <Parameter name="component names" type="Array(string)" value="{H+, HCO3-, Ca++, Tracer1, Tracer2}" />
-      <Parameter name="number of liquid components" type="int" value="5" />
+      <Parameter name="component names" type="Array(string)" value="{H+, HCO3-, Ca++, Tracer1}" />
+      <Parameter name="number of liquid components" type="int" value="4" />
       <Parameter name="component molar masses" type="Array(double)" value="{1.0}" />
       <Parameter name="spatial discretization order" type="int" value="1" />
       <Parameter name="temporal discretization order" type="int" value="1" />
       <Parameter name="cfl" type="double" value="1.0" />
       <Parameter name="flow mode" type="string" value="transient" />
       <Parameter name="transport subcycling" type="bool" value="false" />
-      <Parameter name="number of aqueous components" type="int" value="5" />
+      <Parameter name="number of aqueous components" type="int" value="4" />
       <Parameter name="number of gaseous components" type="int" value="0" />
       <Parameter name="runtime diagnostics: regions" type="Array(string)" value="{}" />
       <Parameter name="debug cells" type="Array(int)" value="{99}" />
@@ -411,15 +410,15 @@
       <Parameter name="flux_key" type="string" value="surface-mass_flux" />
       <Parameter name="molar_density_key" type="string" value="surface-molar_density_liquid" />
       <Parameter name="porosity key" type="string" value="surface-one" />
-      <Parameter name="component names" type="Array(string)" value="{H+, HCO3-, Ca++, Tracer1, Tracer2}" />
-      <Parameter name="number of liquid components" type="int" value="5" />
+      <Parameter name="component names" type="Array(string)" value="{H+, HCO3-, Ca++, Tracer1}" />
+      <Parameter name="number of liquid components" type="int" value="4" />
       <Parameter name="component molar masses" type="Array(double)" value="{1.0}" />
       <Parameter name="spatial discretization order" type="int" value="1" />
       <Parameter name="temporal discretization order" type="int" value="1" />
       <Parameter name="cfl" type="double" value="1.0" />
       <Parameter name="water tolerance" type="double" value="0.001" />
       <Parameter name="transport subcycling" type="bool" value="false" />
-      <Parameter name="number of aqueous components" type="int" value="5" />
+      <Parameter name="number of aqueous components" type="int" value="4" />
       <Parameter name="number of gaseous components" type="int" value="0" />
       <Parameter name="runtime diagnostics: regions" type="Array(string)" value="{}" />
       <Parameter name="debug cells" type="Array(int)" value="{0}" />
@@ -466,7 +465,7 @@
         <ParameterList name="geochemical" type="ParameterList">
           <ParameterList name="Tracer injection" type="ParameterList">
             <Parameter name="regions" type="Array(string)" value="{surface domain}" />
-            <Parameter name="solutes" type="Array(string)" value="{H+, HCO3-, Ca++, Tracer1, Tracer2}" />
+            <Parameter name="solutes" type="Array(string)" value="{H+, HCO3-, Ca++, Tracer1}" />
             <Parameter name="times" type="Array(double)" value="{0.0,8640000.0}" />
             <Parameter name="geochemical conditions" type="Array(string)" value="{rain, rain}" />
             <Parameter name="time functions" type="Array(string)" value="{constant}" />
@@ -868,7 +867,7 @@
       <Parameter name="delimiter" type="string" value=" " />
       <Parameter name="location name" type="string" value="cell" />
       <Parameter name="write interval" type="int" value="1" />
-      <Parameter name="number of vectors" type="int" value="5" />
+      <Parameter name="number of vectors" type="int" value="4" />
       <Parameter name="observation output filename" type="string" value="surface_total_concentration_crunch.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
@@ -880,10 +879,22 @@
       <Parameter name="delimiter" type="string" value=" " />
       <Parameter name="location name" type="string" value="cell" />
       <Parameter name="write interval" type="int" value="1" />
-      <Parameter name="number of vectors" type="int" value="5" />
+      <Parameter name="number of vectors" type="int" value="4" />
       <Parameter name="observation output filename" type="string" value="surface_free_ion_species_crunch.dat" />
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
     </ParameterList>
+
+    <ParameterList name="surface-precipitation" type="ParameterList">
+      <Parameter name="variable" type="string" value="surface-water_source" />
+      <Parameter name="region" type="string" value="surface domain" />
+      <Parameter name="functional" type="string" value="average" />
+      <Parameter name="delimiter" type="string" value=" " />
+      <Parameter name="location name" type="string" value="cell" />
+      <Parameter name="write interval" type="int" value="30" />
+      <Parameter name="observation output filename" type="string" value="surface-water_source.dat" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0.0,86400.0,-1.0}" />
+    </ParameterList>
+
   </ParameterList>
 
 </ParameterList>
