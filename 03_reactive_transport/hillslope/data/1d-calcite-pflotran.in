@@ -8,7 +8,6 @@ CHEMISTRY
     HCO3
     Ca++
     Tracer1
-    Tracer2
   /
   SECONDARY_SPECIES
     OH-
@@ -62,8 +61,7 @@ CONSTRAINT rain
     H+      5.         Z   
     HCO3    3.15e-4    G  CO2(g)  
     Ca++    1.d-10     T
-    Tracer1 1.d-3      T   
-    Tracer2 1.d-10     T
+    Tracer1 1.d-10     T
   /
 END
 
@@ -72,8 +70,7 @@ CONSTRAINT surfini
     H+       1.d-8     Z   
     HCO3     1.d-3     M  Calcite
     Ca++     1.d-3     T
-    Tracer1  1.d-10    T
-    Tracer2  1.d-3     T
+    Tracer1  1.d-3     T
   /
 END
 
@@ -82,8 +79,7 @@ CONSTRAINT initial
     H+      1.d-8      Z   
     HCO3    1.d-3      M  Calcite
     Ca++    1.d-3      T
-    Tracer1 1.d-10     T
-    Tracer2 1.d-3      T
+    Tracer1 1.d-3      T
   /
   MINERALS
     Calcite 1.d-2      1.0d0 
