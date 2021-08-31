@@ -1,0 +1,102 @@
+<Xdmf>
+  <Domain>
+    <Grid Name="Mesh">
+      <Topology Name="mixedtopo" NumberOfElements="2420" TopologyType="Mixed">
+        <DataItem DataType="Int" Dimensions="21780" Format="HDF">
+          ih_subsurface_mesh.h5:/0/Mesh/MixedElements
+        </DataItem>
+      </Topology>
+      <Geometry Name="geo" Type="XYZ">
+        <DataItem DataType="Float" Dimensions="3024  3" Format="HDF">
+          ih_subsurface_mesh.h5:/0/Mesh/Nodes
+        </DataItem>
+      </Geometry>
+      <Time Value="9.30869267624914384e-04"/>
+      <Attribute Center="Cell" Name="base_porosity.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:base_porosity.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="capillary_pressure_gas_liq.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:capillary_pressure_gas_liq.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="cell_volume.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:cell_volume.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="darcy_velocity.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:darcy_velocity.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="darcy_velocity.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:darcy_velocity.cell.1/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="darcy_velocity.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:darcy_velocity.cell.2/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="mass_density_liquid.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:mass_density_liquid.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="molar_density_liquid.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:molar_density_liquid.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="permeability.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:permeability.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="porosity.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:porosity.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="pressure.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:pressure.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="relative_permeability.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:relative_permeability.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="saturation_gas.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:saturation_gas.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="saturation_liquid.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:saturation_liquid.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="temperature.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:temperature.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="viscosity_liquid.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:viscosity_liquid.cell.0/808
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="water_content.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="2420" Format="HDF">
+          ih_subsurface_data.h5:water_content.cell.0/808
+        </DataItem>
+      </Attribute>
+    </Grid>
+  </Domain>
+</Xdmf>
