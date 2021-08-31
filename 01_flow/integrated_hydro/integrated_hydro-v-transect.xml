@@ -526,7 +526,7 @@
       <Parameter name="file name base" type="string" value="ih_surface"/>
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,1,-1.0}" />
       <Parameter name="times start period stop units" type="string" value="d" />
-      <Parameter name="visualize on 3D mesh" type="bool" value="false" />
+      <Parameter name="visualize on 3D mesh" type="bool" value="true" />
     </ParameterList>
   </ParameterList>
 </ParameterList>
