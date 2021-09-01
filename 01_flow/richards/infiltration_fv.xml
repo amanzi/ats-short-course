@@ -142,25 +142,27 @@
           <ParameterList name="top" type="ParameterList">
             <Parameter name="regions" type="Array(string)" value="{surface}" />
             <ParameterList name="outward mass flux" type="ParameterList">
-              <!-- <ParameterList name="function-constant" type="ParameterList"> -->
-              <!--   <Parameter name="value" type="double" value="-0.05" /> -->
-              <!-- </ParameterList> -->
-              <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0.0, 21600, 194400}"/>  <!-- 21600 + 2*86400 = 194400 !-->
-                <Parameter name="y values" type="Array(double)" value="{0.0, -0.05, 0}"/>
-                <Parameter name="forms" type="Array(string)" value="{constant, constant}"/>
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="-0.05" />
               </ParameterList>
+              <!-- 21600 + 2*86400 = 194400 !--> 
+              <!-- <ParameterList name="function-tabular" type="ParameterList">
+                <Parameter name="x values" type="Array(double)" value="{0.0, 21600, 194400}"/>  
+                <Parameter name="y values" type="Array(double)" value="{0.0, -0.05, 0}"/> 
+                <Parameter name="forms" type="Array(string)" value="{constant, constant}"/> 
+              </ParameterList>  -->
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
 
       <ParameterList name="initial condition" type="ParameterList">
-        <Parameter name="hydrostatic head [m]" type="double" value="-7.0" />
-        <!-- <Parameter name="hydrostatic water level [m]" type="double" value="3.0" /> -->
+        
+        <Parameter name="hydrostatic water level [m]" type="double" value="3.0" />
         <Parameter name="hydrostatic water density [kg m^-3]" type="double" value="1000.0" />
 
-
+        <!-- <Parameter name="hydrostatic head [m]" type="double" value="-7.0" /> -->
+        
         <!-- <ParameterList name="function" type="ParameterList"> -->
         <!--   <ParameterList name="initial pressure cells" type="ParameterList"> -->
         <!--     <Parameter name="region" type="string" value="computational domain" /> -->
@@ -173,7 +175,7 @@
         <!--         <Parameter name="space dimension" type="int" value="3"/> -->
         <!--         <ParameterList name="water table elevation"> -->
         <!--           <ParameterList name="function-constant"> -->
-        <!--             <Parameter name="value" type="double" value="7.0"/> -->
+        <!--             <Parameter name="value" type="double" value="3.0"/> -->
         <!--           </ParameterList> -->
         <!--         </ParameterList> -->
         <!--       </ParameterList>   -->
