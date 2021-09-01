@@ -166,11 +166,14 @@ class MakeMeshWidget(widgets.HBox):
         self.output.layout = make_box_layout()
  
         for control in controls.children:
-            control.observe(self.update, 'value')
+            control.observe(self.update, names=control.description)#'value')
+        
+        #link = [(c, 'value') for c in controls.children]
+        #widgets.jslink(*link)
         
         self.children = [controls, self.output]
     
-    def compute_surface(self):        
+    def compute_surface(self):
         self.x, self.y, self.Z = make_mesh(
             stream_slope = self.data['stream_slope'],
             nx = self.data['nx'],
@@ -184,6 +187,9 @@ class MakeMeshWidget(widgets.HBox):
             z_v = self.data['z_v'],
         )
     
+    def widgets(self):
+        return self.children
+    
     def plot_surface(self):
         X, Y = np.meshgrid(self.x, self.y)
         self.ax.plot_surface(X, Y, self.Z)
@@ -193,7 +199,8 @@ class MakeMeshWidget(widgets.HBox):
         return self.x, self.y, self.Z
     
     def update(self, change):
-        self.data[self.mapping[change.name]] = change.new
+        with self.output:
+            self.data[self.mapping[change.name]] = change.new
         self.compute_surface()
         self.plot_surface()
          
