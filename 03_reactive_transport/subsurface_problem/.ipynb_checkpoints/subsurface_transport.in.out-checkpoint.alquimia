@@ -1,0 +1,142 @@
+
+ ! ************************************************************************** !
+
+ Initial Basis
+
+ Primary Species:
+  Tracer1
+    Charge:   0.00
+    Molar Mass:    0.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+  Tracer2
+    Charge:   0.00
+    Molar Mass:    0.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+
+ Secondary Species: None
+
+ Gas Components: None
+
+ Minerals: None
+
+ Surface Complexation Reactions: None
+
+   Surface Complexes: None
+
+ Ion Exchange Reactions: None
+
+ ! ************************************************************************** !
+
+
+ ! ************************************************************************** !
+
+ Final Basis
+
+ Primary Species:
+  Tracer1
+    Charge:   0.00
+    Molar Mass:    0.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+  Tracer2
+    Charge:   0.00
+    Molar Mass:    0.0000 [g/mol]
+    Debye-Huckel a0:    0.0000 [Angstrom]
+
+
+ Secondary Species: None
+
+ Gas Components: None
+
+ Minerals: None
+
+ Surface Complexation Reactions: None
+
+   Surface Complexes: None
+
+ Ion Exchange Reactions: None
+
+ ! ************************************************************************** !
+
+--------------------------------------------------------------------------------
+
+     2  Primary Species
+
+              Tracer1               Tracer2             
+
+     0  Secondary Complex Species
+
+
+
+     0  Active Gas Species
+
+
+
+     0  Passive Gas Species
+
+
+
+     0  Reference Minerals
+
+
+
+     0  Kinetic Mineral Reactions
+
+
+
+     0  Ion Exchange Reactions
+
+     0  Ion Exchange Cations
+--------------------------------------------------------------------------------
+
+  Constraint: initial
+  ----------------------------------------------------------------------------
+        iterations:     9
+    ionic strength:   0.0000E+00 [mol/L]
+    charge balance:   0.0000E+00
+          pressure:   0.0000E+00 [Pa]
+       temperature:    25.00 [C]
+       density H2O:   997.16 [kg/m^3]
+ ln / activity H2O:   0.0000E+00  1.0000E+00    [---]
+ mole fraction H2O:   1.0000E+00    [---]
+ mass fraction H2O:   1.0000E+00    [---]
+  ----------------------------------------------------------------------------
+
+  primary                   free        total
+  species                   molal       molal       act coef     constraint
+  ----------------------------------------------------------------------------
+  Tracer1                   1.0018E-20  1.0028E-20  1.0000E+00    total aq
+  Tracer2                   1.0018E-20  1.0028E-20  1.0000E+00    total aq
+
+  primary species         total(aq+sorbed)    total retardation
+                             [mol/L]               1+Kd
+  ----------------------------------------------------------------------------
+  Tracer1                   1.4007E-20          1.4007E+00
+  Tracer2                   1.4007E-20          1.4007E+00
+
+  Constraint: upstreambc
+  ----------------------------------------------------------------------------
+        iterations:     9
+    ionic strength:   0.0000E+00 [mol/L]
+    charge balance:   0.0000E+00
+          pressure:   0.0000E+00 [Pa]
+       temperature:    25.00 [C]
+       density H2O:   997.16 [kg/m^3]
+ ln / activity H2O:   0.0000E+00  1.0000E+00    [---]
+ mole fraction H2O:   9.8227E-01    [---]
+ mass fraction H2O:   1.0000E+00    [---]
+  ----------------------------------------------------------------------------
+
+  primary                   free        total
+  species                   molal       molal       act coef     constraint
+  ----------------------------------------------------------------------------
+  Tracer1                   1.0018E+00  1.0028E+00  1.0000E+00    total aq
+  Tracer2                   1.0018E-20  1.0028E-20  1.0000E+00    total aq
+
+  primary species         total(aq+sorbed)    total retardation
+                             [mol/L]               1+Kd
+  ----------------------------------------------------------------------------
+  Tracer1                   1.4007E+00          1.4007E+00
+  Tracer2                   1.4007E-20          1.4007E+00
