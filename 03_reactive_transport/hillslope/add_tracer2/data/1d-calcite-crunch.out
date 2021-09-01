@@ -111,11 +111,11 @@
 
 
   Primary species    itype     guess      Total conc.  Constraint phase
-  H+                   2    1.0000E-07    0.0000E+00                       
-  HCO3-                3    1.0000E-06    0.0000E+00     Calcite           
+  H+                   2    1.0000E-07    6.9483-310                       
+  HCO3-                3    1.0000E-06    6.9483-310     Calcite           
   Ca++                 1    1.0000E-06    1.0000E-03                       
-  Tracer1              1    1.0000E-06    1.0000E-10                       
-  Tracer2              1    1.0000E-06    1.0000E-03                       
+  Tracer1              1    1.0000E-06    1.0000E-03                       
+  Tracer2              1    1.0000E-06    1.0000E-10                       
 
   Porosity for this chemical condition =   0.5000
 
@@ -125,11 +125,11 @@
 
 
   Primary species    itype     guess      Total conc.  Constraint phase
-  H+                   2    1.0000E-07    0.0000E+00                       
-  HCO3-                3    1.0000E-06    0.0000E+00     Calcite           
+  H+                   2    1.0000E-07    6.0135-154                       
+  HCO3-                3    1.0000E-06    6.0135-154     Calcite           
   Ca++                 1    1.0000E-06    1.0000E-03                       
-  Tracer1              1    1.0000E-06    1.0000E-10                       
-  Tracer2              1    1.0000E-06    1.0000E-03                       
+  Tracer1              1    1.0000E-06    1.0000E-03                       
+  Tracer2              1    1.0000E-06    1.0000E-10                       
 
   Porosity for this chemical condition =   0.5000
 
@@ -139,11 +139,11 @@
 
 
   Primary species    itype     guess      Total conc.  Constraint phase
-  H+                   2    1.0000E-07    0.0000E+00                       
+  H+                   2    1.0000E-07    6.0135-154                       
   HCO3-                4    1.0000E-06    3.1500E-04     CO2(g)            
   Ca++                 1    1.0000E-06    1.0000E-10                       
-  Tracer1              1    1.0000E-06    1.0000E-03                       
-  Tracer2              1    1.0000E-06    1.0000E-10                       
+  Tracer1              1    1.0000E-06    1.0000E-10                       
+  Tracer2              1    1.0000E-06    1.0000E-03                       
 
   Porosity for this chemical condition =   0.5000
 
@@ -264,8 +264,8 @@
   H+                   2    1.0000E-07    0.0000E+00                       
   HCO3-                3    1.0000E-06    0.0000E+00     Calcite           
   Ca++                 1    1.0000E-06    1.0000E-03                       
-  Tracer1              1    1.0000E-06    1.0000E-10                       
-  Tracer2              1    1.0000E-06    1.0000E-03                       
+  Tracer1              1    1.0000E-06    1.0000E-03                       
+  Tracer2              1    1.0000E-06    1.0000E-10                       
 
   Porosity for this chemical condition =   0.5000
 
@@ -278,8 +278,8 @@
   H+                   2    1.0000E-07    0.0000E+00                       
   HCO3-                3    1.0000E-06    0.0000E+00     Calcite           
   Ca++                 1    1.0000E-06    1.0000E-03                       
-  Tracer1              1    1.0000E-06    1.0000E-10                       
-  Tracer2              1    1.0000E-06    1.0000E-03                       
+  Tracer1              1    1.0000E-06    1.0000E-03                       
+  Tracer2              1    1.0000E-06    1.0000E-10                       
 
   Porosity for this chemical condition =   0.5000
 
@@ -292,12 +292,110 @@
   H+                   2    1.0000E-07    0.0000E+00                       
   HCO3-                4    1.0000E-06    3.1500E-04     CO2(g)            
   Ca++                 1    1.0000E-06    1.0000E-10                       
-  Tracer1              1    1.0000E-06    1.0000E-03                       
-  Tracer2              1    1.0000E-06    1.0000E-10                       
+  Tracer1              1    1.0000E-06    1.0000E-10                       
+  Tracer2              1    1.0000E-06    1.0000E-03                       
 
   Porosity for this chemical condition =   0.5000
 
 
+
+ *********************************************
+  ---> GEOCHEMICAL CONDITION: surfini
+
+  Temperature (C)         =     25.000
+  Porosity                =      0.500
+  Liquid Saturation       =      1.000
+  Liquid Density (kg/m^3) =    997.075
+  Solid Density (kg/m^3)  =   2700.000
+  Solid:Solution Ratio    =   2707.920
+  Ionic Strength          =      0.003
+  Solution pH             =      7.693
+  Total Charge            =  1.301E-18
+
+ Total Aqueous Concentrations of Primary Species  
+ --------------------------------------- 
+
+ Species                Molality     Constraint    Constraint Phase 
+ H+                   6.9652E-05     Charge                          
+ HCO3-                2.0697E-03     Mineral       Calcite           
+ Ca++                 1.0000E-03     Total                           
+ Tracer1              1.0000E-03     Total                           
+ Tracer2              1.0000E-10     Total                           
+
+ Concentrations of Individual Species, Exchangers, and Surface Complexes 
+ ----------------------------------------------------------------------- 
+
+                           Log        Log                                 Activity
+ Species              Molality   Activity      Molality      Activity   Coefficient    Type
+  H+                    -7.670     -7.693     2.140E-08     2.026E-08     9.467E-01  Aqueous 
+  HCO3-                 -2.708     -2.734     1.958E-03     1.845E-03     9.424E-01  Aqueous 
+  Ca++                  -3.011     -3.111     9.761E-04     7.751E-04     7.941E-01  Aqueous 
+  Tracer1               -3.000     -3.000     1.000E-03     1.001E-03     1.001E+00  Aqueous 
+  Tracer2              -10.000    -10.000     1.000E-10     1.001E-10     1.001E+00  Aqueous 
+  OH-                   -6.276     -6.302     5.300E-07     4.992E-07     9.419E-01  Aqueous 
+  CO3--                 -5.267     -5.369     5.410E-06     4.271E-06     7.895E-01  Aqueous 
+  CO2(aq)               -4.083     -4.083     8.260E-05     8.266E-05     1.001E+00  Aqueous 
+  CaOH+                 -8.241     -8.267     5.735E-09     5.404E-09     9.424E-01  Aqueous 
+  CaHCO3+               -4.772     -4.798     1.690E-05     1.592E-05     9.424E-01  Aqueous 
+  CaCO3(aq)             -5.153     -5.153     7.026E-06     7.031E-06     1.001E+00  Aqueous 
+
+
+  ****** Partial pressure of gases (bars) *****
+
+ CO2(g)               2.43323804E-03
+
+  ****** Saturation state of minerals (log[Q/K] *****
+
+  Calcite                   0.0000
+
+ *********************************************
+  ---> GEOCHEMICAL CONDITION: initial
+
+  Temperature (C)         =     25.000
+  Porosity                =      0.500
+  Liquid Saturation       =      1.000
+  Liquid Density (kg/m^3) =    997.075
+  Solid Density (kg/m^3)  =   2700.000
+  Solid:Solution Ratio    =   2707.920
+  Ionic Strength          =      0.003
+  Solution pH             =      7.693
+  Total Charge            =  1.301E-18
+
+ Total Aqueous Concentrations of Primary Species  
+ --------------------------------------- 
+
+ Species                Molality     Constraint    Constraint Phase 
+ H+                   6.9652E-05     Charge                          
+ HCO3-                2.0697E-03     Mineral       Calcite           
+ Ca++                 1.0000E-03     Total                           
+ Tracer1              1.0000E-03     Total                           
+ Tracer2              1.0000E-10     Total                           
+
+ Concentrations of Individual Species, Exchangers, and Surface Complexes 
+ ----------------------------------------------------------------------- 
+
+                           Log        Log                                 Activity
+ Species              Molality   Activity      Molality      Activity   Coefficient    Type
+  H+                    -7.670     -7.693     2.140E-08     2.026E-08     9.467E-01  Aqueous 
+  HCO3-                 -2.708     -2.734     1.958E-03     1.845E-03     9.424E-01  Aqueous 
+  Ca++                  -3.011     -3.111     9.761E-04     7.751E-04     7.941E-01  Aqueous 
+  Tracer1               -3.000     -3.000     1.000E-03     1.001E-03     1.001E+00  Aqueous 
+  Tracer2              -10.000    -10.000     1.000E-10     1.001E-10     1.001E+00  Aqueous 
+  OH-                   -6.276     -6.302     5.300E-07     4.992E-07     9.419E-01  Aqueous 
+  CO3--                 -5.267     -5.369     5.410E-06     4.271E-06     7.895E-01  Aqueous 
+  CO2(aq)               -4.083     -4.083     8.260E-05     8.266E-05     1.001E+00  Aqueous 
+  CaOH+                 -8.241     -8.267     5.735E-09     5.404E-09     9.424E-01  Aqueous 
+  CaHCO3+               -4.772     -4.798     1.690E-05     1.592E-05     9.424E-01  Aqueous 
+  CaCO3(aq)             -5.153     -5.153     7.026E-06     7.031E-06     1.001E+00  Aqueous 
+
+
+  ****** Partial pressure of gases (bars) *****
+
+ CO2(g)               2.43323804E-03
+
+  ****** Saturation state of minerals (log[Q/K] *****
+
+  Calcite                   0.0000
 
  *********************************************
   ---> GEOCHEMICAL CONDITION: rain
@@ -317,3 +415,33 @@
 
  Species                Molality     Constraint    Constraint Phase 
  H+                   1.2902E-05     Charge                          
+ HCO3-                1.2902E-05     Gas           CO2(g)            
+ Ca++                 1.0000E-10     Total                           
+ Tracer1              1.0000E-10     Total                           
+ Tracer2              1.0000E-03     Total                           
+
+ Concentrations of Individual Species, Exchangers, and Surface Complexes 
+ ----------------------------------------------------------------------- 
+
+                           Log        Log                                 Activity
+ Species              Molality   Activity      Molality      Activity   Coefficient    Type
+  H+                    -5.656     -5.657     2.206E-06     2.202E-06     9.983E-01  Aqueous 
+  HCO3-                 -5.657     -5.658     2.201E-06     2.197E-06     9.983E-01  Aqueous 
+  Ca++                 -10.000    -10.003     1.000E-10     9.930E-11     9.931E-01  Aqueous 
+  Tracer1              -10.000    -10.000     1.000E-10     1.000E-10     1.000E+00  Aqueous 
+  Tracer2               -3.000     -3.000     1.000E-03     1.000E-03     1.000E+00  Aqueous 
+  OH-                   -8.337     -8.338     4.601E-09     4.593E-09     9.983E-01  Aqueous 
+  CO3--                -10.327    -10.330     4.713E-11     4.681E-11     9.931E-01  Aqueous 
+  CO2(aq)               -4.971     -4.971     1.070E-05     1.070E-05     1.000E+00  Aqueous 
+  CaOH+                -17.195    -17.196     6.381E-18     6.370E-18     9.983E-01  Aqueous 
+  CaHCO3+              -14.614    -14.614     2.434E-15     2.430E-15     9.983E-01  Aqueous 
+  CaCO3(aq)            -17.006    -17.006     9.871E-18     9.871E-18     1.000E+00  Aqueous 
+
+
+  ****** Partial pressure of gases (bars) *****
+
+ CO2(g)               3.15000000E-04
+
+  ****** Saturation state of minerals (log[Q/K] *****
+
+  Calcite                 -11.8526
