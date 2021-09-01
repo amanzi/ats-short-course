@@ -1,0 +1,27 @@
+<Xdmf Version="2.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid CollectionType="Temporal" GridType="Collection">
+      <xi:include href="plot_surf_data.h5.0.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.11.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.21.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.31.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.41.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.51.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.69.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.79.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.89.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.99.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.109.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.131.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.141.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.151.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.161.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.171.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.186.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.196.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.206.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.216.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+      <xi:include href="plot_surf_data.h5.226.xmf" xpointer="xpointer(//Xdmf/Domain/Grid)"/>
+    </Grid>
+  </Domain>
+</Xdmf>

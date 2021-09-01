@@ -14,12 +14,12 @@ DATABASE hanford.dat
 END
 
 
-CONSTRAINT upstreambc
+CONSTRAINT inj_conc
   CONCENTRATIONS
     Tracer1 50
-
   /
 END
+
 CONSTRAINT initial
   CONCENTRATIONS
     Tracer1 1.0e-20

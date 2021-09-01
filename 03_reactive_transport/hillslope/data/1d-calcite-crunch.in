@@ -25,7 +25,6 @@ H+
 HCO3-
 Ca++
 Tracer1
-Tracer2
 END
 
 SECONDARY_SPECIES
@@ -54,8 +53,7 @@ SolidDensity     2700.0
 pH               charge
 HCO3-            Calcite
 Ca++             1.0e-3
-Tracer1          1.0e-10
-Tracer2          1.0e-3
+Tracer1          1.0e-3
 !Mineral        <volume fraction>  <bulk surface area> m^2 /m^3
 Calcite          1.0e-2             bulk_surface_area  1.0
 END
@@ -68,8 +66,7 @@ SolidDensity     2700.0
 pH               charge
 HCO3-            Calcite
 Ca++             1.0e-3   
-Tracer1          1.0e-10
-Tracer2          1.0e-3
+Tracer1          1.0e-3
 !Mineral        <volume fraction>  <bulk surface area> m^2 /m^3
 Calcite          0.0             bulk_surface_area  0.0
 END
@@ -81,8 +78,7 @@ temperature      25.0
 pH               charge
 HCO3-            CO2(g)   3.15E-4
 Ca++             1.e-10
-Tracer1          1.e-3
-Tracer2          1.e-10
+Tracer1          1.e-10
 !Mineral        <volume fraction>  <bulk surface area> m^2 /m^3
 Calcite          0.0                bulk_surface_area  0.0
 END

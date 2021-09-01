@@ -3,7 +3,7 @@
 # Observation Name: time [s]
 # -----------------------------------------------------------------------------
 # Observation Name: surface-precipitation
-# Region: computational domain
+# Region: surface domain
 # Functional: average
 # Variable: surface-water_source
 # Number of Vectors: 1

@@ -1,0 +1,577 @@
+<Xdmf>
+  <Domain>
+    <Grid Name="Mesh">
+      <Topology Name="mixedtopo" NumberOfElements="10" TopologyType="Mixed">
+        <DataItem DataType="Int" Dimensions="50" Format="HDF">
+          plot_surf_mesh.h5:/0/Mesh/MixedElements
+        </DataItem>
+      </Topology>
+      <Geometry Name="geo" Type="XYZ">
+        <DataItem DataType="Float" Dimensions="22  3" Format="HDF">
+          plot_surf_mesh.h5:/0/Mesh/Nodes
+        </DataItem>
+      </Geometry>
+      <Time Value="1.36892539356605059e-01"/>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.3" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.3/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.4" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.4/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.5" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.5/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.6" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.6/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.7" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.7/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.8" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.8/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.9" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.9/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.10" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.10/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.11" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.11/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.12" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.12/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.13" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.13/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.14" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.14/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.15" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.15/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.16" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.16/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.17" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.17/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.18" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.18/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.19" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.19/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.20" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.20/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.21" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.21/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.22" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.22/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.23" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.23/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.24" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.24/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.25" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.25/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.26" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.26/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.27" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.27/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.28" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.28/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.29" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.29/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.30" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.30/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.31" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.31/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.32" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.32/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.33" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.33/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.34" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.34/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.35" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.35/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.36" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.36/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-alquimia_aux_data.cell.37" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-alquimia_aux_data.cell.37/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-aspect.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-aspect.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-cell_volume.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-cell_volume.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-elevation.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-elevation.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-free_ion_species.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-free_ion_species.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-free_ion_species.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-free_ion_species.cell.1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-free_ion_species.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-free_ion_species.cell.2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-free_ion_species.cell.3" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-free_ion_species.cell.3/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-free_ion_species.cell.4" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-free_ion_species.cell.4/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-manning_coefficient.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-manning_coefficient.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-mass_density_liquid.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-mass_density_liquid.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-mineral_rate_constant.cell.Calcite" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-mineral_rate_constant.cell.Calcite/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-mineral_reaction_rate.cell.Calcite" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-mineral_reaction_rate.cell.Calcite/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-mineral_saturation_index.cell.Calcite" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-mineral_saturation_index.cell.Calcite/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-mineral_specific_surface_area.cell.Calcite" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-mineral_specific_surface_area.cell.Calcite/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-mineral_volume_fractions.cell.Calcite" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-mineral_volume_fractions.cell.Calcite/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-molar_density_liquid.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-molar_density_liquid.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-one.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-one.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-overland_conductivity.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-overland_conductivity.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-pH.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-pH.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-ponded_depth.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-ponded_depth.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-ponded_depth_bar.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-ponded_depth_bar.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-porosity.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-porosity.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-pres_elev.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-pres_elev.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-pressure.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-pressure.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-prev_ponded_depth.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-prev_ponded_depth.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_activity_coeff.cell.H+" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_activity_coeff.cell.H+/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_activity_coeff.cell.HCO3-" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_activity_coeff.cell.HCO3-/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_activity_coeff.cell.Ca++" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_activity_coeff.cell.Ca++/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_activity_coeff.cell.Tracer1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_activity_coeff.cell.Tracer1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_activity_coeff.cell.Tracer2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_activity_coeff.cell.Tracer2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_free_ion_concentration.cell.H+" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_free_ion_concentration.cell.H+/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_free_ion_concentration.cell.HCO3-" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_free_ion_concentration.cell.HCO3-/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_free_ion_concentration.cell.Ca++" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_free_ion_concentration.cell.Ca++/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_free_ion_concentration.cell.Tracer1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_free_ion_concentration.cell.Tracer1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-primary_free_ion_concentration.cell.Tracer2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-primary_free_ion_concentration.cell.Tracer2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-relative_permeability.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-relative_permeability.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_activity_coeff.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_activity_coeff.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_activity_coeff.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_activity_coeff.cell.1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_activity_coeff.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_activity_coeff.cell.2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_activity_coeff.cell.3" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_activity_coeff.cell.3/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_activity_coeff.cell.4" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_activity_coeff.cell.4/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_activity_coeff.cell.5" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_activity_coeff.cell.5/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_free_ion_concentration.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_free_ion_concentration.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_free_ion_concentration.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_free_ion_concentration.cell.1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_free_ion_concentration.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_free_ion_concentration.cell.2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_free_ion_concentration.cell.3" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_free_ion_concentration.cell.3/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_free_ion_concentration.cell.4" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_free_ion_concentration.cell.4/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-secondary_free_ion_concentration.cell.5" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-secondary_free_ion_concentration.cell.5/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-slope_magnitude.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-slope_magnitude.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-solid_residue_mass.cell.H+" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-solid_residue_mass.cell.H+/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-solid_residue_mass.cell.HCO3-" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-solid_residue_mass.cell.HCO3-/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-solid_residue_mass.cell.Ca++" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-solid_residue_mass.cell.Ca++/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-solid_residue_mass.cell.Tracer1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-solid_residue_mass.cell.Tracer1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-solid_residue_mass.cell.Tracer2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-solid_residue_mass.cell.Tracer2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-source_molar_density.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-source_molar_density.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-surface_subsurface_flux.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-surface_subsurface_flux.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_concentration.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_concentration.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_concentration.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_concentration.cell.1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_concentration.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_concentration.cell.2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_concentration.cell.3" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_concentration.cell.3/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_concentration.cell.4" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_concentration.cell.4/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.H+" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.H+/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.HCO3-" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.HCO3-/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.Ca++" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.Ca++/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.Tracer1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.Tracer1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.Tracer2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.Tracer2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.H2O_old" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.H2O_old/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-total_component_quantity.cell.H2O_new" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-total_component_quantity.cell.H2O_new/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-velocity.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-velocity.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-velocity.cell.1" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-velocity.cell.1/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-velocity.cell.2" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-velocity.cell.2/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-water_content.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-water_content.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-water_content_bar.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-water_content_bar.cell.0/51
+        </DataItem>
+      </Attribute>
+      <Attribute Center="Cell" Name="surface-water_source.cell.0" Type="Scalar">
+        <DataItem DataType="Float" Dimensions="10" Format="HDF">
+          plot_surf_data.h5:surface-water_source.cell.0/51
+        </DataItem>
+      </Attribute>
+    </Grid>
+  </Domain>
+</Xdmf>

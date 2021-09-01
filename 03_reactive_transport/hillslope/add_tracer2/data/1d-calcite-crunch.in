@@ -1,0 +1,136 @@
+TITLE
+Calcite dissoltion simulation with CrunchFlow
+END
+
+RUNTIME
+time_units      years
+timestep_max    1.0
+timestep_init   1.E-10
+time_tolerance  0.01
+correction_max  1.0
+debye-huckel    true
+database        ./data/calcite.dbs
+master          tracer
+speciate_only   false
+database_sweep  false
+screen_output   10
+graphics        tecplot
+gimrt           false
+hindmarsh       false
+duan            false
+END
+
+PRIMARY_SPECIES
+H+
+HCO3-
+Ca++
+Tracer1
+Tracer2
+END
+
+SECONDARY_SPECIES
+OH-
+CO3--
+CO2(aq)
+CaOH+
+CaHCO3+
+CaCO3(aq)
+END
+
+GASES
+CO2(g)
+END
+
+MINERALS
+Calcite             -label leichou1    -rate   -0.05
+Calcite             -label leichou2    -rate   -3.30
+Calcite             -label leichou3    -rate   -6.18
+END
+
+Condition initial
+units     mol/kg
+temperature      25.0
+SolidDensity     2700.0
+pH               charge
+HCO3-            Calcite
+Ca++             1.0e-3
+Tracer1          1.0e-3
+Tracer2          1.0e-10
+!Mineral        <volume fraction>  <bulk surface area> m^2 /m^3
+Calcite          1.0e-2             bulk_surface_area  1.0
+END
+
+
+Condition surfini
+units     mol/kg
+temperature      25.0
+SolidDensity     2700.0
+pH               charge
+HCO3-            Calcite
+Ca++             1.0e-3   
+Tracer1          1.0e-3
+Tracer2          1.0e-10
+!Mineral        <volume fraction>  <bulk surface area> m^2 /m^3
+Calcite          0.0             bulk_surface_area  0.0
+END
+
+
+Condition rain
+units     mol/kg
+temperature      25.0
+pH               charge
+HCO3-            CO2(g)   3.15E-4
+Ca++             1.e-10
+Tracer1          1.e-10
+Tracer2          1.e-3
+!Mineral        <volume fraction>  <bulk surface area> m^2 /m^3
+Calcite          0.0                bulk_surface_area  0.0
+END
+
+!--------------------------------------------------------------
+! not needed for Alquimia
+! makes it possible to run 1D stand-alone CrunchFlow simulation
+
+OUTPUT
+time_units               years
+spatial_profile          10 20 30 40 50
+END
+
+POROSITY
+fix_porosity     0.50
+porosity_update  false
+END
+ 
+TEMPERATURE
+set_temperature  25.0
+RunIsothermal   true
+END
+
+DISCRETIZATION
+distance_units  meters
+xzones 100      1.0
+END
+
+INITIAL_CONDITIONS
+initial     1-100
+END
+
+BOUNDARY_CONDITIONS
+X_begin   rain     Flux
+X_end     initial  Flux
+END
+
+FLOW
+time_units      seconds
+distance_units  meters 
+constant_flow   7.9274479960d-9  ! m/s
+END
+
+TRANSPORT
+distance_units meters
+time_units     second
+fix_diffusion  1.E-09 ! m2/s
+formation_factor  1.0  
+cementation_exponent  1.0
+dispersivity  0.0 0.0
+END

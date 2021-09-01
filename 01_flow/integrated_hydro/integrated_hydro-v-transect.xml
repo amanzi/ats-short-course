@@ -175,8 +175,8 @@
           <Parameter name="min iterations" type="int" value="10" />
           <Parameter name="time step reduction factor" type="double" value="0.5" />
           <Parameter name="time step increase factor" type="double" value="2.0" />
-          <Parameter name="max time step" type="double" value="10000000.0" />
-          <Parameter name="min time step" type="double" value="1e-10" />
+          <Parameter name="max time step" type="double" value="600" />
+          <Parameter name="min time step" type="double" value="1e-4" />
           <Parameter name="growth wait after fail" type="int" value="2" />
           <Parameter name="count before increasing increase factor" type="int" value="2" />
         </ParameterList>
@@ -188,8 +188,6 @@
       <Parameter name="PK type" type="string" value="richards flow" />
       <Parameter name="primary variable key" type="string" value="pressure" />
       <Parameter name="initial time step" type="double" value="10.0" />
-      <Parameter name="permeability rescaling" type="double" value="10000000.0" />
-      <Parameter name="clobber surface rel perm" type="bool" value="false" />
       <Parameter name="relative permeability method" type="string" value="upwind with Darcy flux" />
       <ParameterList name="verbose object" type="ParameterList">
         <Parameter name="verbosity level" type="string" value="low" />
@@ -528,7 +526,7 @@
       <Parameter name="file name base" type="string" value="ih_surface"/>
       <Parameter name="times start period stop" type="Array(double)" value="{0.0,1,-1.0}" />
       <Parameter name="times start period stop units" type="string" value="d" />
-      <Parameter name="visualize on 3D mesh" type="bool" value="false" />
+      <Parameter name="visualize on 3D mesh" type="bool" value="true" />
     </ParameterList>
   </ParameterList>
 </ParameterList>
