@@ -13,7 +13,7 @@
       <Parameter name="mesh type" type="string" value="read mesh file" />
       <Parameter name="build columns from set" type="string" value="surface" />
       <ParameterList name="read mesh file parameters" type="ParameterList">
-        <Parameter name="file" type="string" value="./mesh/hillslope_10.exo" />
+        <Parameter name="file" type="string" value="../mesh/hillslope_10.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
       </ParameterList>
     </ParameterList>
@@ -33,7 +33,7 @@
     <ParameterList name="toplayers" type="ParameterList">
       <ParameterList name="region: labeled set" type="ParameterList">
         <Parameter name="label" type="string" value="1001" />
-        <Parameter name="file" type="string" value="./mesh/hillslope_10.exo" />
+        <Parameter name="file" type="string" value="../mesh/hillslope_10.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
         <Parameter name="entity" type="string" value="Cell" />
       </ParameterList>
@@ -41,7 +41,7 @@
     <ParameterList name="midlayers" type="ParameterList">
       <ParameterList name="region: labeled set" type="ParameterList">
         <Parameter name="label" type="string" value="1002" />
-        <Parameter name="file" type="string" value="./mesh/hillslope_10.exo" />
+        <Parameter name="file" type="string" value="../mesh/hillslope_10.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
         <Parameter name="entity" type="string" value="Cell" />
       </ParameterList>
@@ -49,7 +49,7 @@
     <ParameterList name="bottomlayers" type="ParameterList">
       <ParameterList name="region: labeled set" type="ParameterList">
         <Parameter name="label" type="string" value="101" />
-        <Parameter name="file" type="string" value="./mesh/hillslope_10.exo" />
+        <Parameter name="file" type="string" value="../mesh/hillslope_10.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
         <Parameter name="entity" type="string" value="Cell" />
       </ParameterList>
@@ -58,7 +58,7 @@
     <ParameterList name="bottom face">
       <ParameterList name="region: labeled set">
         <Parameter name="entity" type="string" value="face" />
-        <Parameter isUsed="true" name="file" type="string" value="./mesh/hillslope_10.exo" />
+        <Parameter isUsed="true" name="file" type="string" value="../mesh/hillslope_10.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
         <Parameter name="label" type="string" value="1" />
       </ParameterList>
@@ -66,7 +66,7 @@
     <ParameterList name="surface">
       <ParameterList name="region: labeled set">
         <Parameter name="entity" type="string" value="face" />
-        <Parameter isUsed="true" name="file" type="string" value="./mesh/hillslope_10.exo" />
+        <Parameter isUsed="true" name="file" type="string" value="../mesh/hillslope_10.exo" />
         <Parameter name="format" type="string" value="Exodus II" />
         <Parameter name="label" type="string" value="2" />
       </ParameterList>
