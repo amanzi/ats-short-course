@@ -183,3 +183,8 @@ docker build -t metsi/ats-short-course:Amanzi-latest -f Dockerfile-Workshop-Aman
 docker build -t metsi/ats-short-course:latest -f Dockerfile-Workshop-ATS ./
 
 ```
+
+# Feedback
+
+If you attended the course, please provide us feedback (a short, ~5 minute survey) at: https://forms.gle/HEdaU7xCts9RpWd1A
+
