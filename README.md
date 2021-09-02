@@ -2,6 +2,8 @@
 
 [![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
 
+This course was first offered virtually on September 1 & 2, 2021.  Slides are included .... {where?}.  Video recordings of the course are available ... {where?} 
+
 To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
 
 * A Linux-based operating system, including common command line tools.
