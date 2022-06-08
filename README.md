@@ -2,7 +2,10 @@
 
 [![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
 
-This course was first offered virtually on September 1 & 2, 2021.  Slides are included .... {where?}.  Video recordings of the course are available ... {where?} 
+This course was first offered virtually on September 1 & 2, 2021.  
+
+* Slides are available in this repository: https://github.com/amanzi/ats-short-course/tree/main/slides
+* Video recordings of the course are available here: https://www.youtube.com/playlist?list=PLisa2eqmVBFZ1mpoYqNmtFUy7yR9RaFks
 
 To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
 
@@ -165,7 +168,7 @@ This message is safe to ignore -- by manually copying and pasting the above addr
 
 # Developers
 
-In addition to the notes for Participants, developers may want to additional background information.
+In addition to the notes for Participants, developers may need additional background information.
 
 ## Building Docker Images
 
