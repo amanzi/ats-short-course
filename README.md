@@ -6,9 +6,9 @@ This course will be offered September 8-10, 2025, in Knoxville, Tennessee and vi
 
 ## Key Links (tl;dr)
 
-* [About](https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/ATSShortCourse2025_Flyer.pdf)
+* [About](https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/logistics/ATSShortCourse2025_Flyer.pdf)
 * To register, go to https://docs.google.com/forms/d/1o6q5dRvoMmXagI3u6DNl2KvkBVKgDggjmMkgnBc7DjE/edit
-* See the [tentative agenda](https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/ATSShortCourse2025_Agenda.pdf)
+* See the [tentative agenda](https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/logistics/ATSShortCourse2025_Agenda.pdf)
 
 
 ## Registration
