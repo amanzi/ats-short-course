@@ -1,10 +1,10 @@
 # ATS Short Course
 
-[![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=main)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
+[![Docker](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml/badge.svg?branch=ats-short-course-20210901)](https://github.com/amanzi/ats-short-course/actions/workflows/docker-test.yml)
 
 This course was first offered virtually on September 1 & 2, 2021.  
 
-* Slides are available in this repository: https://github.com/amanzi/ats-short-course/tree/main/slides
+* Slides are available in this repository: https://github.com/amanzi/ats-short-course/tree/ats-short-course-20210901/slides
 * Video recordings of the course are available here: https://www.youtube.com/playlist?list=PLisa2eqmVBFZ1mpoYqNmtFUy7yR9RaFks
 
 To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
