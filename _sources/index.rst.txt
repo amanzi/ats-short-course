@@ -13,4 +13,4 @@ Ongoing courses
 Completed courses
 -----------------
 
-* `September 1-2, 2021, virtual <https://github.com/amanzi/ats-short-course/ats-short-course-20210901/index.html>`_
+* `September 1-2, 2021, virtual <https://github.com/amanzi/ats-short-course/tree/ats-short-course-20210901>`_
