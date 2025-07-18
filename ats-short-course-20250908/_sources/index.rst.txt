@@ -8,7 +8,7 @@ Key Links
 
 * `About Flyer <https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Flyer.pdf>`_
 * `Registration Page <https://docs.google.com/forms/d/1o6q5dRvoMmXagI3u6DNl2KvkBVKgDggjmMkgnBc7DjE/edit>`_
-* `Tentative Agenda` <https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/ATSShortCourse2025_Agenda.pdf>`_
+* `Tentative Agenda <https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/ATSShortCourse2025_Agenda.pdf>`_
 
 
 Registration
@@ -28,8 +28,8 @@ Logistics
 
 * Dates: September 8-10, 2025
 * Location: 
-  * Sept 8: `Oak Ridge National Laboratory <https://maps.app.goo.gl/PUBGAVXYvcoWroET7>`_ (optional day)  1 Bethel Valley Rd, Oak Ridge, TN, 37830
-  * Sept 9-10: `UT Conference Center <https://maps.app.goo.gl/9TWneRtzBLpcdJQq6>`_ 600 Henley St, Knoxville, TN 37902
+   * Sept 8: `Oak Ridge National Laboratory <https://maps.app.goo.gl/PUBGAVXYvcoWroET7>`_ (optional day)  1 Bethel Valley Rd, Oak Ridge, TN, 37830
+   * Sept 9-10: `UT Conference Center <https://maps.app.goo.gl/9TWneRtzBLpcdJQq6>`_ 600 Henley St, Knoxville, TN 37902
 * Lodging: A `block of rooms <https://www.hilton.com/en/attend-my-event/tyschup-90q-3c9b35ed-6e0d-4a2f-9897-f280c4476737/>`_, at the government rate, is available at the Cumberland House in Knoxville.  Please reserve your room by August 8th to be included in the room block.
 * Getting around: Uber and Lyft are available in the Knoxville area, but are not as reliable as in some areas.  Carpooling from the hotel to ORNL will be necessary, and will be arranged closer to the time.  Once you are at the hotel, the conference center is within easy walking distance (~0.25 miles).
 
