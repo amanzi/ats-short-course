@@ -8,7 +8,7 @@ Key Links
 
 * `About Flyer <https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Flyer.pdf>`_
 * `Registration Page <https://docs.google.com/forms/d/1o6q5dRvoMmXagI3u6DNl2KvkBVKgDggjmMkgnBc7DjE/edit>`_
-* `Tentative Agenda <https://github.com/amanzi/ats-short-course/blob/ats-short-course-20250908/ATSShortCourse2025_Agenda.pdf>`_
+* `Tentative Agenda <https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Agenda.pdf>`_
 
 
 Registration
