@@ -1,0 +1,67 @@
+FROM docker.io/library/short-course-base:latest
+LABEL Description="Build TPLs"
+
+ENV DEBIAN_FRONTEND=noninteractive
+EXPOSE 8888
+
+RUN apt-get update && apt-get install -y cmake
+
+ENV HOME=home
+# Versions change and we cannot set environment variables from command output.
+ARG petsc_ver=3.20
+ARG trilinos_ver=15-1-0
+ARG amanzi_branch=amanzi-1.6
+
+# Installation paths
+ENV AMANZI_PREFIX=${HOME}/install \
+    AMANZI_INSTALL_DIR=${HOME}/install/amanzi \
+    AMANZI_TPLS_DIR=${HOME}/install/tpls
+
+# TPL versions needed for LD_LIBRARY_PATH
+ENV AMANZI_PETSC_LIBS=$AMANZI_TPLS_DIR/petsc-${petsc_ver}/lib \
+    AMANZI_TRILINOS_LIBS=$AMANZI_TPLS_DIR/trilinos-${trilinos_ver}/lib \
+    AMANZI_SEACAS_LIBS=$AMANZI_TPLS_DIR/SEACAS/lib
+
+# Set the current working directory as the users home directory
+# (creates the directory if it doesn't exist)
+WORKDIR ${HOME}
+
+# Clone the amanzi git repo.
+RUN git clone https://github.com/amanzi/amanzi.git ${HOME}/amanzi
+
+# Set the current working directory to the git repo
+# and switch branches if requested.
+WORKDIR ${HOME}/amanzi
+RUN if [ "$amanzi_branch" != "master" ]; then \
+       git checkout $amanzi_branch; \
+    fi; \
+    echo "Amanzi branch = $amanzi_branch"; \
+    git branch --list
+
+# Build and install the TPLs using bootstrap.sh, and remove
+# the source, objects, etc. after installation to save space.
+RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
+  --parallel=4 --opt \
+  --amanzi-build-dir=${HOME}/amanzi_builddir/amanzi \
+  --tpl-build-dir=${HOME}/amanzi_builddir/tpls \
+  --tpl-download-dir=${HOME}/amanzi_builddir/tpls/Downloads \
+  --disable-build_amanzi --disable-build_user_guide \
+  --enable-shared --enable-structured --enable-silo \
+  --enable-alquimia --enable-pflotran --enable-crunchtope \
+  --enable-pf_clm \
+  --with-mpi=/usr \
+  && git checkout master \
+  && rm -r ${HOME}/amanzi_builddir
+
+#     Set the LD_LIBRARY_PATH for Amanzi builds in the next stage
+ENV LD_LIBRARY_PATH=${AMANZI_TPLS_DIR}/lib:${AMANZI_PETSC_LIBS}:${AMANZI_TRILINOS_LIBS}:${AMANZI_SEACAS_LIBS} \
+    # Set path to pick up any tools installed during bootstrap
+    PATH=${HOME}/amanzi/install/tools/bin:${PATH}
+
+RUN echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}" && \
+    echo "PATH: ${PATH}"
+
+# -------------------------
+# Launch Jupyter Lab
+# -------------------------
+CMD ["/bin/bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate watershed-workflow && jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password=''"]
