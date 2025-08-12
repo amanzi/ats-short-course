@@ -16,3 +16,4 @@ models/.DS_Store
 models/hydrology/results
 models/transport/results
 models/reactive/results
+models/notebooks/.vscode/
