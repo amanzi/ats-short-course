@@ -2,6 +2,8 @@ ARG base_image=ubuntu
 ARG ver_tag=jammy
 FROM ${base_image}:${ver_tag} AS base
 
+EXPOSE 8888
+
 LABEL Description="This image provides a base Linux developers environment for ATS as well as python installation with jupyter lab."
 
 # Build arguments
@@ -154,8 +156,8 @@ ENV PATH="/opt/conda/bin:$PATH"
 # RUN echo "Installing core scientific stack ..." && \
 
 # Install Jupyterlab
-# RUN echo "Installing Jupyter lab ... " && \ 
-#    conda install -y jupyterlab        
+ RUN echo "Installing Jupyter lab ... " && \ 
+    conda install -y jupyterlab        
 
 # GIS & geometry tools
 # RUN echo "Installing GIS and geometry packages..." && \
@@ -180,5 +182,5 @@ ENV PATH="/opt/conda/bin:$PATH"
 # RUN echo "Cleaning up conda..." && \
 #   conda clean -afy
 
-# CMD ["jupyter", "lab", "--port=8899"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
 
