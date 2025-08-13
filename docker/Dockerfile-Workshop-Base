@@ -2,7 +2,7 @@ ARG base_image=ubuntu
 ARG ver_tag=jammy
 FROM ${base_image}:${ver_tag} AS base
 
-LABEL Description="This image contains all of the third-party libraries needed by Amanzi (based on the specified branch, default branch is master)."
+LABEL Description="This image provides a base Linux developers environment for ATS as well as python installation with jupyter lab."
 
 # Build arguments
 ARG cmake_version
@@ -11,24 +11,25 @@ ARG ver_tag
 ARG build_mpi=False
 ARG mpi_flavor=mpich
 ARG mpi_version=4.0.3
+
+# TARGETARCH is set by Docker BuildKit (e.g., amd64, arm64)
 ARG TARGETARCH
-ARG container_user=amanzi_user
+
+# Set the default name of the unprivileged user
+ARG container_user=ats_sc_user
 
 # Set timezone:
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 
 RUN apt-get -q update -y && apt-get install -y tzdata && \
-  if [ "$base_image" = "ubuntu" ]; then \
-    echo "Installing compilers..." \
-    && apt-get -q install -y \
-      g++ \
-      gfortran; \
-  fi && \
   apt-get -q install -y \
   apt-utils \
+  cmake \
   curl \
   libcurl4-openssl-dev \
   emacs \
+  g++ \
+  gfortran \
   gedit \
   git \
   groff \
@@ -48,11 +49,20 @@ RUN apt-get -q update -y && apt-get install -y tzdata && \
   wget \
   vim \
   zlib1g-dev && \
-  if [ "$base_image" = "gcc" ]; then \
-    echo  "Installing h5py in debian image..." \
-    && apt-get -q install -y \
-	      python3-h5py; \
-  fi
+  apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Should we have the h5py stuff in here?
+# Note this installs numpy as well
+# Note: currently the --no-binary option seems to be failing
+
+#RUN if [ "$TARGETARCH" = "arm64" ]; then \
+# pip3 install --no-cache-dir --upgrade pip && \
+# pip3 install --no-cache-dir --no-binary=h5py install h5py ; \
+#  else \
+# pip3 install --no-cache-dir --upgrade pip && \
+# pip3 install --no-cache-dir install h5py ; \
+#  fi
 
 # install MPI - if mpich, custom compile; if openmpi, install precompiled binary
 RUN if [ "$build_mpi" = "True" ]; then \
@@ -84,63 +94,91 @@ RUN if [ "$build_mpi" = "True" ]; then \
   fi \
   else apt-get update -y && apt-get install -y lib${mpi_flavor}-dev ; fi
 
-# Add an unprivileged user and group
+# Add an unprivileged user and group: $container_user, $container_user
+# - set permissions so the $container_user can write into their home dirctory
 RUN groupadd -r $container_user && \
-    useradd -r -m -g $container_user $container_user
+    useradd -r  -K UMASK=0022 -K HOME_MODE=0755 -m -g $container_user $container_user -s /bin/bash
 
-# Install Miniconda
-RUN echo "Downloading and installing Miniconda..." && \
-    wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
-    /bin/bash /tmp/miniconda.sh -b -p /opt/conda && \
-    rm /tmp/miniconda.sh && \
-    /opt/conda/bin/conda clean -a -y
+# Install Miniforge
+# (Miniconda requires accepting the terms of service, which we cannot)
+RUN echo "Downloading and installing Miniforge ..." && \
+     wget --quiet \
+       https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh \
+       -O /tmp/miniforge.sh && \
+     /bin/bash /tmp/miniforge.sh -b -p /opt/conda && \
+     rm /tmp/miniforge.sh && \
+     /opt/conda/bin/conda clean -a -y && \
+     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+     chown -R $container_user /opt/ && \
+     chgrp -R $container_user /opt/
+
+# This unprivileged user and home directory are used in the TPLs and ATS builds
+USER $container_user
+ENV HOME=/home/$container_user
+
+WORKDIR $HOME
+
+# We can force RUN to use bash, but this still doesn't seem to pickup the users .bashrc or .profile
+# SHELL ["/bin/bash", "-c"]
+
+# This is supposed to setup the conda environment in the unprivileged users account
+# It's not working!! 
+RUN whoami && \
+    pwd && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/$container_user/.bashrc && \
+    echo "conda activate base" >> /home/$container_user/.bashrc && \ 
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/$container_user/.profile && \
+    echo "conda activate base" >> /home/$container_user/.profile && \ 
+    cat /home/$container_user/.profile
+
+RUN . /opt/conda/etc/profile.d/conda.sh && \
+    conda update -n base -c conda-forge conda && \ 
+    conda activate base 
+
+RUN  . /opt/conda/etc/profile.d/conda.sh && \
+     echo "PATH=$PATH" && \
+     conda install -y pip
+#    conda install -y \
+#        numpy \
+#        scipy \
+#        matplotlib \
+#        h5py \
+#        netCDF4 && \
+#    conda install -y jupyterlab 
 
 # Make conda globally available
+# - seems like there is a better way to do this, and not sure when we want to do this?
 ENV PATH="/opt/conda/bin:$PATH"
 
-# Configure conda
-RUN echo "Configuring conda channels and terms of service..." && \
-    conda config --set channel_priority strict && \
-    conda config --set always_yes yes && \
-    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
-    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-
-# Update conda base environment
-RUN echo "Updating base conda environment..." && \
-    conda update -n base -c defaults conda
-
-# Basic tools
-RUN echo "Installing basic conda tools: pip, pandas..." && \
-    conda install -y pip pandas
-
 # Core scientific stack
-RUN echo "Installing core scientific stack..." && \
-    conda install -c conda-forge \
-        numpy \
-        scipy \
-        matplotlib \
-        h5py \
-        netCDF4
+# RUN echo "Installing core scientific stack ..." && \
+
+# Install Jupyterlab
+# RUN echo "Installing Jupyter lab ... " && \ 
+#    conda install -y jupyterlab        
 
 # GIS & geometry tools
-RUN echo "Installing GIS and geometry packages..." && \
-    conda install -c conda-forge \
-        geopandas \
-        cartopy \
-        meshpy \
-        pyepsg \
-        descartes
+# RUN echo "Installing GIS and geometry packages..." && \
+#    conda install -c conda-forge \
+#    geopandas \
+#    cartopy \
+#    meshpy \
+#    pyepsg \
+#    descartes
 
 # Utility libraries
-RUN echo "Installing utility and miscellaneous libraries..." && \
-    conda install -c conda-forge \
-        boost \
-        requests \
-        sortedcontainers \
-        attrs \
-        libarchive \
-        pytest
+# RUN echo "Installing utility and miscellaneous libraries..." && \
+#    conda install -c conda-forge \
+#        boost \
+#        requests \
+#        sortedcontainers \
+#        attrs \
+#        libarchive \
+#        pytest
 
 # Cleanup
-RUN echo "Cleaning up conda..." && \
-    conda clean -afy
+# RUN echo "Cleaning up conda..." && \
+#   conda clean -afy
+
+# CMD ["jupyter", "lab", "--port=8899"]
+

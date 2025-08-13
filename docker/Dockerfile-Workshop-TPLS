@@ -1,16 +1,20 @@
-FROM docker.io/library/short-course-base:latest
+FROM metsi/ats-short-course:2025-base
 LABEL Description="Build TPLs"
 
 ENV DEBIAN_FRONTEND=noninteractive
 EXPOSE 8888
 
-RUN apt-get update && apt-get install -y cmake
+# We could do this earlier, we just know we have to build cmake
+# RUN apt-get update && apt-get install -y cmake
 
-ENV HOME=home
 # Versions change and we cannot set environment variables from command output.
 ARG petsc_ver=3.20
 ARG trilinos_ver=15-1-0
 ARG amanzi_branch=amanzi-1.6
+
+# ${HOME} was set in the base image to /home/$container_user
+RUN echo "Unprivileged username: `whoami`" && \
+    echo "User's home directory: ${HOME}"
 
 # Installation paths
 ENV AMANZI_PREFIX=${HOME}/install \
@@ -54,14 +58,14 @@ RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
   && rm -r ${HOME}/amanzi_builddir
 
 #     Set the LD_LIBRARY_PATH for Amanzi builds in the next stage
-ENV LD_LIBRARY_PATH=${AMANZI_TPLS_DIR}/lib:${AMANZI_PETSC_LIBS}:${AMANZI_TRILINOS_LIBS}:${AMANZI_SEACAS_LIBS} \
-    # Set path to pick up any tools installed during bootstrap
-    PATH=${HOME}/amanzi/install/tools/bin:${PATH}
+ENV LD_LIBRARY_PATH=${AMANZI_TPLS_DIR}/lib:${AMANZI_PETSC_LIBS}:${AMANZI_TRILINOS_LIBS}:${AMANZI_SEACAS_LIBS}
+RUN echo $LD_LIBRARY_PATH
 
-RUN echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}" && \
-    echo "PATH: ${PATH}"
+#     Set path to pick up any tools installed during bootstrap
+ENV PATH=${HOME}/amanzi/install/tools/bin:${PATH}
+RUN echo "PATH: ${PATH}"
 
 # -------------------------
 # Launch Jupyter Lab
 # -------------------------
-CMD ["/bin/bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate watershed-workflow && jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password=''"]
+# CMD ["/bin/bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate watershed-workflow && jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password=''"]
