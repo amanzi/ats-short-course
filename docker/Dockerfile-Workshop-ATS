@@ -1,0 +1,80 @@
+FROM workshop-tpls:latest
+#FROM metsi/amanzi-tpls:${amanzi_tpls_ver}-${mpi_flavor}-${base_image}-${ver_tag}
+LABEL Description="Build ATS"
+#SHELL ["/bin/bash", "-c"]
+
+ENV DEBIAN_FRONTEND=noninteractive
+EXPOSE 8888
+
+# Versions change and we cannot set environment variables from command output.
+ARG petsc_ver=3.20
+ARG trilinos_ver=15-1-0
+#ARG amanzi_branch=amanzi-1.6
+#ARG ats_branch=master
+#ARG ats_tests_branch=
+
+# Installation paths
+ENV AMANZI_PREFIX=${HOME}/install \
+    AMANZI_INSTALL_DIR=${HOME}/install/amanzi \
+    AMANZI_TPLS_DIR=${HOME}/install/tpls
+
+# TPL versions needed for LD_LIBRARY_PATH
+ENV AMANZI_PETSC_LIBS=$AMANZI_TPLS_DIR/petsc-${petsc_ver}/lib \
+    AMANZI_TRILINOS_LIBS=$AMANZI_TPLS_DIR/trilinos-${trilinos_ver}/lib \
+    AMANZI_SEACAS_LIBS=$AMANZI_TPLS_DIR/SEACAS/lib
+
+#     Set the LD_LIBRARY_PATH for Amanzi builds in the next stage
+ENV LD_LIBRARY_PATH=${AMANZI_TPLS_DIR}/lib:${AMANZI_PETSC_LIBS}:${AMANZI_TRILINOS_LIBS}:${AMANZI_SEACAS_LIBS}
+RUN echo $LD_LIBRARY_PATH
+
+#     Set path to pick up any tools installed during bootstrap
+ENV PATH=${HOME}/amanzi/install/tools/bin:${PATH}
+RUN echo "PATH: ${PATH}"
+
+# ${HOME} was set in the base image to /home/$container_user
+RUN echo "Unprivileged username: `whoami`" && \
+    echo "User's home directory: ${HOME}"
+
+# Change the Working Directory and update amanzi
+WORKDIR ${HOME}/amanzi
+
+# Checkout ATS at the right branch
+RUN git submodule update --init --recursive
+#WORKDIR ${HOME}/amanzi/src/physics/ats
+#RUN if [[ -n "$ats_branch" ]] ; then echo "checking out ATS branch: \"$ats_branch\""; git fetch; git checkout $ats_branch; git reset #--hard origin/$ats_branch; fi
+#RUN git rev-parse --short HEAD
+
+# Checkout ats-regression-tests at the right branch
+#RUN git submodule update --init
+#WORKDIR ${HOME}/amanzi/src/physics/ats/testing/ats-regression-tests
+##RUN if [[ -n "$ats_tests_branch" ]] ; then echo "checking out ATS tests branch: \"$ats_tests_branch\""; git fetch; git checkout #ats_tests_branch; git reset --hard origin/$ats_tests_branch; fi
+#RUN git rev-parse --short HEAD
+WORKDIR ${HOME}/amanzi
+
+ENV AMANZI_SRC_DIR=${HOME}/amanzi \
+    ATS_SRC_DIR=${HOME}/amanzi/src/physics/ats
+
+RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
+   --amanzi-build-dir=${HOME}/amanzi_builddir/ats \
+   --tpl-config-file=${AMANZI_TPLS_DIR}/share/cmake/amanzi-tpl-config.cmake \
+   --parallel=4 \
+   --opt \
+   --with-mpi=/usr \
+   --enable-shared \
+   --disable-structured \
+   --disable-build_user_guide \
+   --enable-geochemistry \
+   --disable-amanzi_physics \
+   --enable-ats_physics \
+   --enable-elm_ats_api \
+   --ats_dev \
+   --enable-reg_tests
+
+# Set path to make it easier to run amanzi
+ENV PATH=${HOME}/install/bin:${PATH}
+RUN echo $PATH
+
+# Create mount point for work on the host
+RUN mkdir ${HOME}/work
+
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
