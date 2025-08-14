@@ -11,7 +11,7 @@
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="mesh type" type="string" value="read mesh file"/>
       <ParameterList name="read mesh file parameters" type="ParameterList">
-        <Parameter name="file" type="string" value="../../data/gradient_hillslope1.exo"/>
+        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
         <Parameter name="format" type="string" value="Exodus II"/>
       </ParameterList>
     </ParameterList>
@@ -19,36 +19,68 @@
 
   <ParameterList name="regions" type="ParameterList">
     <ParameterList name="computational domain" type="ParameterList">
-      <ParameterList name="region: all" type="ParameterList">
-      </ParameterList>
+      <Parameter name="region type" type="string" value="all"/>
     </ParameterList>
     <ParameterList name="surface domain" type="ParameterList">
-      <ParameterList name="region: all" type="ParameterList">
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="computational domain boundary" type="ParameterList">
-      <ParameterList name="region: boundary" type="ParameterList">
-        <Parameter name="entity" type="string" value="FACE"/>
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="surface domain boundary" type="ParameterList">
-      <ParameterList name="region: boundary" type="ParameterList">
-        <Parameter name="entity" type="string" value="FACE"/>
-      </ParameterList>
-    </ParameterList>
-    <ParameterList name="surface outlet" type="ParameterList">
-      <ParameterList name="region: box" type="ParameterList">
-        <Parameter name="low coordinate" type="Array(double)" value="{500, 0.0}"/>
-        <Parameter name="high coordinate" type="Array(double)" value="{500, 1.0}"/>
-      </ParameterList>
+      <Parameter name="region type" type="string" value="all"/>
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
-      <ParameterList name="region: labeled set" type="ParameterList">
-        <Parameter name="label" type="string" value="2"/>
-        <Parameter name="file" type="string" value="../../data/gradient_hillslope1.exo"/>
-        <Parameter name="format" type="string" value="Exodus II"/>
-        <Parameter name="entity" type="string" value="face"/>
-      </ParameterList>
+      <Parameter name="region type" type="string" value="labeled set"/>
+      <Parameter name="label" type="string" value="2"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="format" type="string" value="Exodus II"/>
+      <Parameter name="entity" type="string" value="face"/>
+    </ParameterList>
+    <ParameterList name="computational domain boundary" type="ParameterList">
+      <Parameter name="region type" type="string" value="boundary"/>
+    </ParameterList>
+    <ParameterList name="surface domain boundary" type="ParameterList">
+      <Parameter name="region type" type="string" value="boundary"/>
+    </ParameterList>
+    <ParameterList name="surface outlet" type="ParameterList">
+      <Parameter name="region type" type="string" value="box"/>
+      <Parameter name="low coordinate" type="Array(double)" value="{500, 0.0}"/>
+      <Parameter name="high coordinate" type="Array(double)" value="{500, 1.0}"/>
+    </ParameterList>
+    <ParameterList name="subsurface outlet" type="ParameterList">
+      <Parameter name="region type" type="string" value="plane"/>
+      <Parameter name="point" type="Array(double)" value="{500.0, 0.0, 0.0}"/>
+      <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
+    </ParameterList>
+    <ParameterList name="geology" type="ParameterList">
+      <Parameter name="region type" type="string" value="labeled set"/>
+      <Parameter name="label" type="string" value="101"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="format" type="string" value="Exodus II"/>
+      <Parameter name="entity" type="string" value="cell"/>
+    </ParameterList>
+    <ParameterList name="topsoil" type="ParameterList">
+      <Parameter name="region type" type="string" value="labeled set"/>
+      <Parameter name="label" type="string" value="102"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="format" type="string" value="Exodus II"/>
+      <Parameter name="entity" type="string" value="cell"/>
+    </ParameterList>
+    <ParameterList name="hillslope" type="ParameterList">
+      <Parameter name="region type" type="string" value="labeled set"/>
+      <Parameter name="label" type="string" value="11"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="format" type="string" value="Exodus II"/>
+      <Parameter name="entity" type="string" value="face"/>
+    </ParameterList>
+    <ParameterList name="lake" type="ParameterList">
+      <Parameter name="region type" type="string" value="labeled set"/>
+      <Parameter name="label" type="string" value="12"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="format" type="string" value="Exodus II"/>
+      <Parameter name="entity" type="string" value="face"/>
+    </ParameterList>
+    <ParameterList name="toeslope" type="ParameterList">
+      <Parameter name="region type" type="string" value="labeled set"/>
+      <Parameter name="label" type="string" value="13"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="format" type="string" value="Exodus II"/>
+      <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
   </ParameterList>
 
@@ -190,7 +222,7 @@
       <!-- the water source is a constant rate (m / s) -->
       <ParameterList name="surface-water_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="5.e-9"/>
+        <Parameter name="value" type="double" value="1.e-8"/>
       </ParameterList>
 
       <ParameterList name="surface-source_molar_density" type="ParameterList">
@@ -264,12 +296,21 @@
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <Parameter name="constant in time" type="bool" value="true"/>
         <ParameterList name="function" type="ParameterList">
-          <ParameterList name="rest domain" type="ParameterList">
-            <Parameter name="region" type="string" value="computational domain"/>
+          <ParameterList name="topsoil" type="ParameterList">
+            <Parameter name="region" type="string" value="topsoil"/>
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
                 <Parameter name="value" type="double" value="0.4"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+          <ParameterList name="geology" type="ParameterList">
+            <Parameter name="region" type="string" value="geology"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="0.25"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
@@ -281,7 +322,7 @@
         <ParameterList name="compressible porosity model parameters" type="ParameterList">
           <ParameterList name="rest domain" type="ParameterList">
             <Parameter name="region" type="string" value="computational domain"/>
-            <Parameter name="pore compressibility [Pa^-1]" type="double" value="5.113922e-8"/>
+            <Parameter name="pore compressibility [Pa^-1]" type="double" value="1.e-9"/>
             <Parameter name="pore compressibility inflection point [Pa]" type="double" value="0.0"/>
           </ParameterList>
         </ParameterList>
@@ -292,12 +333,21 @@
         <Parameter name="constant in time" type="bool" value="true"/>
         <Parameter name="tensor type" type="string" value="scalar"/>
         <ParameterList name="function" type="ParameterList">
-          <ParameterList name="rest domain" type="ParameterList">
-            <Parameter name="region" type="string" value="computational domain"/>
+          <ParameterList name="topsoil" type="ParameterList">
+            <Parameter name="region" type="string" value="topsoil"/>
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="1.052888e-13"/>
+                <Parameter name="value" type="double" value="1.e-12"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+          <ParameterList name="rest domain" type="ParameterList">
+            <Parameter name="region" type="string" value="geology"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="1.e-13"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
