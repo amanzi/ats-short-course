@@ -23,6 +23,9 @@ ARG container_user=ats_sc_user
 # Set timezone:
 RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
 
+# Package Notes:
+# - we could drop cmake, it's too old for ATS
+
 RUN apt-get -q update -y && apt-get install -y tzdata && \
   apt-get -q install -y \
   apt-utils \
@@ -46,6 +49,7 @@ RUN apt-get -q update -y && apt-get install -y tzdata && \
   python3 \
   python3-distutils \
   python3-pip \
+  python3-h5py \
   python-is-python3 \
   rsync \
   wget \
@@ -149,8 +153,15 @@ RUN  . /opt/conda/etc/profile.d/conda.sh && \
 #    conda install -y jupyterlab 
 
 # Make conda globally available
-# - seems like there is a better way to do this, and not sure when we want to do this?
+# - this will make the conda python the default python for RUN commands in future Dockerfiles ...
 ENV PATH="/opt/conda/bin:$PATH"
+
+# Since conda is in the path making the new python the default, future builds of ATS need
+# h5py and numpy, so we need to install them here.
+RUN  . /opt/conda/etc/profile.d/conda.sh && \
+    conda install -y \
+        numpy \
+        h5py 
 
 # Core scientific stack
 # RUN echo "Installing core scientific stack ..." && \
