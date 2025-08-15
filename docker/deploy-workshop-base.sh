@@ -37,7 +37,7 @@ case $i in
     multiarch=True
     shift
     ;;
-    --build_mpi=*)
+    --build_mpi)
     build_mpi=True
     shift
     ;;
