@@ -124,8 +124,6 @@ ENV HOME=/home/$container_user
 
 WORKDIR $HOME
 
-# We can force RUN to use bash, but this still doesn't seem to pickup the users .bashrc or .profile
-# SHELL ["/bin/bash", "-c"]
 
 # This is supposed to setup the conda environment in the unprivileged users account
 # It's not working!! 
@@ -201,6 +199,10 @@ RUN echo "Installing Jupyter lab ... " && \
 # Cleanup
 # RUN echo "Cleaning up conda..." && \
 #   conda clean -afy
+
+# We can force RUN to use bash, but this still doesn't seem to pickup the users .bashrc or .profile
+# SHELL ["/bin/bash", "-c"]
+ENV SHELL=/bin/bash
 
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
 
