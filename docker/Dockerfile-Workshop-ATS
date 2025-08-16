@@ -38,22 +38,52 @@ RUN echo "Unprivileged username: `whoami`" && \
 # Change the Working Directory and update amanzi
 WORKDIR ${HOME}/amanzi
 
+# Make sure we have updated branch information
+RUN echo "Amanzi branch = $amanzi_branch"
+RUN git remote prune origin
+RUN git fetch
+
+# Checkout the local branch and forcibly move it to the origin's
+# version of that branch.  Do not git pull because that can author
+# commits (and therefore fail) if a merge is required to do the pull
+# (if the local branch already exists and diverges from the remote
+# branch)
+RUN if [ -n "$amanzi_branch" ] ; then \
+      git checkout $amanzi_branch; \
+      git reset --hard origin/$amanzi_branch; \
+    fi
+RUN git rev-parse --short HEAD
+
 # Checkout ATS at the right branch
 RUN git submodule update --init --recursive
 WORKDIR ${HOME}/amanzi/src/physics/ats
-RUN if [[ -n "$ats_branch" ]] ; then echo "checking out ATS branch: \"$ats_branch\""; git fetch; git checkout $ats_branch; git reset #--hard origin/$ats_branch; fi
+RUN if [ -n "$ats_branch" ] ; then \
+      echo "checking out ATS branch: \"$ats_branch\""; \
+      git fetch; \
+      git checkout $ats_branch; \
+      git reset --hard origin/$ats_branch; \
+    fi
 RUN git rev-parse --short HEAD
 
 # Checkout ats-regression-tests at the right branch
 RUN git submodule update --init
 WORKDIR ${HOME}/amanzi/src/physics/ats/testing/ats-regression-tests
-RUN if [[ -n "$ats_tests_branch" ]] ; then echo "checking out ATS tests branch: \"$ats_tests_branch\""; git fetch; git checkout #ats_tests_branch; git reset --hard origin/$ats_tests_branch; fi
+RUN if [ -n "$ats_tests_branch" ] ; then \
+      echo "checking out ATS tests branch: $ats_tests_branch"; \
+      git fetch; \
+      git checkout ats_tests_branch; \
+      git reset --hard origin/$ats_tests_branch; \
+    fi
 RUN git rev-parse --short HEAD
 WORKDIR ${HOME}/amanzi
 
 ENV AMANZI_SRC_DIR=${HOME}/amanzi \
     ATS_SRC_DIR=${HOME}/amanzi/src/physics/ats
 
+# Note: Using --ats_dev option because we've already done the work to ensure
+#       we're on the desired branch for amanzi, ats, and ats-regression-tests
+#       This could be changed to provide the branch options to bootstrap.sh
+#
 RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
    --amanzi-build-dir=${HOME}/amanzi_builddir/ats \
    --tpl-config-file=${AMANZI_TPLS_DIR}/share/cmake/amanzi-tpl-config.cmake \
