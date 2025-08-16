@@ -6,7 +6,6 @@ on:
     paths:
       - 'docker/**'
     branches-ignore:
-      - 'master'
       - 'main'
 
 jobs:
@@ -23,7 +22,7 @@ jobs:
       run:
         echo "ATS_SC_BRANCH=$GITHUB_REF_NAME" >> $GITHUB_ENV
     - name: Get runner architecture
-      run:
+      run: |
         if [[ ${{matrix.os}} == "ubuntu-24.04-arm" ]]; then
           echo "ARCH=arm64" >> $GITHUB_ENV
         else
