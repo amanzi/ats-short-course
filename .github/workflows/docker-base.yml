@@ -47,7 +47,7 @@ jobs:
         docker push ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-base-${{env.ARCH}}-latest
   fix-manifest:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-base-image
     if: success()
     steps:
       - name: Check out the ATS Short Course repo
