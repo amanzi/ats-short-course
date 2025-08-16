@@ -36,10 +36,8 @@ jobs:
     - name: Docker build
       id: docker
       working-directory: docker
-      run: |
-        docker build --build-arg ARCH=linux/${{env.ARCH}} --build-arg build_mpi=False \
-        -t metsi/ats_short_course:2025-base-${{env.ARCH}}-latest \
-        -f Dockerfile-Workshop-Base .
+      run:
+        docker build --build-arg ARCH=linux/${{env.ARCH}} --build-arg build_mpi=False -t metsi/ats_short_course:2025-base-${{env.ARCH}}-latest -f Dockerfile-Workshop-Base .
     - name: Docker push
       working-directory: docker
       run:
