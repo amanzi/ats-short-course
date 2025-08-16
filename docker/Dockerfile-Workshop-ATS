@@ -77,4 +77,5 @@ RUN echo $PATH
 # Create mount point for work on the host
 RUN mkdir ${HOME}/work
 
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+# Use command definition from the base container
+# CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
