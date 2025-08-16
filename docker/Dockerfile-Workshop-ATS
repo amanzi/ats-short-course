@@ -9,9 +9,9 @@ EXPOSE 8888
 # Versions change and we cannot set environment variables from command output.
 ARG petsc_ver=3.20
 ARG trilinos_ver=15-1-0
-#ARG amanzi_branch=amanzi-1.6
-#ARG ats_branch=master
-#ARG ats_tests_branch=
+ARG amanzi_branch=amanzi-1.6
+ARG ats_branch=ats-1.6
+ARG ats_tests_branch=ats-regression-tests-1.6
 
 # Installation paths
 ENV AMANZI_PREFIX=${HOME}/install \
@@ -40,15 +40,15 @@ WORKDIR ${HOME}/amanzi
 
 # Checkout ATS at the right branch
 RUN git submodule update --init --recursive
-#WORKDIR ${HOME}/amanzi/src/physics/ats
-#RUN if [[ -n "$ats_branch" ]] ; then echo "checking out ATS branch: \"$ats_branch\""; git fetch; git checkout $ats_branch; git reset #--hard origin/$ats_branch; fi
-#RUN git rev-parse --short HEAD
+WORKDIR ${HOME}/amanzi/src/physics/ats
+RUN if [[ -n "$ats_branch" ]] ; then echo "checking out ATS branch: \"$ats_branch\""; git fetch; git checkout $ats_branch; git reset #--hard origin/$ats_branch; fi
+RUN git rev-parse --short HEAD
 
 # Checkout ats-regression-tests at the right branch
-#RUN git submodule update --init
-#WORKDIR ${HOME}/amanzi/src/physics/ats/testing/ats-regression-tests
-##RUN if [[ -n "$ats_tests_branch" ]] ; then echo "checking out ATS tests branch: \"$ats_tests_branch\""; git fetch; git checkout #ats_tests_branch; git reset --hard origin/$ats_tests_branch; fi
-#RUN git rev-parse --short HEAD
+RUN git submodule update --init
+WORKDIR ${HOME}/amanzi/src/physics/ats/testing/ats-regression-tests
+RUN if [[ -n "$ats_tests_branch" ]] ; then echo "checking out ATS tests branch: \"$ats_tests_branch\""; git fetch; git checkout #ats_tests_branch; git reset --hard origin/$ats_tests_branch; fi
+RUN git rev-parse --short HEAD
 WORKDIR ${HOME}/amanzi
 
 ENV AMANZI_SRC_DIR=${HOME}/amanzi \

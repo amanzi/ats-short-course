@@ -2,11 +2,13 @@ name: Build ATS for Short Course
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'docker/**'
-    branches-ignore:
-      - 'main'
+
+# Not ready for action on push, complicated due to dependencies
+# push:
+#    paths:
+#      - 'docker/**'
+#    branches-ignore:
+#      - 'main'
 
 jobs:
   build-ats-image:
