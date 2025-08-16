@@ -1,4 +1,4 @@
-FROM metsi/ats-short-course:2025-base
+FROM metsi/ats-short-course:2025-base-latest
 LABEL Description="Build TPLs"
 
 ENV DEBIAN_FRONTEND=noninteractive

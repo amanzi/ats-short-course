@@ -1,4 +1,4 @@
-FROM metsi/ats-short-course:2025-tpls
+FROM metsi/ats-short-course:2025-tpls-latest
 #FROM metsi/amanzi-tpls:${amanzi_tpls_ver}-${mpi_flavor}-${base_image}-${ver_tag}
 LABEL Description="Build ATS"
 #SHELL ["/bin/bash", "-c"]
