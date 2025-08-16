@@ -65,7 +65,7 @@ jobs:
         run: |
           docker manifest create ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-base-latest \
             --amend ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-base-arm64-latest \
-            --amend ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-base-amd64-latest \
+            --amend ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-base-amd64-latest 
           docker manifest push ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-base-latest
 
 
