@@ -21,7 +21,7 @@ jobs:
     - name: Extract the branch name
       id: branch
       run:
-      echo "ATS_SC_BRANCH=$GITHUB_REF_NAME" >> $GITHUB_ENV
+        echo "ATS_SC_BRANCH=$GITHUB_REF_NAME" >> $GITHUB_ENV
     - name: Get runner architecture
       run:
         if [[ ${{matrix.os}} == "ubuntu-24.04-arm" ]]; then
