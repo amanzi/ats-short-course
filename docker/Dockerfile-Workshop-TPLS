@@ -19,6 +19,7 @@ RUN echo "Unprivileged username: `whoami`" && \
 # Installation paths
 ENV AMANZI_PREFIX=${HOME}/install \
     AMANZI_INSTALL_DIR=${HOME}/install/amanzi \
+    AMANZI_TPLS_BUILD_DIR=${HOME}/amanzi_builddir/tpls \
     AMANZI_TPLS_DIR=${HOME}/install/tpls
 
 # TPL versions needed for LD_LIBRARY_PATH
@@ -44,18 +45,37 @@ RUN if [ "$amanzi_branch" != "master" ]; then \
 
 # Build and install the TPLs using bootstrap.sh, and remove
 # the source, objects, etc. after installation to save space.
-RUN ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
-  --parallel=4 --opt \
-  --amanzi-build-dir=${HOME}/amanzi_builddir/amanzi \
-  --tpl-build-dir=${HOME}/amanzi_builddir/tpls \
-  --tpl-download-dir=${HOME}/amanzi_builddir/tpls/Downloads \
-  --disable-build_amanzi --disable-build_user_guide \
-  --enable-shared --enable-structured --enable-silo \
-  --enable-alquimia --enable-pflotran --enable-crunchtope \
-  --enable-pf_clm \
-  --with-mpi=/usr \
-  && git checkout master \
-  && rm -r ${HOME}/amanzi_builddir
+RUN echo "Building TPLs ... " && \
+     ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
+      --parallel=4 --opt \
+      --amanzi-build-dir=${HOME}/amanzi_builddir/amanzi \
+      --tpl-build-dir=${HOME}/amanzi_builddir/tpls \
+      --tpl-download-dir=${HOME}/amanzi_builddir/tpls/Downloads \
+      --disable-build_amanzi --disable-build_user_guide \
+      --enable-shared --enable-structured --enable-silo \
+      --enable-alquimia --enable-pflotran --enable-crunchtope \
+      --enable-pf_clm \
+      --with-mpi=/usr && \
+    echo "Building PFLOTRAN ... " && \
+     export PETSC_DIR=$AMANZI_TPLS_BUILD_DIR/petsc/petsc-3.20-source && \
+     cd $AMANZI_TPLS_BUILD_DIR/pflotran/pflotran-5.0.0-source/src/pflotran && \
+     make have_hdf5=1 \
+      HDF5_INCLUDE=$AMANZI_TPLS_DIR/include \
+      HDF5_LIB=$AMANZI_TPLS_DIR/lib \
+      LIBS="-L${HDF5_LIB} -lhdf5 -lhdf5_hl -lhdf5_hl_fortran -lhdf5_fortran -lz" \
+      pflotran && \
+     cp -p pflotran $AMANZI_TPLS_DIR/bin/ && \
+     echo "alias pflotran='${AMANZI_TPLS_DIR}/bin/pflotran \"\$@\"'" >> ${HOME}/.bashrc &&\
+    echo "Building CrunchFlow ..." && \
+     cd $AMANZI_TPLS_BUILD_DIR/crunchtope/crunchtope-101221.cf938c8.0-source/source && \
+     touch chkopts && \
+     make FFLAGS="-w -ffree-line-length-none" && \
+     cp -p CrunchTope $AMANZI_TPLS_DIR/bin/ && \
+     echo "alias CrunchTope='${AMANZI_TPLS_DIR}/bin/CrunchTope \"\$@\"'" >> ${HOME}/.bashrc && \
+    #
+     cd ${HOME}/amanzi && \
+     git checkout master && \
+     rm -r ${HOME}/amanzi_builddir
 
 #     Set the LD_LIBRARY_PATH for Amanzi builds in the next stage
 ENV LD_LIBRARY_PATH=${AMANZI_TPLS_DIR}/lib:${AMANZI_PETSC_LIBS}:${AMANZI_TRILINOS_LIBS}:${AMANZI_SEACAS_LIBS}
