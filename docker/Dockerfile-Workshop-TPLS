@@ -1,26 +1,21 @@
 FROM metsi/ats-short-course:2025-base-latest
+
 LABEL Description="Build TPLs"
-
-ENV DEBIAN_FRONTEND=noninteractive
-EXPOSE 8888
-
-# We could do this earlier, we just know we have to build cmake
-# RUN apt-get update && apt-get install -y cmake
 
 # Versions change and we cannot set environment variables from command output.
 ARG petsc_ver=3.20
 ARG trilinos_ver=15-1-0
 ARG amanzi_branch=amanzi-1.6
 
-# ${HOME} was set in the base image to /home/$container_user
+# Verify ${HOME} was set in the base image to /home/$container_user
 RUN echo "Unprivileged username: `whoami`" && \
     echo "User's home directory: ${HOME}"
 
 # Installation paths
-ENV AMANZI_PREFIX=${HOME}/install \
-    AMANZI_INSTALL_DIR=${HOME}/install/amanzi \
+ENV AMANZI_PREFIX=${HOME}/install
+ENV AMANZI_INSTALL_DIR=${AMANZI_PREFIX}/amanzi \
     AMANZI_TPLS_BUILD_DIR=${HOME}/amanzi_builddir/tpls \
-    AMANZI_TPLS_DIR=${HOME}/install/tpls
+    AMANZI_TPLS_DIR=${AMANZI_PREFIX}/tpls
 
 # TPL versions needed for LD_LIBRARY_PATH
 ENV AMANZI_PETSC_LIBS=$AMANZI_TPLS_DIR/petsc-${petsc_ver}/lib \
@@ -49,6 +44,7 @@ RUN echo "Building TPLs ... " && \
      ./bootstrap.sh --prefix=${AMANZI_PREFIX} \
       --parallel=4 --opt \
       --amanzi-build-dir=${HOME}/amanzi_builddir/amanzi \
+      --tools-install-prefix=${AMANZI_PREFIX}/tools \
       --tpl-build-dir=${HOME}/amanzi_builddir/tpls \
       --tpl-download-dir=${HOME}/amanzi_builddir/tpls/Downloads \
       --disable-build_amanzi --disable-build_user_guide \
@@ -65,27 +61,22 @@ RUN echo "Building TPLs ... " && \
       LIBS="-L${HDF5_LIB} -lhdf5 -lhdf5_hl -lhdf5_hl_fortran -lhdf5_fortran -lz" \
       pflotran && \
      cp -p pflotran $AMANZI_TPLS_DIR/bin/ && \
-     echo "alias pflotran='${AMANZI_TPLS_DIR}/bin/pflotran \"\$@\"'" >> ${HOME}/.bashrc &&\
+     # echo "alias pflotran='${AMANZI_TPLS_DIR}/bin/pflotran \"\$@\"'" >> ${HOME}/.bashrc &&\
     echo "Building CrunchFlow ..." && \
      cd $AMANZI_TPLS_BUILD_DIR/crunchtope/crunchtope-101221.cf938c8.0-source/source && \
      touch chkopts && \
      make FFLAGS="-w -ffree-line-length-none" && \
      cp -p CrunchTope $AMANZI_TPLS_DIR/bin/ && \
-     echo "alias CrunchTope='${AMANZI_TPLS_DIR}/bin/CrunchTope \"\$@\"'" >> ${HOME}/.bashrc && \
+     # echo "alias CrunchTope='${AMANZI_TPLS_DIR}/bin/CrunchTope \"\$@\"'" >> ${HOME}/.bashrc && \
     #
      cd ${HOME}/amanzi && \
      git checkout master && \
      rm -r ${HOME}/amanzi_builddir
 
-#     Set the LD_LIBRARY_PATH for Amanzi builds in the next stage
+# Set the LD_LIBRARY_PATH for Amanzi builds in the next stage
 ENV LD_LIBRARY_PATH=${AMANZI_TPLS_DIR}/lib:${AMANZI_PETSC_LIBS}:${AMANZI_TRILINOS_LIBS}:${AMANZI_SEACAS_LIBS}
 RUN echo $LD_LIBRARY_PATH
 
-#     Set path to pick up any tools installed during bootstrap
-ENV PATH=${HOME}/amanzi/install/tools/bin:${PATH}
+# Set path to pick up any tools installed during bootstrap
+ENV PATH=${AMANZI_TPLS_DIR}/bin:${AMANZI_PREFIX}/tools/bin:${PATH}
 RUN echo "PATH: ${PATH}"
-
-# -------------------------
-# Launch Jupyter Lab
-# -------------------------
-# CMD ["/bin/bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate watershed-workflow && jupyter lab --ip=0.0.0.0 --no-browser --NotebookApp.token='' --NotebookApp.password=''"]

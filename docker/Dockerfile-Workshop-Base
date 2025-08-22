@@ -2,7 +2,10 @@ ARG base_image=ubuntu
 ARG ver_tag=jammy
 FROM ${base_image}:${ver_tag} AS base
 
-EXPOSE 8888
+# Declares that a container will listen on a specific network port at runtime
+# but does not automatically publish the port to the host machine, that is done
+# with docker run -p host_port:containter_port
+EXPOSE 8888-8899
 
 LABEL Description="This image provides a base Linux developers environment for ATS as well as python installation with jupyter lab."
 
@@ -137,18 +140,8 @@ RUN whoami && \
 
 RUN . /opt/conda/etc/profile.d/conda.sh && \
     conda update -n base -c conda-forge conda && \ 
-    conda activate base 
-
-RUN  . /opt/conda/etc/profile.d/conda.sh && \
-     echo "PATH=$PATH" && \
-     conda install -y pip
-#    conda install -y \
-#        numpy \
-#        scipy \
-#        matplotlib \
-#        h5py \
-#        netCDF4 && \
-#    conda install -y jupyterlab 
+    conda activate base && \
+    conda install -y pip
 
 # Make conda globally available
 # - this will make the conda python the default python for RUN commands in future Dockerfiles ...
@@ -159,8 +152,8 @@ ENV PATH="/opt/conda/bin:$PATH"
 RUN  . /opt/conda/etc/profile.d/conda.sh && \
      conda install -y \
         numpy \
-        h5py 
-
+        h5py \
+        netCDF4
 
 # Core scientific stack
 RUN echo "Installing core scientific stack ..." && \
@@ -175,7 +168,8 @@ RUN echo "Installing core scientific stack ..." && \
 RUN echo "Installing Jupyter lab ... " && \ 
     . /opt/conda/etc/profile.d/conda.sh && \
     conda install -y \
-      jupyterlab        
+      jupyterlab \
+      nodejs
 
 # GIS & geometry tools
 # RUN echo "Installing GIS and geometry packages..." && \
@@ -200,9 +194,14 @@ RUN echo "Installing Jupyter lab ... " && \
 # RUN echo "Cleaning up conda..." && \
 #   conda clean -afy
 
-# We can force RUN to use bash, but this still doesn't seem to pickup the users .bashrc or .profile
-# SHELL ["/bin/bash", "-c"]
+# Ensure the that when the user starts a shell/console in Jupyter it is using bash.
 ENV SHELL=/bin/bash
 
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--no-browser", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+CMD ["jupyter", "lab", \
+     "--port=8888", \
+     "--ip=0.0.0.0", \
+     "--no-browser", \
+     "--ServerApp.token=''", \
+     "--ServerApp.allow_remote_access=True" \
+]
 
