@@ -42,32 +42,42 @@ See the `tentative agenda <https://amanzi.github.io/ats-short-course/ats-short-c
 Participants
 ============
 
-To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:
+To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  There is a separate container for day 1 on the ATS day 2 for Watershed Workflow.  The ATS container contains:
 
 * A Linux-based operating system, including common command line tools.
-* A build of Amanzi-ATS, with corresponding commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
-* All needed Third-Party Libraries and utilities (`h5dump`, `ncdump`, `meshconvert`, etc)
+* A build of Amanzi-ATS, with commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
+* All needed Third-Party Libraries and utilities (e.g., `h5dump`, `ncdump`, `meshconvert`, etc.)
 * A python3 build with all needed libraries for common ATS-based tasks.
-* Watershed Workflow, a common ATS meshing workflow tool.
 
-The short course demo files will reside on the participants' computers and any changes will be available after exiting the Docker container.
+The Watershed workflow container contains:
+
+* A Linux-based operating system, including common command line tools.
+* An installation of Watershed Workflow, with commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
+* All needed Third-Party Libraries and utilities (Exodus, `h5dump`, `ncdump`, etc.)
+* A python3 build with all needed libraries for common Watershed Workflow tasks.
+
+In both cases, the short course demo files will reside on the participants' computers and any changes will be available after exiting the Docker container.
 
 Quickstart
-==========
+----------
 
-1. Install external tools: `Docker <https://www.docker.com/get-started>`_, `VisIt <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_, and `git <https://github.com/git-guides/install-git>`_
+1. Install external tools:
+    `Docker <https://www.docker.com/get-started>`_
+    (or `PodMan <https://podman.io/get-started>`_),
+    `VisIt <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_,
+    and `git <https://github.com/git-guides/install-git>`_
 
 2. Clone the ats-short-course demos repository
 
-.. code: sh
+.. code-block:: sh
 
    git clone -b ats-short-course-20250908 https://github.com/amanzi/ats-short-course; cd ats-short-course
-
+  
 3. Download the short course Docker image and run the container 
 
-.. code: sh
+.. code-block:: sh
 
-   docker pull metsi/ats-short-course:latest
-   docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
-
-4. Open the `Jupyter lab instance <http://127.0.0.1:8899/lab>`_
+   docker pull metsi/ats-short-course:2025-ats-latest
+   docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
+  
+4. Open the `Jupyter lab instance <http://127.0.0.1:8888/lab>`_
