@@ -58,6 +58,10 @@ The Watershed workflow container contains:
 
 In both cases, the short course demo files will reside on the participants' computers and any changes will be available after exiting the Docker container.
 
+Note that these tools and this course material has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems. The expectation is that this short course should work on any of these systems, but there can always be challenges on individual systems, so please be patient. If you find bugs in the docker container or this material, please feel free to ask for help on the
+`ATS user's group <mailto:ats-users@googlegroups.com>`_  or by submitting an Issue here.
+
+
 Quickstart
 ----------
 
@@ -81,3 +85,33 @@ Quickstart
    docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
   
 4. Open the `Jupyter lab instance <http://127.0.0.1:8888/lab>`_
+
+
+Step-by-step Details
+--------------------
+
+If the Quickstart instructions didn't work, or you would just like more details, please follow the
+step-by-step instructions and tips on the :doc:`Software Installation </software-installation>` page.
+
+
+Getting the Short Course Files
+------------------------------
+
+
+
+Download and run the ATS in a Container
+---------------------------------------
+
+
+
+Run Jupyer Lab in a Container
+----------------------------
+
+
+
+Connect to the Jupyer Lab Session from your local web browser
+-------------------------------------------------------------
+
+Independent of the OS you're using, the docker run (or podman run) command described above will output several status messages to the screen, one of which is about the Jupyter server that it started. For example, you should see something like
+
+
