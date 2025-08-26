@@ -1,3 +1,10 @@
+#.. toctree::
+#   :maxdepth: 0
+#   :caption: ATS Short Course Web Site
+#
+#software/index
+
+
 ATS Short Course
 ================
 
@@ -66,8 +73,8 @@ Quickstart
 ----------
 
 1. Install external tools:
-    `Docker <https://www.docker.com/get-started>`_
-    (or `PodMan <https://podman.io/get-started>`_),
+    `Docker Desktop <https://docs.docker.com/desktop/>`_
+    (or `PodMan Desktop <https://podman-desktop.io/>`_),
     `VisIt <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_,
     and `git <https://github.com/git-guides/install-git>`_
 
@@ -105,7 +112,7 @@ Download and run the ATS in a Container
 
 
 Run Jupyer Lab in a Container
-----------------------------
+-----------------------------
 
 
 
