@@ -11,8 +11,7 @@
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="mesh type" type="string" value="read mesh file"/>
       <ParameterList name="read mesh file parameters" type="ParameterList">
-<!--    <Parameter name="file" type="string" value="../../data/hillslope_higres.exo"/> -->
-        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+        <Parameter name="file" type="string" value="../mesh/hillslope_lake.exo"/>
         <Parameter name="format" type="string" value="Exodus II"/>
       </ParameterList>
     </ParameterList>
@@ -46,8 +45,7 @@
     <ParameterList name="surface" type="ParameterList">
       <ParameterList name="region: labeled set" type="ParameterList">
         <Parameter name="label" type="string" value="2"/>
-<!--    <Parameter name="file" type="string" value="../../data/hillslope_higres.exo"/>-->
-        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>	
+        <Parameter name="file" type="string" value="../mesh/hillslope_lake.exo"/>	
         <Parameter name="format" type="string" value="Exodus II"/>
         <Parameter name="entity" type="string" value="face"/>
       </ParameterList>
@@ -62,7 +60,7 @@
     <ParameterList name="shallow">
       <ParameterList name="region: labeled set">
         <Parameter name="entity" type="string" value="cell"/>
-        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+        <Parameter name="file" type="string" value="../mesh/hillslope_lake.exo"/>
         <Parameter name="format" type="string" value="Exodus II"/>
         <Parameter name="label" type="string" value="101"/>
       </ParameterList>
@@ -70,7 +68,7 @@
     <ParameterList name="deep">
       <ParameterList name="region: labeled set">
         <Parameter name="entity" type="string" value="cell"/>
-        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+        <Parameter name="file" type="string" value="../mesh/hillslope_lake.exo"/>
         <Parameter name="format" type="string" value="Exodus II"/>
         <Parameter name="label" type="string" value="102"/>
       </ParameterList>
@@ -81,7 +79,7 @@
   <ParameterList name="cycle driver">
     <Parameter name="start time" type="double" value="0.0"/>
     <Parameter name="start time units" type="string" value="s"/>
-    <Parameter name="end time" type="double" value="864000.0"/> <!--"0.5"/> -->
+    <Parameter name="end time" type="double" value="86400.0"/> <!--"0.5"/> -->
     <Parameter name="end time units" type="string" value="s"/>
     <ParameterList name="PK tree">
       <ParameterList name="flow and transport">
@@ -609,7 +607,7 @@
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="0.5"/>
+                <Parameter name="value" type="double" value="0.4"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>	  
@@ -686,29 +684,6 @@
             <Parameter name="mechanical dispersion type" type="string" value="isotropic"/>
             <ParameterList name="isotropic parameters">
               <Parameter name="alpha" type="double" value="0.0001"/>
-            </ParameterList>
-          </ParameterList>
-        </ParameterList>
-      </ParameterList>
-      
-      <ParameterList name="surface-tracer1_injection_source" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="multiplicative reciprocal"/>
-        <Parameter name="multiplicative dependency keys" type="Array(string)" value="{surface-tracer1_injection_source_concentration, surface-water_source}"/>
-      </ParameterList>
-
-      <ParameterList name="surface-tracer1_injection_source_concentration" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable"/>
-        <ParameterList name="function" type="ParameterList">
-          <ParameterList name="tracer1 injection concentrations" type="ParameterList">
-            <Parameter name="component names" type="Array(string)" value="{tracer1,tracer2}"/>
-            <Parameter name="component" type="string" value="cell"/>
-            <Parameter name="region" type="string" value="surface domain"/>
-            <ParameterList name="function" type="ParameterList">
-              <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0, 86400}"/>
-                <Parameter name="y values" type="Array(double)" value="{1e-3, 0.0}"/>
-                <Parameter name="forms" type="Array(string)" value="{constant}"/>
-              </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
