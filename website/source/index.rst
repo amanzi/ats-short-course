@@ -1,10 +1,3 @@
-#.. toctree::
-#   :maxdepth: 0
-#   :caption: ATS Short Course Web Site
-#
-#software/index
-
-
 ATS Short Course
 ================
 
@@ -82,7 +75,7 @@ Quickstart
 
 .. code-block:: sh
 
-   git clone -b ats-short-course-20250908 https://github.com/amanzi/ats-short-course; cd ats-short-course
+   git clone -b ats-short-course-20250908 https://github.com/amanzi/ats-short-course && cd ats-short-course
   
 3. Download the short course Docker image and run the container 
 
@@ -104,21 +97,129 @@ step-by-step instructions and tips on the :doc:`Software Installation </software
 Getting the Short Course Files
 ------------------------------
 
+The Jupyter notebooks, as well as the corresponding input files and data, are provided in this git repository. To get started you need to clone this repository:
+
+.. code-block:: sh
+
+    #
+    # Select a local directory (here we assume starting at the top-level of your home directory)
+    #
+    cd ~/
+    git clone -b ats-short-course-20250908 https://github.com/amanzi/ats-short-course
+
+After cloning, change to the repository directory:
+
+.. code-block:: sh
+
+    cd ats-short-course
 
 
 Download and run the ATS in a Container
 ---------------------------------------
 
+The Docker container for this short-course includes installations of Watershed Workflow, TINerator, amanzi, and ats.  
+As a result it is fairly large and best to separate the initial download and testing before we run JupyterLab.  
 
+To get started, let's download the container:
+
+.. code-block:: sh
+
+    docker pull metsi/ats-short-course:2025-ats-latest
+
+If this downloads successfully, check the version of ATS:
+
+.. code-block:: shell
+
+    docker run -it --rm metsi/ats-short-course:2025-ats-latest ats --version
+    > ATS version 1.6.0_8d11cb0c
+
+If this worked – great! Move on to :ref:`Run JupyterLab under Docker <run-jupyterlab>`.  
+But if you ran into trouble with the download and/or Docker storage on your system, check some of the 
+`troubleshooting tips <DockerTips.md>`_.
+
+
+.. _run-jupyterlab:
 
 Run Jupyer Lab in a Container
 -----------------------------
 
+The goal is for you to enable JupyterLab to interact with the ats-short-course repository files on your local system.  
+This is accomplished through the ``--mount`` option which shares your *present working directory* (``$pwd``) with the Docker container.  
+
+So make sure your ``$pwd`` is the top-level of the ``ats-short-course`` repository and cut-and-paste one of the following commands:
+
+OSX
+^^^
+
+.. code-block:: sh
+
+    docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
+
+OR if you prefer the verbose version:
+
+.. code-block:: sh
+
+    docker run \
+        --interactive \
+        --init \
+        --mount \
+        type=bind,source=$(pwd),target=/home/ats_sc_user/work \
+        --publish 8888:8888 \
+        --workdir /home/ats_sc_user/work \
+        metsi/ats-short-course:2025-ats-latest
+
+
+Windows 10
+^^^^^^^^^^
+
+If you are using Windows 10's Command Prompt or PowerShell, where the variable ``$(pwd)`` is not recognized, it may be easier to type the location of ats-short-course explicitly.  
+For example, if ``C:\Users\USERNAME\ats-short-course`` is the top-level of the ``ats-short-course`` repository, then:
+
+.. code-block:: sh
+
+    docker run -it --init --mount type=bind,source=C:\Users\USERNAME\ats-short-course,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
+
+If you are getting a Docker error that **the working directory is not valid** and you don't recognize the directory Docker returns, it is possible you are using (or installed as part of packages like Git for Windows) a command line interface that changes the paths you are passing to Docker.  
+
+If so, try double slashes in your Docker command:
+
+.. code-block:: sh
+
+    docker run -it --init --mount type=bind,source=C:\\Users\\USERNAME\\ats-short-course,target=//home//ats_sc_user//work -w //home//ats_sc_user//work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
 
 
 Connect to the Jupyer Lab Session from your local web browser
 -------------------------------------------------------------
 
-Independent of the OS you're using, the docker run (or podman run) command described above will output several status messages to the screen, one of which is about the Jupyter server that it started. For example, you should see something like
+Independent of the OS you're using, the Docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.  
+
+For example, you should see something like:
+
+.. code-block:: sh
+
+    [I 2021-08-17 21:59:38.111 ServerApp] Jupyter Server 1.10.2 is running at:
+    # This address is unique to each system, so don't copy this one in your case
+    [I 2021-08-17 21:59:38.111 ServerApp] http://58557662c177:8899/lab
+    # This address is generic and will work on any system where this port on local host has not been allocated to another process
+    [I 2021-08-17 21:59:38.111 ServerApp]  or http://127.0.0.1:8899/lab
+    # To kill this server
+    [I 2021-08-17 21:59:38.111 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+
+Once this is running you can open this URL in your browser:  
+``http://127.0.0.1:8899/lab``  
+
+You should see JupyterLab and the files from this repository.  
+
+.. note::
+
+   Most users see the message:
+
+   .. code-block::
+
+      No web browser found: could not locate runnable browser.
+
+   This message is safe to ignore -- by manually copying and pasting the above address into your browser, you should see the Jupyter Lab instance.
+
+
 
 
