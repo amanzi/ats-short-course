@@ -272,8 +272,19 @@ Version ats-short-course-20250908</div>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agenda">Agenda</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#participants">Participants</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#quickstart">Quickstart</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#participants">Participants</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickstart">Quickstart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-details">Step-by-step Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-short-course-files">Getting the Short Course Files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-run-the-ats-in-a-container">Download and run the ATS in a Container</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-jupyer-lab-in-a-container">Run Jupyer Lab in a Container</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osx">OSX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-10">Windows 10</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-the-jupyer-lab-session-from-your-local-web-browser">Connect to the Jupyer Lab Session from your local web browser</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
@@ -351,28 +362,148 @@ contacted by Angela Hagler to begin that process.</p>
 </section>
 <section id="participants">
 <h1>Participants<a class="headerlink" href="#participants" title="Link to this heading">#</a></h1>
-<p>To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  The container contains:</p>
+<p>To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  There is a separate container for day 1 on the ATS day 2 for Watershed Workflow.  The ATS container contains:</p>
 <ul class="simple">
 <li><p>A Linux-based operating system, including common command line tools.</p></li>
-<li><p>A build of Amanzi-ATS, with corresponding commonly-used environment variables, e.g. <cite>$ATS_SRC_DIR</cite> defined.</p></li>
-<li><p>All needed Third-Party Libraries and utilities (<cite>h5dump</cite>, <cite>ncdump</cite>, <cite>meshconvert</cite>, etc)</p></li>
+<li><p>A build of Amanzi-ATS, with commonly-used environment variables, e.g. <cite>$ATS_SRC_DIR</cite> defined.</p></li>
+<li><p>All needed Third-Party Libraries and utilities (e.g., <cite>h5dump</cite>, <cite>ncdump</cite>, <cite>meshconvert</cite>, etc.)</p></li>
 <li><p>A python3 build with all needed libraries for common ATS-based tasks.</p></li>
-<li><p>Watershed Workflow, a common ATS meshing workflow tool.</p></li>
 </ul>
-<p>The short course demo files will reside on the participants’ computers and any changes will be available after exiting the Docker container.</p>
-</section>
+<p>The Watershed workflow container contains:</p>
+<ul class="simple">
+<li><p>A Linux-based operating system, including common command line tools.</p></li>
+<li><p>An installation of Watershed Workflow, with commonly-used environment variables, e.g. <cite>$ATS_SRC_DIR</cite> defined.</p></li>
+<li><p>All needed Third-Party Libraries and utilities (Exodus, <cite>h5dump</cite>, <cite>ncdump</cite>, etc.)</p></li>
+<li><p>A python3 build with all needed libraries for common Watershed Workflow tasks.</p></li>
+</ul>
+<p>In both cases, the short course demo files will reside on the participants’ computers and any changes will be available after exiting the Docker container.</p>
+<p>Note that these tools and this course material has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems. The expectation is that this short course should work on any of these systems, but there can always be challenges on individual systems, so please be patient. If you find bugs in the docker container or this material, please feel free to ask for help on the
+<a class="reference external" href="mailto:ats-users&#37;&#52;&#48;googlegroups&#46;com">ATS user’s group</a>  or by submitting an Issue here.</p>
 <section id="quickstart">
-<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">#</a></h1>
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Install external tools: <a class="reference external" href="https://www.docker.com/get-started">Docker</a>, <a class="reference external" href="https://wci.llnl.gov/simulation/computer-codes/visit/executables">VisIt</a>, and <a class="reference external" href="https://github.com/git-guides/install-git">git</a></p></li>
+<li><dl class="simple">
+<dt>Install external tools:</dt><dd><p><a class="reference external" href="https://docs.docker.com/desktop/">Docker Desktop</a>
+(or <a class="reference external" href="https://podman-desktop.io/">PodMan Desktop</a>),
+<a class="reference external" href="https://wci.llnl.gov/simulation/computer-codes/visit/executables">VisIt</a>,
+and <a class="reference external" href="https://github.com/git-guides/install-git">git</a></p>
+</dd>
+</dl>
+</li>
 <li><p>Clone the ats-short-course demos repository</p></li>
 </ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>ats-short-course-20250908<span class="w"> </span>https://github.com/amanzi/ats-short-course<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ats-short-course
+</pre></div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Download the short course Docker image and run the container</p></li>
 </ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
 <ol class="arabic simple" start="4">
-<li><p>Open the <a class="reference external" href="http://127.0.0.1:8899/lab">Jupyter lab instance</a></p></li>
+<li><p>Open the <a class="reference external" href="http://127.0.0.1:8888/lab">Jupyter lab instance</a></p></li>
 </ol>
+</section>
+<section id="step-by-step-details">
+<h2>Step-by-step Details<a class="headerlink" href="#step-by-step-details" title="Link to this heading">#</a></h2>
+<p>If the Quickstart instructions didn’t work, or you would just like more details, please follow the
+step-by-step instructions and tips on the <a class="reference internal" href="software-installation.html"><span class="doc">Software Installation</span></a> page.</p>
+</section>
+<section id="getting-the-short-course-files">
+<h2>Getting the Short Course Files<a class="headerlink" href="#getting-the-short-course-files" title="Link to this heading">#</a></h2>
+<p>The Jupyter notebooks, as well as the corresponding input files and data, are provided in this git repository. To get started you need to clone this repository:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Select a local directory (here we assume starting at the top-level of your home directory)</span>
+<span class="c1">#</span>
+<span class="nb">cd</span><span class="w"> </span>~/
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>ats-short-course-20250908<span class="w"> </span>https://github.com/amanzi/ats-short-course
+</pre></div>
+</div>
+<p>After cloning, change to the repository directory:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ats-short-course
+</pre></div>
+</div>
+</section>
+<section id="download-and-run-the-ats-in-a-container">
+<h2>Download and run the ATS in a Container<a class="headerlink" href="#download-and-run-the-ats-in-a-container" title="Link to this heading">#</a></h2>
+<p>The Docker container for this short-course includes installations of Watershed Workflow, TINerator, amanzi, and ats.
+As a result it is fairly large and best to separate the initial download and testing before we run JupyterLab.</p>
+<p>To get started, let’s download the container:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
+<p>If this downloads successfully, check the version of ATS:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>metsi/ats-short-course:2025-ats-latest<span class="w"> </span>ats<span class="w"> </span>--version
+&gt;<span class="w"> </span>ATS<span class="w"> </span>version<span class="w"> </span><span class="m">1</span>.6.0_8d11cb0c
+</pre></div>
+</div>
+<p>If this worked – great! Move on to <a class="reference internal" href="#run-jupyterlab"><span class="std std-ref">Run JupyterLab under Docker</span></a>.
+But if you ran into trouble with the download and/or Docker storage on your system, check some of the
+<a class="reference external" href="DockerTips.md">troubleshooting tips</a>.</p>
+</section>
+<section id="run-jupyer-lab-in-a-container">
+<span id="run-jupyterlab"></span><h2>Run Jupyer Lab in a Container<a class="headerlink" href="#run-jupyer-lab-in-a-container" title="Link to this heading">#</a></h2>
+<p>The goal is for you to enable JupyterLab to interact with the ats-short-course repository files on your local system.
+This is accomplished through the <code class="docutils literal notranslate"><span class="pre">--mount</span></code> option which shares your <em>present working directory</em> (<code class="docutils literal notranslate"><span class="pre">$pwd</span></code>) with the Docker container.</p>
+<p>So make sure your <code class="docutils literal notranslate"><span class="pre">$pwd</span></code> is the top-level of the <code class="docutils literal notranslate"><span class="pre">ats-short-course</span></code> repository and cut-and-paste one of the following commands:</p>
+<section id="osx">
+<h3>OSX<a class="headerlink" href="#osx" title="Link to this heading">#</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
+<p>OR if you prefer the verbose version:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--interactive<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--init<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--mount<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--publish<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--workdir<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
+</section>
+<section id="windows-10">
+<h3>Windows 10<a class="headerlink" href="#windows-10" title="Link to this heading">#</a></h3>
+<p>If you are using Windows 10’s Command Prompt or PowerShell, where the variable <code class="docutils literal notranslate"><span class="pre">$(pwd)</span></code> is not recognized, it may be easier to type the location of ats-short-course explicitly.
+For example, if <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\ats-short-course</span></code> is the top-level of the <code class="docutils literal notranslate"><span class="pre">ats-short-course</span></code> repository, then:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>C:<span class="se">\U</span>sers<span class="se">\U</span>SERNAME<span class="se">\a</span>ts-short-course,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
+<p>If you are getting a Docker error that <strong>the working directory is not valid</strong> and you don’t recognize the directory Docker returns, it is possible you are using (or installed as part of packages like Git for Windows) a command line interface that changes the paths you are passing to Docker.</p>
+<p>If so, try double slashes in your Docker command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>C:<span class="se">\\</span>Users<span class="se">\\</span>USERNAME<span class="se">\\</span>ats-short-course,target<span class="o">=</span>//home//ats_sc_user//work<span class="w"> </span>-w<span class="w"> </span>//home//ats_sc_user//work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
+</section>
+</section>
+<section id="connect-to-the-jupyer-lab-session-from-your-local-web-browser">
+<h2>Connect to the Jupyer Lab Session from your local web browser<a class="headerlink" href="#connect-to-the-jupyer-lab-session-from-your-local-web-browser" title="Link to this heading">#</a></h2>
+<p>Independent of the OS you’re using, the Docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.</p>
+<p>For example, you should see something like:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-17<span class="w"> </span><span class="m">21</span>:59:38.111<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Jupyter<span class="w"> </span>Server<span class="w"> </span><span class="m">1</span>.10.2<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at:
+<span class="c1"># This address is unique to each system, so don&#39;t copy this one in your case</span>
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-17<span class="w"> </span><span class="m">21</span>:59:38.111<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>http://58557662c177:8899/lab
+<span class="c1"># This address is generic and will work on any system where this port on local host has not been allocated to another process</span>
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-17<span class="w"> </span><span class="m">21</span>:59:38.111<span class="w"> </span>ServerApp<span class="o">]</span><span class="w">  </span>or<span class="w"> </span>http://127.0.0.1:8899/lab
+<span class="c1"># To kill this server</span>
+<span class="o">[</span>I<span class="w"> </span><span class="m">2021</span>-08-17<span class="w"> </span><span class="m">21</span>:59:38.111<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Use<span class="w"> </span>Control-C<span class="w"> </span>to<span class="w"> </span>stop<span class="w"> </span>this<span class="w"> </span>server<span class="w"> </span>and<span class="w"> </span>shut<span class="w"> </span>down<span class="w"> </span>all<span class="w"> </span>kernels<span class="w"> </span><span class="o">(</span>twice<span class="w"> </span>to<span class="w"> </span>skip<span class="w"> </span>confirmation<span class="o">)</span>.
+</pre></div>
+</div>
+<p>Once this is running you can open this URL in your browser:
+<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8899/lab</span></code></p>
+<p>You should see JupyterLab and the files from this repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most users see the message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">No</span> <span class="n">web</span> <span class="n">browser</span> <span class="n">found</span><span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">locate</span> <span class="n">runnable</span> <span class="n">browser</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This message is safe to ignore – by manually copying and pasting the above address into your browser, you should see the Jupyter Lab instance.</p>
+</div>
+</section>
 </section>
 
 
