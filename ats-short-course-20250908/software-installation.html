@@ -337,8 +337,25 @@ Version ats-short-course-20250908</div>
 <section id="docker">
 <h3>Docker<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
 <p><a class="reference external" href="https://www.docker.com/get-started">Download Docker</a></p>
-<p><strong>Windows</strong>: If you are not using an Administrator account, you will have to add your user account to the docker-users group as outlined <a class="reference external" href="https://docs.docker.com/desktop/faqs/#why-do-i-see-the-docker-desktop-access-denied-error-message-when-i-try-to-start-docker-desktop">here</a>.
-Note also that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL and follow <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">steps 4 and 5</a>.</p>
+<div class="admonition-windows admonition">
+<p class="admonition-title">Windows</p>
+<p>Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course.</p>
+</div>
+<p>To manually update WSL 2:</p>
+<ul class="simple">
+<li><p>Open a terminal or Powershell.</p></li>
+<li><p>Update WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--update</span></code></p></li>
+<li><p>Install WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span></code>      <strong>Note: The process will take awhile and prompt you for an account creation</strong></p></li>
+<li><p>Verify install using <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--list</span></code>. You should see something like “Ubuntu”.</p></li>
+<li><p>Set default WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--set-default-version</span> <span class="pre">2</span></code></p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">WSL Installation</a></p></li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues">WSL Troublshooting Guide</a></p></li>
+</ul>
+</div>
 </section>
 <section id="podman">
 <h3>PodMan<a class="headerlink" href="#podman" title="Link to this heading">#</a></h3>
