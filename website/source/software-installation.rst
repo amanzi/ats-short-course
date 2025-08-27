@@ -9,10 +9,26 @@ As a first step you need to install the following tools on your system
 Docker
 ^^^^^^
 
+.. |nbsp| unicode:: U+00A0 .. UNBREAKABLE SPACE 
+
 `Download Docker <https://www.docker.com/get-started>`_
 
-**Windows**: If you are not using an Administrator account, you will have to add your user account to the docker-users group as outlined `here <https://docs.docker.com/desktop/faqs/#why-do-i-see-the-docker-desktop-access-denied-error-message-when-i-try-to-start-docker-desktop>`_. 
-Note also that WSL 2 is required for the current version of Docker Desktop, thus during installation you may be prompted to update and/or set WSL 2 as your default WSL and follow `steps 4 and 5 <https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package>`_.
+.. admonition:: Windows
+
+    Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course.
+
+To manually update WSL 2:
+
+* Open a terminal or Powershell.
+* Update WSL ``wsl --update``
+* Install WSL ``wsl --install``  |nbsp| |nbsp| **Note: The process will take awhile and prompt you for an account creation**
+* Verify install using ``wsl --list``. You should see something like "Ubuntu".
+* Set default WSL ``wsl --set-default-version 2``
+
+.. seealso::
+
+	* `WSL Installation <https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package>`_
+	* `WSL Troublshooting Guide <https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues>`_
 
 
 PodMan
