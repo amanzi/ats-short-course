@@ -312,22 +312,32 @@
 
       <ParameterList name="source terms">
         <ParameterList name="geochemical" type="ParameterList">
-          <ParameterList name="Pure rain water" type="ParameterList">
+          <ParameterList name="Rain condition" type="ParameterList">
             <Parameter name="water source key" type="string" value="surface-rain_water_source"/>
             <Parameter name="regions" type="Array(string)" value="{surface domain}"/>
             <Parameter name="solutes" type="Array(string)" value="{tracer1,tracer2}"/>
+<!--
             <Parameter name="times" type="Array(double)" value="{0.0, 14400.0, 18000.0}"/>
             <Parameter name="geochemical conditions" type="Array(string)" value="{initial, rainfall, initial}"/>
             <Parameter name="time functions" type="Array(string)" value="{constant, constant}"/>
+-->
+            <Parameter name="times" type="Array(double)" value="{0.0, 86400.0}"/>
+            <Parameter name="geochemical conditions" type="Array(string)" value="{rainfall,rainfall}"/>
+            <Parameter name="time functions" type="Array(string)" value="{constant}"/>              
             <Parameter name="ats units [moles/m^3]" type="bool" value="true"/>
           </ParameterList>
           <ParameterList name="Tracer injection" type="ParameterList">
             <Parameter name="water source key" type="string" value="surface-injection_water_source"/>
             <Parameter name="regions" type="Array(string)" value="{injection}"/>
             <Parameter name="solutes" type="Array(string)" value="{tracer1,tracer2}"/>
+<!--
             <Parameter name="times" type="Array(double)" value="{0.0, 14400.0, 18000.0}"/>
             <Parameter name="geochemical conditions" type="Array(string)" value="{initial, irrigation, initial}"/>
             <Parameter name="time functions" type="Array(string)" value="{constant, constant}"/>
+-->
+            <Parameter name="times" type="Array(double)" value="{0.0, 86400.0}"/>
+            <Parameter name="geochemical conditions" type="Array(string)" value="{irrigation,irrigation}"/>
+            <Parameter name="time functions" type="Array(string)" value="{constant}"/>
             <Parameter name="ats units [moles/m^3]" type="bool" value="true"/>
           </ParameterList>
         </ParameterList>
@@ -411,9 +421,14 @@
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function">
               <ParameterList name="function-tabular">
+<!--
                 <Parameter name="x values" type="Array(double)" value="{0, 86400}"/>
                 <Parameter name="y values" type="Array(double)" value="{10.5e-7, 0.0}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant}"/>
+-->
+                <Parameter name="x values" type="Array(double)" value="{0.0, 14400.0, 21600.0}"/>
+                <Parameter name="y values" type="Array(double)" value="{0.0, 0.0, 10.5e-7}"/>
+                <Parameter name="forms" type="Array(string)" value="{constant, constant}"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
@@ -427,31 +442,20 @@
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function">
               <ParameterList name="function-tabular">
+<!--
                 <Parameter name="x values" type="Array(double)" value="{0.0, 86400.0}"/>
                 <Parameter name="y values" type="Array(double)" value="{0.000008, 0.0}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant}"/>
+-->
+                <Parameter name="x values" type="Array(double)" value="{0.0, 14400.0, 21600.0}"/>
+                <Parameter name="y values" type="Array(double)" value="{0.0, 0.000008, 0.0}"/>
+                <Parameter name="forms" type="Array(string)" value="{constant, constant}"/>                
               </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
-            
-      <!-- <ParameterList name="surface-water_source" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable"/>
-        <ParameterList name="function" type="ParameterList">
-          <ParameterList name="domain" type="ParameterList">
-            <Parameter name="region" type="string" value="surface domain"/>
-            <Parameter name="component" type="string" value="cell"/>
-            <ParameterList name="function" type="ParameterList">
-              <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0, 86400}"/>
-                <Parameter name="y values" type="Array(double)" value="{10.5e-7, 0.0}"/>
-                <Parameter name="forms" type="Array(string)" value="{constant}"/>
-              </ParameterList>
-            </ParameterList>
-          </ParameterList>
-        </ParameterList>
-      </ParameterList> -->
+
       <ParameterList name="surface-source_molar_density" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <Parameter name="constant in time" type="bool" value="true"/>
