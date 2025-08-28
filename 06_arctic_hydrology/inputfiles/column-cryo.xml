@@ -83,8 +83,6 @@
       <Parameter name="supress Jacobian terms: d div hq / dp,T" type="bool" value="false"/>
       <Parameter name="supress Jacobian terms: d div surface q / dT" type="bool" value="true"/>
       <Parameter name="dump preconditioner" type="bool" value="false"/>
-      <Parameter name="predictor type" type="string" value="smart ewc"/>
-      <Parameter name="preconditioner type" type="string" value="picard"/>
       <ParameterList name="ewc delegate" type="ParameterList">
         <Parameter name="predictor type" type="string" value="smart ewc"/>
         <Parameter name="use pc_ice to determine sfc" type="bool" value="true" />
