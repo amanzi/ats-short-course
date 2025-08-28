@@ -753,7 +753,6 @@
       <ParameterList name="saturation_gas" type="ParameterList">
         <Parameter name="model parameters" type="string" value="WRM parameters"/>
         <Parameter name="evaluator type" type="string" value="water retention model with ice"/>
-        <Parameter name="liquid-ice capillary pressure key" type="string" value="capillary_pressure_liq_ice"/>
         <ParameterList name="permafrost model parameters" type="ParameterList">
           <Parameter name="permafrost wrm type" type="string" value="fpd permafrost model"/>
           <Parameter name="minimum dsi_dpressure magnitude" type="double" value="1e-12"/>
