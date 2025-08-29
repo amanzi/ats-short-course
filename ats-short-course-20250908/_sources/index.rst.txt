@@ -122,6 +122,10 @@ ParaView
 
 `Download Paraview <https://www.paraview.org/download/>`_
 
+.. note::
+
+   To view the examples, you will need to add the "LegacyExodus" Plugins and ensure that they are used when opening the file.
+
 Visit
 """""
 
