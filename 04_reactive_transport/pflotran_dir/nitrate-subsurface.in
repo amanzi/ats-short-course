@@ -55,7 +55,17 @@ PASSIVE_GAS_SPECIES
   CO2(g) 
   N2(g)* 
   O2(g) 
-/ 
+/
+MINERALS
+    SOM
+/
+MINERAL_KINETICS
+    SOM
+      PREFACTOR
+        RATE_CONSTANT -6.0
+      /
+    /
+/
   # DOM aerobic respiration
   MICROBIAL_REACTION
     REACTION 1.0e+00 DOM1  + 1.0e+00 O2(aq)  -> 1.0e+00 HCO3- + 1.0 H+ 
@@ -179,22 +189,10 @@ TRANSPORT_CONDITION inlet
   /
 END
 
-#=========================== FOREST constraints ============================
-CONSTRAINT forest 
-  CONCENTRATIONS
-    DOM1                1.0e-4 T
-    O2(aq)              0.21 G O2(g) 
-    H+                  6.0 P
-    HCO3-               400e-6 G CO2(g)
-    NO3-                2.0e-6  T
-    N2(aq)              0.78 G N2(g)* 
-  /
-END
-
-#=========================== IRRIGATION constraints ============================
+#=========================== IRRIGATION constraint =========================
 CONSTRAINT irrigation
   CONCENTRATIONS
-    DOM1                1.0e-3 T
+    DOM1                1.0e-10 T
     O2(aq)              0.21 G O2(g) 
     H+                  6.0 P
     HCO3-               400e-6 G CO2(g)
@@ -203,18 +201,32 @@ CONSTRAINT irrigation
   /
 END
 
-#=========================== initial constraints ============================
+#=========================== initial constraint ============================
 CONSTRAINT initial
   CONCENTRATIONS
-    DOM1                1.0e-4 T
+    DOM1                1.0e-10 T
     O2(aq)              0.21 G O2(g) 
     H+                  6.0 P
     HCO3-               400e-6 G CO2(g)
     NO3-                2.0e-6 T
     N2(aq)              0.78 G N2(g)* 
   /
+  MINERALS
+    SOM 1.d-2 1.0d0
+  /
 END
 
+#===========================  another initial constraint ====================
+CONSTRAINT initial_wo 
+  CONCENTRATIONS
+    DOM1                1.0e-10 T
+    O2(aq)              0.21 G O2(g) 
+    H+                  6.0 P
+    HCO3-               400e-6 G CO2(g)
+    NO3-                2.0e-6  T
+    N2(aq)              0.78 G N2(g)* 
+  /
+END
 
 #=========================== condition couplers ===============================
 # initial condition
