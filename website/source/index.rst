@@ -76,7 +76,7 @@ Docker (or Podman)
 
 .. admonition:: Windows
 
-    Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course.
+    Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course. If given the choice during installation, choose WSL 2 instead of Hyper-V.
 
 To manually update WSL 2:
 
@@ -96,6 +96,26 @@ Podman (or Docker)
 """"""""""""""""""
 
 `Download Podman <https://podman-desktop.io/>`_
+
+.. admonition:: Windows
+
+    Installation for Windows can be difficult since WSL 2 is required for the current version of Podman, so it is important to begin this process well before the short-course. If given the choice during installation, choose WSL 2 instead of Hyper-V.
+
+To manually update WSL 2:
+
+* Open a terminal or Powershell.
+* Update WSL ``wsl --update``
+* Install WSL ``wsl --install``  |nbsp| |nbsp| **Note: The process will take awhile and prompt you for an account creation**
+* Verify install using ``wsl --list``. You should see something like "Ubuntu".
+* Set default WSL ``wsl --set-default-version 2``
+
+Once installed, you will need to set up Podman and restart the application.
+
+.. seealso::
+
+    * `WSL for Podman Guide <https://podman-desktop.io/docs/installation/windows-install>`_
+    * `WSL Installation <https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package>`_
+    * `WSL Troublshooting Guide <https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues>`_
 
 ParaView
 """"""""
