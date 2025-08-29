@@ -63,8 +63,8 @@ Note that these tools and this course material has been tested on Linux, Mac OSX
 
 .. |nbsp| unicode:: U+00A0 .. UNBREAKABLE SPACE 
 
-Quickstart
-----------
+Step-by-Step Instructions
+-------------------------
 
 1. Install external tools:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
