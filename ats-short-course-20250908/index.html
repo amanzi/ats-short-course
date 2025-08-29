@@ -400,7 +400,7 @@ contacted by Angela Hagler to begin that process.</p>
 <p><a class="reference external" href="https://www.docker.com/get-started">Download Docker</a></p>
 <div class="admonition-windows admonition">
 <p class="admonition-title">Windows</p>
-<p>Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course.</p>
+<p>Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course. If given the choice during installation, choose WSL 2 instead of Hyper-V.</p>
 </div>
 <p>To manually update WSL 2:</p>
 <ul class="simple">
@@ -421,6 +421,27 @@ contacted by Angela Hagler to begin that process.</p>
 <section id="podman-or-docker">
 <h4>Podman (or Docker)<a class="headerlink" href="#podman-or-docker" title="Link to this heading">#</a></h4>
 <p><a class="reference external" href="https://podman-desktop.io/">Download Podman</a></p>
+<div class="admonition-windows admonition">
+<p class="admonition-title">Windows</p>
+<p>Installation for Windows can be difficult since WSL 2 is required for the current version of Podman, so it is important to begin this process well before the short-course. If given the choice during installation, choose WSL 2 instead of Hyper-V.</p>
+</div>
+<p>To manually update WSL 2:</p>
+<ul class="simple">
+<li><p>Open a terminal or Powershell.</p></li>
+<li><p>Update WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--update</span></code></p></li>
+<li><p>Install WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span></code>      <strong>Note: The process will take awhile and prompt you for an account creation</strong></p></li>
+<li><p>Verify install using <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--list</span></code>. You should see something like “Ubuntu”.</p></li>
+<li><p>Set default WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--set-default-version</span> <span class="pre">2</span></code></p></li>
+</ul>
+<p>Once installed, you will need to set up Podman and restart the application.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://podman-desktop.io/docs/installation/windows-install">WSL for Podman Guide</a></p></li>
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">WSL Installation</a></p></li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues">WSL Troublshooting Guide</a></p></li>
+</ul>
+</div>
 </section>
 <section id="paraview">
 <h4>ParaView<a class="headerlink" href="#paraview" title="Link to this heading">#</a></h4>
