@@ -39,7 +39,7 @@ jobs:
       id: docker
       working-directory: docker
       run:
-        docker build --build-arg ARCH=linux/${{env.ARCH}} --build-arg build_mpi=False -t ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-ats-${{env.ARCH}}-latest -f Dockerfile-Workshop-ATS .
+        docker build --build-arg ARCH=linux/${{env.ARCH}} -t ${{secrets.DOCKERHUB_USERNAME}}/ats-short-course:2025-ats-${{env.ARCH}}-latest -f Dockerfile-Workshop-ATS .
     - name: Docker push
       working-directory: docker
       run:
