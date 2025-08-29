@@ -127,7 +127,6 @@ ENV HOME=/home/$container_user
 
 WORKDIR $HOME
 
-
 # This is supposed to setup the conda environment in the unprivileged users account
 # It's not working!! 
 RUN whoami && \
@@ -162,7 +161,9 @@ RUN echo "Installing core scientific stack ..." && \
       scipy \
       matplotlib \
       ipympl \
-      ipywidgets
+      ipywidgets \
+      pandas \
+      geopandas
 
 # Install Jupyterlab
 RUN echo "Installing Jupyter lab ... " && \ 
@@ -171,28 +172,14 @@ RUN echo "Installing Jupyter lab ... " && \
       jupyterlab \
       nodejs
 
-# GIS & geometry tools
-# RUN echo "Installing GIS and geometry packages..." && \
-#    conda install -c conda-forge \
-#    geopandas \
-#    cartopy \
-#    meshpy \
-#    pyepsg \
-#    descartes
-
-# Utility libraries
-# RUN echo "Installing utility and miscellaneous libraries..." && \
-#    conda install -c conda-forge \
-#        boost \
-#        requests \
-#        sortedcontainers \
-#        attrs \
-#        libarchive \
-#        pytest
+# Install Pin Shuai's Modvis (for visualization of ATS and PFLOTRAN output)
+RUN echo "Installing Modvis ... " && \
+   . /opt/conda/etc/profile.d/conda.sh && \
+   pip install -U git+https://github.com/pinshuai/modvis.git
 
 # Cleanup
-# RUN echo "Cleaning up conda..." && \
-#   conda clean -afy
+RUN echo "Cleaning up conda..." && \
+   conda clean -afy
 
 # Ensure the that when the user starts a shell/console in Jupyter it is using bash.
 ENV SHELL=/bin/bash

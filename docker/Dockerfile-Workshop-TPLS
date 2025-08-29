@@ -51,7 +51,7 @@ RUN echo "Building TPLs ... " && \
       --enable-shared --enable-structured --enable-silo \
       --enable-alquimia --enable-pflotran --enable-crunchtope \
       --enable-pf_clm \
-      --with-mpi=/usr && \
+      --with-mpi=/usr/local && \
     echo "Building PFLOTRAN ... " && \
      export PETSC_DIR=$AMANZI_TPLS_BUILD_DIR/petsc/petsc-3.20-source && \
      cd $AMANZI_TPLS_BUILD_DIR/pflotran/pflotran-5.0.0-source/src/pflotran && \
