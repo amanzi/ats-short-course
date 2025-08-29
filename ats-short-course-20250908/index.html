@@ -273,8 +273,20 @@ Version ats-short-course-20250908</div>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#participants">Participants</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickstart">Quickstart</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-details">Step-by-step Details</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickstart">Quickstart</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-external-tools">1. Install external tools:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-or-podman">Docker (or Podman)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#podman-or-docker">Podman (or Docker)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#paraview">ParaView</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visit">Visit</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-ats-short-course-demos-repository">2. Clone the ats-short-course demos repository</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-short-course-docker-image-and-run-the-container">3. Download the short course Docker image and run the container</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-the-jupyter-lab-instance">4. Open the Jupyter lab instance</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-the-short-course-files">Getting the Short Course Files</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-and-run-the-ats-in-a-container">Download and run the ATS in a Container</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-jupyer-lab-in-a-container">Run Jupyer Lab in a Container</a><ul class="nav section-nav flex-column">
@@ -381,35 +393,68 @@ contacted by Angela Hagler to begin that process.</p>
 <a class="reference external" href="mailto:ats-users&#37;&#52;&#48;googlegroups&#46;com">ATS user’s group</a>  or by submitting an Issue here.</p>
 <section id="quickstart">
 <h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><dl class="simple">
-<dt>Install external tools:</dt><dd><p><a class="reference external" href="https://docs.docker.com/desktop/">Docker Desktop</a>
-(or <a class="reference external" href="https://podman-desktop.io/">PodMan Desktop</a>),
-<a class="reference external" href="https://wci.llnl.gov/simulation/computer-codes/visit/executables">VisIt</a>,
-and <a class="reference external" href="https://github.com/git-guides/install-git">git</a></p>
-</dd>
-</dl>
-</li>
-<li><p>Clone the ats-short-course demos repository</p></li>
-</ol>
+<section id="install-external-tools">
+<h3>1. Install external tools:<a class="headerlink" href="#install-external-tools" title="Link to this heading">#</a></h3>
+<section id="docker-or-podman">
+<h4>Docker (or Podman)<a class="headerlink" href="#docker-or-podman" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://www.docker.com/get-started">Download Docker</a></p>
+<div class="admonition-windows admonition">
+<p class="admonition-title">Windows</p>
+<p>Installation for Windows can be difficult since WSL 2 is required for the current version of Docker Desktop, so it is important to begin this process well before the short-course.</p>
+</div>
+<p>To manually update WSL 2:</p>
+<ul class="simple">
+<li><p>Open a terminal or Powershell.</p></li>
+<li><p>Update WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--update</span></code></p></li>
+<li><p>Install WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span></code>      <strong>Note: The process will take awhile and prompt you for an account creation</strong></p></li>
+<li><p>Verify install using <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--list</span></code>. You should see something like “Ubuntu”.</p></li>
+<li><p>Set default WSL <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--set-default-version</span> <span class="pre">2</span></code></p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-4---download-the-linux-kernel-update-package">WSL Installation</a></p></li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues">WSL Troublshooting Guide</a></p></li>
+</ul>
+</div>
+</section>
+<section id="podman-or-docker">
+<h4>Podman (or Docker)<a class="headerlink" href="#podman-or-docker" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://podman-desktop.io/">Download Podman</a></p>
+</section>
+<section id="paraview">
+<h4>ParaView<a class="headerlink" href="#paraview" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://www.paraview.org/download/">Download Paraview</a></p>
+</section>
+<section id="visit">
+<h4>Visit<a class="headerlink" href="#visit" title="Link to this heading">#</a></h4>
+<p><a class="reference external" href="https://wci.llnl.gov/simulation/computer-codes/visit/executables">Download Visit</a></p>
+</section>
+<section id="git">
+<h4>Git<a class="headerlink" href="#git" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Mac OSX</strong>: git is included in the <em>command line tools</em>, installed via <code class="docutils literal notranslate"><span class="pre">xcode-select</span> <span class="pre">--install</span></code>, or in XCode itself.</p></li>
+<li><p><strong>Linux</strong>: git is included as a standard package under most package managers, e.g. <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git</span></code>.</p></li>
+<li><p><strong>Windows</strong>: See <a class="reference external" href="https://github.com/git-guides/install-git">Git Downloads</a>. Note that the GitHub Desktop is also an option for Windows users and provides a GUI.</p></li>
+</ul>
+</section>
+</section>
+<section id="clone-the-ats-short-course-demos-repository">
+<h3>2. Clone the ats-short-course demos repository<a class="headerlink" href="#clone-the-ats-short-course-demos-repository" title="Link to this heading">#</a></h3>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>ats-short-course-20250908<span class="w"> </span>https://github.com/amanzi/ats-short-course<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ats-short-course
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
-<li><p>Download the short course Docker image and run the container</p></li>
-</ol>
+</section>
+<section id="download-the-short-course-docker-image-and-run-the-container">
+<h3>3. Download the short course Docker image and run the container<a class="headerlink" href="#download-the-short-course-docker-image-and-run-the-container" title="Link to this heading">#</a></h3>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
 docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
 </pre></div>
 </div>
-<ol class="arabic simple" start="4">
-<li><p>Open the <a class="reference external" href="http://127.0.0.1:8888/lab">Jupyter lab instance</a></p></li>
-</ol>
 </section>
-<section id="step-by-step-details">
-<h2>Step-by-step Details<a class="headerlink" href="#step-by-step-details" title="Link to this heading">#</a></h2>
-<p>If the Quickstart instructions didn’t work, or you would just like more details, please follow the
-step-by-step instructions and tips on the <a class="reference internal" href="software-installation.html"><span class="doc">Software Installation</span></a> page.</p>
+<section id="open-the-jupyter-lab-instance">
+<h3>4. Open the <a class="reference external" href="http://127.0.0.1:8888/lab">Jupyter lab instance</a><a class="headerlink" href="#open-the-jupyter-lab-instance" title="Link to this heading">#</a></h3>
+</section>
 </section>
 <section id="getting-the-short-course-files">
 <h2>Getting the Short Course Files<a class="headerlink" href="#getting-the-short-course-files" title="Link to this heading">#</a></h2>
