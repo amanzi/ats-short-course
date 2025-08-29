@@ -56,51 +56,6 @@ PASSIVE_GAS_SPECIES
   N2(g)* 
   O2(g) 
 /
-MINERALS
-    SOM
-/
-MINERAL_KINETICS
-    SOM
-      PREFACTOR
-        RATE_CONSTANT -6.0
-      /
-    /
-/
-  # DOM aerobic respiration
-  MICROBIAL_REACTION
-    REACTION 1.0e+00 DOM1  + 1.0e+00 O2(aq)  -> 1.0e+00 HCO3- + 1.0 H+ 
-    RATE_CONSTANT       1.0e-07
-    MONOD
-      SPECIES_NAME        O2(aq)
-      HALF_SATURATION_CONSTANT 5.0e-06
-      THRESHOLD_CONCENTRATION 1.1e-20
-    /
-    MONOD
-      SPECIES_NAME        DOM1
-      HALF_SATURATION_CONSTANT 1.0e-05
-      THRESHOLD_CONCENTRATION 1.1e-20
-    /
-  /
-  # DOM denitrification 
-  MICROBIAL_REACTION
-    REACTION 1.0e+00 DOM1  + 0.8e+00 NO3- + 0.8 H+  -> 1.0 HCO3- + 1.0 H+  + 0.4 N2(aq) 
-    RATE_CONSTANT       4.0e-08
-    MONOD
-      SPECIES_NAME       NO3-  
-      HALF_SATURATION_CONSTANT 1.0e-05
-      THRESHOLD_CONCENTRATION 1.1e-20
-    /
-    MONOD
-      SPECIES_NAME        DOM1
-      HALF_SATURATION_CONSTANT 1.0e-05
-      THRESHOLD_CONCENTRATION 1.e-20
-    /
-     INHIBITION
-      SPECIES_NAME        O2(aq)
-      TYPE MONOD
-      INHIBITION_CONSTANT 1.0e-07
-    /
- / 
 
   LOG_FORMULATION
   ACTIVITY_COEFFICIENTS TIMESTEP
@@ -178,7 +133,7 @@ END
 TRANSPORT_CONDITION initial
   TYPE ZERO_GRADIENT
   CONSTRAINT_LIST
-    0.d0 oc_rich
+    0.d0 rainfall
   /
 END
 
@@ -202,29 +157,14 @@ CONSTRAINT fertilizer
 END
 
 #=========================== initial constraint ============================
-CONSTRAINT oc_rich
+CONSTRAINT rainfall
   CONCENTRATIONS
     DOM1                1.0e-10 T
-    O2(aq)              1.0e-10 T 
+    O2(aq)              0.21 G O2(g) 
     H+                  6.0 P
     HCO3-               400e-6 G CO2(g)
-    NO3-                1.0e-10 T
-    N2(aq)              1.0e-10 T
-  /
-  MINERALS
-    SOM 1.d-2 1.0d0
-  /
-END
-
-#===========================  another initial constraint ====================
-CONSTRAINT oc_poor 
-  CONCENTRATIONS
-    DOM1                1.0e-10 T
-    O2(aq)              1.0e-10 T 
-    H+                  6.0 P
-    HCO3-               400e-6 G CO2(g)
-    NO3-                1.0e-10  T
-    N2(aq)              1.0e-10  T
+    NO3-                2.0e-6 T
+    N2(aq)              0.78 G N2(g)* 
   /
 END
 
