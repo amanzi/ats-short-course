@@ -359,11 +359,11 @@
 
       <ParameterList name="initial conditions" type="ParameterList">
         <ParameterList name="geochemical conditions" type="ParameterList">
-          <!--<ParameterList name="oc_poor" type="ParameterList">
+          <ParameterList name="oc_poor" type="ParameterList">
             <Parameter name="regions" type="Array(string)" value="{shallow}"/>
-          </ParameterList>-->
+          </ParameterList>
           <ParameterList name="oc_rich" type="ParameterList">
-            <Parameter name="regions" type="Array(string)" value="{computational domain}"/>
+            <Parameter name="regions" type="Array(string)" value="{deep}"/>
           </ParameterList>            
         </ParameterList>
       </ParameterList>
@@ -371,7 +371,7 @@
       <ParameterList name="timestep controller" type="ParameterList">
         <Parameter name="timestep controller type" type="string" value="fixed"/>
         <ParameterList name="timestep controller fixed parameters" type="ParameterList">
-          <Parameter name="timestep [s]" type="double" value="50.0"/>
+          <Parameter name="timestep [s]" type="double" value="1000.0"/>
         </ParameterList>
       </ParameterList>
     </ParameterList>
@@ -386,7 +386,7 @@
       <Parameter name="debug cells" type="Array(int)" value="{0}"/>
       <ParameterList name="initial conditions" type="ParameterList">
         <ParameterList name="geochemical conditions" type="ParameterList">
-          <ParameterList name="rainwater" type="ParameterList">
+          <ParameterList name="rainfall" type="ParameterList">
             <Parameter name="regions" type="Array(string)" value="{surface domain}"/>
           </ParameterList>
         </ParameterList>
@@ -415,7 +415,7 @@
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function">
               <ParameterList name="function-tabular">
-                <Parameter name="x values" type="Array(double)" value="{0.0, 14400.0, 21600.0}"/>
+                <Parameter name="x values" type="Array(double)" value="{0.0, 14400.0, 28800.0}"/>
                 <Parameter name="y values" type="Array(double)" value="{0.0, 0.0, 10.5e-7}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant, constant}"/>
               </ParameterList>
@@ -431,8 +431,8 @@
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function">
               <ParameterList name="function-tabular">
-                <Parameter name="x values" type="Array(double)" value="{0.0, 14400.0, 21600.0}"/>
-                <Parameter name="y values" type="Array(double)" value="{0.0, 0.000008, 0.0}"/>
+                <Parameter name="x values" type="Array(double)" value="{0.0, 14400.0, 28800.0}"/>
+                <Parameter name="y values" type="Array(double)" value="{0.0, 0.000012, 0.0}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant, constant}"/>
               </ParameterList>
             </ParameterList>
