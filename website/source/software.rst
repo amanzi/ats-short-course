@@ -31,7 +31,7 @@ Note that these tools and this course material has been tested on Linux, Mac OSX
 
 You will need **one from each** of the following categories:
 
-* a container tool: one of Docker Desktop, Podman Desktop, or Rancher Desktop.  Docker Desktop is the original, but is not open source and may not be available to lab or large corporate institutional users.  Additionally, Docker Desktop may require "priveleged" or "root" access, while Podman does not.
+* a container tool: one of Docker Desktop, Podman Desktop, or Rancher Desktop.  Docker Desktop is the original, but is not open source and may not be available to lab or large corporate institutional users.  Additionally, Docker Desktop may require "priveleged" or "root" access, while Podman does not. Podman provides the same API as Docker, thus the command lines given below to pull and run the container should work by replacing ``docker`` for ``podman``. 
 * a 3D visualization tool: one of ParaView or VisIt.  VisIt is a little more intuitive to new users if you have never used either one and is sufficient for 90% of what we will do; ParaView is preferred for viewing complex 3D meshes.
 * git
   
@@ -131,7 +131,7 @@ The Jupyter notebooks, as well as the corresponding input files and data, are pr
 3. Download the ATS Docker image and run the container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first container to be used is the container used for running ATS.  It is quite large; please download this prior to arriving at the short course.
+The first container to be used is the container used for running ATS.  It is quite large; please download this prior to arriving at the short course. If you are using Podman instead of docker, replace ``docker`` with ``podman`` in the commands that follow. 
 
 .. code-block:: sh
 
@@ -182,6 +182,18 @@ Similarly, append `/bin/bash` to the end of the line to get a terminal inside th
 
     docker run -it --init --mount type=bind,source=C:\Users\USERNAME\ats-short-course,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest /bin/bash
 
+An alternative to providing the path explicitly, you can try the Windows equivalent to ``$(pwd)`` in the Command Prompt ``%cd:\=/%``
+
+.. code-block:: sh
+
+    docker run -it --init --mount type=bind,source=%cd:\=/%,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
+
+or if you are using the Windowns PowerShell simply use ``$PWD``
+
+.. code-block:: sh
+
+    docker run -it --init --mount type=bind,source=$PWD,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
+
 
 3. Download the Watershed Workflow Docker image and run the container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -222,7 +234,18 @@ If so, try double slashes in your Docker command:
 
     docker run -it --init --mount type=bind,source=C:\\Users\\USERNAME\\ats-short-course,target=//home//joyvan//workdir -w //home//joyvan//workdir -p 9999:9999 ecoon/watershed_workflow-ats:v2.0
 
+An alternative to providing the path explicitly, you can try the Windows equivalent to ``$(pwd)`` in the Command Prompt ``%cd:\=/%``
+    
+.. code-block:: sh
 
+    docker run -it --init --mount type=bind,source=%cd:\=/%,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
+
+or if you are using the Windowns PowerShell simply use ``$PWD``
+
+.. code-block:: sh
+
+    docker run -it --init --mount type=bind,source=$PWD,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
+    
 
 4. Connect to Jupyter
 ^^^^^^^^^^^^^^^^^^^^^
