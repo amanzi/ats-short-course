@@ -1,0 +1,194 @@
+ARG base_image=ubuntu
+ARG ver_tag=jammy
+FROM ${base_image}:${ver_tag} AS base
+
+# Declares that a container will listen on a specific network port at runtime
+# but does not automatically publish the port to the host machine, that is done
+# with docker run -p host_port:containter_port
+EXPOSE 8888-8899
+
+LABEL Description="This image provides a base Linux developers environment for ATS as well as python installation with jupyter lab."
+
+# Build arguments
+ARG cmake_version
+ARG base_image
+ARG ver_tag
+ARG build_mpi=False
+ARG mpi_flavor=mpich
+ARG mpi_version=4.0.3
+
+# TARGETARCH is set by Docker BuildKit (e.g., amd64, arm64)
+ARG TARGETARCH
+
+# Set the default name of the unprivileged user
+ARG container_user=ats_sc_user
+
+# Set timezone:
+RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
+
+# Package Notes:
+# - we could drop cmake, it's too old for ATS
+
+RUN apt-get -q update -y && apt-get install -y tzdata && \
+  apt-get -q install -y \
+  apt-utils \
+  cmake \
+  curl \
+  libcurl4-openssl-dev \
+  emacs \
+  g++ \
+  gfortran \
+  gedit \
+  git \
+  groff \
+  libblas-dev \
+  liblapacke-dev \
+  liblapack-dev \
+  libssl-dev \
+  m4 \
+  make \
+  openssl \
+  pkg-config \
+  python3 \
+  python3-distutils \
+  python3-pip \
+  python3-h5py \
+  python-is-python3 \
+  rsync \
+  wget \
+  vim \
+  zlib1g-dev && \
+  apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+# Should we have the h5py stuff in here?
+# Note this installs numpy as well
+# Note: currently the --no-binary option seems to be failing
+
+#RUN if [ "$TARGETARCH" = "arm64" ]; then \
+# pip3 install --no-cache-dir --upgrade pip && \
+# pip3 install --no-cache-dir --no-binary=h5py install h5py ; \
+#  else \
+# pip3 install --no-cache-dir --upgrade pip && \
+# pip3 install --no-cache-dir install h5py ; \
+#  fi
+
+# install MPI - if mpich, custom compile; if openmpi, install precompiled binary
+RUN if [ "$build_mpi" = "True" ]; then \
+  if [ "$mpi_flavor" = "mpich" ]; then cd / \
+  && wget https://www.mpich.org/static/downloads/${mpi_version}/mpich-${mpi_version}.tar.gz \
+  && tar xvf mpich-${mpi_version}.tar.gz \
+  && cd mpich-${mpi_version} \
+  && FFLAGS="-fallow-argument-mismatch" FCFLAGS="-fallow-argument-mismatch" ./configure --enable-shared --with-device=ch3:sock --enable-fast=all,Os --prefix=/usr/local \
+  && make -j4 \
+  && make install \
+  && cd ../ \
+  && rm -r mpich-${mpi_version}/ \
+  && rm mpich-${mpi_version}.tar.gz ; \
+  elif [ "$mpi_flavor" = "openmpi" ]; then cd / \
+  && export mpi_version_major=`echo ${mpi_version} | cut -c1-3` && echo $mpi_version_major \
+  && wget https://download.open-mpi.org/release/open-mpi/v${mpi_version_major}/openmpi-${mpi_version}.tar.gz \
+  && tar xvf openmpi-${mpi_version}.tar.gz \
+  && cd openmpi-${mpi_version} \
+  && export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH \
+  && FFLAGS="-fallow-argument-mismatch" FCFLAGS="-fallow-argument-mismatch" ./configure --enable-shared --prefix=/usr/local \
+  && make -j4 \
+  && make install \
+  && cd ../ \
+  && rm -r openmpi-${mpi_version}/ \
+  && rm openmpi-${mpi_version}.tar.gz ; \
+  else \
+  echo "Unknown mpi_flavor - exiting." \
+  && exit 1 ; \
+  fi \
+  else apt-get update -y && apt-get install -y lib${mpi_flavor}-dev ; fi
+
+# Add an unprivileged user and group: $container_user, $container_user
+# - set permissions so the $container_user can write into their home dirctory
+RUN groupadd -r $container_user && \
+    useradd -r  -K UMASK=0022 -K HOME_MODE=0755 -m -g $container_user $container_user -s /bin/bash
+
+# Install Miniforge
+# (Miniconda requires accepting the terms of service, which we cannot)
+RUN echo "Downloading and installing Miniforge ..." && \
+     wget --quiet \
+       https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh \
+       -O /tmp/miniforge.sh && \
+     /bin/bash /tmp/miniforge.sh -b -p /opt/conda && \
+     rm /tmp/miniforge.sh && \
+     /opt/conda/bin/conda clean -a -y && \
+     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+     chown -R $container_user /opt/ && \
+     chgrp -R $container_user /opt/
+
+# This unprivileged user and home directory are used in the TPLs and ATS builds
+USER $container_user
+ENV HOME=/home/$container_user
+
+WORKDIR $HOME
+
+# This is supposed to setup the conda environment in the unprivileged users account
+# It's not working!! 
+RUN whoami && \
+    pwd && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/$container_user/.bashrc && \
+    echo "conda activate base" >> /home/$container_user/.bashrc && \ 
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> /home/$container_user/.profile && \
+    echo "conda activate base" >> /home/$container_user/.profile && \ 
+    cat /home/$container_user/.profile
+
+RUN . /opt/conda/etc/profile.d/conda.sh && \
+    conda update -n base -c conda-forge conda && \ 
+    conda activate base && \
+    conda install -y pip
+
+# Make conda globally available
+# - this will make the conda python the default python for RUN commands in future Dockerfiles ...
+ENV PATH="/opt/conda/bin:$PATH"
+
+# Since conda is in the path making the new python the default, future builds of ATS need
+# h5py and numpy, so we need to install them here.
+RUN  . /opt/conda/etc/profile.d/conda.sh && \
+     conda install -y \
+        numpy \
+        h5py \
+        netCDF4
+
+# Core scientific stack
+RUN echo "Installing core scientific stack ..." && \
+    . /opt/conda/etc/profile.d/conda.sh && \
+    conda install -y \
+      scipy \
+      matplotlib \
+      ipympl \
+      ipywidgets \
+      pandas \
+      geopandas
+
+# Install Jupyterlab
+RUN echo "Installing Jupyter lab ... " && \ 
+    . /opt/conda/etc/profile.d/conda.sh && \
+    conda install -y \
+      jupyterlab \
+      nodejs
+
+# Install Pin Shuai's Modvis (for visualization of ATS and PFLOTRAN output)
+RUN echo "Installing Modvis ... " && \
+   . /opt/conda/etc/profile.d/conda.sh && \
+   pip install -U git+https://github.com/pinshuai/modvis.git
+
+# Cleanup
+RUN echo "Cleaning up conda..." && \
+   conda clean -afy
+
+# Ensure the that when the user starts a shell/console in Jupyter it is using bash.
+ENV SHELL=/bin/bash
+
+CMD ["jupyter", "lab", \
+     "--port=8888", \
+     "--ip=0.0.0.0", \
+     "--no-browser", \
+     "--ServerApp.token=''", \
+     "--ServerApp.allow_remote_access=True" \
+]
+

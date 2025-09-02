@@ -1,10 +1,3 @@
-#.. toctree::
-#   :maxdepth: 0
-#   :caption: ATS Short Course Web Site
-#
-#software/index
-
-
 ATS Short Course
 ================
 
@@ -47,78 +40,7 @@ See the `tentative agenda <https://amanzi.github.io/ats-short-course/ats-short-c
 
 
 Participants
-============
-
-To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  There is a separate container for day 1 on the ATS day 2 for Watershed Workflow.  The ATS container contains:
-
-* A Linux-based operating system, including common command line tools.
-* A build of Amanzi-ATS, with commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
-* All needed Third-Party Libraries and utilities (e.g., `h5dump`, `ncdump`, `meshconvert`, etc.)
-* A python3 build with all needed libraries for common ATS-based tasks.
-
-The Watershed workflow container contains:
-
-* A Linux-based operating system, including common command line tools.
-* An installation of Watershed Workflow, with commonly-used environment variables, e.g. `$ATS_SRC_DIR` defined.
-* All needed Third-Party Libraries and utilities (Exodus, `h5dump`, `ncdump`, etc.)
-* A python3 build with all needed libraries for common Watershed Workflow tasks.
-
-In both cases, the short course demo files will reside on the participants' computers and any changes will be available after exiting the Docker container.
-
-Note that these tools and this course material has been tested on Linux, Mac OSX, and, to a lesser extent, Windows systems. The expectation is that this short course should work on any of these systems, but there can always be challenges on individual systems, so please be patient. If you find bugs in the docker container or this material, please feel free to ask for help on the
-`ATS user's group <mailto:ats-users@googlegroups.com>`_  or by submitting an Issue here.
-
-
-Quickstart
-----------
-
-1. Install external tools:
-    `Docker Desktop <https://docs.docker.com/desktop/>`_
-    (or `PodMan Desktop <https://podman-desktop.io/>`_),
-    `VisIt <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_,
-    and `git <https://github.com/git-guides/install-git>`_
-
-2. Clone the ats-short-course demos repository
-
-.. code-block:: sh
-
-   git clone -b ats-short-course-20250908 https://github.com/amanzi/ats-short-course; cd ats-short-course
-  
-3. Download the short course Docker image and run the container 
-
-.. code-block:: sh
-
-   docker pull metsi/ats-short-course:2025-ats-latest
-   docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
-  
-4. Open the `Jupyter lab instance <http://127.0.0.1:8888/lab>`_
-
-
-Step-by-step Details
---------------------
-
-If the Quickstart instructions didn't work, or you would just like more details, please follow the
-step-by-step instructions and tips on the :doc:`Software Installation </software-installation>` page.
-
-
-Getting the Short Course Files
-------------------------------
-
-
-
-Download and run the ATS in a Container
----------------------------------------
-
-
-
-Run Jupyer Lab in a Container
------------------------------
-
-
-
-Connect to the Jupyer Lab Session from your local web browser
--------------------------------------------------------------
-
-Independent of the OS you're using, the docker run (or podman run) command described above will output several status messages to the screen, one of which is about the Jupyter server that it started. For example, you should see something like
+------------
+To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  All participants are expected to supply their own laptop; any relatively modern machine and operating system should be sufficient. Please see the :doc:`software` page for instructions on how to set up your machine **prior** to attending the course.
 
 
