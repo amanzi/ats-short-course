@@ -326,7 +326,7 @@
             <Parameter name="regions" type="Array(string)" value="{injection}"/>
             <Parameter name="solutes" type="Array(string)" value="{tracer1,tracer2}"/>
             <Parameter name="times" type="Array(double)" value="{0.0, 86400.0}"/>
-            <Parameter name="geochemical conditions" type="Array(string)" value="{irrigation,irrigation}"/>
+            <Parameter name="geochemical conditions" type="Array(string)" value="{fertilizer,fertilizer}"/>
             <Parameter name="time functions" type="Array(string)" value="{constant}"/>
             <Parameter name="ats units [moles/m^3]" type="bool" value="true"/>
           </ParameterList>

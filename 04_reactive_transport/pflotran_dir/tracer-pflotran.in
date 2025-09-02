@@ -129,7 +129,7 @@ CONSTRAINT rainfall
   /
 END
 
-CONSTRAINT irrigation
+CONSTRAINT fertilizer
   CONCENTRATIONS
     tracer1  1      T
     tracer2  1.e-20      T
