@@ -1,5 +1,7 @@
 .DS_Store
+_**/.DS_Store
 __MACOSX__/
+.vscode
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -11,9 +13,6 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
-models/.vscode
-models/.DS_Store
 models/hydrology/results
 models/transport/results
 models/reactive/results
-models/notebooks/.vscode/

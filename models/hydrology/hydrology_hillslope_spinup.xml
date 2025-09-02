@@ -11,7 +11,7 @@
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="mesh type" type="string" value="read mesh file"/>
       <ParameterList name="read mesh file parameters" type="ParameterList">
-        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+        <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
         <Parameter name="format" type="string" value="Exodus II"/>
       </ParameterList>
     </ParameterList>
@@ -27,7 +27,7 @@
     <ParameterList name="surface" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="2"/>
-      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
@@ -50,35 +50,35 @@
     <ParameterList name="geology" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="101"/>
-      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="topsoil" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="102"/>
-      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="hillslope" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="11"/>
-      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="lake" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="12"/>
-      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="toeslope" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="13"/>
-      <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>
+      <Parameter name="file" type="string" value="../../data/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
