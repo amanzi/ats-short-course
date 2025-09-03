@@ -36,7 +36,7 @@ Logistics
 Agenda
 ------
 
-See the `tentative agenda <https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Agenda.pdf>`_
+See the `final agenda <https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Agenda.pdf>`_
 
 
 Participants

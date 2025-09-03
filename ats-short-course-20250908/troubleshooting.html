@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>ATS Short Course &#8212; ATS Short Course</title>
+    <title>Troubleshooting &#8212; ATS Short Course</title>
   
   
   
@@ -45,7 +45,7 @@
     <script src="_static/documentation_options.js?v=4a5859ae"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'troubleshooting';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.0';
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://raw.githubusercontent.com/amanzi/ats-short-course/main/source/_static/versions.json';
@@ -114,7 +114,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -264,11 +264,10 @@ Version ats-short-course-20250908</div>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-links">Key Links</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration">Registration</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistics">Logistics</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agenda">Agenda</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#participants">Participants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#watershed-workflow">Watershed Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ssl-certificates">SSL Certificates</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
     </div>
@@ -288,7 +287,31 @@ Version ats-short-course-20250908</div>
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article d-print-none"></div>
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Troubleshooting</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
               
               
@@ -296,50 +319,25 @@ Version ats-short-course-20250908</div>
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="ats-short-course">
-<h1>ATS Short Course<a class="headerlink" href="#ats-short-course" title="Link to this heading">#</a></h1>
-<p>This course will be offered September 8-10, 2025, in Knoxville, Tennessee and virtually.</p>
-<section id="key-links">
-<h2>Key Links<a class="headerlink" href="#key-links" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Flyer.pdf">About Flyer</a></p></li>
-<li><p><a class="reference external" href="https://docs.google.com/forms/d/1o6q5dRvoMmXagI3u6DNl2KvkBVKgDggjmMkgnBc7DjE/edit">Registration Page</a></p></li>
-<li><p><a class="reference external" href="https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Agenda.pdf">Tentative Agenda</a></p></li>
-</ul>
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
+<p>The containers can be tricky to install.  Here are some common problems and their fixes.</p>
+<section id="watershed-workflow">
+<h2>Watershed Workflow<a class="headerlink" href="#watershed-workflow" title="Link to this heading">#</a></h2>
+<section id="ssl-certificates">
+<h3>SSL Certificates<a class="headerlink" href="#ssl-certificates" title="Link to this heading">#</a></h3>
+<p>If your computer is operated by an institution (e.g. ORNL), you may
+find errors about self-signed certificates when running the
+test_ww.ipynb notebook.  You will have to install the certificate file
+used by your institution.  If you have a Mac, you can export the
+certificates, then point the SSL in the container to this certificates
+file through environment variables:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/path/to/your/ats-short-course
+security<span class="w"> </span>find-certificate<span class="w"> </span>-a<span class="w"> </span>-p<span class="w"> </span>/Library/Keychains/System.keychain<span class="w"> </span>&gt;<span class="w"> </span>system-certs.pem
+docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/joyvan/workdir<span class="w"> </span>-w<span class="w"> </span>/home/joyvan/workdir<span class="w"> </span>-p<span class="w"> </span><span class="m">9999</span>:9999<span class="w"> </span>-e<span class="w"> </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/home/joyvan/workdir/system-certs.pem<span class="w"> </span>-e<span class="w"> </span><span class="nv">REQUESTS_CA_BUNDLE</span><span class="o">=</span>/home/joyvan/workdir/system-certs.pem<span class="w"> </span>ecoon/watershed_workflow-ats:v2.0
+</pre></div>
+</div>
 </section>
-<section id="registration">
-<h2>Registration<a class="headerlink" href="#registration" title="Link to this heading">#</a></h2>
-<p>The registration deadline is August 1, 2025.  Foreign nationals in
-particular are encouraged to register as soon as possible, to expedite
-visitor agreements with ORNL.  <strong>All attendees</strong> must register, or
-they will not be admitted either in person or virtually!  <strong>All
-attendees</strong> must go through ORNL’s visitor process, and will be
-contacted by Angela Hagler to begin that process.</p>
-<p>To register, go to the <a class="reference external" href="https://docs.google.com/forms/d/1o6q5dRvoMmXagI3u6DNl2KvkBVKgDggjmMkgnBc7DjE/edit">Registration Page</a></p>
-</section>
-<section id="logistics">
-<h2>Logistics<a class="headerlink" href="#logistics" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Dates: September 8-10, 2025</p></li>
-<li><dl class="simple">
-<dt>Location:</dt><dd><ul>
-<li><p>Sept 8: <a class="reference external" href="https://maps.app.goo.gl/PUBGAVXYvcoWroET7">Oak Ridge National Laboratory</a> (optional day)  1 Bethel Valley Rd, Oak Ridge, TN, 37830</p></li>
-<li><p>Sept 9-10: <a class="reference external" href="https://maps.app.goo.gl/9TWneRtzBLpcdJQq6">UT Conference Center</a> 600 Henley St, Knoxville, TN 37902</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p>Lodging: A <a class="reference external" href="https://www.hilton.com/en/attend-my-event/tyschup-90q-3c9b35ed-6e0d-4a2f-9897-f280c4476737/">block of rooms</a>, at the government rate, is available at the Cumberland House in Knoxville.  Please reserve your room by August 8th to be included in the room block.</p></li>
-<li><p>Getting around: Uber and Lyft are available in the Knoxville area, but are not as reliable as in some areas.  Carpooling from the hotel to ORNL will be necessary, and will be arranged closer to the time.  Once you are at the hotel, the conference center is within easy walking distance (~0.25 miles).</p></li>
-</ul>
-</section>
-<section id="agenda">
-<h2>Agenda<a class="headerlink" href="#agenda" title="Link to this heading">#</a></h2>
-<p>See the <a class="reference external" href="https://amanzi.github.io/ats-short-course/ats-short-course-20250908/_static/ATSShortCourse2025_Agenda.pdf">final agenda</a></p>
-</section>
-<section id="participants">
-<h2>Participants<a class="headerlink" href="#participants" title="Link to this heading">#</a></h2>
-<p>To follow along with the demonstrations, participants will perform simulations and visualize results within Jupyter notebooks running under JupyterLab within a Docker container.  All participants are expected to supply their own laptop; any relatively modern machine and operating system should be sufficient. Please see the <a class="reference internal" href="software.html"><span class="doc">Software Setup</span></a> page for instructions on how to set up your machine <strong>prior</strong> to attending the course.</p>
 </section>
 </section>
 
