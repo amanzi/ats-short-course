@@ -1,12 +1,14 @@
 name: Docker
 
 on:
-  push:
-    paths:
-      - 'docker/**'
-    branches-ignore:
-      - 'master'
-      - 'main'
+  workflow_dispatch:
+  
+# push:
+#    paths:
+#      - 'docker/**'
+#    branches-ignore:
+#      - 'master'
+#      - 'main'
 
 jobs:
   docker:
