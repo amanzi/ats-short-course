@@ -331,18 +331,24 @@
 
       <ParameterList name="source terms">
         <ParameterList name="component mass source">
-
           <ParameterList name="Source Rainfall">
-            <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
+            <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
             <Parameter name="regions" type="Array(string)" value="{surface domain}"/>
             <Parameter name="convert to field" type="bool" value="true"/>
             <Parameter name="spatial distribution method" type="string" value="field"/>
             <ParameterList name="field">
-              <Parameter name="field key" type="string" value="surface-tracer1_injection_source"/>
-              <Parameter name="component" type="string" value="cell"/>
+              <Parameter name="number of fields" type="int" value="2"/>
+              <ParameterList name="field 1 info">
+                <Parameter name="field key" type="string" value="surface-tracer1_injection_source"/>
+                <Parameter name="component" type="string" value="cell"/>
+              </ParameterList>
+              <ParameterList name="field 2 info">
+                <Parameter name="field key" type="string" value="surface-tracer2_zeros"/>
+                <Parameter name="component" type="string" value="cell"/>
+              </ParameterList>              
             </ParameterList>
-          </ParameterList>      
-          
+          </ParameterList>
+
           <!-- This is an example of injecting by a given mols / m^2 / s -->
           <ParameterList name="Tracer2 source">
             <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
@@ -356,7 +362,6 @@
               </ParameterList>
             </ParameterList>
           </ParameterList>
-
         </ParameterList>
       </ParameterList>
     </ParameterList>    
@@ -588,7 +593,6 @@
           </ParameterList>
         </ParameterList>
       </ParameterList>
-
     </ParameterList>
 
     <ParameterList name="initial conditions" type="ParameterList">
