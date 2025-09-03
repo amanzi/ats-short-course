@@ -103,12 +103,12 @@ Podman
 ParaView
 """"""""
 
-`Download Paraview <https://www.paraview.org/download/>`_  Paraview versions <INSERT VERSIONS HERE> will visualize our most complex meshes; other versions may crash on 3D, stream aligned watershed meshes.  Any version will work for most of the course.
+`Download Paraview <https://www.paraview.org/download/>`_  Paraview will visualize our most complex meshes.
 
 Visit
 """""
 
-`Download Visit <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_  VisIt does not visualize exo meshes correctly, and does not correctly deal with 3D, stream aligned meshes.  But it is simpler to get started with, and will work fine for most of the course.
+`Download Visit <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_  VisIt does not correctly deal with 3D, stream aligned meshes.  But it is simpler to get started with, and will work fine for most of the course.
 
 Git
 """
@@ -195,7 +195,19 @@ or if you are using the Windowns PowerShell simply use ``$PWD``
     docker run -it --init --mount type=bind,source=$PWD,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
 
 
-3. Download the Watershed Workflow Docker image and run the container
+3. Confirm the ATS container is working
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+From the jupyter lab instance opened previously, open a terminal and run:
+
+.. code-block:: sh
+
+    ats --version
+
+If you get a version number, this container is successfully installed.    
+
+
+4. Download the Watershed Workflow Docker image and run the container
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Watershed Workflow container works in nearly an identical way.
@@ -247,7 +259,7 @@ or if you are using the Windowns PowerShell simply use ``$PWD``
     docker run -it --init --mount type=bind,source=$PWD,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
     
 
-4. Connect to Jupyter
+5. Connect to Jupyter
 ^^^^^^^^^^^^^^^^^^^^^
 
 Follow the instructions on the screen, but if you launched Jupyter Lab, you should now be able to open a link in your browser pointed to the Jupyter Lab.  The link should be:
@@ -273,13 +285,18 @@ You should see JupyterLab and the files from this repository.
 
    This message is safe to ignore -- by manually copying and pasting the above address into your browser, you should see the Jupyter Lab instance.
 
+6. Confirm the Watershed Workflow container is working
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-5. Getting Help
+From the jupyter lab instance opened previously, open and run the notebook `00_intro/test_ww.ipynb`.  If this successfully completes, this container is successfully installed.
+
+7. Getting Help
 ^^^^^^^^^^^^^^^
 
-If you have trouble with this at any point, please either:
+If you have trouble with this at any point, please:
 
-* email the ATS users group at ats-users@googlegroups.com
-* post an `issue <https://github.com/amanzi/ats-short-course/issues/>`_
+* Check the :doc:`troubleshooting` page to see if your issue has been addressed.
+* Email the ATS users group at ats-users@googlegroups.com OR
+* Post an `issue <https://github.com/amanzi/ats-short-course/issues/>`_
   
   
