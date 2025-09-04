@@ -88,7 +88,7 @@ Podman
 
 .. admonition:: OSX
 
-    Download and install the "universal *.dmg" file.  Alternatively, `brew install --cask podman-desktop` if you use homebrew.
+    Download and install the "universal \*.dmg" file.  Alternatively, `brew install --cask podman-desktop` if you use homebrew.
 
 .. admonition:: Linux
 
