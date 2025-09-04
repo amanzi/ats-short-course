@@ -5,7 +5,7 @@ To follow along with the demonstrations, participants will perform simulations a
 
 .. contents::
    :local:
-   :depth: 2
+   :depth: 3
 
 The ATS container contains:
 
@@ -27,7 +27,7 @@ Note that these tools and this course material has been tested on Linux, Mac OSX
 .. |nbsp| unicode:: U+00A0 .. UNBREAKABLE SPACE 
 
 1. Install external tools:
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 You will need **one from each** of the following categories:
 
@@ -37,7 +37,7 @@ You will need **one from each** of the following categories:
   
 
 Docker
-""""""
+^^^^^^
 
 `Download Docker <https://www.docker.com/get-started>`_
 
@@ -68,7 +68,7 @@ Docker
 
 
 Podman
-"""""""
+^^^^^^
 
 `Download Podman <https://podman-desktop.io/>`_
 
@@ -101,44 +101,76 @@ Podman
     * `WSL Troublshooting Guide <https://learn.microsoft.com/en-us/windows/wsl/troubleshooting#installation-issues>`_
 
 ParaView
-""""""""
+^^^^^^^^
 
 `Download Paraview <https://www.paraview.org/download/>`_  Paraview will visualize our most complex meshes.
 
 Visit
-"""""
+^^^^^
 
 `Download Visit <https://wci.llnl.gov/simulation/computer-codes/visit/executables>`_  VisIt does not correctly deal with 3D, stream aligned meshes.  But it is simpler to get started with, and will work fine for most of the course.
 
 Git
-"""
+^^^
 
 * **Mac OSX**: git is included in the *command line tools*, installed via ``xcode-select --install``, or in XCode itself.
 * **Linux**: git is included as a standard package under most package managers, e.g. ``sudo apt-get install git``.
 * **Windows**: See `Git Downloads <https://github.com/git-guides/install-git>`_. Note that the GitHub Desktop is also an option for Windows users and provides a GUI.
 
 
-2. Clone the ats-short-course demos repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Clone the ats-short-course repository
+----------------------------------------
 
 The Jupyter notebooks, as well as the corresponding input files and data, are provided in this git repository. To get started you need to clone this repository:
 
 .. code-block:: sh
-
+                
    git clone -b ats-short-course-20250908 https://github.com/amanzi/ats-short-course
+
+which will create a subdirectory called ``ats-short-course``.  Now change into this directory
+   
+.. code-block:: sh
+                
    cd ats-short-course
   
-3. Download the ATS Docker image and run the container
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first container to be used is the container used for running ATS.  It is quite large; please download this prior to arriving at the short course. If you are using Podman instead of docker, replace ``docker`` with ``podman`` in the commands that follow. 
+3. Working with the ATS
+-----------------------
+
+.. note:: If you are using Podman instead of docker, replace ``docker`` with ``podman`` in the commands that follow. 
+
+Download the ATS Docker Image and run it
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The first container to be used is for running the ATS. The image for this container is quite large; please download this prior to arriving at the short course. Copy-and-paste the ``docker pull`` command shown below to download the ATS image:
+
 
 .. code-block:: sh
-
+                
    docker pull metsi/ats-short-course:2025-ats-latest
 
+If this downloads successfully then run the ats in this container to check the version
 
-The next step is to run the container.  The container can either be used to launch Jupyter Lab -- most of the course will be run this way.  Occassionally it may be useful to directly access a terminal inside the container.
+.. code-block:: sh
+                
+   docker run -it --rm metsi/ats-short-course:2025-ats-latest ats --version
+
+You should see the following output 
+   
+.. code-block:: console
+                
+   ATS version 1.6.0_8d11cb0c
+
+The next step is running the container to launch Jupyter Lab -- most of the course will be run this way.
+
+.. note:: Occassionally it may be useful to directly run ats in the container as we did here, or to access a terminal inside the container. See the :doc:`troubleshooting` page for tips on these options. 
+
+Run JupyterLab in the ATS Container
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The goal is to enable JupyterLab to interact with the ats-short-course repository files on your local system. This is accomplished through the --mount option which shares your present working directory ($pwd) with the Docker container.
+
+So make sure your $pwd is the top-level of the ats-short-course repository and copy-and-paste one of the following commands:
 
 
 OSX or Linux
@@ -149,13 +181,6 @@ To launch the Jupyter Lab container, mounting the current directory (which shoul
 .. code-block:: sh
 
    docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
-
-
-To launch a terminal:
-
-.. code-block:: sh
-
-   docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest /bin/bash
 
 Windows 10
 """"""""""
@@ -175,13 +200,6 @@ If so, try double slashes in your Docker command:
 
     docker run -it --init --mount type=bind,source=C:\\Users\\USERNAME\\ats-short-course,target=//home//ats_sc_user//work -w //home//ats_sc_user//work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
 
-
-Similarly, append `/bin/bash` to the end of the line to get a terminal inside the container.
-
-.. code-block:: sh
-
-    docker run -it --init --mount type=bind,source=C:\Users\USERNAME\ats-short-course,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest /bin/bash
-
 An alternative to providing the path explicitly, you can try the Windows equivalent to ``$(pwd)`` in the Command Prompt ``%cd:\=/%``
 
 .. code-block:: sh
@@ -195,28 +213,42 @@ or if you are using the Windowns PowerShell simply use ``$PWD``
     docker run -it --init --mount type=bind,source=$PWD,target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
 
 
-3. Confirm the ATS container is working
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Connect to the ATS JupyterLab Session from your local Web Browser
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-From the jupyter lab instance opened previously, open a terminal and run:
+Independent of the OS you’re using, the Docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.
 
-.. code-block:: sh
+.. code-block:: console
+                
+   ...                
+   [I 2025-09-04 04:43:47.167 ServerApp] Jupyter Server 2.17.0 is running at:
+   [I 2025-09-04 04:43:47.167 ServerApp] http://ee87e000539c:8888/lab
+   [I 2025-09-04 04:43:47.167 ServerApp]     http://127.0.0.1:8888/lab
+   [I 2025-09-04 04:43:47.167 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+   ...
+                
+Just cut-and-paste the link shown, or click http://127.0.0.1:8888/lab.
 
-    ats --version
+.. note::
 
-If you get a version number, this container is successfully installed.    
+   If the browser complains about tokens and/or refuses to connect, it may be because you have a local, non-container Jupyter lab instance running.  Please shut that down, then try again.
 
+   
+4. Working with Watershed Workflow
+---------------------------------
 
-4. Download the Watershed Workflow Docker image and run the container
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Download the Watershed Workflow Docker image
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The Watershed Workflow container works in nearly an identical way.
+The Watershed Workflow container works in nearly an identical way.  Download the Watershed WorkFlow image, 
 
 .. code-block:: sh
 
    docker pull ecoon/watershed_workflow-ats:v2.0
 
-
+Run JupyterLab in the Watershed Workflow Container
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   
 The next step is to run the container.  Again, we will mount the local directory, and run jupyter lab.
 
 OSX or Linux
@@ -257,41 +289,33 @@ or if you are using the Windowns PowerShell simply use ``$PWD``
 .. code-block:: sh
 
     docker run -it --init --mount type=bind,source=$PWD,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
+
+Connect to the Watershed Workflow JupyterLab Session from your local Web Browser
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Independent of the OS you’re using, the Docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.
+
+.. code-block:: console
+                
+   ...
+   [I 2025-09-04 16:17:14.300 ServerApp] Jupyter Server 2.17.0 is running at:
+   [I 2025-09-04 16:17:14.300 ServerApp] http://localhost:9999/lab
+   [I 2025-09-04 16:17:14.300 ServerApp]     http://127.0.0.1:9999/lab
+   [I 2025-09-04 16:17:14.300 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+   [C 2025-09-04 16:17:14.301 ServerApp]
+
+Now, simply copy-and-paste the link shown into your local web browser, or click http://127.0.0.1:9999/lab.
+   
+.. note:: We have deliberately assigned the default port to 9999 for Watershed Workflow so that it won't conflict with the ATS session you have running over port 8888.  
+
+Confirm the Watershed Workflow container is working
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+From the jupyter lab instance you just started, open and run the notebook `00_intro/test_ww.ipynb`.  If this successfully completes, this container is successfully installed.
     
 
-5. Connect to Jupyter
-^^^^^^^^^^^^^^^^^^^^^
-
-Follow the instructions on the screen, but if you launched Jupyter Lab, you should now be able to open a link in your browser pointed to the Jupyter Lab.  The link should be:
-
-* http://127.0.0.1:8888/lab for the ATS container
-* http://127.0.0.1:9999/lab for the Watershed Workflow container.
-
-You should see JupyterLab and the files from this repository.
-
-
-.. note::
-
-   If the browser complains about tokens and refuses to connect, it may be because you have a local, non-container Jupyter lab instance running.  Please shut that down, then try again.
-
-    
-.. note::
-
-   Some users see the message:
-
-   .. code-block::
-
-      No web browser found: could not locate runnable browser.
-
-   This message is safe to ignore -- by manually copying and pasting the above address into your browser, you should see the Jupyter Lab instance.
-
-6. Confirm the Watershed Workflow container is working
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-From the jupyter lab instance opened previously, open and run the notebook `00_intro/test_ww.ipynb`.  If this successfully completes, this container is successfully installed.
-
-7. Getting Help
-^^^^^^^^^^^^^^^
+5. Getting Help
+---------------
 
 If you have trouble with this at any point, please:
 

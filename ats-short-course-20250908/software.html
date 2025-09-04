@@ -276,21 +276,29 @@ Version ats-short-course-20250908</div>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-ats-short-course-demos-repository">2. Clone the ats-short-course demos repository</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-ats-docker-image-and-run-the-container">3. Download the ATS Docker image and run the container</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osx-or-linux">OSX or Linux</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-10">Windows 10</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clone-the-ats-short-course-repository">2. Clone the ats-short-course repository</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-the-ats">3. Working with the ATS</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-ats-docker-image-and-run-it">Download the ATS Docker Image and run it</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-jupyterlab-in-the-ats-container">Run JupyterLab in the ATS Container</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#osx-or-linux">OSX or Linux</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#windows-10">Windows 10</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confirm-the-ats-container-is-working">3. Confirm the ATS container is working</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-watershed-workflow-docker-image-and-run-the-container">4. Download the Watershed Workflow Docker image and run the container</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">OSX or Linux</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Windows 10</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-the-ats-jupyterlab-session-from-your-local-web-browser">Connect to the ATS JupyterLab Session from your local Web Browser</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-jupyter">5. Connect to Jupyter</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confirm-the-watershed-workflow-container-is-working">6. Confirm the Watershed Workflow container is working</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">7. Getting Help</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-watershed-workflow">4. Working with Watershed Workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-watershed-workflow-docker-image">Download the Watershed Workflow Docker image</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-jupyterlab-in-the-watershed-workflow-container">Run JupyterLab in the Watershed Workflow Container</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">OSX or Linux</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Windows 10</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-the-watershed-workflow-jupyterlab-session-from-your-local-web-browser">Connect to the Watershed Workflow JupyterLab Session from your local Web Browser</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confirm-the-watershed-workflow-container-is-working">Confirm the Watershed Workflow container is working</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-help">5. Getting Help</a></li>
 </ul>
   </nav></div>
     </div>
@@ -361,23 +369,33 @@ Version ats-short-course-20250908</div>
 <li><p><a class="reference internal" href="#git" id="id10">Git</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#clone-the-ats-short-course-demos-repository" id="id11">2. Clone the ats-short-course demos repository</a></p></li>
-<li><p><a class="reference internal" href="#download-the-ats-docker-image-and-run-the-container" id="id12">3. Download the ATS Docker image and run the container</a></p>
+<li><p><a class="reference internal" href="#clone-the-ats-short-course-repository" id="id11">2. Clone the ats-short-course repository</a></p></li>
+<li><p><a class="reference internal" href="#working-with-the-ats" id="id12">3. Working with the ATS</a></p>
 <ul>
-<li><p><a class="reference internal" href="#osx-or-linux" id="id13">OSX or Linux</a></p></li>
-<li><p><a class="reference internal" href="#windows-10" id="id14">Windows 10</a></p></li>
+<li><p><a class="reference internal" href="#download-the-ats-docker-image-and-run-it" id="id13">Download the ATS Docker Image and run it</a></p></li>
+<li><p><a class="reference internal" href="#run-jupyterlab-in-the-ats-container" id="id14">Run JupyterLab in the ATS Container</a></p>
+<ul>
+<li><p><a class="reference internal" href="#osx-or-linux" id="id15">OSX or Linux</a></p></li>
+<li><p><a class="reference internal" href="#windows-10" id="id16">Windows 10</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#confirm-the-ats-container-is-working" id="id15">3. Confirm the ATS container is working</a></p></li>
-<li><p><a class="reference internal" href="#download-the-watershed-workflow-docker-image-and-run-the-container" id="id16">4. Download the Watershed Workflow Docker image and run the container</a></p>
-<ul>
-<li><p><a class="reference internal" href="#id3" id="id17">OSX or Linux</a></p></li>
-<li><p><a class="reference internal" href="#id4" id="id18">Windows 10</a></p></li>
+<li><p><a class="reference internal" href="#connect-to-the-ats-jupyterlab-session-from-your-local-web-browser" id="id17">Connect to the ATS JupyterLab Session from your local Web Browser</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#connect-to-jupyter" id="id19">5. Connect to Jupyter</a></p></li>
-<li><p><a class="reference internal" href="#confirm-the-watershed-workflow-container-is-working" id="id20">6. Confirm the Watershed Workflow container is working</a></p></li>
-<li><p><a class="reference internal" href="#getting-help" id="id21">7. Getting Help</a></p></li>
+<li><p><a class="reference internal" href="#working-with-watershed-workflow" id="id18">4. Working with Watershed Workflow</a></p>
+<ul>
+<li><p><a class="reference internal" href="#download-the-watershed-workflow-docker-image" id="id19">Download the Watershed Workflow Docker image</a></p></li>
+<li><p><a class="reference internal" href="#run-jupyterlab-in-the-watershed-workflow-container" id="id20">Run JupyterLab in the Watershed Workflow Container</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id3" id="id21">OSX or Linux</a></p></li>
+<li><p><a class="reference internal" href="#id4" id="id22">Windows 10</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#connect-to-the-watershed-workflow-jupyterlab-session-from-your-local-web-browser" id="id23">Connect to the Watershed Workflow JupyterLab Session from your local Web Browser</a></p></li>
+<li><p><a class="reference internal" href="#confirm-the-watershed-workflow-container-is-working" id="id24">Confirm the Watershed Workflow container is working</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#getting-help" id="id25">5. Getting Help</a></p></li>
 </ul>
 </nav>
 <p>The ATS container contains:</p>
@@ -484,34 +502,56 @@ Version ats-short-course-20250908</div>
 </ul>
 </section>
 </section>
-<section id="clone-the-ats-short-course-demos-repository">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">2. Clone the ats-short-course demos repository</a><a class="headerlink" href="#clone-the-ats-short-course-demos-repository" title="Link to this heading">#</a></h2>
+<section id="clone-the-ats-short-course-repository">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">2. Clone the ats-short-course repository</a><a class="headerlink" href="#clone-the-ats-short-course-repository" title="Link to this heading">#</a></h2>
 <p>The Jupyter notebooks, as well as the corresponding input files and data, are provided in this git repository. To get started you need to clone this repository:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>ats-short-course-20250908<span class="w"> </span>https://github.com/amanzi/ats-short-course
-<span class="nb">cd</span><span class="w"> </span>ats-short-course
+</pre></div>
+</div>
+<p>which will create a subdirectory called <code class="docutils literal notranslate"><span class="pre">ats-short-course</span></code>.  Now change into this directory</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>ats-short-course
 </pre></div>
 </div>
 </section>
-<section id="download-the-ats-docker-image-and-run-the-container">
-<h2><a class="toc-backref" href="#id12" role="doc-backlink">3. Download the ATS Docker image and run the container</a><a class="headerlink" href="#download-the-ats-docker-image-and-run-the-container" title="Link to this heading">#</a></h2>
-<p>The first container to be used is the container used for running ATS.  It is quite large; please download this prior to arriving at the short course. If you are using Podman instead of docker, replace <code class="docutils literal notranslate"><span class="pre">docker</span></code> with <code class="docutils literal notranslate"><span class="pre">podman</span></code> in the commands that follow.</p>
+<section id="working-with-the-ats">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">3. Working with the ATS</a><a class="headerlink" href="#working-with-the-ats" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are using Podman instead of docker, replace <code class="docutils literal notranslate"><span class="pre">docker</span></code> with <code class="docutils literal notranslate"><span class="pre">podman</span></code> in the commands that follow.</p>
+</div>
+<section id="download-the-ats-docker-image-and-run-it">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Download the ATS Docker Image and run it</a><a class="headerlink" href="#download-the-ats-docker-image-and-run-it" title="Link to this heading">#</a></h3>
+<p>The first container to be used is for running the ATS. The image for this container is quite large; please download this prior to arriving at the short course. Copy-and-paste the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code> command shown below to download the ATS image:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
 </pre></div>
 </div>
-<p>The next step is to run the container.  The container can either be used to launch Jupyter Lab – most of the course will be run this way.  Occassionally it may be useful to directly access a terminal inside the container.</p>
+<p>If this downloads successfully then run the ats in this container to check the version</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>metsi/ats-short-course:2025-ats-latest<span class="w"> </span>ats<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>You should see the following output</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">ATS version 1.6.0_8d11cb0c</span>
+</pre></div>
+</div>
+<p>The next step is running the container to launch Jupyter Lab – most of the course will be run this way.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Occassionally it may be useful to directly run ats in the container as we did here, or to access a terminal inside the container. See the <a class="reference internal" href="troubleshooting.html"><span class="doc">Troubleshooting</span></a> page for tips on these options.</p>
+</div>
+</section>
+<section id="run-jupyterlab-in-the-ats-container">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Run JupyterLab in the ATS Container</a><a class="headerlink" href="#run-jupyterlab-in-the-ats-container" title="Link to this heading">#</a></h3>
+<p>The goal is to enable JupyterLab to interact with the ats-short-course repository files on your local system. This is accomplished through the –mount option which shares your present working directory ($pwd) with the Docker container.</p>
+<p>So make sure your $pwd is the top-level of the ats-short-course repository and copy-and-paste one of the following commands:</p>
 <section id="osx-or-linux">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">OSX or Linux</a><a class="headerlink" href="#osx-or-linux" title="Link to this heading">#</a></h3>
+<h4><a class="toc-backref" href="#id15" role="doc-backlink">OSX or Linux</a><a class="headerlink" href="#osx-or-linux" title="Link to this heading">#</a></h4>
 <p>To launch the Jupyter Lab container, mounting the current directory (which should be the ats-short-course repository you just cloned):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
 </pre></div>
 </div>
-<p>To launch a terminal:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest<span class="w"> </span>/bin/bash
-</pre></div>
-</div>
 </section>
 <section id="windows-10">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Windows 10</a><a class="headerlink" href="#windows-10" title="Link to this heading">#</a></h3>
+<h4><a class="toc-backref" href="#id16" role="doc-backlink">Windows 10</a><a class="headerlink" href="#windows-10" title="Link to this heading">#</a></h4>
 <p>If you are using Windows 10’s Command Prompt or PowerShell, where the variable <code class="docutils literal notranslate"><span class="pre">$(pwd)</span></code> is not recognized, it may be easier to type the location of ats-short-course explicitly.
 For example, if <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\ats-short-course</span></code> is the top-level of the <code class="docutils literal notranslate"><span class="pre">ats-short-course</span></code> repository, then:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>C:<span class="se">\U</span>sers<span class="se">\U</span>SERNAME<span class="se">\a</span>ts-short-course,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
@@ -520,10 +560,6 @@ For example, if <code class="docutils literal notranslate"><span class="pre">C:\
 <p>If you are getting a Docker error that <strong>the working directory is not valid</strong> and you don’t recognize the directory Docker returns, it is possible you are using (or installed as part of packages like Git for Windows) a command line interface that changes the paths you are passing to Docker.</p>
 <p>If so, try double slashes in your Docker command:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>C:<span class="se">\\</span>Users<span class="se">\\</span>USERNAME<span class="se">\\</span>ats-short-course,target<span class="o">=</span>//home//ats_sc_user//work<span class="w"> </span>-w<span class="w"> </span>//home//ats_sc_user//work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest
-</pre></div>
-</div>
-<p>Similarly, append <cite>/bin/bash</cite> to the end of the line to get a terminal inside the container.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>C:<span class="se">\U</span>sers<span class="se">\U</span>SERNAME<span class="se">\a</span>ts-short-course,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>metsi/ats-short-course:2025-ats-latest<span class="w"> </span>/bin/bash
 </pre></div>
 </div>
 <p>An alternative to providing the path explicitly, you can try the Windows equivalent to <code class="docutils literal notranslate"><span class="pre">$(pwd)</span></code> in the Command Prompt <code class="docutils literal notranslate"><span class="pre">%cd:\=/%</span></code></p>
@@ -536,30 +572,45 @@ For example, if <code class="docutils literal notranslate"><span class="pre">C:\
 </div>
 </section>
 </section>
-<section id="confirm-the-ats-container-is-working">
-<h2><a class="toc-backref" href="#id15" role="doc-backlink">3. Confirm the ATS container is working</a><a class="headerlink" href="#confirm-the-ats-container-is-working" title="Link to this heading">#</a></h2>
-<p>From the jupyter lab instance opened previously, open a terminal and run:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>ats<span class="w"> </span>--version
+<section id="connect-to-the-ats-jupyterlab-session-from-your-local-web-browser">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Connect to the ATS JupyterLab Session from your local Web Browser</a><a class="headerlink" href="#connect-to-the-ats-jupyterlab-session-from-your-local-web-browser" title="Link to this heading">#</a></h3>
+<p>Independent of the OS you’re using, the Docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">...</span>
+<span class="go">[I 2025-09-04 04:43:47.167 ServerApp] Jupyter Server 2.17.0 is running at:</span>
+<span class="go">[I 2025-09-04 04:43:47.167 ServerApp] http://ee87e000539c:8888/lab</span>
+<span class="go">[I 2025-09-04 04:43:47.167 ServerApp]     http://127.0.0.1:8888/lab</span>
+<span class="go">[I 2025-09-04 04:43:47.167 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span>
+<span class="go">...</span>
 </pre></div>
 </div>
-<p>If you get a version number, this container is successfully installed.</p>
+<p>Just cut-and-paste the link shown, or click <a class="reference external" href="http://127.0.0.1:8888/lab">http://127.0.0.1:8888/lab</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the browser complains about tokens and/or refuses to connect, it may be because you have a local, non-container Jupyter lab instance running.  Please shut that down, then try again.</p>
+</div>
 </section>
-<section id="download-the-watershed-workflow-docker-image-and-run-the-container">
-<h2><a class="toc-backref" href="#id16" role="doc-backlink">4. Download the Watershed Workflow Docker image and run the container</a><a class="headerlink" href="#download-the-watershed-workflow-docker-image-and-run-the-container" title="Link to this heading">#</a></h2>
-<p>The Watershed Workflow container works in nearly an identical way.</p>
+</section>
+<section id="working-with-watershed-workflow">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">4. Working with Watershed Workflow</a><a class="headerlink" href="#working-with-watershed-workflow" title="Link to this heading">#</a></h2>
+<section id="download-the-watershed-workflow-docker-image">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Download the Watershed Workflow Docker image</a><a class="headerlink" href="#download-the-watershed-workflow-docker-image" title="Link to this heading">#</a></h3>
+<p>The Watershed Workflow container works in nearly an identical way.  Download the Watershed WorkFlow image,</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>ecoon/watershed_workflow-ats:v2.0
 </pre></div>
 </div>
+</section>
+<section id="run-jupyterlab-in-the-watershed-workflow-container">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Run JupyterLab in the Watershed Workflow Container</a><a class="headerlink" href="#run-jupyterlab-in-the-watershed-workflow-container" title="Link to this heading">#</a></h3>
 <p>The next step is to run the container.  Again, we will mount the local directory, and run jupyter lab.</p>
 <section id="id3">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">OSX or Linux</a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h4><a class="toc-backref" href="#id21" role="doc-backlink">OSX or Linux</a><a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <p>To launch the Jupyter Lab container, mounting the current directory (which should be the ats-short-course repository you just cloned):</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/joyvan/workdir<span class="w"> </span>-w<span class="w"> </span>/home/joyvan/workdir<span class="w"> </span>-p<span class="w"> </span><span class="m">9999</span>:9999<span class="w"> </span>ecoon/watershed_workflow-ats:v2.0
 </pre></div>
 </div>
 </section>
 <section id="id4">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">Windows 10</a><a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h4><a class="toc-backref" href="#id22" role="doc-backlink">Windows 10</a><a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <p>If you are using Windows 10’s Command Prompt or PowerShell, where the variable <code class="docutils literal notranslate"><span class="pre">$(pwd)</span></code> is not recognized, it may be easier to type the location of ats-short-course explicitly.
 For example, if <code class="docutils literal notranslate"><span class="pre">C:\Users\USERNAME\ats-short-course</span></code> is the top-level of the <code class="docutils literal notranslate"><span class="pre">ats-short-course</span></code> repository, then:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>C:<span class="se">\U</span>sers<span class="se">\U</span>SERNAME<span class="se">\a</span>ts-short-course,target<span class="o">=</span>/home/joyvan/workdir<span class="w"> </span>-w<span class="w"> </span>/home/joyvan/workdir<span class="w"> </span>-p<span class="w"> </span><span class="m">9999</span>:9999<span class="w"> </span>ecoon/watershed_watershed-ats:v2.0
@@ -580,33 +631,30 @@ For example, if <code class="docutils literal notranslate"><span class="pre">C:\
 </div>
 </section>
 </section>
-<section id="connect-to-jupyter">
-<h2><a class="toc-backref" href="#id19" role="doc-backlink">5. Connect to Jupyter</a><a class="headerlink" href="#connect-to-jupyter" title="Link to this heading">#</a></h2>
-<p>Follow the instructions on the screen, but if you launched Jupyter Lab, you should now be able to open a link in your browser pointed to the Jupyter Lab.  The link should be:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="http://127.0.0.1:8888/lab">http://127.0.0.1:8888/lab</a> for the ATS container</p></li>
-<li><p><a class="reference external" href="http://127.0.0.1:9999/lab">http://127.0.0.1:9999/lab</a> for the Watershed Workflow container.</p></li>
-</ul>
-<p>You should see JupyterLab and the files from this repository.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If the browser complains about tokens and refuses to connect, it may be because you have a local, non-container Jupyter lab instance running.  Please shut that down, then try again.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Some users see the message:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">No</span> <span class="n">web</span> <span class="n">browser</span> <span class="n">found</span><span class="p">:</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">locate</span> <span class="n">runnable</span> <span class="n">browser</span><span class="o">.</span>
+<section id="connect-to-the-watershed-workflow-jupyterlab-session-from-your-local-web-browser">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Connect to the Watershed Workflow JupyterLab Session from your local Web Browser</a><a class="headerlink" href="#connect-to-the-watershed-workflow-jupyterlab-session-from-your-local-web-browser" title="Link to this heading">#</a></h3>
+<p>Independent of the OS you’re using, the Docker run command described above will output several status messages to the screen, one of which is about the Jupyter server that it started.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">...</span>
+<span class="go">[I 2025-09-04 16:17:14.300 ServerApp] Jupyter Server 2.17.0 is running at:</span>
+<span class="go">[I 2025-09-04 16:17:14.300 ServerApp] http://localhost:9999/lab</span>
+<span class="go">[I 2025-09-04 16:17:14.300 ServerApp]     http://127.0.0.1:9999/lab</span>
+<span class="go">[I 2025-09-04 16:17:14.300 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).</span>
+<span class="go">[C 2025-09-04 16:17:14.301 ServerApp]</span>
 </pre></div>
 </div>
-<p>This message is safe to ignore – by manually copying and pasting the above address into your browser, you should see the Jupyter Lab instance.</p>
+<p>Now, simply copy-and-paste the link shown into your local web browser, or click <a class="reference external" href="http://127.0.0.1:9999/lab">http://127.0.0.1:9999/lab</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We have deliberately assigned the default port to 9999 for Watershed Workflow so that it won’t conflict with the ATS session you have running over port 8888.</p>
 </div>
 </section>
 <section id="confirm-the-watershed-workflow-container-is-working">
-<h2><a class="toc-backref" href="#id20" role="doc-backlink">6. Confirm the Watershed Workflow container is working</a><a class="headerlink" href="#confirm-the-watershed-workflow-container-is-working" title="Link to this heading">#</a></h2>
-<p>From the jupyter lab instance opened previously, open and run the notebook <cite>00_intro/test_ww.ipynb</cite>.  If this successfully completes, this container is successfully installed.</p>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Confirm the Watershed Workflow container is working</a><a class="headerlink" href="#confirm-the-watershed-workflow-container-is-working" title="Link to this heading">#</a></h3>
+<p>From the jupyter lab instance you just started, open and run the notebook <cite>00_intro/test_ww.ipynb</cite>.  If this successfully completes, this container is successfully installed.</p>
+</section>
 </section>
 <section id="getting-help">
-<h2><a class="toc-backref" href="#id21" role="doc-backlink">7. Getting Help</a><a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">5. Getting Help</a><a class="headerlink" href="#getting-help" title="Link to this heading">#</a></h2>
 <p>If you have trouble with this at any point, please:</p>
 <ul class="simple">
 <li><p>Check the <a class="reference internal" href="troubleshooting.html"><span class="doc">Troubleshooting</span></a> page to see if your issue has been addressed.</p></li>
