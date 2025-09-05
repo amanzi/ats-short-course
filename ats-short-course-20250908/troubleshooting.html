@@ -272,6 +272,14 @@ Version ats-short-course-20250908</div>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ssl-certificates">SSL Certificates</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-tips">Docker Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-we-are-adding-here">Examples we are adding here:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-lab-tips">Jupyter Lab Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faqs-we-are-adding-here">FAQs we are adding here:</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
     </div>
@@ -330,7 +338,7 @@ Version ats-short-course-20250908</div>
                   
   <section id="troubleshooting">
 <h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h1>
-<p>The containers can be tricky to install.  Here are some common problems and their fixes.</p>
+<p>The external software can be challenging to install and containers can be a tricky to run.  Here we are some common problems and their fixes.</p>
 <section id="watershed-workflow">
 <h2>Watershed Workflow<a class="headerlink" href="#watershed-workflow" title="Link to this heading">#</a></h2>
 <section id="ssl-certificates">
@@ -346,6 +354,59 @@ security<span class="w"> </span>find-certificate<span class="w"> </span>-a<span 
 docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--init<span class="w"> </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/joyvan/workdir<span class="w"> </span>-w<span class="w"> </span>/home/joyvan/workdir<span class="w"> </span>-p<span class="w"> </span><span class="m">9999</span>:9999<span class="w"> </span>-e<span class="w"> </span><span class="nv">SSL_CERT_FILE</span><span class="o">=</span>/home/joyvan/workdir/system-certs.pem<span class="w"> </span>-e<span class="w"> </span><span class="nv">REQUESTS_CA_BUNDLE</span><span class="o">=</span>/home/joyvan/workdir/system-certs.pem<span class="w"> </span>ecoon/watershed_workflow-ats:v2.0
 </pre></div>
 </div>
+</section>
+</section>
+<section id="docker-tips">
+<h2>Docker Tips<a class="headerlink" href="#docker-tips" title="Link to this heading">#</a></h2>
+<div class="admonition-key-terminology admonition">
+<p class="admonition-title">Key Terminology</p>
+<p>As with any technology there is some jargon that we need to keep
+straight otherwise things that are relatively simple will seem very
+confusing.  First, it is important to define the terms <strong>image</strong> and
+<strong>container</strong>:</p>
+<ul class="simple">
+<li><p><strong>Image</strong> : A docker image is a static file that includes everything
+that is needed to run an application in a docker container, such
+as, code, libraries, environment variables, etc.  Note images are
+what we build and share with you through docker hub, such as the
+metsi/ats-short-course:2025-ats-latest image you pulled down to
+your system.</p></li>
+<li><p><strong>Container</strong> : A docker container is a runtime instance of a docker
+image.  So when you run jupyterlab it is running in a container
+that is an instance of the docker image
+metsi/ats-short-course:2025-ats-latest.  So you could have many
+containers started from the same image, and you can run multiple
+shells within a container.</p></li>
+</ul>
+</div>
+<section id="examples-we-are-adding-here">
+<h3>Examples we are adding here:<a class="headerlink" href="#examples-we-are-adding-here" title="Link to this heading">#</a></h3>
+<p>Docker (or PodMan) Desktop GUIs make it easy to find some of this information, but eventually you will likely end up on the command line again, particularly for some of the <code class="docutils literal notranslate"><span class="pre">run</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code> commands.  In addition, seeing it on the command line will help promote a clearer understanding of what is happening under the hood.  So here we focus on the command line,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>What images do I have downloaded?</p></li>
+<li><p>What containers do I have running?</p></li>
+<li><p>What containers do I have on my system (running and stopped)?</p></li>
+<li><p>Running a bash shell when you start the container</p></li>
+<li><p>Executing a bash shell in a running container</p></li>
+<li><p>Executing a privileged (root shell) in a running container</p></li>
+<li><p>How do I just user the ATS container to run an ATS simulation on my system</p></li>
+<li><p>How do I prevent stopped containers from being saved (–rm option)</p></li>
+<li><p>How do I removed stopped containers (prune)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="jupyter-lab-tips">
+<h2>Jupyter Lab Tips<a class="headerlink" href="#jupyter-lab-tips" title="Link to this heading">#</a></h2>
+<section id="faqs-we-are-adding-here">
+<h3>FAQs we are adding here:<a class="headerlink" href="#faqs-we-are-adding-here" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>How do I figure out what process is using the port I want for Jupyter?</p></li>
+<li><p>How would I start the ATS or Watershed Workflow container to use a different port?</p></li>
+</ul>
+</div></blockquote>
 </section>
 </section>
 </section>
