@@ -229,8 +229,13 @@
       <ParameterList name="mass_density_liquid" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="eos"/>
         <Parameter name="EOS basis" type="string" value="both"/>
-        <Parameter name="molar density key" type="string" value="molar_density_liquid"/>
-        <Parameter name="mass density key" type="string" value="mass_density_liquid"/>
+        <ParameterList name="EOS parameters" type="ParameterList">
+          <Parameter name="EOS type" type="string" value="liquid water"/>
+        </ParameterList>
+      </ParameterList>
+      <ParameterList name="molar_density_liquid" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="eos"/>
+        <Parameter name="EOS basis" type="string" value="both"/>
         <ParameterList name="EOS parameters" type="ParameterList">
           <Parameter name="EOS type" type="string" value="liquid water"/>
         </ParameterList>
@@ -240,17 +245,6 @@
         <Parameter name="viscosity key" type="string" value="viscosity_liquid"/>
         <ParameterList name="viscosity model parameters" type="ParameterList">
           <Parameter name="viscosity type" type="string" value="liquid water"/>
-        </ParameterList>
-      </ParameterList>
-      <ParameterList name="molar_density_gas" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="eos"/>
-        <Parameter name="EOS basis" type="string" value="molar"/>
-        <Parameter name="molar density key" type="string" value="molar_density_gas"/>
-        <ParameterList name="EOS parameters" type="ParameterList">
-          <Parameter name="EOS type" type="string" value="vapor in gas"/>
-          <ParameterList name="gas EOS parameters" type="ParameterList">
-            <Parameter name="EOS type" type="string" value="ideal gas"/>
-          </ParameterList>
         </ParameterList>
       </ParameterList>
       <ParameterList name="molar_density_ice" type="ParameterList">
@@ -347,7 +341,7 @@
       <ParameterList name="saturation_liquid" type="ParameterList">
         <Parameter name="model parameters" type="string" value="WRM parameters"/>
         <Parameter name="evaluator type" type="string" value="water retention model with ice"/>
-        <Parameter name="liquid-ice capillary pressure" type="string" value="capillary_pressure_liq_ice" />
+        <Parameter name="liquid-ice capillary pressure key" type="string" value="capillary_pressure_liq_ice" />
         <ParameterList name="permafrost model parameters" type="ParameterList">
           <Parameter name="permafrost wrm type" type="string" value="fpd permafrost model"/>
           <Parameter name="minimum dsi_dpressure magnitude" type="double" value="1e-12" />
@@ -356,7 +350,7 @@
       <ParameterList name="saturation_gas" type="ParameterList">
         <Parameter name="model parameters" type="string" value="WRM parameters"/>
         <Parameter name="evaluator type" type="string" value="water retention model with ice"/>
-        <Parameter name="liquid-ice capillary pressure" type="string" value="capillary_pressure_liq_ice" />
+        <Parameter name="liquid-ice capillary pressure key" type="string" value="capillary_pressure_liq_ice" />
         <ParameterList name="permafrost model parameters" type="ParameterList">
           <Parameter name="permafrost wrm type" type="string" value="fpd permafrost model"/>
           <Parameter name="minimum dsi_dpressure magnitude" type="double" value="1e-12" />
@@ -379,8 +373,9 @@
           <Parameter name="region" type="string" value="domain"/>
           <Parameter name="wrm type" type="string" value="van Genuchten"/>
           <Parameter name="van Genuchten alpha [Pa^-1]" type="double" value="0.000111"/>
-          <Parameter name="van Genuchten n [-]" type="double" value="1.48"/>
+          <Parameter name="van Genuchten m [-]" type="double" value="0.32"/>
           <Parameter name="residual saturation [-]" type="double" value="0.093"/>
+          <Parameter name="smoothing interval width [saturation]" type="double" value="0.05"/>
         </ParameterList>
       </ParameterList>
     </ParameterList>
@@ -392,7 +387,7 @@
     </ParameterList>
   </ParameterList>
   <ParameterList name="checkpoint" type="ParameterList">
-    <Parameter name="times start period stop" type="Array(double)" value="{0,50,-1}" />
+    <Parameter name="times start period stop" type="Array(double)" value="{0,10,-1}" />
     <Parameter name="times start period stop units" type="string" value="h" />
   </ParameterList>
 </ParameterList>
