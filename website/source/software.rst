@@ -268,7 +268,7 @@ For example, if ``C:\Users\USERNAME\ats-short-course`` is the top-level of the `
 
 .. code-block:: sh
 
-    docker run -it --init --mount type=bind,source=C:\Users\USERNAME\ats-short-course,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
+    docker run -it --init --mount type=bind,source=C:\Users\USERNAME\ats-short-course,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_workflow-ats:v2.0
 
 If you are getting a Docker error that **the working directory is not valid** and you don't recognize the directory Docker returns, it is possible you are using (or installed as part of packages like Git for Windows) a command line interface that changes the paths you are passing to Docker.  
 
@@ -282,13 +282,13 @@ An alternative to providing the path explicitly, you can try the Windows equival
     
 .. code-block:: sh
 
-    docker run -it --init --mount type=bind,source=%cd:\=/%,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
+    docker run -it --init --mount type=bind,source=%cd:\=/%,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_workflow-ats:v2.0
 
 or if you are using the Windowns PowerShell simply use ``$PWD``
 
 .. code-block:: sh
 
-    docker run -it --init --mount type=bind,source=$PWD,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_watershed-ats:v2.0
+    docker run -it --init --mount type=bind,source=$PWD,target=/home/joyvan/workdir -w /home/joyvan/workdir -p 9999:9999 ecoon/watershed_workflow-ats:v2.0
 
 Connect to the Watershed Workflow JupyterLab Session from your local Web Browser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

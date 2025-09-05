@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GoJS Boxes with Tooltip & Thick Arrows</title>
+  <script src="https://unpkg.com/gojs/release/go.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #myDiagramDiv {
+      width: 100%;
+      height: 230px;
+      border: 0px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div id="myDiagramDiv"></div>
+  <script>
+    const $ = go.GraphObject.make;
+    const diagram = $(go.Diagram, "myDiagramDiv",
+      {
+        layout: $(go.LayeredDigraphLayout,
+          {
+            direction: 0,  // horizontal
+            layerSpacing: 100 // space between boxes
+          })
+      });
+
+    // Node template with tooltip
+    diagram.nodeTemplate =
+      $(go.Node, "Auto",
+        // Tooltip definition
+        {
+          toolTip:  // use toolTip, not bind
+            $(go.Adornment, "Auto",
+              $(go.Shape, { fill: "white" }),
+              $(go.TextBlock, { margin: 8, font: "20px sans-serif" },
+                new go.Binding("text", "info")) // bind text to "info"
+            )
+        })
+        .add(
+          $(go.Shape, "RoundedRectangle",
+            { name: "SHAPE", minSize: new go.Size(150, 80), strokeWidth: 2 })
+            .bind("fill", "color"),
+          $(go.TextBlock,
+            { margin: 20, font: "bold 24px sans-serif" })
+            .bind("text")
+        );
+
+    // Link template with thicker arrows
+    diagram.linkTemplate =
+      $(go.Link,
+        { routing: go.Link.Orthogonal, corner: 5 },
+        $(go.Shape, { strokeWidth: 4, stroke: "black" }), // thicker line
+        $(go.Shape, { toArrow: "Standard", stroke: null, fill: "black", scale: 2 }) // bigger arrowhead
+      );
+
+    // Model data with "info" for tooltips
+    diagram.model = new go.GraphLinksModel(
+      [
+        { key: 1, text: "Inputs", color: "lightblue", info: "Model parameters, forcing, ..." },
+        { key: 2, text: "Model", color: "orange", info: "Statistical, neural network, physics-based, ..." },
+        { key: 3, text: "Outputs", color: "lightgreen", info: "Values of variables..." }
+      ],
+      [
+        { from: 1, to: 2 },
+        { from: 2, to: 3 }
+      ]
+    );
+
+    diagram.undoManager.isEnabled = true;
+  </script>
+</body>
+</html>
