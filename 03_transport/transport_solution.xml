@@ -663,28 +663,6 @@
         </ParameterList>        
       </ParameterList>
     </ParameterList>
-    <ParameterList name="surface concentrations" type="ParameterList">
-      <Parameter name="observation output filename" type="string" value="surface_concentrations.dat" />
-      <Parameter name="write interval" type="int" value="10" />
-      <Parameter name="time units" type="string" value="d" />
-      <Parameter name="times start period stop" type="Array(double)" value="{0, 3, -1}"/>
-      <Parameter name="times start period stop units" type="string" value="h"/>
-
-      <ParameterList name="observed quantities" type="ParameterList">
-        <ParameterList name="lake mole fraction" type="ParameterList">
-          <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="region" type="string" value="lake" />
-          <Parameter name="functional" type="string" value="average" />
-          <Parameter name="location name" type="string" value="cell" />
-        </ParameterList>
-        <ParameterList name="toeslope mole fraction" type="ParameterList">  
-          <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="region" type="string" value="toeslope" />
-          <Parameter name="functional" type="string" value="average" />
-          <Parameter name="location name" type="string" value="cell" />
-        </ParameterList>              
-      </ParameterList>            
-    </ParameterList>
   </ParameterList>
   
 </ParameterList>

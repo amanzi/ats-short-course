@@ -46,15 +46,15 @@ END
 Condition rainfall
 units     mol/kg
 temperature      25.0
-tracer1          1.0e-20
-tracer2          1.01081796081
+tracer1          1.01081796081
+tracer2          1.0e-20
 END
 
 Condition fertilizer
 units     mol/kg
 temperature      25.0
-tracer1          1.01081796081
-tracer2          1.e-20
+tracer1          1.e-20
+tracer2          1.01081796081
 END
  
 POROSITY

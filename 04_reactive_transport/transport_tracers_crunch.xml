@@ -419,8 +419,8 @@
       
     <ParameterList name="chemistry surface" type="ParameterList">
       <Parameter name="PK type" type="string" value="chemistry alquimia"/>
-      <Parameter name="engine" type="string" value="PFloTran"/>
-      <Parameter name="engine input file" type="string" value="../pflotran_dir/tracer-pflotran.in"/>
+      <Parameter name="engine" type="string" value="CrunchFlow"/>
+      <Parameter name="engine input file" type="string" value="../crunch_dir/tracer-crunch.in"/>
       <Parameter name="domain name" type="string" value="surface"/>
       <Parameter name="saturation liquid key" type="string" value="surface-ponded_depth"/>
       <Parameter name="auxiliary data" type="Array(string)" value="{pH}"/>
@@ -442,8 +442,8 @@
       
     <ParameterList name="chemistry subsurface" type="ParameterList">
       <Parameter name="PK type" type="string" value="chemistry alquimia"/>
-      <Parameter name="engine" type="string" value="PFloTran"/>
-      <Parameter name="engine input file" type="string" value="../pflotran_dir/tracer-pflotran.in"/>
+      <Parameter name="engine" type="string" value="CrunchFlow"/>
+      <Parameter name="engine input file" type="string" value="../crunch_dir/tracer-crunch.in"/>
       <Parameter name="domain name" type="string" value="domain"/>
       <Parameter name="auxiliary data" type="Array(string)" value="{pH}"/>
       <Parameter name="debug cells" type="Array(int)" value="{0}"/>
