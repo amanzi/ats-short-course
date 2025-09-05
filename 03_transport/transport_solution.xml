@@ -618,7 +618,7 @@
   </ParameterList>
 
   <ParameterList name="checkpoint">
-    <Parameter name="times start period stop" type="Array(double)" value="{0, 1, -1}"/>
+    <Parameter name="times start period stop" type="Array(double)" value="{0, 5, -1}"/>
     <Parameter name="times start period stop units" type="string" value="d"/>
   </ParameterList>
 
@@ -635,7 +635,7 @@
 
   <ParameterList name="observations" type="ParameterList">
     <ParameterList name="fluxes" type="ParameterList">
-      <Parameter name="observation output filename" type="string" value="water_balance.dat" />
+      <Parameter name="observation output filename" type="string" value="observations.dat" />
       <Parameter name="write interval" type="int" value="1" />
       <Parameter name="time units" type="string" value="d" />
       <Parameter name="times start period stop" type="Array(double)" value="{0, 0.5, -1}"/>
@@ -652,13 +652,13 @@
         </ParameterList>
         <ParameterList name="surface-mole_fraction-golf">
           <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="functional" type="string" value="point" />
+          <Parameter name="functional" type="string" value="average" />
           <Parameter name="region" type="string" value="golf course" />
           <Parameter name="location name" type="string" value="cell" />
         </ParameterList>
         <ParameterList name="surface-mole_fraction-pond">
           <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="functional" type="string" value="point" />
+          <Parameter name="functional" type="string" value="average" />
           <Parameter name="region" type="string" value="detention pond" />
           <Parameter name="location name" type="string" value="cell" />
         </ParameterList>        
