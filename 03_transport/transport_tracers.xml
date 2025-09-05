@@ -594,7 +594,6 @@
         </ParameterList>
       </ParameterList>
     </ParameterList>
-
     <ParameterList name="initial conditions" type="ParameterList">
 
       <ParameterList name="atmospheric_pressure" type="ParameterList">

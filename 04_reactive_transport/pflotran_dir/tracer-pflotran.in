@@ -125,13 +125,13 @@ END
 CONSTRAINT rainfall
   CONCENTRATIONS
     tracer1  1.e-20      T
-    tracer2  1      T
+    tracer2  1.e-3      T
   /
 END
 
 CONSTRAINT fertilizer
   CONCENTRATIONS
-    tracer1  1      T
+    tracer1  1.e-3      T
     tracer2  1.e-20      T
   /
 END
