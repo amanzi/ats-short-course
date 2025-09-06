@@ -11,7 +11,7 @@
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="mesh type" type="string" value="read mesh file"/>
       <ParameterList name="read mesh file parameters" type="ParameterList">
-        <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+        <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
         <Parameter name="format" type="string" value="Exodus II"/>
       </ParameterList>
     </ParameterList>
@@ -27,7 +27,7 @@
     <ParameterList name="surface" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="2"/>
-      <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+      <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
@@ -50,44 +50,50 @@
     <ParameterList name="geology" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="101"/>
-      <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+      <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="topsoil" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="102"/>
-      <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+      <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="hillslope" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="11"/>
-      <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+      <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="lake" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="12"/>
-      <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+      <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="toeslope" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
       <Parameter name="label" type="string" value="13"/>
-      <Parameter name="file" type="string" value="../data/hillslope_mesh.exo"/>
+      <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
+    </ParameterList>
+    <ParameterList name="lakeside" type="ParameterList">
+      <ParameterList name="region: plane" type="ParameterList">
+        <Parameter name="point" type="Array(double)" value="{500.0, 1.0, 0.0}"/>
+        <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
+      </ParameterList>
     </ParameterList>
   </ParameterList>
 
   <ParameterList name="cycle driver" type="ParameterList">
     <Parameter name="start time" type="double" value="0.0"/>
     <Parameter name="start time units" type="string" value="s"/>
-    <Parameter name="end time" type="double" value="10000"/>
+    <Parameter name="end time" type="double" value="1000"/>
     <Parameter name="end time units" type="string" value="d"/>
     <ParameterList name="PK tree" type="ParameterList">
       <ParameterList name="Top level MPC" type="ParameterList">
@@ -135,7 +141,7 @@
           <Parameter name="backtrack lag" type="int" value="0"/>
           <Parameter name="backtrack factor" type="double" value="0.5"/>
           <Parameter name="backtrack tolerance" type="double" value="0.0001"/>
-          <Parameter name="nonlinear tolerance" type="double" value="0.000001"/>
+          <Parameter name="nonlinear tolerance" type="double" value="1e-5"/>
           <Parameter name="diverged tolerance" type="double" value="10000000000.0"/>
           <Parameter name="limit iterations" type="int" value="21"/>
         </ParameterList>
@@ -171,6 +177,18 @@
       </ParameterList>
 
       <ParameterList name="boundary conditions" type="ParameterList">
+    	  <ParameterList name="pressure" type="ParameterList">
+    	  <ParameterList name="east" type="ParameterList">
+            <Parameter name="regions" type="Array(string)" value="{lakeside}"/>
+            <ParameterList name="boundary pressure">
+              <ParameterList name="function-linear" type="ParameterList">
+		      <Parameter name="x0" type="Array(double)" value="{0.0, 0.0, 0.0, -1.0}"/>
+		      <Parameter name="y0" type="double" value="101325.0"/>
+		      <Parameter name="gradient" type="Array(double)" value="{0.0, 0.0, 0.0, -9777.23 }"/>
+              </ParameterList>
+            </ParameterList>	      
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
 
       <ParameterList name="initial conditions" type="ParameterList">
@@ -222,6 +240,7 @@
       <!-- the water source is a constant rate (m / s) -->
       <ParameterList name="surface-water_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable constant"/>
+        <!-- <Parameter name="value" type="double" value="0.0e-8"/> -->
         <Parameter name="value" type="double" value="1.e-8"/>
       </ParameterList>
 
@@ -411,10 +430,10 @@
 
   <ParameterList name="visualization">
     <ParameterList name="surface">
-      <Parameter name="cycles start period stop" type="Array(int)" value="{0, 10, -1}"/>
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 8640000, -1}"/>
     </ParameterList>
     <ParameterList name="domain">
-      <Parameter name="cycles start period stop" type="Array(int)" value="{0, 10, -1}"/>
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 8640000, -1}"/>
     </ParameterList>
   </ParameterList>
 
@@ -424,7 +443,8 @@
       <Parameter name="observation output filename" type="string" value="water_balance.dat" />
       <Parameter name="write interval" type="int" value="10" />
       <Parameter name="time units" type="string" value="d" />
-      <Parameter name="cycles start period stop" type="Array(int)" value="{ 0, 1,-1}" />
+      <Parameter name="cycles start period stop" type="Array(int)" value="{ 0, 1, -1}" />
+      <!-- <Parameter name="times start period stop" type="Array(double)" value="{ 0, 86400,-1}" />  -->
       <ParameterList name="observed quantities" type="ParameterList">
         <ParameterList name="surface water content [mol]" type="ParameterList">
           <Parameter name="variable" type="string" value="surface-water_content" />
@@ -438,10 +458,18 @@
           <Parameter name="functional" type="string" value="extensive integral" />
           <Parameter name="location name" type="string" value="cell" />
         </ParameterList>
-        <ParameterList name="runoff [mol d^-1]" type="ParameterList">
+        <ParameterList name="runoff surface [mol d^-1]" type="ParameterList">
           <Parameter name="variable" type="string" value="surface-water_flux" />
           <Parameter name="direction normalized flux" type="bool" value="true" />
           <Parameter name="region" type="string" value="surface outlet" />
+          <Parameter name="functional" type="string" value="extensive integral" />
+          <Parameter name="location name" type="string" value="face" />
+          <Parameter name="time integrated" type="bool" value="true" />
+        </ParameterList>
+        <ParameterList name="runoff subsurface [mol d^-1]" type="ParameterList">
+          <Parameter name="variable" type="string" value="water_flux" />
+          <Parameter name="direction normalized flux" type="bool" value="true" />
+          <Parameter name="region" type="string" value="lakeside" />
           <Parameter name="functional" type="string" value="extensive integral" />
           <Parameter name="location name" type="string" value="face" />
           <Parameter name="time integrated" type="bool" value="true" />
