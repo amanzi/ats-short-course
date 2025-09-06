@@ -49,14 +49,14 @@
     </ParameterList>
     <ParameterList name="geology" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="101"/>
+      <Parameter name="label" type="string" value="102"/>
       <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="topsoil" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="102"/>
+      <Parameter name="label" type="string" value="101"/>
       <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
