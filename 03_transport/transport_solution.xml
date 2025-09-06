@@ -660,7 +660,13 @@
           <Parameter name="functional" type="string" value="average" />
           <Parameter name="region" type="string" value="detention pond" />
           <Parameter name="location name" type="string" value="cell" />
-        </ParameterList>        
+        </ParameterList>
+        <ParameterList name="surface-mole_fraction-toeslope">
+          <Parameter name="variable" type="string" value="surface-mole_fraction" />
+          <Parameter name="functional" type="string" value="average" />
+          <Parameter name="region" type="string" value="toeslope" />
+          <Parameter name="location name" type="string" value="cell" />
+        </ParameterList>
       </ParameterList>
     </ParameterList>
   </ParameterList>

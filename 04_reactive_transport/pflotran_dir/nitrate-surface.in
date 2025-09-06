@@ -156,7 +156,7 @@ CONSTRAINT fertilizer
   /
 END
 
-#=========================== initial constraint ============================
+#=========================== rainfall/initial constraint ====================
 CONSTRAINT rainfall
   CONCENTRATIONS
     DOM1                1.0e-10 T
