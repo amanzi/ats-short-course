@@ -280,6 +280,10 @@ Version ats-short-course-20250908</div>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#faqs-we-are-adding-here">FAQs we are adding here:</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paraview-tips">ParaView Tips</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">FAQs we are adding here:</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
     </div>
@@ -382,19 +386,119 @@ shells within a container.</p></li>
 <section id="examples-we-are-adding-here">
 <h3>Examples we are adding here:<a class="headerlink" href="#examples-we-are-adding-here" title="Link to this heading">#</a></h3>
 <p>Docker (or PodMan) Desktop GUIs make it easy to find some of this information, but eventually you will likely end up on the command line again, particularly for some of the <code class="docutils literal notranslate"><span class="pre">run</span></code> and <code class="docutils literal notranslate"><span class="pre">exec</span></code> commands.  In addition, seeing it on the command line will help promote a clearer understanding of what is happening under the hood.  So here we focus on the command line,</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>What images do I have downloaded?</p></li>
-<li><p>What containers do I have running?</p></li>
-<li><p>What containers do I have on my system (running and stopped)?</p></li>
-<li><p>Running a bash shell when you start the container</p></li>
-<li><p>Executing a bash shell in a running container</p></li>
-<li><p>Executing a privileged (root shell) in a running container</p></li>
-<li><p>How do I just user the ATS container to run an ATS simulation on my system</p></li>
-<li><p>How do I prevent stopped containers from being saved (–rm option)</p></li>
-<li><p>How do I removed stopped containers (prune)</p></li>
+<ul>
+<li><p>What images do I have downloaded?</p>
+<p>Much like listing files in a unix shell we’ll use <code class="docutils literal notranslate"><span class="pre">ls</span></code></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>image<span class="w"> </span>ls
+</pre></div>
+</div>
+</li>
+<li><p>What containers do I have running?</p>
+<p>Same as above but note the <code class="docutils literal notranslate"><span class="pre">ls</span></code> is an option to the <code class="docutils literal notranslate"><span class="pre">container</span></code> command</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>container<span class="w"> </span>ls
+</pre></div>
+</div>
+</li>
+<li><p>What containers do I have on my system (running and stopped)?</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If we include the <code class="docutils literal notranslate"><span class="pre">--rm</span></code> option when we run an image the resulting container will be removed when is finishes execuation (i.e., is stopped).  However, without this option the stopped container is saved for possible use in the future (i.e., it can be restarted).  That’s great except that a lot of stopped containers may build up on our system without us realizing it, potentially consuming quite a bit of space.  To check the <code class="docutils literal notranslate"><span class="pre">-a</span></code> option is handy.</p>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>container<span class="w"> </span>ls<span class="w"> </span>-a
+</pre></div>
+</div>
+<p>You can remove unwanted stopped containers one at a time (or select and manage them in the GUI).  But if you want to remove all of the stopped containers you can use <cite>prune</cite>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>container<span class="w"> </span>prune
+</pre></div>
+</div>
+</li>
+<li><p>How do I get a bash shell when you first create the container?</p>
+<p>When you run an image to create the container if will execute the default command that we set when the image was built.  For the two containers we are using here the default command runs Juyter Lab.  However, you can override this and run execute you would like. For example, in the setup instructions we ran  <code class="docutils literal notranslate"><span class="pre">ats</span> <span class="pre">--version</span></code> to get check the version of ATS we had downloaded.  Similarly you could run a bash shell,</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>metsi/ats-short-course:2025-ats-latest<span class="w"> </span>/bin/bash
+</pre></div>
+</div>
+<p>where there options specify</p>
+<ul class="simple">
+<li><p><strong>-it</strong> which gives an <em>interactive</em> session with a <em>tty</em> (terminal) device.</p></li>
+<li><p><strong>–rm</strong> indicates that docker can remove the container when you exit the bash shell</p></li>
 </ul>
-</div></blockquote>
+<p>giving a prompt that looks like</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(base)</span> <span class="go">ats_sc_user@3d3b2698214a:~/amanzi</span>
+</pre></div>
+</div>
+<p>Here the prompt shows</p>
+<ul class="simple">
+<li><p><strong>(base)</strong> - the active conda environment</p></li>
+<li><p><strong>ats_sc_user</strong> - your username</p></li>
+<li><p><strong>3d3b2698214a</strong> - the container ID (which is also the hostname)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This particular container has not mounted any of the host directories, or mapped any ports, as we do when we run it for the lessons.  However, if you wanted those things you could cut-and-paste the command from the installation instructions and append /bin/bash on the end.</p>
+</div>
+</li>
+<li><p>What do all the extra options to <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> that we used in the installation instructions do?</p>
+<p>Here’s the command we use for the short course:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--init<span class="w">  </span><span class="se">\</span>
+<span class="w">  </span>--mount<span class="w"> </span><span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>,target<span class="o">=</span>/home/ats_sc_user/work<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-w<span class="w"> </span>/home/ats_sc_user/work<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>metsi/ats-short-course:2025-ats-latest
+</pre></div>
+</div>
+<p>Each option really does have a purpose:</p>
+<ul class="simple">
+<li><p><strong>-it</strong> as noted above give us an interactive session</p></li>
+<li><p><strong>–mount</strong> connects a directory on the container system with a directory on your laptop (the host system)</p>
+<ul>
+<li><p>source=$(pwd)  - sets the host file system directory to your present working directory</p></li>
+<li><p>target=/home/ats_sc_user/work  -sets the container directory to the <code class="docutils literal notranslate"><span class="pre">work</span></code> subdirectory of our ats_sc_user</p></li>
+</ul>
+</li>
+<li><p><strong>-w</strong> -sets the current working directory for the jupyter session</p></li>
+<li><p><strong>-p 8888:8888</strong>  - maps port 8888 on the host to port 8888 on the container, hence the URL <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8888/lab</span></code></p></li>
+</ul>
+</li>
+<li><p>How do I execute a bash shell in a running container?</p>
+<p>This can be handy thing to do, as it doesn’t impact what you’re already doing in the container. It just gives you another shell to possibly check on or update something (e.g., install a missing python package).   To demonstrate it let’s start the container running the jupyer session as described above (load it into your browser a quick check to see its running as expected).</p>
+<p>Next I need to figure out what the ID or name of the container is.  I could use the container ID from the prompt (as noted earlier).  But for this lets just use</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>ls<span class="w"> </span>-a
+</pre></div>
+</div>
+<p>which on my laptop shows</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">moulton@pn2401338 website % </span>docker<span class="w"> </span>container<span class="w"> </span>ls
+<span class="go">CONTAINER ID   IMAGE                                    COMMAND                  CREATED         STATUS                  PORTS                                         NAMES</span>
+<span class="go">52cf4c018e70   metsi/ats-short-course:2025-ats-latest   &quot;jupyter lab --port=…&quot;   4 minutes ago   Up 4 minutes            0.0.0.0:8888-&gt;8888/tcp, [::]:8888-&gt;8888/tcp   stoic_chaplygin</span>
+<span class="go">06b97288758e   ecoon/watershed_workflow-ats:v2.0        &quot;tini -g -- start.sh…&quot;   32 hours ago    Up 32 hours (healthy)   0.0.0.0:9999-&gt;9999/tcp, [::]:9999-&gt;9999/tcp   clever_engelbart</span>
+</pre></div>
+</div>
+<p>So we can see there is a container ID <strong>52cf4c018e70</strong>, and a funky human readable name <strong>stoic_chaplygin</strong> that docker created (scroll to the far right to see the name).  I can user either when I execute a bash shell in ths container</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>stoic_chaplygin<span class="w"> </span>/bin/bash
+</pre></div>
+</div>
+<p>which gives a prompt similar to above</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(base)</span> <span class="gp">ats_sc_user@52cf4c018e70:~/work$</span>
+</pre></div>
+</div>
+<p>but note the minor differences:</p>
+<ul class="simple">
+<li><p>the hostname is now <strong>52cf4c018e70</strong>, reflecting the ID of this container</p></li>
+<li><p>the present working directory is <strong>~/work</strong>, the default prescribed when the container was created</p></li>
+</ul>
+<p>From here you could check what jobs are running, install a conda package etc. But you are limited to what the ats_sc_user is allowed to do.</p>
+</li>
+<li><p>How do I execute a privileged (root) shell in a running container</p>
+<p>What if you need to fix something in a running container and you need administrative access to do it (i.e., root). Like install missing tools using apt-get. To do this you simply add the user option to the command we demonstrated in the last example,</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>stoic_chaplygin<span class="w"> </span>/bin/bash
+</pre></div>
+</div>
+<p>which gives a prompt showing the user is <strong>root</strong></p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>root@52cf4c018e70:~/work#
+</pre></div>
+</div>
+</li>
+</ul>
 </section>
 </section>
 <section id="jupyter-lab-tips">
@@ -405,6 +509,18 @@ shells within a container.</p></li>
 <div><ul class="simple">
 <li><p>How do I figure out what process is using the port I want for Jupyter?</p></li>
 <li><p>How would I start the ATS or Watershed Workflow container to use a different port?</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="paraview-tips">
+<h2>ParaView Tips<a class="headerlink" href="#paraview-tips" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>FAQs we are adding here:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>how to load and use the LegacyExodus Reader in ParaView so that you can view mixed-element meshes generated by Watershed Workflow</p></li>
+<li><p>how to convert an Exodus mesh output from Watershed Workflow to one that can be viewed fully in Paraview</p></li>
 </ul>
 </div></blockquote>
 </section>
