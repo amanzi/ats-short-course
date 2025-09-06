@@ -227,7 +227,7 @@
       </ParameterList>
 
       <ParameterList name="initial conditions" type="ParameterList">
-        <Parameter name="restart file" type="string" value="../../01_integrated_flow/spinup/checkpoint_final.h5"/>
+        <Parameter name="restart file" type="string" value="../../01_integrated_flow/run_2c/checkpoint_final.h5"/>
       </ParameterList>
     </ParameterList>
 
@@ -269,12 +269,12 @@
     <ParameterList name="transport_coupler">
       <Parameter name="PK type" type="string" value="surface subsurface transport"/>
       <Parameter name="PKs order" type="Array(string)" value="{subsurface transport, surface transport}"/>
-      <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+      <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
     </ParameterList>
 
     <ParameterList name="subsurface transport">
       <Parameter name="PK type" type="string" value="transport ATS"/>
-      <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+      <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
       <Parameter name="advection spatial discretization order" type="int" value="1"/>
       <Parameter name="temporal discretization order" type="int" value="1"/>
       <Parameter name="cfl" type="double" value="1.0"/>
@@ -312,13 +312,17 @@
         <Parameter name="aqueous" type="double" value="1.0"/>
         <Parameter name="gaseous" type="double" value="1.0"/>
       </ParameterList>
+
+      <Parameter name="source term" type="bool" value="true"/>
+      <Parameter name="source key suffix" type="string" value="tracer2_rate"/>
+
     </ParameterList>
 
     <ParameterList name="surface transport">
       <Parameter name="PK type" type="string" value="transport ATS"/>
       <Parameter name="domain name" type="string" value="surface"/>
       <Parameter name="water source in meters" type="bool" value="true"/>
-      <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+      <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
       <Parameter name="advection spatial discretization order" type="int" value="1"/>
       <Parameter name="temporal discretization order" type="int" value="1"/>
       <Parameter name="cfl" type="double" value="1.0"/>
@@ -331,8 +335,9 @@
 
       <ParameterList name="source terms">
         <ParameterList name="component mass source">
-          <ParameterList name="Source Rainfall">
-            <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+<!--
+            <ParameterList name="Source Rainfall">
+            <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
             <Parameter name="regions" type="Array(string)" value="{surface domain}"/>
             <Parameter name="convert to field" type="bool" value="true"/>
             <Parameter name="spatial distribution method" type="string" value="field"/>
@@ -348,7 +353,7 @@
               </ParameterList>              
             </ParameterList>
           </ParameterList>
-
+-->
           <!-- This is an example of injecting by a given mols / m^2 / s -->
           <ParameterList name="Tracer2 source">
             <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
@@ -370,6 +375,20 @@
   <ParameterList name="state" type="ParameterList">
     <ParameterList name="evaluators" type="ParameterList">
 
+      <!-- multiplies mole fraction by rate constant = k * mole_fraction, hence k in units of 1/s -->
+      <ParameterList name="tracer2_rate" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="multiplicative evaluator"/>
+        <Parameter name="coefficient" type="double" value="-1.0e-3"/>
+        <Parameter name="dependencies" type="Array(string)" value="{mole_fraction}"/>
+      </ParameterList>
+
+      <!-- converts from mole fraction to moles per liter = mole solute/mole water * mol water/m3 water * 1 m3/ 1L -->
+      <ParameterList name="mols_per_liter" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="multiplicative evaluator"/>
+        <Parameter name="coefficient" type="double" value="0.001"/>
+        <Parameter name="dependencies" type="Array(string)" value="{mole_fraction, molar_density_liquid}"/>
+      </ParameterList>
+        
       <ParameterList name="surface-water_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <ParameterList name="function" type="ParameterList">
@@ -591,6 +610,7 @@
         </ParameterList>
       </ParameterList>
     </ParameterList>
+
     <ParameterList name="initial conditions" type="ParameterList">
 
       <ParameterList name="atmospheric_pressure" type="ParameterList">
@@ -617,7 +637,7 @@
   </ParameterList>
 
   <ParameterList name="checkpoint">
-    <Parameter name="times start period stop" type="Array(double)" value="{0, 5, -1}"/>
+    <Parameter name="times start period stop" type="Array(double)" value="{0, 1, -1}"/>
     <Parameter name="times start period stop units" type="string" value="d"/>
   </ParameterList>
 
@@ -633,8 +653,8 @@
   </ParameterList>
 
   <ParameterList name="observations" type="ParameterList">
-    <ParameterList name="fluxes" type="ParameterList">
-      <Parameter name="observation output filename" type="string" value="observations.dat" />
+    <ParameterList name="compare with measurements" type="ParameterList">
+      <Parameter name="observation output filename" type="string" value="time-observations.dat" />
       <Parameter name="write interval" type="int" value="1" />
       <Parameter name="time units" type="string" value="d" />
       <Parameter name="times start period stop" type="Array(double)" value="{0, 0.5, -1}"/>
@@ -668,7 +688,7 @@
           <Parameter name="location name" type="string" value="cell" />
         </ParameterList>
       </ParameterList>
-    </ParameterList>
+    </ParameterList>        
   </ParameterList>
   
 </ParameterList>

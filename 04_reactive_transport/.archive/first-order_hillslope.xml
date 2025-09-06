@@ -11,7 +11,8 @@
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="mesh type" type="string" value="read mesh file"/>
       <ParameterList name="read mesh file parameters" type="ParameterList">
-        <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
+<!--        <Parameter name="file" type="string" value="../../data/hillslope_higres.exo"/> -->
+        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>	
         <Parameter name="format" type="string" value="Exodus II"/>
       </ParameterList>
     </ParameterList>
@@ -19,99 +20,51 @@
 
   <ParameterList name="regions" type="ParameterList">
     <ParameterList name="computational domain" type="ParameterList">
-      <Parameter name="region type" type="string" value="all"/>
-    </ParameterList>
-    <ParameterList name="surface domain" type="ParameterList">
-      <Parameter name="region type" type="string" value="all"/>
-    </ParameterList>
-    <ParameterList name="surface" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="2"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="face"/>
-    </ParameterList>
-    <ParameterList name="computational domain boundary" type="ParameterList">
-      <Parameter name="region type" type="string" value="boundary"/>
-    </ParameterList>
-    <ParameterList name="surface domain boundary" type="ParameterList">
-      <Parameter name="region type" type="string" value="boundary"/>
-    </ParameterList>
-    <ParameterList name="surface outlet" type="ParameterList">
-      <Parameter name="region type" type="string" value="box"/>
-      <Parameter name="low coordinate" type="Array(double)" value="{500, 0.0}"/>
-      <Parameter name="high coordinate" type="Array(double)" value="{500, 1.0}"/>
-    </ParameterList>
-    <ParameterList name="subsurface outlet" type="ParameterList">
-      <Parameter name="region type" type="string" value="plane"/>
-      <Parameter name="point" type="Array(double)" value="{500.0, 0.0, 0.0}"/>
-      <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
-    </ParameterList>
-    <ParameterList name="geology" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="101"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="cell"/>
-    </ParameterList>
-    <ParameterList name="topsoil" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="102"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="cell"/>
-    </ParameterList>
-    <ParameterList name="hillslope" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="11"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="face"/>
-    </ParameterList>
-    <ParameterList name="detention pond" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="12"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="face"/>
-    </ParameterList>
-    <ParameterList name="toeslope" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="13"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="face"/>
-    </ParameterList>
-    <ParameterList name="east face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{500.0, 1.0, 0.0}"/>
-        <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
+      <ParameterList name="region: all" type="ParameterList">
       </ParameterList>
     </ParameterList>
-
-
-    <ParameterList name="golf course" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="14"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="face"/>
+    <ParameterList name="surface domain" type="ParameterList">
+      <ParameterList name="region: all" type="ParameterList">
+      </ParameterList>
     </ParameterList>
-    <ParameterList name="forested" type="ParameterList">
-      <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="15"/>
-      <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
-      <Parameter name="format" type="string" value="Exodus II"/>
-      <Parameter name="entity" type="string" value="face"/>
+    <ParameterList name="computational domain boundary" type="ParameterList">
+      <ParameterList name="region: boundary" type="ParameterList">
+        <Parameter name="entity" type="string" value="FACE"/>
+      </ParameterList>
     </ParameterList>
-
+    <ParameterList name="surface domain boundary" type="ParameterList">
+      <ParameterList name="region: boundary" type="ParameterList">
+        <Parameter name="entity" type="string" value="FACE"/>
+      </ParameterList>
+    </ParameterList>
+    <ParameterList name="surface outlet" type="ParameterList">
+      <ParameterList name="region: box" type="ParameterList">
+        <Parameter name="low coordinate" type="Array(double)" value="{0, 0.0}"/>
+        <Parameter name="high coordinate" type="Array(double)" value="{0, 1.0}"/>
+      </ParameterList>
+    </ParameterList>
+    <ParameterList name="surface" type="ParameterList">
+      <ParameterList name="region: labeled set" type="ParameterList">
+        <Parameter name="label" type="string" value="2"/>
+	<!--        <Parameter name="file" type="string" value="../../data/hillslope_higres.exo"/> -->
+        <Parameter name="file" type="string" value="../../data/hillslope_lake.exo"/>	
+        <Parameter name="format" type="string" value="Exodus II"/>
+        <Parameter name="entity" type="string" value="face"/>
+      </ParameterList>
+    </ParameterList>
+    <ParameterList name="injection" type="ParameterList">
+      <ParameterList name="region: box" type="ParameterList">
+        <Parameter name="low coordinate" type="Array(double)" value="{75, 0.0}"/>
+        <Parameter name="high coordinate" type="Array(double)" value="{95, 1.0}"/>
+      </ParameterList>
+    </ParameterList>    
   </ParameterList>
 
   <ParameterList name="cycle driver">
     <Parameter name="start time" type="double" value="0.0"/>
     <Parameter name="start time units" type="string" value="s"/>
-    <Parameter name="end time" type="double" value="30"/>
-    <Parameter name="end time units" type="string" value="d"/>
+    <Parameter name="end time" type="double" value="864000"/>
+    <Parameter name="end time units" type="string" value="s"/>
     <ParameterList name="PK tree">
       <ParameterList name="flow and transport">
         <Parameter name="PK type" type="string" value="coupled flow and transport"/>
@@ -142,22 +95,31 @@
     <ParameterList name="flow and transport">
       <Parameter name="PK type" type="string" value="coupled flow and transport"/>
       <Parameter name="PKs order" type="Array(string)" value="{flow_coupler, transport_coupler}"/>
-      <Parameter name="subcycle" type="Array(int)" value="{0, 1}"/>
+      <Parameter name="subcycle" type="Array(int)" value="{0, 0}"/>
     </ParameterList>
 
     <ParameterList name="flow_coupler" type="ParameterList">
       <Parameter name="PK type" type="string" value="coupled water"/>
       <Parameter name="PKs order" type="Array(string)" value="{subsurface flow, surface flow}"/>
+      <ParameterList name="verbose object" type="ParameterList">
+        <Parameter name="verbosity level" type="string" value="low"/>
+      </ParameterList>
 
       <ParameterList name="water delegate" type="ParameterList">
         <Parameter name="modify predictor damp and cap the water spurt" type="bool" value="true"/>
         <Parameter name="damp and cap the water spurt" type="bool" value="true"/>
         <Parameter name="cap over atmospheric" type="double" value="0.0001"/>
+        <ParameterList name="verbose object" type="ParameterList">
+          <Parameter name="verbosity level" type="string" value="low"/>
+        </ParameterList>
       </ParameterList>
 
       <ParameterList name="inverse" type="ParameterList">
         <Parameter name="preconditioning method" type="string" value="block ilu"/>
         <Parameter name="iterative method" type="string" value="gmres"/>
+        <ParameterList name="verbose object" type="ParameterList">
+          <Parameter name="verbosity level" type="string" value="low"/>
+        </ParameterList>
         <ParameterList name="gmres parameters" type="ParameterList">
           <Parameter name="preconditioning strategy" type="string" value="left"/>
           <Parameter name="error tolerance" type="double" value="1e-12"/>
@@ -176,20 +138,23 @@
           <Parameter name="backtrack lag" type="int" value="0"/>
           <Parameter name="backtrack factor" type="double" value="0.5"/>
           <Parameter name="backtrack tolerance" type="double" value="0.0001"/>
-          <Parameter name="nonlinear tolerance" type="double" value="0.000001"/>
+          <Parameter name="nonlinear tolerance" type="double" value="1e-10"/>
           <Parameter name="diverged tolerance" type="double" value="10000000000.0"/>
-          <Parameter name="limit iterations" type="int" value="21"/>
+          <Parameter name="limit iterations" type="int" value="100"/>
+          <ParameterList name="verbose object" type="ParameterList">
+            <Parameter name="verbosity level" type="string" value="low"/>
+          </ParameterList>
         </ParameterList>
         <ParameterList name="timestep controller smarter parameters" type="ParameterList">
           <Parameter name="max iterations" type="int" value="18"/>
           <Parameter name="min iterations" type="int" value="10"/>
           <Parameter name="timestep reduction factor" type="double" value="0.5"/>
           <Parameter name="timestep increase factor" type="double" value="1.25"/>
-          <Parameter name="max timestep" type="double" value="10000000.0"/>
+          <Parameter name="max timestep" type="double" value="600.0"/>
           <Parameter name="min timestep" type="double" value="1e-10"/>
           <Parameter name="growth wait after fail" type="int" value="2"/>
           <Parameter name="count before increasing increase factor" type="int" value="2"/>
-          <Parameter name="initial timestep [s]" type="double" value="3600"/>
+          <Parameter name="initial timestep [s]" type="double" value="1.0"/>
         </ParameterList>
       </ParameterList>
 
@@ -202,33 +167,22 @@
       <Parameter name="permeability rescaling" type="double" value="10000000.0"/>
       <Parameter name="max valid change in saturation in a timestep [-]" type="double" value="0.1"/>
       <Parameter name="debug cells" type="Array(int)" value="{0}"/>
-
-      <ParameterList name="diffusion" type="ParameterList">
-        <Parameter name="discretization primary" type="string" value="mfd: two-point flux approximation"/>
+      <ParameterList name="verbose object" type="ParameterList">
+        <Parameter name="verbosity level" type="string" value="low"/>
       </ParameterList>
 
-      <ParameterList name="diffusion preconditioner" type="ParameterList">
-        <Parameter name="Newton correction" type="string" value="approximate Jacobian"/>
+      <ParameterList name="diffusion" type="ParameterList">
+        <Parameter name="discretization primary" type="string" value="mfd: default"/>
       </ParameterList>
 
       <ParameterList name="boundary conditions" type="ParameterList">
-        <ParameterList name="pressure" type="ParameterList">
-          <ParameterList name="east" type="ParameterList">
-            <Parameter name="regions" type="Array(string)" value="{east face}" />
-            <ParameterList name="boundary pressure">
-              <ParameterList name="function-linear" type="ParameterList">
-                <Parameter name="x0" type="Array(double)" value="{0.0, 0.0, 0.0, -1.0}" />
-                <Parameter name="y0" type="double" value="101325.0" />
-                <Parameter name="gradient" type="Array(double)" value="{0.0, 0.0, 0.0, -9777.23 }" />
-              </ParameterList>
-            </ParameterList>
-          </ParameterList>
-        </ParameterList>
       </ParameterList>
 
       <ParameterList name="initial conditions" type="ParameterList">
-        <Parameter name="restart file" type="string" value="../../01_integrated_flow/spinup/checkpoint_final.h5"/>
+        <Parameter name="hydrostatic head [m]" type="double" value="-2.0"/>
+        <Parameter name="hydrostatic water density [kg m^-3]" type="double" value="1000.0"/>
       </ParameterList>
+
     </ParameterList>
 
     <ParameterList name="surface flow" type="ParameterList">
@@ -238,6 +192,9 @@
       <Parameter name="source term" type="bool" value="true"/>
       <Parameter name="debug cells" type="Array(int)" value="{0}"/>
       <Parameter name="water source in meters" type="bool" value="true"/>
+      <ParameterList name="verbose object" type="ParameterList">
+        <Parameter name="verbosity level" type="string" value="low"/>
+      </ParameterList>
 
       <ParameterList name="diffusion" type="ParameterList">
         <Parameter name="discretization primary" type="string" value="fv: default"/>
@@ -248,14 +205,9 @@
       </ParameterList>
 
       <ParameterList name="boundary conditions" type="ParameterList">
-        <ParameterList name="seepage face head">
-          <ParameterList name="surface">
-            <Parameter name="regions" type="Array(string)" value="{surface outlet}" />
-            <ParameterList name="boundary head">
-              <ParameterList name="function-constant">
-                <Parameter name="value" type="double" value=" 0.1" />
-              </ParameterList>
-            </ParameterList>
+        <ParameterList name="critical depth" type="ParameterList">
+          <ParameterList name="outlet" type="ParameterList">
+            <Parameter name="regions" type="Array(string)" value="{surface outlet}"/>
           </ParameterList>
         </ParameterList>
       </ParameterList>
@@ -269,12 +221,12 @@
     <ParameterList name="transport_coupler">
       <Parameter name="PK type" type="string" value="surface subsurface transport"/>
       <Parameter name="PKs order" type="Array(string)" value="{subsurface transport, surface transport}"/>
-      <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+      <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
     </ParameterList>
 
     <ParameterList name="subsurface transport">
       <Parameter name="PK type" type="string" value="transport ATS"/>
-      <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+      <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
       <Parameter name="advection spatial discretization order" type="int" value="1"/>
       <Parameter name="temporal discretization order" type="int" value="1"/>
       <Parameter name="cfl" type="double" value="1.0"/>
@@ -312,56 +264,50 @@
         <Parameter name="aqueous" type="double" value="1.0"/>
         <Parameter name="gaseous" type="double" value="1.0"/>
       </ParameterList>
+
+      <Parameter name="source term" type="bool" value="true"/>
+      <Parameter name="source key suffix" type="string" value="tracer1_rate"/>
+      
     </ParameterList>
 
     <ParameterList name="surface transport">
       <Parameter name="PK type" type="string" value="transport ATS"/>
       <Parameter name="domain name" type="string" value="surface"/>
       <Parameter name="water source in meters" type="bool" value="true"/>
-      <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+      <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
       <Parameter name="advection spatial discretization order" type="int" value="1"/>
       <Parameter name="temporal discretization order" type="int" value="1"/>
       <Parameter name="cfl" type="double" value="1.0"/>
       <Parameter name="water tolerance" type="double" value="0.001"/>
-      <Parameter name="debug cells" type="Array(int)" value="{0}"/>      
-
+      <Parameter name="debug cells" type="Array(int)" value="{0}"/>
       <ParameterList name="initial conditions" type="ParameterList">
         <Parameter name="constant" type="double" value="0.0"/>
       </ParameterList>
 
       <ParameterList name="source terms">
         <ParameterList name="component mass source">
-          <ParameterList name="Source Rainfall">
-            <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
+          <!-- <ParameterList name="Tracer1 rainfall">
+            <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
             <Parameter name="regions" type="Array(string)" value="{surface domain}"/>
             <Parameter name="convert to field" type="bool" value="true"/>
             <Parameter name="spatial distribution method" type="string" value="field"/>
             <ParameterList name="field">
-              <Parameter name="number of fields" type="int" value="2"/>
-              <ParameterList name="field 1 info">
-                <Parameter name="field key" type="string" value="surface-tracer1_injection_source"/>
-                <Parameter name="component" type="string" value="cell"/>
-              </ParameterList>
-              <ParameterList name="field 2 info">
-                <Parameter name="field key" type="string" value="surface-tracer2_zeros"/>
-                <Parameter name="component" type="string" value="cell"/>
-              </ParameterList>              
+              <Parameter name="field key" type="string" value="surface-tracer1_injection_source"/>
+              <Parameter name="component" type="string" value="cell"/>
             </ParameterList>
-          </ParameterList>
-
-          <!-- This is an example of injecting by a given mols / m^2 / s -->
-          <ParameterList name="Tracer2 source">
-            <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
-            <Parameter name="regions" type="Array(string)" value="{golf course}"/>
+          </ParameterList> -->
+          <ParameterList name="Tracer1 injection">
+            <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
+            <Parameter name="regions" type="Array(string)" value="{injection}"/>
             <Parameter name="spatial distribution method" type="string" value="none"/>
             <ParameterList name="source function">
               <ParameterList name="function-tabular">
                 <Parameter name="x values" type="Array(double)" value="{0.0, 864000.0}"/>
-                <Parameter name="y values" type="Array(double)" value="{0.0111, 0.0}"/>
+                <Parameter name="y values" type="Array(double)" value="{0.00111, 0.0}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant}"/>
               </ParameterList>
             </ParameterList>
-          </ParameterList>
+          </ParameterList>          
         </ParameterList>
       </ParameterList>
     </ParameterList>    
@@ -369,7 +315,6 @@
 
   <ParameterList name="state" type="ParameterList">
     <ParameterList name="evaluators" type="ParameterList">
-
       <ParameterList name="surface-water_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <ParameterList name="function" type="ParameterList">
@@ -378,66 +323,136 @@
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0, 864000}"/>
+                <Parameter name="x values" type="Array(double)" value="{0, 86400}"/>
                 <Parameter name="y values" type="Array(double)" value="{5.5e-7, 0.0}"/>
-                <Parameter name="forms" type="Array(string)" value="{constant}"/>                
+                <Parameter name="forms" type="Array(string)" value="{constant}"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
-
       <ParameterList name="surface-source_molar_density" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="55000"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="domain" type="ParameterList">
+            <Parameter name="region" type="string" value="surface domain"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="55000"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="surface-ponded_depth" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="ponded depth"/>
       </ParameterList>
-
+      <ParameterList name="surface-ponded_depth_bar" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="ponded depth"/>
+        <Parameter name="ponded depth bar" type="bool" value="true"/>
+        <Parameter name="height key" type="string" value="surface-ponded_depth_bar"/>
+      </ParameterList>
       <ParameterList name="surface-water_content" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="overland pressure water content"/>
       </ParameterList>
-
       <ParameterList name="water_content" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="richards water content"/>
       </ParameterList>
-
       <ParameterList name="capillary_pressure_gas_liq" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="capillary pressure, atmospheric gas over liquid"/>
       </ParameterList>
-
       <ParameterList name="molar_density_liquid" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="55000"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="rest domain" type="ParameterList">
+            <Parameter name="region" type="string" value="computational domain"/>
+            <Parameter name="components" type="Array(string)" value="{cell, boundary_face}"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="55000"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="mass_density_liquid" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="997.0"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="rest domain" type="ParameterList">
+            <Parameter name="region" type="string" value="computational domain"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="997.0"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="viscosity_liquid" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="0.00089"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="rest domain" type="ParameterList">
+            <Parameter name="region" type="string" value="computational domain"/>
+            <Parameter name="components" type="Array(string)" value="{cell, boundary_face}"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="0.00089"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="surface-molar_density_liquid" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="55000"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="domain" type="ParameterList">
+            <Parameter name="region" type="string" value="surface domain"/>
+            <Parameter name="components" type="Array(string)" value="{cell}"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="55000"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="surface-mass_density_liquid" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="997.0"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="rest domain" type="ParameterList">
+            <Parameter name="region" type="string" value="surface domain"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="997.0"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="surface-relative_permeability" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="1.0"/>
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <Parameter name="constant in time" type="bool" value="true"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="domain" type="ParameterList">
+            <Parameter name="region" type="string" value="surface domain"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <ParameterList name="function-constant" type="ParameterList">
+                <Parameter name="value" type="double" value="1.0"/>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
-
       <ParameterList name="surface-manning_coefficient" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <Parameter name="constant in time" type="bool" value="true"/>
@@ -447,19 +462,18 @@
             <Parameter name="components" type="Array(string)" value="{cell}"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="0.1"/>
+                <Parameter name="value" type="double" value="0.01986"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
-
       <ParameterList name="base_porosity" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <Parameter name="constant in time" type="bool" value="true"/>
         <ParameterList name="function" type="ParameterList">
-          <ParameterList name="topsoil" type="ParameterList">
-            <Parameter name="region" type="string" value="topsoil"/>
+          <ParameterList name="rest domain" type="ParameterList">
+            <Parameter name="region" type="string" value="computational domain"/>
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
@@ -467,63 +481,53 @@
               </ParameterList>
             </ParameterList>
           </ParameterList>
-          <ParameterList name="geology" type="ParameterList">
-            <Parameter name="region" type="string" value="geology"/>
-            <Parameter name="component" type="string" value="cell"/>
-            <ParameterList name="function" type="ParameterList">
-              <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="0.25"/>
-              </ParameterList>
-            </ParameterList>
-          </ParameterList>
+        </ParameterList>
+        <ParameterList name="verbose object" type="ParameterList">
+          <Parameter name="verbosity level" type="string" value="low"/>
         </ParameterList>
       </ParameterList>
-
       <ParameterList name="porosity" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="compressible porosity"/>
         <ParameterList name="compressible porosity model parameters" type="ParameterList">
           <ParameterList name="rest domain" type="ParameterList">
             <Parameter name="region" type="string" value="computational domain"/>
-            <Parameter name="pore compressibility [Pa^-1]" type="double" value="1.e-9"/>
+            <Parameter name="pore compressibility [Pa^-1]" type="double" value="5.113922e-8"/>
             <Parameter name="pore compressibility inflection point [Pa]" type="double" value="0.0"/>
           </ParameterList>
         </ParameterList>
       </ParameterList>
-
       <ParameterList name="permeability" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable tensor"/>
         <Parameter name="constant in time" type="bool" value="true"/>
         <Parameter name="tensor type" type="string" value="scalar"/>
         <ParameterList name="function" type="ParameterList">
-          <ParameterList name="topsoil" type="ParameterList">
-            <Parameter name="region" type="string" value="topsoil"/>
-            <Parameter name="component" type="string" value="cell"/>
-            <ParameterList name="function" type="ParameterList">
-              <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="5.e-13"/>
-              </ParameterList>
-            </ParameterList>
-          </ParameterList>
           <ParameterList name="rest domain" type="ParameterList">
-            <Parameter name="region" type="string" value="geology"/>
+            <Parameter name="region" type="string" value="computational domain"/>
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="1.e-13"/>
+                <Parameter name="value" type="double" value="1.052888e-13"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
-
+      <ParameterList name="effective_pressure" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="effective_pressure"/>
+      </ParameterList>
+      <ParameterList name="surface-effective_pressure" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="effective_pressure"/>
+      </ParameterList>
       <ParameterList name="surface-overland_conductivity" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="overland conductivity"/>
         <ParameterList name="overland conductivity model" type="ParameterList">
           <Parameter name="Manning exponent" type="double" value="0.666666666667"/>
-          <Parameter name="slope regularization epsilon" type="double" value="0.01"/>
+          <Parameter name="slope regularization epsilon" type="double" value="0.0"/>
         </ParameterList>
       </ParameterList>
-
+      <ParameterList name="overland_source_from_subsurface">
+        <Parameter name="evaluator type" type="string" value="overland source from subsurface via flux"/>
+      </ParameterList>      
       <ParameterList name="relative_permeability" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="relative permeability, water retention model"/>
         <Parameter name="model parameters" type="string" value="WRM parameters"/>
@@ -538,7 +542,6 @@
         <Parameter name="model parameters" type="string" value="WRM parameters"/>
         <Parameter name="evaluator type" type="string" value="water retention model"/>
       </ParameterList>
-
       <ParameterList name="dispersion_coefficient" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="dispersion tensor"/>
         <ParameterList name="mechanical dispersion parameters" type="ParameterList">
@@ -552,25 +555,27 @@
         </ParameterList>
       </ParameterList>
 
-      <ParameterList name="surface-tracer2_zeros" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable"/>
-        <Parameter name="constant in time" type="bool" value="true"/>
-        <ParameterList name="function" type="ParameterList">
-          <ParameterList name="domain" type="ParameterList">
-            <Parameter name="region" type="string" value="surface domain"/>
-            <Parameter name="component" type="string" value="cell"/>
-            <ParameterList name="function" type="ParameterList">
-              <ParameterList name="function-constant" type="ParameterList">
-                <Parameter name="value" type="double" value="0.0"/>
-              </ParameterList>
-            </ParameterList>
-          </ParameterList>
-        </ParameterList>
+      <ParameterList name="mols_per_liter" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="multiplicative evaluator"/>
+	    <Parameter name="coefficient" type="double" value="0.001"/>
+        <Parameter name="dependencies" type="Array(string)" value="{mole_fraction, molar_density_liquid}"/>
       </ParameterList>
-            
+
+      <ParameterList name="tracer1_rate" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="multiplicative evaluator"/>
+	    <Parameter name="coefficient" type="double" value="-1.0e-3"/>
+        <Parameter name="dependencies" type="Array(string)" value="{mols_per_liter}"/>
+      </ParameterList>
+      
+      <ParameterList name="surface-mols_per_liter" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="multiplicative evaluator"/>
+	    <Parameter name="coefficient" type="double" value="0.001"/>
+        <Parameter name="dependencies" type="Array(string)" value="{surface-mole_fraction, surface-molar_density_liquid}"/>
+      </ParameterList>
+      
       <ParameterList name="surface-tracer1_injection_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="multiplicative reciprocal"/>
-        <Parameter name="multiplicative dependency keys" type="Array(string)" value="{surface-tracer1_injection_source_concentration, surface-water_source, surface-molar_density_liquid}"/>
+        <Parameter name="multiplicative dependency keys" type="Array(string)" value="{surface-tracer1_injection_source_concentration, surface-water_source}"/>
       </ParameterList>
 
       <ParameterList name="surface-tracer1_injection_source_concentration" type="ParameterList">
@@ -582,14 +587,15 @@
             <Parameter name="region" type="string" value="surface domain"/>
             <ParameterList name="function" type="ParameterList">
               <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0, 8640000}"/>
-                <Parameter name="y values" type="Array(double)" value="{1e-2, 0.0}"/>
+                <Parameter name="x values" type="Array(double)" value="{0, 86400}"/>
+                <Parameter name="y values" type="Array(double)" value="{1e-3, 0.0}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant}"/>
               </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
+
     </ParameterList>
     <ParameterList name="initial conditions" type="ParameterList">
 
@@ -617,58 +623,18 @@
   </ParameterList>
 
   <ParameterList name="checkpoint">
-    <Parameter name="times start period stop" type="Array(double)" value="{0, 5, -1}"/>
-    <Parameter name="times start period stop units" type="string" value="d"/>
+    <Parameter name="cycles" type="Array(int)" value="{0, 100}"/>
   </ParameterList>
 
   <ParameterList name="visualization">
     <ParameterList name="surface">
-      <Parameter name="times start period stop" type="Array(double)" value="{0, 3, -1}"/>
-      <Parameter name="times start period stop units" type="string" value="h"/>
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 3600, -1}"/>
+      <Parameter name="times start period stop units" type="string" value="s"/>
     </ParameterList>
     <ParameterList name="domain">
-      <Parameter name="times start period stop" type="Array(double)" value="{0, 3, -1}"/>
-      <Parameter name="times start period stop units" type="string" value="h"/>
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 3600, -1}"/>
+      <Parameter name="times start period stop units" type="string" value="s"/>
     </ParameterList>
   </ParameterList>
 
-  <ParameterList name="observations" type="ParameterList">
-    <ParameterList name="fluxes" type="ParameterList">
-      <Parameter name="observation output filename" type="string" value="observations.dat" />
-      <Parameter name="write interval" type="int" value="1" />
-      <Parameter name="time units" type="string" value="d" />
-      <Parameter name="times start period stop" type="Array(double)" value="{0, 0.5, -1}"/>
-      <Parameter name="times start period stop units" type="string" value="h"/>
-
-      <ParameterList name="observed quantities" type="ParameterList">
-        <ParameterList name="runoff [mol d^-1]" type="ParameterList">
-          <Parameter name="variable" type="string" value="surface-water_flux" />
-          <Parameter name="direction normalized flux" type="bool" value="true" />
-          <Parameter name="region" type="string" value="surface outlet" />
-          <Parameter name="functional" type="string" value="extensive integral" />
-          <Parameter name="location name" type="string" value="face" />
-          <Parameter name="time integrated" type="bool" value="true" />
-        </ParameterList>
-        <ParameterList name="surface-mole_fraction-golf">
-          <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="functional" type="string" value="average" />
-          <Parameter name="region" type="string" value="golf course" />
-          <Parameter name="location name" type="string" value="cell" />
-        </ParameterList>
-        <ParameterList name="surface-mole_fraction-pond">
-          <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="functional" type="string" value="average" />
-          <Parameter name="region" type="string" value="detention pond" />
-          <Parameter name="location name" type="string" value="cell" />
-        </ParameterList>
-        <ParameterList name="surface-mole_fraction-toeslope">
-          <Parameter name="variable" type="string" value="surface-mole_fraction" />
-          <Parameter name="functional" type="string" value="average" />
-          <Parameter name="region" type="string" value="toeslope" />
-          <Parameter name="location name" type="string" value="cell" />
-        </ParameterList>
-      </ParameterList>
-    </ParameterList>
-  </ParameterList>
-  
 </ParameterList>

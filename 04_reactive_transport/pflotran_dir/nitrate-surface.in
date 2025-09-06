@@ -1,0 +1,195 @@
+#Description: 1D microbial degradation problem without biomass
+
+SIMULATION
+  SIMULATION_TYPE SUBSURFACE
+  PROCESS_MODELS
+    SUBSURFACE_TRANSPORT transport
+      MODE GIRT
+    /
+  /
+END
+
+SUBSURFACE
+
+#=========================== numerical methods ================================
+NUMERICAL_METHODS TRANSPORT
+
+  LINEAR_SOLVER
+    SOLVER DIRECT
+  /
+
+END
+
+#=========================== flow mode ========================================
+# Uniform velocity (see below). No flow mode specified.
+
+#=========================== useful tranport parameters ==================
+SPECIFIED_VELOCITY
+  UNIFORM? YES
+  DATASET 1.d0 0.d0 0.d0 m/yr
+END
+
+#=========================== chemistry ========================================
+CHEMISTRY
+PRIMARY_SPECIES
+  DOM1
+  O2(aq)
+  NO3- 
+  HCO3-
+  H+ 
+  N2(aq) 
+/
+DECOUPLED_EQUILIBRIUM_REACTIONS
+  DOM1
+  O2(aq)
+  NO3- 
+  HCO3-
+  H+ 
+  N2(aq) 
+/
+SECONDARY_SPECIES
+  OH-
+  CO2(aq) 
+/
+PASSIVE_GAS_SPECIES 
+  CO2(g) 
+  N2(g)* 
+  O2(g) 
+/
+
+  LOG_FORMULATION
+  ACTIVITY_COEFFICIENTS TIMESTEP
+  DATABASE ./db/hanford.dat
+
+  OUTPUT
+    ALL
+    TOTAL
+  /
+END
+
+#=========================== solver options ===================================
+
+#=========================== discretization ===================================
+GRID
+  TYPE STRUCTURED
+  NXYZ 100 1 1
+  BOUNDS
+    0.d0 0.d0 0.d0
+    6.d0 1.d0 1.d0
+  /
+END
+
+#=========================== fluid properties =================================
+FLUID_PROPERTY
+  DIFFUSION_COEFFICIENT 1.d-9
+END
+
+#=========================== material properties ==============================
+MATERIAL_PROPERTY soil1
+  ID 1
+  POROSITY 0.25d0
+  TORTUOSITY 1.d0
+END
+
+#=========================== output options ===================================
+OUTPUT
+#  TIMES y 5. 10. 15. 20.
+  TIMES y 0.25 0.50 0.75 1.
+  FORMAT HDF5
+END
+
+#=========================== times ============================================
+TIME
+  FINAL_TIME 1.d0 y            ! A(aq) at 50m midpoint
+  INITIAL_TIMESTEP_SIZE 1.d0 h
+  MAXIMUM_TIMESTEP_SIZE 2.5d-1 y
+END
+
+#=========================== regions ==========================================
+REGION all
+  COORDINATES
+    0.d0 0.d0 0.d0
+    6.d0 1.d0 1.d0
+  /
+END
+
+REGION west
+  FACE WEST
+  COORDINATES
+    0.d0 0.d0 0.d0
+    0.d0 1.d0 1.d0
+  /
+END
+
+REGION east
+  FACE EAST
+  COORDINATES
+    6.d0 0.d0 0.d0
+    6.d0 1.d0 1.d0
+  /
+END
+
+#=========================== transport conditions =============================
+TRANSPORT_CONDITION initial
+  TYPE ZERO_GRADIENT
+  CONSTRAINT_LIST
+    0.d0 rainfall
+  /
+END
+
+TRANSPORT_CONDITION inlet
+  TYPE DIRICHLET_ZERO_GRADIENT
+  CONSTRAINT_LIST
+    0.d0 fertilizer
+  /
+END
+
+#=========================== IRRIGATION constraint =========================
+CONSTRAINT fertilizer
+  CONCENTRATIONS
+    DOM1                1.0e-10 T
+    O2(aq)              0.21 G O2(g) 
+    H+                  6.0 P
+    HCO3-               400e-6 G CO2(g)
+    NO3-                2.0e-4  T
+    N2(aq)              0.78 G N2(g)* 
+  /
+END
+
+#=========================== rainfall/initial constraint ====================
+CONSTRAINT rainfall
+  CONCENTRATIONS
+    DOM1                1.0e-10 T
+    O2(aq)              0.21 G O2(g) 
+    H+                  6.0 P
+    HCO3-               400e-6 G CO2(g)
+    NO3-                2.0e-6 T
+    N2(aq)              0.78 G N2(g)* 
+  /
+END
+
+#=========================== condition couplers ===============================
+# initial condition
+INITIAL_CONDITION
+  TRANSPORT_CONDITION initial
+  REGION all
+END
+
+BOUNDARY_CONDITION outlet
+  TRANSPORT_CONDITION initial
+  REGION east
+END
+
+BOUNDARY_CONDITION inlet
+  TRANSPORT_CONDITION inlet
+  REGION west
+END
+
+#=========================== stratigraphy couplers ============================
+STRATA
+  REGION all
+  MATERIAL soil1
+END
+
+
+END_SUBSURFACE
