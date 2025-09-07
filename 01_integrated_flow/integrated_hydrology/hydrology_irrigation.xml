@@ -49,14 +49,14 @@
     </ParameterList>
     <ParameterList name="geology" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="101"/>
+      <Parameter name="label" type="string" value="102"/>
       <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="topsoil" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="102"/>
+      <Parameter name="label" type="string" value="101"/>
       <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
@@ -198,9 +198,9 @@
             <Parameter name="regions" type="Array(string)" value="{lakeside}"/>
             <ParameterList name="boundary pressure">
               <ParameterList name="function-linear" type="ParameterList">
-		      <Parameter name="x0" type="Array(double)" value="{0.0, 0.0, 0.0, -1.0}"/>
-		      <Parameter name="y0" type="double" value="101325.0"/>
-		      <Parameter name="gradient" type="Array(double)" value="{0.0, 0.0, 0.0, -9777.23 }"/>
+		<Parameter name="x0" type="Array(double)" value="{0.0, 0.0, 0.0, -1.0}"/>
+		<Parameter name="y0" type="double" value="101325.0"/>
+		<Parameter name="gradient" type="Array(double)" value="{0.0, 0.0, 0.0, -9777.23 }"/>
               </ParameterList>
             </ParameterList>	      
           </ParameterList>

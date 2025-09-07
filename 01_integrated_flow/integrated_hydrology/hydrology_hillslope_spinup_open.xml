@@ -49,14 +49,14 @@
     </ParameterList>
     <ParameterList name="geology" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="101"/>
+      <Parameter name="label" type="string" value="102"/>
       <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="topsoil" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="102"/>
+      <Parameter name="label" type="string" value="101"/>
       <Parameter name="file" type="string" value="../../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
@@ -93,7 +93,7 @@
   <ParameterList name="cycle driver" type="ParameterList">
     <Parameter name="start time" type="double" value="0.0"/>
     <Parameter name="start time units" type="string" value="s"/>
-    <Parameter name="end time" type="double" value="1000"/>
+    <Parameter name="end time" type="double" value="10000"/>
     <Parameter name="end time units" type="string" value="d"/>
     <ParameterList name="PK tree" type="ParameterList">
       <ParameterList name="Top level MPC" type="ParameterList">
@@ -177,14 +177,14 @@
       </ParameterList>
 
       <ParameterList name="boundary conditions" type="ParameterList">
-    	  <ParameterList name="pressure" type="ParameterList">
+    	<ParameterList name="pressure" type="ParameterList">
     	  <ParameterList name="east" type="ParameterList">
             <Parameter name="regions" type="Array(string)" value="{lakeside}"/>
             <ParameterList name="boundary pressure">
               <ParameterList name="function-linear" type="ParameterList">
-		      <Parameter name="x0" type="Array(double)" value="{0.0, 0.0, 0.0, -1.0}"/>
-		      <Parameter name="y0" type="double" value="101325.0"/>
-		      <Parameter name="gradient" type="Array(double)" value="{0.0, 0.0, 0.0, -9777.23 }"/>
+		<Parameter name="x0" type="Array(double)" value="{0.0, 0.0, 0.0, -1.0}"/>
+		<Parameter name="y0" type="double" value="101325.0"/>
+		<Parameter name="gradient" type="Array(double)" value="{0.0, 0.0, 0.0, -9777.23 }"/>
               </ParameterList>
             </ParameterList>	      
           </ParameterList>
@@ -241,7 +241,7 @@
       <ParameterList name="surface-water_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable constant"/>
         <!-- <Parameter name="value" type="double" value="0.0e-8"/> -->
-        <Parameter name="value" type="double" value="1.e-8"/>
+        <Parameter name="value" type="double" value="1.e-9"/>
       </ParameterList>
 
       <ParameterList name="surface-source_molar_density" type="ParameterList">
@@ -361,7 +361,7 @@
               </ParameterList>
             </ParameterList>
           </ParameterList>
-          <ParameterList name="rest domain" type="ParameterList">
+          <ParameterList name="geology" type="ParameterList">
             <Parameter name="region" type="string" value="geology"/>
             <Parameter name="component" type="string" value="cell"/>
             <ParameterList name="function" type="ParameterList">
@@ -430,10 +430,12 @@
 
   <ParameterList name="visualization">
     <ParameterList name="surface">
-      <Parameter name="times start period stop" type="Array(double)" value="{0, 8640000, -1}"/>
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 1000, -1}"/>
+      <Parameter name="times start period stop units" type="string" value="d"/>
     </ParameterList>
     <ParameterList name="domain">
-      <Parameter name="times start period stop" type="Array(double)" value="{0, 8640000, -1}"/>
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 1000, -1}"/>
+      <Parameter name="times start period stop units" type="string" value="d"/>
     </ParameterList>
   </ParameterList>
 
