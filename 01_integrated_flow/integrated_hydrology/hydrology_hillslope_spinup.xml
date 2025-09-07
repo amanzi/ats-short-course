@@ -87,7 +87,7 @@
   <ParameterList name="cycle driver" type="ParameterList">
     <Parameter name="start time" type="double" value="0.0"/>
     <Parameter name="start time units" type="string" value="s"/>
-    <Parameter name="end time" type="double" value="1000"/>
+    <Parameter name="end time" type="double" value="10000"/>
     <Parameter name="end time units" type="string" value="d"/>
     <ParameterList name="PK tree" type="ParameterList">
       <ParameterList name="Top level MPC" type="ParameterList">
@@ -222,7 +222,7 @@
       <!-- the water source is a constant rate (m / s) -->
       <ParameterList name="surface-water_source" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="independent variable constant"/>
-        <Parameter name="value" type="double" value="1.e-8"/>
+        <Parameter name="value" type="double" value="1.e-9"/>
       </ParameterList>
 
       <ParameterList name="surface-source_molar_density" type="ParameterList">
@@ -411,10 +411,12 @@
 
   <ParameterList name="visualization">
     <ParameterList name="surface">
-        <Parameter name="times start period stop" type="Array(double)" value="{ 0, 8640000,-1}" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 1000, -1}"/>
+      <Parameter name="times start period stop units" type="string" value="d"/>
     </ParameterList>
     <ParameterList name="domain">
-        <Parameter name="times start period stop" type="Array(double)" value="{ 0, 8640000,-1}" />
+      <Parameter name="times start period stop" type="Array(double)" value="{0, 1000, -1}"/>
+      <Parameter name="times start period stop units" type="string" value="d"/>
     </ParameterList>
   </ParameterList>
 
@@ -424,8 +426,7 @@
       <Parameter name="observation output filename" type="string" value="water_balance.dat" />
       <Parameter name="write interval" type="int" value="10" />
       <Parameter name="time units" type="string" value="d" />
-      <!-- <Parameter name="cycles start period stop" type="Array(int)" value="{ 0, 1,-1}" /> -->
-      <Parameter name="times start period stop" type="Array(double)" value="{ 0, 86400,-1}" />
+      <Parameter name="cycles start period stop" type="Array(int)" value="{ 0, 1,-1}" />
       <ParameterList name="observed quantities" type="ParameterList">
         <ParameterList name="surface water content [mol]" type="ParameterList">
           <Parameter name="variable" type="string" value="surface-water_content" />
