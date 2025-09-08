@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@panzoom/panzoom": "^4.6.0",
+    "@xterm/xterm": "^5.5.0",
+    "typed.js": "^2.1.0"
+  }
+}

@@ -1,11 +1,12 @@
 """Module containing functions for visualizing and processing mesh data from ATS"""
 
+import os
 import numpy as np
-import geopandas as gpd
+import h5py
 from matplotlib import pyplot as plt
 from matplotlib.colors import LogNorm
+import matplotlib.gridspec as gridspec
 from matplotlib.ticker import MultipleLocator
-import xml.etree.ElementTree as ET
 
 
 def get_skip_number(filename):
@@ -26,28 +27,24 @@ def plot_subsurface(
     edgecolor="w",
     mesh_linewidth=0.0,
     alpha=0.5,
-    figsize=None,
+    figsize=(12,6),
     plot_ponding=False,
     log_scales=False,
     show_colorbar=True,
     upward_separation=5.0,
     distance_outlet=500,
 ):
+    """
+    Plot subsurface
+    """
     num_plots = len(variables)
-    width = 16  # fixed full width
-    if figsize is None:
-        height_per_subplot = 0.05 * width * aspect
-        height = height_per_subplot * num_plots
-        figsize = (width, height)
-
-    _, ax = plt.subplots(num_plots, 1, figsize=figsize, sharex=True, sharey=True)
+    fig, ax = plt.subplots(num_plots, 1, figsize=figsize, sharex=True, sharey=True)
 
     if num_plots == 1:
         ax = [ax]
 
     for k, var in enumerate(variables):
         data = vis_domain.get(var, vis_domain.cycles[step])
-        # colormap = cmap[k] if cmap and cmap[k] else 'jet'
         colormap = cmap[k] if cmap[k] else 'jet'
         cmin = vmin[k] if vmin and vmin[k] is not None else np.floor(np.nanmin(data))
         cmax = vmax[k] if vmax and vmax[k] is not None else np.ceil(np.nanmax(data))
@@ -63,7 +60,9 @@ def plot_subsurface(
             norm = None
 
         # mesh polygons
-        poly = vis_domain.getMeshPolygons(cmap=colormap, linewidth=mesh_linewidth, edgecolor=edgecolor)
+        poly = vis_domain.getMeshPolygons(
+            cmap=colormap, linewidth=mesh_linewidth, edgecolor=edgecolor
+        )
         poly.set_array(data)
         ax[k].add_collection(poly)
         poly.set_norm(norm)
@@ -72,8 +71,14 @@ def plot_subsurface(
 
         elev = vis_surface.get('surface-elevation', vis_domain.cycles[step])
         pd = vis_surface.get('surface-ponded_depth', vis_domain.cycles[step])
-        if plot_ponding and k==0:  # plot ponded depth on surface
-            ax[k].fill_between(vis_surface.centroids[:,0], upward_separation+elev, upward_separation+elev+pd, color="k", alpha=alpha)
+        if plot_ponding and k == 0:  # plot ponded depth on surface
+            ax[k].fill_between(
+                vis_surface.centroids[:, 0],
+                upward_separation + elev,
+                upward_separation + elev + pd,
+                color="k",
+                alpha=alpha,
+            )
         else:
             ax[k].plot()
 
@@ -89,11 +94,213 @@ def plot_subsurface(
             cbar.set_label(var)
 
     ax[-1].set_xlabel('X [m]')
-    plt.show()
+    time = vis_domain.times[step]
+    ax[0].text(
+        0.95, 0.9,
+        f'Time: {time:.2f} (day)',
+        transform=ax[0].transAxes,
+        ha='right', va='top', fontsize=18,
+    )
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])  # adjust top margin    
+    # plt.show()
 
 
+def plot_profiles(
+    step,
+    vis_domain, vis_surface,
+    var_domain="saturation_liquid", unit_domain=None,
+    var_surface="surface-ponded_depth", unit_surface=None,
+    vmin_domain=None, vmax_domain=None,
+    vmin_surface=None, vmax_surface=None,
+    grid_surface=True,
+    cmap="jet",
+    aspect=3/1,
+    height_ratios=(1, 2),
+    edgecolor="w",
+    mesh_linewidth=0.0,
+    plot_ponding=True,
+    figsize=None,
+    log_domain=False,
+    log_surface=False,
+    show_colorbar=True,
+):
+    """
+    Plot both surface and subsurface profile for each variable
+    """    
+    fig = plt.figure(figsize=figsize)
+    gs = gridspec.GridSpec(2, 1, height_ratios=height_ratios)
+    ax = np.empty(2, dtype=object)
 
-def plot_field_timeseries(time, data, labels, sfactor=1, fontsize=12, xlabel='Time (hr)',
+    x = vis_surface.centroids[:, 0]
+    data_surface = vis_surface.get(var_surface, vis_domain.cycles[step])
+    data_domain = vis_domain.get(var_domain, vis_domain.cycles[step])
+    ax[0] = fig.add_subplot(gs[0])
+    ax[1] = fig.add_subplot(gs[1], sharex=ax[0])
+
+    # PLOT SURFACE
+    cmin = (
+        vmin_surface
+        if vmin_surface and vmin_surface is not None
+        else np.floor(np.nanmin(data_surface))
+    )
+    cmax = (
+        vmax_surface
+        if vmax_surface and vmax_surface is not None
+        else np.ceil(np.nanmax(data_surface))
+    )
+    if log_surface:
+        positive_data = data_surface[data_surface > 0]
+        if len(positive_data) > 0:
+            cmin = positive_data.min() if cmin is None else cmin
+            cmax = positive_data.max() if cmax is None else cmax
+        else:
+            # fallback if no positive data
+            cmin, cmax = 1e-10, 1e-5        
+        ax[0].set_yscale('log')
+
+    data_plot = np.where(data_surface <= 0, np.nan, data_surface)
+    ax[0].plot(x, data_plot)
+    label = var_surface.replace("surface-", "", 1)
+    ax[0].set_ylabel(f'{label} ({unit_surface})')
+    xmax = np.max(x)
+    xmax_rounded = int(np.ceil(xmax / 100.0) * 100)
+    ax[0].set_xlim([0, xmax_rounded])
+
+    if grid_surface:
+        ax[0].grid(True, linewidth=0.5, linestyle='--')
+    ax[0].set_ylim(max(cmin, 1e-10), cmax)  # ensure lower > 0
+
+    # PLOT SUBSURFACE
+    colormap = cmap if cmap else 'jet'
+    cmin = (
+        vmin_domain
+        if vmin_domain and vmin_domain is not None
+        else np.floor(np.nanmin(data_domain))
+    )
+    cmax = (
+        vmax_domain
+        if vmax_domain and vmax_domain is not None
+        else np.ceil(np.nanmax(data_domain))
+    )
+
+    # normalization (linear or log)
+    if log_domain:
+        cmin = 1e-8 if cmin == 0 else cmin
+        cmax = cmin*10 if cmax == 0 else cmax
+        data_domain[data_domain <= cmin] = cmin  # avoid log(0) and negative values
+        norm = LogNorm(vmin=data_domain[data_domain > 0].min(), vmax=data_domain.max())
+    else:
+        norm = None
+
+    # mesh polygons
+    poly = vis_domain.getMeshPolygons(cmap=colormap, linewidth=mesh_linewidth, edgecolor=edgecolor)
+    poly.set_array(data_domain)
+    ax[1].add_collection(poly)
+    poly.set_norm(norm)
+    poly.set_clim(cmin, cmax)
+    ax[1].set_aspect(aspect)
+
+    # labels and axes
+    ax[1].set_ylabel('Z [m]')
+    # ax[1].set_ylim([-10, 20])
+
+    if plot_ponding:  # plot ponded depth on surface
+        elev = vis_surface.get('surface-elevation', vis_domain.cycles[step])
+        pd = vis_surface.get('surface-ponded_depth', vis_domain.cycles[step])        
+        ax[1].fill_between(
+            vis_surface.centroids[:, 0],
+            5 + elev,
+            5 + elev + pd,
+            color="k",
+            alpha=0.5,
+        )
+    else:
+        ax[1].plot()
+            
+    if show_colorbar:
+        cax = fig.add_axes([0.25, 0.0, 0.5, 0.03])
+        cbar = fig.colorbar(poly, cax=cax, orientation="horizontal")
+        cbar.set_label(f'{var_domain} ({unit_domain})')
+
+    time = vis_domain.times[step]
+    ax[1].text(
+        0.95, 0.9,
+        f'Time: {time:.2f} (day)',
+        transform=ax[1].transAxes,
+        ha='right', va='top', fontsize=18,
+    )
+
+    for k in range(2):
+        ax[k].set_xlabel('X [m]')        
+        ax[k].spines['top'].set_visible(False)
+        ax[k].spines['right'].set_visible(False)
+
+
+def get_var_names(directory='.', domain=None, filename=None):
+    """
+    Get variable names from ats results file
+    """
+    if filename is None:
+        if domain is None:
+            filename = 'ats_vis_data.h5'
+        else:
+            filename = f'ats_vis_{domain}_data.h5'
+    fname = os.path.join(directory, filename)
+    h5f = h5py.File(fname)
+    var_names = list(h5f.keys())
+    return h5f, var_names
+
+
+def plot_group(vis_domain, vis_surface, options, data_groups, group_name, step=0):
+    """
+    Function to call plot profiles
+    """
+    group = data_groups[group_name]
+    params = {**options, **group}
+    plot_profiles(
+        step=step,
+        vis_domain=vis_domain,
+        vis_surface=vis_surface,
+        var_surface=params["var_surface"],
+        unit_surface=params["unit_surface"],
+        vmin_surface=params["vmin_surface"],
+        vmax_surface=params["vmax_surface"],       
+        log_surface=params["log_surface"],
+
+        var_domain=params["var_domain"],
+        unit_domain=params["unit_domain"],
+        vmin_domain=params["vmin_domain"],
+        vmax_domain=params["vmax_domain"],
+        log_domain=params["log_domain"],
+
+        cmap=params["cmap"],
+        figsize=params["figsize"],
+        show_colorbar=params["show_colorbar"],
+        aspect=options["aspect"],
+        height_ratios=options["height_ratios"],
+        plot_ponding=options["plot_ponding"],
+    )
+
+
+def plot_all_domains(vis_domain, vis_surface, options, data_groups, step=0):
+    """Plot all subsurface domains."""
+    plot_subsurface(
+        step,
+        vis_domain,
+        vis_surface,
+        variables=[g["var_domain"] for g in data_groups.values()],
+        vmin=[g["vmin_domain"] for g in data_groups.values()],
+        vmax=[g["vmax_domain"] for g in data_groups.values()],
+        cmap=[g["cmap"] for g in data_groups.values()],
+        log_scales=[g["log_domain"] for g in data_groups.values()],
+        plot_ponding=[g["plot_ponding"] for g in data_groups.values()],
+        aspect=options["aspect"],
+        figsize=options["figsize"],
+        show_colorbar=options["show_colorbar"]
+    )
+    
+
+def plot_field_timeseries(time, data, labels, sfactor=1, fontsize=12, xlabel='Time (d)',
                           ylabel=None, title=None, legend=True, ylim=None, logscale=False, ax=None):
     """Plot time series data for multiple fields on a single axis.
 
@@ -111,7 +318,7 @@ def plot_field_timeseries(time, data, labels, sfactor=1, fontsize=12, xlabel='Ti
         Base font size for plot text, default=12
     xlabel : str, optional
         Label for x-axis, default='Time (hr)'
-    ylabel : str, optional
+    ylabel : str, optional 
         Label for y-axis, default=None
     title : str, optional
         Plot title, default=None
@@ -155,80 +362,5 @@ def plot_field_timeseries(time, data, labels, sfactor=1, fontsize=12, xlabel='Ti
 
     if legend:
         ax.legend(loc='center left', fontsize=fontsize, frameon=True)
-
+    
     return ax
-
-
-def get_rainfall_from_xml(xml_file, time_obs, sfactor=1, parameter='surface-water_source'):
-    """Extract rainfall data from an XML file and convert to observation times.
-
-    Parameters
-    ----------
-    xml_file : str
-        Path to XML file containing rainfall data
-    time_obs : array-like
-        Observation time points to interpolate rainfall to
-    sfactor : float, optional
-        Scale factor to apply to rainfall values, default=1
-
-    Returns
-    -------
-    array-like
-        Rainfall values interpolated to observation times
-    """
-    tree = ET.parse(xml_file)
-    root = tree.getroot()
-    water_source = root.find(f".//ParameterList[@name='{parameter}']")
-    function = water_source.find(".//ParameterList[@name='function-tabular']")
-    x_time = [float(x) for x in function.find("Parameter[@name='x values']").attrib['value'].strip('{}').split(',')]
-    y_values = [float(y) for y in function.find("Parameter[@name='y values']").attrib['value'].strip('{}').split(',')]
-    num_time = len(x_time)
-
-    x_time = np.array(x_time)/3600
-    n = len(time_obs)
-    rainfall = np.zeros(n)
-    for i in range(num_time-1):
-        rainfall[(time_obs >= x_time[i]) & (time_obs <= x_time[i+1])] = y_values[i] * sfactor
-
-    return rainfall
-
-
-def get_tracer_source_from_xml(xml_file, time_obs, sfactor=1, parameter='source terms'):
-    """Extract tracer source data from an XML file and convert to observation times.
-
-    Parameters
-    ----------
-    xml_file : str
-        Path to XML file containing tracer source data
-    time_obs : array-like
-        Observation time points to interpolate source values to
-    sfactor : float, optional
-        Scale factor to apply to source values, default=1
-
-    Returns
-    -------
-    array-like
-        Tracer source values interpolated to observation times
-    """
-    tree = ET.parse(xml_file)
-    root = tree.getroot()
-
-    # Navigate to the tracer source section
-    source_terms = root.find(f".//ParameterList[@name='{parameter}']")
-    function = source_terms.find(".//ParameterList[@name='function-tabular']")
-
-    # Extract time and value arrays
-    x_time = [float(x) for x in function.find("Parameter[@name='x values']").attrib['value'].strip('{}').split(',')]
-    y_values = [float(y) for y in function.find("Parameter[@name='y values']").attrib['value'].strip('{}').split(',')]
-    num_time = len(x_time)
-
-    # Convert time to hours
-    x_time = np.array(x_time)/3600
-
-    # Interpolate to observation times
-    n = len(time_obs)
-    source = np.zeros(n)
-    for i in range(num_time-1):
-        source[(time_obs >= x_time[i]) & (time_obs <= x_time[i+1])] = y_values[i] * sfactor
-
-    return source

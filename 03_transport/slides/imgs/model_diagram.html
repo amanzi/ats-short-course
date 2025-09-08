@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>GoJS Tooltip Below Boxes</title>
+        <script src="https://unpkg.com/gojs/release/go.js"></script>
+        <style>
+            #myDiagramDiv {
+                width: 100%;
+                height: 230px;
+                border: 0px solid black;
+                position: relative;
+            }
+            #hoverInfo {
+                position: absolute;
+                background: white;
+                border: 1px solid black;
+                padding: 8px;
+                font-size: 16px;
+                display: none;
+                pointer-events: none;
+                z-index: 10; /* appear above the diagram */
+            }
+        </style>
+    </head>
+    <body>
+        <div id="myDiagramDiv"></div>
+        <div id="hoverInfo"></div>
+        <script>
+            const $ = go.GraphObject.make;
+
+            const diagram = $(go.Diagram, "myDiagramDiv", {
+                layout: $(go.LayeredDigraphLayout, { direction: 0, layerSpacing: 100 }),
+            });
+
+            diagram.nodeTemplate = $(
+                go.Node,
+                "Auto",
+                {
+                    mouseEnter: (e, node) => showHoverInfo(node),
+                    mouseLeave: (e, node) => hideHoverInfo(),
+                },
+                $(go.Shape, "RoundedRectangle", {
+                    minSize: new go.Size(150, 80),
+                    strokeWidth: 2,
+                }).bind("fill", "color"),
+                $(go.TextBlock, { margin: 20, font: "bold 20px sans-serif" }).bind("text"),
+            );
+
+            diagram.linkTemplate = $(
+                go.Link,
+                { routing: go.Link.Orthogonal, corner: 5 },
+                $(go.Shape, { strokeWidth: 4, stroke: "black" }),
+                $(go.Shape, { toArrow: "Standard", stroke: null, fill: "black", scale: 2 }),
+            );
+
+            diagram.model = new go.GraphLinksModel(
+                [
+                    {
+                        key: 1,
+                        text: "Inputs",
+                        color: "lightblue",
+                        info: "raw data, parameters, forcing, ICs, BCs, ...",
+                    },
+                    {
+                        key: 2,
+                        text: "Model",
+                        color: "orange",
+                        info: "statistical, neural network, physics-based, ...",
+                    },
+                    {
+                        key: 3,
+                        text: "Outputs",
+                        color: "lightgreen",
+                        info: "information produced by the model...",
+                    },
+                ],
+                [
+                    { from: 1, to: 2 },
+                    { from: 2, to: 3 },
+                ],
+            );
+
+            const hoverDiv = document.getElementById("hoverInfo");
+            let hoverTimeout;
+
+            function showHoverInfo(node) {
+                clearTimeout(hoverTimeout);
+
+                // Bottom-center of the node
+                const docPt = new go.Point(node.actualBounds.center.x, node.actualBounds.bottom);
+                const viewPt = diagram.transformDocToView(docPt);
+
+                // Center horizontally below the node, offset 5px down
+                hoverDiv.style.left = viewPt.x - 100 + "px";
+                hoverDiv.style.top = viewPt.y + 15 + "px";
+
+                hoverDiv.textContent = node.data.info;
+                hoverDiv.style.display = "block";
+
+                // Hide after 30 seconds
+                hoverTimeout = setTimeout(() => {
+                    hoverDiv.style.display = "none";
+                }, 30000);
+            }
+
+            function hideHoverInfo() {
+                clearTimeout(hoverTimeout);
+                hoverDiv.style.display = "none";
+            }
+        </script>
+    </body>
+</html>

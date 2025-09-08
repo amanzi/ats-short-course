@@ -2,16 +2,10 @@
   <ParameterList name="mesh" type="ParameterList">
     <ParameterList name="domain" type="ParameterList">
       <Parameter name="mesh type" type="string" value="generate mesh" />
-      <Parameter name="build columns from set" type="string" value="surface" />
       <ParameterList name="generate mesh parameters" type="ParameterList">
         <Parameter name="number of cells" type="Array(int)" value="{1,1,100}" />
         <Parameter name="domain low coordinate" type="Array(double)" value="{0.0,0.0,0.0}" />
         <Parameter name="domain high coordinate" type="Array(double)" value="{1.0,1.0,10.0}" />
-        <Parameter name="Number of mesh blocks" type="int" value="1" />
-        <ParameterList name="Mesh block 1" type="ParameterList">
-          <Parameter name="Z0" type="double" value="0.0" />
-          <Parameter name="Z1" type="double" value="10.0" />
-        </ParameterList>
       </ParameterList>
     </ParameterList>
   </ParameterList>
@@ -44,17 +38,23 @@
   </ParameterList>
 
 
-  <ParameterList name="observations" type="ParameterList">
-    <ParameterList name="observation mass flux" type="ParameterList">
-      <Parameter name="variable" type="string" value="water_flux" />
-      <Parameter name="direction normalized flux" type="bool" value="true" />
-      <Parameter name="region" type="string" value="observation region" />
-      <Parameter name="functional" type="string" value="extensive integral" />
-      <Parameter name="delimiter" type="string" value=" " />
-      <Parameter name="location name" type="string" value="face" />
-      <Parameter name="write interval" type="int" value="1" />
+  <ParameterList name="observations" type="ParameterList">  
+    <ParameterList name="observation water flux" type="ParameterList">
       <Parameter name="observation output filename" type="string" value="observation_flux.dat" />
-      <Parameter name="times start period stop" type="Array(double)" value="{0.0,600.0,-1.0}" />
+      <Parameter name="write interval" type="int" value="10" />
+      <Parameter name="time units" type="string" value="d" />
+      <Parameter name="cycles start period stop" type="Array(int)" value="{ 0, 1,-1}" />
+      <!-- <Parameter name="times start period stop" type="Array(double)" value="{0.0,600.0,-1.0}" /> -->
+      <ParameterList name="observed quantities" type="ParameterList">
+        <ParameterList name="water flux [mol]" type="ParameterList">
+          <Parameter name="variable" type="string" value="water_flux" />
+          <Parameter name="direction normalized flux" type="bool" value="true" />
+          <Parameter name="region" type="string" value="observation region" />
+          <Parameter name="functional" type="string" value="extensive integral" />
+          <Parameter name="delimiter" type="string" value=" " />
+          <Parameter name="location name" type="string" value="face" />
+        </ParameterList>
+      </ParameterList>
     </ParameterList>
   </ParameterList>
 
