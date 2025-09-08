@@ -8,7 +8,7 @@
     <link href="slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="slides_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="slides_files/tile-view-0.2.6/tile-view.js"></script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x9b93b624ea247aa8fa1043b5898df2b","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"d3dfb629804644d5821d0b56dcbcc465","expires":1}</script>
     <script src="slides_files/himalaya-1.1.0/himalaya.js"></script>
     <script src="slides_files/js-cookie-3.0.0/js.cookie.js"></script>
     <link href="slides_files/editable-0.2.6/editable.css" rel="stylesheet" />
@@ -76,20 +76,20 @@ class: center, middle, inverse, title-slide
 - Clone the ats-short-course demos repository <svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>:
   
   ``` shell
-  git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
+  $ git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
   ```
 
 - Download the `Docker` image and run the container <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>:
   
   ``` shell
-  docker pull metsi/ats-short-course:latest
-  docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
+  $ docker pull metsi/ats-short-course:latest
+  $ docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
   ```
 
 - Open `JupyterLab`:
   
   ``` shell
-  http://127.0.0.1:8899/lab
+  $ http://127.0.0.1:8899/lab
   ```
 
 - Slides: [`ats-short-course/03_transport/slides/slides.html`](https://github.com/amanzi/ats-short-course/tree/ats-short-course-20250908/03_transport/slides/slides.html)
@@ -167,14 +167,14 @@ $$
 - `\(\Theta\)`: mass of water per unit space &lt;br&gt;
   - `\(\Theta = \eta h \quad \text{for} \quad \partial \Omega \in \mathbb{R}^2\)`
   - `\(\Theta = \eta \phi S_w \quad \text{for} \quad \Omega \in \mathbb{R}^3\)`   
-- `\(C_i\)`: mole fraction of the solute `\(i\)` `\(\left( \frac{mol_{solute}}{mol_{H_2O}} \right)\)` <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we want it`]
-- `\(S_i\)`: source/sink terms of solute `\(i\)` per unit space <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
-- `\(D^{*}_i\)`: hydrodynamic dispersion coefficient of solute `\(i\)` (`\(L^2/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
+- `\(C_i\)`: mole fraction of the solute `\(i\)` `\(\left( \frac{mol_{solute}}{mol_{H_2O}} \right)\)` <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`unknowns`]
+- `\(S_i\)`: source/sink terms of solute `\(i\)` per unit space
+- `\(D^{*}_i\)`: hydrodynamic dispersion coefficient of solute `\(i\)` (`\(L^2/T\)`)
 - `\(\mathbf{u}\)`: the flow velocity field (`\(L/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg> .content-box-green[`from the hydrology model`]
-.font60[
+.font80[
 `\(\eta\)`: water molar density (`\(M/L^{3}\)`); 
 `\(\phi\)`: medium's porosity (-); 
-`\(S_w\)`: degree of saturation (-);
+`\(S_w\)`: degree of saturation (-); &lt;br&gt;
 `\(h\)`: water depth on the surface (`\(L\)`)
 ]
 ]
@@ -208,6 +208,8 @@ $$
 
 .pull-right-46[
 &lt;img src="imgs/Discretization.jpg" width="360"/&gt;
+
+.footnote[```Čanić et al. (2017)```]
 ]
 ---
 
@@ -222,7 +224,7 @@ $$
 # Steps to Construct a Model in Amanzi-ATS
 .pull-left[
 .font80[
-- **.brand-blue[Simulation domains]** <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg>
+- **.brand-blue[Simulation domain]** <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg>
   - Where the processes happen
 
 - .content-box-green[**.brand-blue[Process Kernel Tree]** <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M208 80c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-8v40H464c30.9 0 56 25.1 56 56v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H464c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-4.4-3.6-8-8-8H312v40h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H256c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V280H112c-4.4 0-8 3.6-8 8v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-30.9 25.1-56 56-56H264V192h-8c-26.5 0-48-21.5-48-48V80z"/></svg>]
@@ -342,7 +344,7 @@ $$
 ]
 
 .pull-right[
-.footnotesize[
+.small[
 ```xml
 &lt;ParameterList name="state" type="ParameterList"&gt;
   &lt;ParameterList name="evaluators" type="ParameterList"&gt;
@@ -373,7 +375,7 @@ $$
 
 .pull-right[
 &lt;br&gt;  
-.footnotesize[
+.small[
 ```xml
 &lt;ParameterList name="surface transport"&gt;
   &lt;Parameter name="PK type" type="string" value="transport ATS"/&gt;
@@ -407,7 +409,7 @@ $$
 .panel[.panel-name[XML]
 .pull-left[
 Using function
-.font60[
+.font70[
 ```xml
 &lt;ParameterList name="surface-water_source" type="ParameterList"&gt;
   &lt;Parameter name="evaluator type" type="string" value="independent variable"/&gt;
@@ -430,7 +432,7 @@ Using function
 
 .pull-right[
 Loading from file
-.font60[
+.font70[
 ```xml
 &lt;ParameterList name="surface-water_source" type="ParameterList"&gt;
   &lt;Parameter name="evaluator type" type="string" value="independent variable" /&gt;
@@ -487,7 +489,7 @@ Loading from file
 ]
 
 .pull-right[
-.font60[
+.font70[
 ```xml
 &lt;ParameterList name="surface transport"&gt;
   &lt;ParameterList name="source terms"&gt;

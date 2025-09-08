@@ -47,18 +47,18 @@ xaringanExtra::use_panelset()
 
 - Clone the ats-short-course demos repository `r fontawesome::fa("github")`:
   ```{shell, eval=FALSE}
-  git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
+  $ git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
   ```
 
 - Download the `Docker` image and run the container `r fontawesome::fa("docker")`:
   ```{shell, eval=FALSE}
-  docker pull metsi/ats-short-course:latest
-  docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
+  $ docker pull metsi/ats-short-course:latest
+  $ docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
   ```
 
 - Open `JupyterLab`:
   ```{shell, eval=FALSE}
-  http://127.0.0.1:8899/lab
+  $ http://127.0.0.1:8899/lab
   ```
 
 - Slides: [`ats-short-course/03_transport/slides/slides.html`](https://github.com/amanzi/ats-short-course/tree/ats-short-course-20250908/03_transport/slides/slides.html)
@@ -136,14 +136,14 @@ $$
 - $\Theta$: mass of water per unit space <br>
   - $\Theta = \eta h \quad \text{for} \quad \partial \Omega \in \mathbb{R}^2$
   - $\Theta = \eta \phi S_w \quad \text{for} \quad \Omega \in \mathbb{R}^3$   
-- $C_i$: mole fraction of the solute $i$ $\left( \frac{mol_{solute}}{mol_{H_2O}} \right)$ `r fontawesome::fa("long-arrow-right")` .brand-red[`we want it`]
-- $S_i$: source/sink terms of solute $i$ per unit space `r fontawesome::fa("long-arrow-right")` .brand-red[`we specify it`]
-- $D^{*}_i$: hydrodynamic dispersion coefficient of solute $i$ ($L^2/T$) `r fontawesome::fa("long-arrow-right")` .brand-red[`we specify it`]
+- $C_i$: mole fraction of the solute $i$ $\left( \frac{mol_{solute}}{mol_{H_2O}} \right)$ `r fontawesome::fa("long-arrow-right")` .brand-red[`unknowns`]
+- $S_i$: source/sink terms of solute $i$ per unit space
+- $D^{*}_i$: hydrodynamic dispersion coefficient of solute $i$ ($L^2/T$)
 - $\mathbf{u}$: the flow velocity field ($L/T$) `r fontawesome::fa("long-arrow-left")` .content-box-green[`from the hydrology model`]
-.font60[
+.font80[
 $\eta$: water molar density ($M/L^{3}$); 
 $\phi$: medium's porosity (-); 
-$S_w$: degree of saturation (-);
+$S_w$: degree of saturation (-); <br>
 $h$: water depth on the surface ($L$)
 ]
 ]
@@ -177,6 +177,8 @@ $$
 
 .pull-right-46[
 <img src="imgs/Discretization.jpg" width="360"/>
+
+.footnote[```Čanić et al. (2017)```]
 ]
 ---
 
@@ -191,7 +193,7 @@ $$
 # Steps to Construct a Model in Amanzi-ATS
 .pull-left[
 .font80[
-- **.brand-blue[Simulation domains]** `r fontawesome::fa("map")`
+- **.brand-blue[Simulation domain]** `r fontawesome::fa("map")`
   - Where the processes happen
 
 - .content-box-green[**.brand-blue[Process Kernel Tree]** `r fontawesome::fa("sitemap")`]
@@ -311,7 +313,7 @@ $$
 ]
 
 .pull-right[
-.footnotesize[
+.small[
 ```xml
 <ParameterList name="state" type="ParameterList">
   <ParameterList name="evaluators" type="ParameterList">
@@ -342,7 +344,7 @@ $$
 
 .pull-right[
 <br>  
-.footnotesize[
+.small[
 ```xml
 <ParameterList name="surface transport">
   <Parameter name="PK type" type="string" value="transport ATS"/>
@@ -409,7 +411,7 @@ ggplot(data, aes(x = time, y = rainfall_rate)) +
 .panel[.panel-name[XML]
 .pull-left[
 Using function
-.font60[
+.font70[
 ```xml
 <ParameterList name="surface-water_source" type="ParameterList">
   <Parameter name="evaluator type" type="string" value="independent variable"/>
@@ -432,7 +434,7 @@ Using function
 
 .pull-right[
 Loading from file
-.font60[
+.font70[
 ```xml
 <ParameterList name="surface-water_source" type="ParameterList">
   <Parameter name="evaluator type" type="string" value="independent variable" />
@@ -492,7 +494,7 @@ kable(df, "html") %>%
 ]
 
 .pull-right[
-.font60[
+.font70[
 ```xml
 <ParameterList name="surface transport">
   <ParameterList name="source terms">
