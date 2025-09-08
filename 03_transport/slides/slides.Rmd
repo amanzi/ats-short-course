@@ -287,7 +287,7 @@ class: small-panel-slide
 ]
 
 .panel[.panel-name[Transport]
-<iframe src="imgs/dependency_transport_incomplete.html" width="1200" height="600" frameborder="0"></iframe>
+<iframe src="imgs/dependency_transport_incomplete.html" width="1200" height="650" frameborder="0"></iframe>
 ]]
 
 ---
