@@ -22,20 +22,46 @@ output:
         scroll: false # disable slide transitions by scrolling
 ---
 
-# Website
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
 
-<br>
+```{r xaringan-editable, echo=FALSE}
+xaringanExtra::use_editable(expires = 1)
+```
 
-###**Github `r fontawesome::fa("github")`:**
+```{r xaringanExtra-search, echo=FALSE}
+xaringanExtra::use_search(show_icon = TRUE)
+```
 
-[`https://github.com/amanzi/ats-short-course`](https://github.com/amanzi/ats-short-course)
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
 
-<br>
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
 
-###**Slides for tutorial:**
 
-[`https://amanzi.github.io/ats-hands-on-transport/slides.html`](https://amanzi.github.io/ats-hands-on-transport/slides.html)
+# Setting up environment
 
+- Clone the ats-short-course demos repository `r fontawesome::fa("github")`:
+  ```{shell, eval=FALSE}
+  git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
+  ```
+
+- Download the `Docker` image and run the container `r fontawesome::fa("docker")`:
+  ```{shell, eval=FALSE}
+  docker pull metsi/ats-short-course:latest
+  docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
+  ```
+
+- Open `JupyterLab`:
+  ```{shell, eval=FALSE}
+  http://127.0.0.1:8899/lab
+  ```
+
+- Slides: [`ats-short-course/03_transport/slides/slides.html`](https://github.com/amanzi/ats-short-course/tree/ats-short-course-20250908/03_transport/slides/slides.html)
 ---
 
 # Goals
@@ -44,7 +70,7 @@ output:
 <br>
 
 - ### Understand the basics of the .content-box-purple[`transport PK`]
-- ### Build simple to advanced transport models with .content-box-yellow[`Amanzi-ATS`]
+- ### Develop simple to advanced transport models with .content-box-yellow[`Amanzi-ATS`]
 
 ---
 
@@ -53,7 +79,7 @@ output:
 <br>
 <br>
 
-- ### Review .brand-grey[(non-reactive)] transport modeling .brand-orange[(~10 min)]
+- ### Review transport modeling .brand-orange[(~10 min)]
 - ### Learn how .content-box-green[`Amanzi-ATS`] simulates transport processes .brand-orange[(~10 min)]
 - ### Build a surface-subsurface transport model step-by-step .brand-orange[(>60 min)]
 
@@ -101,7 +127,7 @@ $$
 .content-box-grey[
 .font120[  
 $$
-    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla (D_i \Theta \nabla C_i) + S_i = 0
+    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla \cdot (\Theta D^{*}_i \nabla C_i) + S_i = 0
 $$
 ]]
 
@@ -112,7 +138,7 @@ $$
   - $\Theta = \eta \phi S_w \quad \text{for} \quad \Omega \in \mathbb{R}^3$   
 - $C_i$: mole fraction of the solute $i$ $\left( \frac{mol_{solute}}{mol_{H_2O}} \right)$ `r fontawesome::fa("long-arrow-right")` .brand-red[`we want it`]
 - $S_i$: source/sink terms of solute $i$ per unit space `r fontawesome::fa("long-arrow-right")` .brand-red[`we specify it`]
-- $D_i$: diffusion coefficient of solute $i$ ($L^2/T$) `r fontawesome::fa("long-arrow-right")` .brand-red[`we specify it`]
+- $D^{*}_i$: hydrodynamic dispersion coefficient of solute $i$ ($L^2/T$) `r fontawesome::fa("long-arrow-right")` .brand-red[`we specify it`]
 - $\mathbf{u}$: the flow velocity field ($L/T$) `r fontawesome::fa("long-arrow-left")` .content-box-green[`from the hydrology model`]
 .font60[
 $\eta$: water molar density ($M/L^{3}$); 
@@ -124,8 +150,41 @@ $h$: water depth on the surface ($L$)
 
 .pull-right-12[
 <img src="imgs/hydro_domain.png" width="250px"/>
+
+.footnote[```Molins et al. (2022)```]
 ]
 ]
+
+---
+
+# Numerical methods in `Amanzi-ATS` transport
+<br>
+.pull-left-64[
+- `Amanzi-ATS` transport uses finite volume method (`FVM`) to obtain numerical solutions
+- It solves the ADE by operator splitting into advection and diffusion stages:
+
+$$
+\begin{aligned}
+\frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot (\mathbf{u}C_i) &= S_i \quad & (1) \\
+\frac{\partial (\Theta C_i)}{\partial t} - \nabla \cdot \left(\Theta D_i^{*}\nabla C_i\right) &= 0 \quad & (2)
+\end{aligned}
+$$
+
+  .font70[&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Eqn (1) is solved using an .content-box-green[explicit upwind (donor cell) scheme]] <br>
+  .font70[&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Eqn (2) is solved using an .content-box-purple[implicit scheme]]
+    
+]
+
+.pull-right-46[
+<img src="imgs/Discretization.jpg" width="360"/>
+]
+---
+
+# Transport problem
+
+<br>
+
+<img src="imgs/static_domain.png" width="1250px"/>
 
 ---
 
@@ -148,7 +207,7 @@ $h$: water depth on the surface ($L$)
 
 - **.brand-blue[Forcing, sources and sinks]** `r fontawesome::fa("cloud-sun-rain")`
   - External forces that drive changes in the system
-  - Material or energy added/removed to/from the system
+  - .font90[Material or energy added/removed to/from the system]
 ]]
 
 --
@@ -184,28 +243,19 @@ MAIN
 
 ---
 
-# Domain of simulation
-<iframe width="1280" height="500" src="imgs/transport_domain.html", frameborder="0"></iframe>
+class: small-panel-slide
 
----
-
-# Process Kernel Tree - Transport
-.pull-left-73[
-.small[Let's construct the `PK tree` for an integrated transport model]
-.font40[
+# Process Kernel Tree
+.font50[
 **PK:** [`Process kernels`](https://amanzi.github.io/ats/stable/input_spec/process_kernels/index.html); **MPC:** [`Multi-process-couplers`](https://amanzi.github.io/ats/stable/input_spec/process_kernels/mpcs/index.html)
 ]
- 
+.panelset[
+.panel[.panel-name[Hydrology]
+.pull-left[
 <iframe src="imgs/dependency_hydro.html" width="900" height="500" frameborder="0"></iframe>
 ]
 
-.footnote[
-  <a href="imgs/dependency_transport.html" target="_blank">```graph: transport```</a> &nbsp; &nbsp; &nbsp; &nbsp;
-  <!-- <a href="imgs/dependency_transport_reactive.html" target="_blank">```graph: reactive transport```</a> &nbsp; &nbsp; &nbsp; &nbsp;
-  <a href="imgs/dependency_transport_reactive_ecohydrology.html" target="_blank">```graph: reactive transport & ecohydrology```</a> -->
-]
-
-.pull-right-46[
+.pull-right[
 <br>
 .font50[
 ```xml
@@ -234,24 +284,34 @@ MAIN
 </ParameterList>  
 ```
 ]]
+]
+
+.panel[.panel-name[Transport]
+<iframe src="imgs/dependency_transport_incomplete.html" width="1200" height="600" frameborder="0"></iframe>
+]]
 
 ---
 
+class: small-panel-slide
+
 # Transport Model Parameters
 
-<br>
 .content-box-grey[
 $$
-    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla (D_i \Theta \nabla C_i) + S_i = 0
+    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla \cdot (\Theta D^{*}_i \nabla C_i) + S_i = 0
 $$
 ]
 
 --
-
+.panelset[
+.panel[.panel-name[Physical]
 .pull-left[
-.footnotesize[
-- Physical parameters
+<br>  
+.blockquote[Quantitative values representing the  properties or characteristics of a physical system]
+]
 
+.pull-right[
+.footnotesize[
 ```xml
 <ParameterList name="state" type="ParameterList">
   <ParameterList name="evaluators" type="ParameterList">
@@ -270,13 +330,19 @@ $$
   </ParameterList>
 </ParameterList>  
 ```
-]]
---
+]]]
+
+.panel[.panel-name[Numerical]
+.pull-left[
+<br>  
+.blockquote[
+- Quantitative values that control the numerical solution of physics-based models
+- Govern the accuracy, stability, and efficiency of the computational simulation]
+]
 
 .pull-right[
+<br>  
 .footnotesize[
-- Numerical parameters  
-
 ```xml
 <ParameterList name="surface transport">
   <Parameter name="PK type" type="string" value="transport ATS"/>
@@ -289,39 +355,140 @@ $$
   ... 
 </ParameterList>
 ```
-]]
+]
+]]]
 
 ---
 
-# Forcings & sources/sinks
-.pull-left[
-<br />
+# Forcings
+.panelset[
+.panel[.panel-name[Description]
+- Uniform rainfall over the .content-box-purple[`surface domain`] region
+- Rainfall rate: $r = 5.5 \times 10^{-7}$ $[m/s]$ (equivalent $1.98$ $[mm/h]$)
+- Rainfall duration: from day 0 to day 10
+- After day 10: $r = 0$ $[m/s]$
+]
+
+.panel[.panel-name[Plot]
 ```{r, fig.height=6, fig.width=12, fig.retina=2, fig.align='center', message=FALSE, warning=FALSE, echo=FALSE}
 library(ggplot2)
+
 # Define the time sequence and rainfall rates as a data frame
 time <- seq(0, 30, by = 0.02)
-rainfall_rate <- ifelse(time <= 10, 48, 0)
+rainfall_rate <- ifelse(time <= 10, 1.98, 0)
 data <- data.frame(time = time, rainfall_rate = rainfall_rate)
 
 ggplot(data, aes(x = time, y = rainfall_rate)) +
   geom_line(color = "blue", size = 2) +
-  labs(title = "Forcing Inputs", x = "Time (day)", y = "Rainfall Rate (mm/d)") +
-  ylim(0, 60) +
-  xlim(0, 30) +
-  scale_x_continuous(breaks = seq(0, 30, by = 5)) +
+  labs(
+    title = "Rainfall inputs",
+    x = "Time (day)",
+    y = "Rainfall Rate (mm/h)"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 2.5),
+    sec.axis = sec_axis(
+      trans = ~ . * (0.001 / 3600),  # conversion mm/h → m/s
+      name = "Rainfall Rate (m/s)"
+    )
+  ) +
+  scale_x_continuous(breaks = seq(0, 30, by = 5), limits = c(0, 30)) +
   theme_minimal() +
   theme(
-      plot.title = element_text(size = 32, face = "bold", hjust = 0.5),
-      axis.title.x = element_text(size = 24),
-      axis.title.y = element_text(size = 24),
-      axis.text.x = element_text(size = 20),
-      axis.text.y = element_text(size = 20)  
+    plot.title = element_text(size = 32, face = "bold", hjust = 0.5),
+    axis.title.x = element_text(size = 24),
+    axis.title.y = element_text(size = 24),
+    axis.title.y.right = element_text(size = 24),  # right y-axis label
+    axis.text.x = element_text(size = 20),
+    axis.text.y = element_text(size = 20),
+    axis.text.y.right = element_text(size = 20)    # right y-axis ticks
   )
+```
+]
+
+.panel[.panel-name[XML]
+.pull-left[
+Using function
+.font60[
+```xml
+<ParameterList name="surface-water_source" type="ParameterList">
+  <Parameter name="evaluator type" type="string" value="independent variable"/>
+  <ParameterList name="function" type="ParameterList">
+    <ParameterList name="domain" type="ParameterList">
+      <Parameter name="region" type="string" value="surface domain"/>
+      <Parameter name="component" type="string" value="cell"/>
+      <ParameterList name="function" type="ParameterList">
+        <ParameterList name="function-tabular" type="ParameterList">
+*         <Parameter name="x values" type="Array(double)" value="{0, 864000}"/>
+*         <Parameter name="y values" type="Array(double)" value="{5.5e-7, 0.0}"/>
+*         <Parameter name="forms" type="Array(string)" value="{constant}"/>                
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+  </ParameterList>
+</ParameterList>
+```
+]]
+
+.pull-right[
+Loading from file
+.font60[
+```xml
+<ParameterList name="surface-water_source" type="ParameterList">
+  <Parameter name="evaluator type" type="string" value="independent variable" />
+  <ParameterList name="function" type="ParameterList">
+    <ParameterList name="domain" type="ParameterList">
+      <Parameter name="region" type="string" value="surface domain" />
+      <Parameter name="component" type="string" value="cell" />
+      <ParameterList name="function" type="ParameterList">
+        <ParameterList name="function-tabular" type="ParameterList">
+*         <Parameter name="file" type="string" value="PATH/TO/FILENAME.h5" />
+*         <Parameter name="x header" type="string" value="TIME" />
+*         <Parameter name="y header" type="string" value="PRECIPITATION" />
+        </ParameterList>
+      </ParameterList>
+    </ParameterList>
+  </ParameterList>
+</ParameterList>
+```
+]]
+
+]
+]
+---
+
+# Sources and sinks
+.pull-left[
+<br> <br>  
+
+```{r, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+# Create the data frame
+df <- data.frame(
+  `Name` = c("Region", "Type"),
+  `Tracer1` = c("surface domain", "concentration"),
+  `Tracer2` = c("golf course", "mass rate")
+)
+
+# Render the table bigger
+kable(df, "html") %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE, 
+    font_size = 20
+  ) %>%
+  row_spec(0, bold = TRUE, font_size = 24) %>%
+  column_spec(1, width = "240px") %>%  # set first column width
+  column_spec(2, width = "240px") %>%  # set second column width
+  column_spec(3, width = "240px")      # third column
+
 ```
 
 <br> <br> <br>
-.font50[.content-box-purple[`volume`]: source is extensive quantity (molC/s) and evenly distributed across the region] <br>
-.font50[.content-box-yellow[`none`]: source is intensive quantity (molC/m2/s) across the region]
+.font60[.content-box-purple[`volume`]: source is extensive quantity (molC/s) and evenly distributed across the region] <br>
+.font60[.content-box-yellow[`none`]: source is intensive quantity (molC/m2/s) across the region]
 ]
 
 .pull-right[
@@ -372,7 +539,7 @@ ggplot(data, aes(x = time, y = rainfall_rate)) +
 
 # Initial and boundary conditions
 .pull-left[
-#### .blockquote[Initial conditions .gray[(true)]]
+#### .blockquote[Initial conditions]
 .small[
 - located inside each PK in the `xml` file
 - can be:

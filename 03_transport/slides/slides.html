@@ -6,6 +6,25 @@
     <meta name="author" content="Phong Le @ ORNL" />
     <script src="slides_files/header-attrs-2.29/header-attrs.js"></script>
     <link href="slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="slides_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
+    <script src="slides_files/tile-view-0.2.6/tile-view.js"></script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"ea344ba0bdd24356861d869ef899dc2e","expires":1}</script>
+    <script src="slides_files/himalaya-1.1.0/himalaya.js"></script>
+    <script src="slides_files/js-cookie-3.0.0/js.cookie.js"></script>
+    <link href="slides_files/editable-0.2.6/editable.css" rel="stylesheet" />
+    <script src="slides_files/editable-0.2.6/editable.js"></script>
+    <script src="slides_files/mark.js-8.11.1/mark.min.js"></script>
+    <link href="slides_files/xaringanExtra-search-0.0.1/search.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-search-0.0.1/search.js"></script>
+    <script>window.addEventListener('load', function() { window.xeSearch = new RemarkSearch({"position":"bottom-left","caseSensitive":false,"showIcon":true,"autoSearch":true}) })</script>
+    <script src="slides_files/fabric-4.3.1/fabric.min.js"></script>
+    <link href="slides_files/xaringanExtra-scribble-0.0.1/scribble.css" rel="stylesheet" />
+    <script src="slides_files/xaringanExtra-scribble-0.0.1/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="slides_files/panelset-0.3.1/panelset.css" rel="stylesheet" />
+    <script src="slides_files/panelset-0.3.1/panelset.js"></script>
+    <script src="slides_files/kePrint-0.0.1/kePrint.js"></script>
+    <link href="slides_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         TeX: { equationNumbers: { autoNumber: "AMS" } },
@@ -41,20 +60,39 @@ class: center, middle, inverse, title-slide
 ---
 
 
-# Website
 
-&lt;br&gt;
 
-###**Github <svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>:**
 
-[`https://github.com/amanzi/ats-short-course`](https://github.com/amanzi/ats-short-course)
 
-&lt;br&gt;
 
-###**Slides for tutorial:**
 
-[`https://amanzi.github.io/ats-hands-on-transport/slides.html`](https://amanzi.github.io/ats-hands-on-transport/slides.html)
 
+
+
+
+
+# Setting up environment
+
+- Clone the ats-short-course demos repository <svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>:
+  
+  ``` shell
+  git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
+  ```
+
+- Download the `Docker` image and run the container <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>:
+  
+  ``` shell
+  docker pull metsi/ats-short-course:latest
+  docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
+  ```
+
+- Open `JupyterLab`:
+  
+  ``` shell
+  http://127.0.0.1:8899/lab
+  ```
+
+- Slides: [`ats-short-course/03_transport/slides/slides.html`](https://github.com/amanzi/ats-short-course/tree/ats-short-course-20250908/03_transport/slides/slides.html)
 ---
 
 # Goals
@@ -63,7 +101,7 @@ class: center, middle, inverse, title-slide
 &lt;br&gt;
 
 - ### Understand the basics of the .content-box-purple[`transport PK`]
-- ### Build simple to advanced transport models with .content-box-yellow[`Amanzi-ATS`]
+- ### Develop simple to advanced transport models with .content-box-yellow[`Amanzi-ATS`]
 
 ---
 
@@ -72,7 +110,7 @@ class: center, middle, inverse, title-slide
 &lt;br&gt;
 &lt;br&gt;
 
-- ### Review .brand-grey[(non-reactive)] transport modeling .brand-orange[(~10 min)]
+- ### Review transport modeling .brand-orange[(~10 min)]
 - ### Learn how .content-box-green[`Amanzi-ATS`] simulates transport processes .brand-orange[(~10 min)]
 - ### Build a surface-subsurface transport model step-by-step .brand-orange[(&gt;60 min)]
 
@@ -120,7 +158,7 @@ $$
 .content-box-grey[
 .font120[  
 $$
-    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla (D_i \Theta \nabla C_i) + S_i = 0
+    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla \cdot (\Theta D^{*}_i \nabla C_i) + S_i = 0
 $$
 ]]
 
@@ -131,7 +169,7 @@ $$
   - `\(\Theta = \eta \phi S_w \quad \text{for} \quad \Omega \in \mathbb{R}^3\)`   
 - `\(C_i\)`: mole fraction of the solute `\(i\)` `\(\left( \frac{mol_{solute}}{mol_{H_2O}} \right)\)` <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we want it`]
 - `\(S_i\)`: source/sink terms of solute `\(i\)` per unit space <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
-- `\(D_i\)`: diffusion coefficient of solute `\(i\)` (`\(L^2/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
+- `\(D^{*}_i\)`: hydrodynamic dispersion coefficient of solute `\(i\)` (`\(L^2/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
 - `\(\mathbf{u}\)`: the flow velocity field (`\(L/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg> .content-box-green[`from the hydrology model`]
 .font60[
 `\(\eta\)`: water molar density (`\(M/L^{3}\)`); 
@@ -143,8 +181,41 @@ $$
 
 .pull-right-12[
 &lt;img src="imgs/hydro_domain.png" width="250px"/&gt;
+
+.footnote[```Molins et al. (2022)```]
 ]
 ]
+
+---
+
+# Numerical methods in `Amanzi-ATS` transport
+&lt;br&gt;
+.pull-left-64[
+- `Amanzi-ATS` transport uses finite volume method (`FVM`) to obtain numerical solutions
+- It solves the ADE by operator splitting into advection and diffusion stages:
+
+$$
+`\begin{aligned}
+\frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot (\mathbf{u}C_i) &amp;= S_i \quad &amp; (1) \\
+\frac{\partial (\Theta C_i)}{\partial t} - \nabla \cdot \left(\Theta D_i^{*}\nabla C_i\right) &amp;= 0 \quad &amp; (2)
+\end{aligned}`
+$$
+
+  .font70[&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Eqn (1) is solved using an .content-box-green[explicit upwind (donor cell) scheme]] &lt;br&gt;
+  .font70[&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; Eqn (2) is solved using an .content-box-purple[implicit scheme]]
+    
+]
+
+.pull-right-46[
+&lt;img src="imgs/Discretization.jpg" width="360"/&gt;
+]
+---
+
+# Transport problem
+
+&lt;br&gt;
+
+&lt;img src="imgs/static_domain.png" width="1250px"/&gt;
 
 ---
 
@@ -167,7 +238,7 @@ $$
 
 - **.brand-blue[Forcing, sources and sinks]** <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M294.2 1.2c5.1 2.1 8.7 6.7 9.6 12.1l10.4 62.4c-23.3 10.8-42.9 28.4-56 50.3c-14.6-9-31.8-14.1-50.2-14.1c-53 0-96 43-96 96c0 35.5 19.3 66.6 48 83.2c.8 31.8 13.2 60.7 33.1 82.7l-56 39.2c-4.5 3.2-10.3 3.8-15.4 1.6s-8.7-6.7-9.6-12.1L98.1 317.9 13.4 303.8c-5.4-.9-10-4.5-12.1-9.6s-1.5-10.9 1.6-15.4L52.5 208 2.9 137.2c-3.2-4.5-3.8-10.3-1.6-15.4s6.7-8.7 12.1-9.6L98.1 98.1l14.1-84.7c.9-5.4 4.5-10 9.6-12.1s10.9-1.5 15.4 1.6L208 52.5 278.8 2.9c4.5-3.2 10.3-3.8 15.4-1.6zM208 144c13.8 0 26.7 4.4 37.1 11.9c-1.2 4.1-2.2 8.3-3 12.6c-37.9 14.6-67.2 46.6-77.8 86.4C151.8 243.1 144 226.5 144 208c0-35.3 28.7-64 64-64zm69.4 276c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm96 0c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm96 0c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm96 0c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm74.5-116.1c0 44.2-35.8 80-80 80H288c-53 0-96-43-96-96c0-47.6 34.6-87 80-94.6l0-1.3c0-53 43-96 96-96c34.9 0 65.4 18.6 82.2 46.4c13-9.1 28.8-14.4 45.8-14.4c44.2 0 80 35.8 80 80c0 5.9-.6 11.7-1.9 17.2c37.4 6.7 65.8 39.4 65.8 78.7z"/></svg>
   - External forces that drive changes in the system
-  - Material or energy added/removed to/from the system
+  - .font90[Material or energy added/removed to/from the system]
 ]]
 
 --
@@ -203,28 +274,19 @@ MAIN
 
 ---
 
-# Domain of simulation
-&lt;iframe width="1280" height="500" src="imgs/transport_domain.html", frameborder="0"&gt;&lt;/iframe&gt;
+class: small-panel-slide
 
----
-
-# Process Kernel Tree - Transport
-.pull-left-73[
-.small[Let's construct the `PK tree` for an integrated transport model]
-.font40[
+# Process Kernel Tree
+.font50[
 **PK:** [`Process kernels`](https://amanzi.github.io/ats/stable/input_spec/process_kernels/index.html); **MPC:** [`Multi-process-couplers`](https://amanzi.github.io/ats/stable/input_spec/process_kernels/mpcs/index.html)
 ]
- 
+.panelset[
+.panel[.panel-name[Hydrology]
+.pull-left[
 &lt;iframe src="imgs/dependency_hydro.html" width="900" height="500" frameborder="0"&gt;&lt;/iframe&gt;
 ]
 
-.footnote[
-  &lt;a href="imgs/dependency_transport.html" target="_blank"&gt;```graph: transport```&lt;/a&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-  &lt;!-- &lt;a href="imgs/dependency_transport_reactive.html" target="_blank"&gt;```graph: reactive transport```&lt;/a&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
-  &lt;a href="imgs/dependency_transport_reactive_ecohydrology.html" target="_blank"&gt;```graph: reactive transport &amp; ecohydrology```&lt;/a&gt; --&gt;
-]
-
-.pull-right-46[
+.pull-right[
 &lt;br&gt;
 .font50[
 ```xml
@@ -253,24 +315,34 @@ MAIN
 &lt;/ParameterList&gt;  
 ```
 ]]
+]
+
+.panel[.panel-name[Transport]
+&lt;iframe src="imgs/dependency_transport_incomplete.html" width="1200" height="600" frameborder="0"&gt;&lt;/iframe&gt;
+]]
 
 ---
 
+class: small-panel-slide
+
 # Transport Model Parameters
 
-&lt;br&gt;
 .content-box-grey[
 $$
-    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla (D_i \Theta \nabla C_i) + S_i = 0
+    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla \cdot (\Theta D^{*}_i \nabla C_i) + S_i = 0
 $$
 ]
 
 --
-
+.panelset[
+.panel[.panel-name[Physical]
 .pull-left[
-.footnotesize[
-- Physical parameters
+&lt;br&gt;  
+.blockquote[Quantitative values representing the  properties or characteristics of a physical system]
+]
 
+.pull-right[
+.footnotesize[
 ```xml
 &lt;ParameterList name="state" type="ParameterList"&gt;
   &lt;ParameterList name="evaluators" type="ParameterList"&gt;
@@ -289,13 +361,19 @@ $$
   &lt;/ParameterList&gt;
 &lt;/ParameterList&gt;  
 ```
-]]
---
+]]]
+
+.panel[.panel-name[Numerical]
+.pull-left[
+&lt;br&gt;  
+.blockquote[
+- Quantitative values that control the numerical solution of physics-based models
+- Govern the accuracy, stability, and efficiency of the computational simulation]
+]
 
 .pull-right[
+&lt;br&gt;  
 .footnotesize[
-- Numerical parameters  
-
 ```xml
 &lt;ParameterList name="surface transport"&gt;
   &lt;Parameter name="PK type" type="string" value="transport ATS"/&gt;
@@ -308,18 +386,104 @@ $$
   ... 
 &lt;/ParameterList&gt;
 ```
-]]
+]
+]]]
 
 ---
 
-# Forcings &amp; sources/sinks
+# Forcings
+.panelset[
+.panel[.panel-name[Description]
+- Uniform rainfall over the .content-box-purple[`surface domain`] region
+- Rainfall rate: `\(r = 5.5 \times 10^{-7}\)` `\([m/s]\)` (equivalent `\(1.98\)` `\([mm/h]\)`)
+- Rainfall duration: from day 0 to day 10
+- After day 10: `\(r = 0\)` `\([m/s]\)`
+]
+
+.panel[.panel-name[Plot]
+&lt;img src="slides_files/figure-html/unnamed-chunk-4-1.png" width="864" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[XML]
 .pull-left[
-&lt;br /&gt;
-&lt;img src="slides_files/figure-html/unnamed-chunk-1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+Using function
+.font60[
+```xml
+&lt;ParameterList name="surface-water_source" type="ParameterList"&gt;
+  &lt;Parameter name="evaluator type" type="string" value="independent variable"/&gt;
+  &lt;ParameterList name="function" type="ParameterList"&gt;
+    &lt;ParameterList name="domain" type="ParameterList"&gt;
+      &lt;Parameter name="region" type="string" value="surface domain"/&gt;
+      &lt;Parameter name="component" type="string" value="cell"/&gt;
+      &lt;ParameterList name="function" type="ParameterList"&gt;
+        &lt;ParameterList name="function-tabular" type="ParameterList"&gt;
+*         &lt;Parameter name="x values" type="Array(double)" value="{0, 864000}"/&gt;
+*         &lt;Parameter name="y values" type="Array(double)" value="{5.5e-7, 0.0}"/&gt;
+*         &lt;Parameter name="forms" type="Array(string)" value="{constant}"/&gt;                
+        &lt;/ParameterList&gt;
+      &lt;/ParameterList&gt;
+    &lt;/ParameterList&gt;
+  &lt;/ParameterList&gt;
+&lt;/ParameterList&gt;
+```
+]]
+
+.pull-right[
+Loading from file
+.font60[
+```xml
+&lt;ParameterList name="surface-water_source" type="ParameterList"&gt;
+  &lt;Parameter name="evaluator type" type="string" value="independent variable" /&gt;
+  &lt;ParameterList name="function" type="ParameterList"&gt;
+    &lt;ParameterList name="domain" type="ParameterList"&gt;
+      &lt;Parameter name="region" type="string" value="surface domain" /&gt;
+      &lt;Parameter name="component" type="string" value="cell" /&gt;
+      &lt;ParameterList name="function" type="ParameterList"&gt;
+        &lt;ParameterList name="function-tabular" type="ParameterList"&gt;
+*         &lt;Parameter name="file" type="string" value="PATH/TO/FILENAME.h5" /&gt;
+*         &lt;Parameter name="x header" type="string" value="TIME" /&gt;
+*         &lt;Parameter name="y header" type="string" value="PRECIPITATION" /&gt;
+        &lt;/ParameterList&gt;
+      &lt;/ParameterList&gt;
+    &lt;/ParameterList&gt;
+  &lt;/ParameterList&gt;
+&lt;/ParameterList&gt;
+```
+]]
+
+]
+]
+---
+
+# Sources and sinks
+.pull-left[
+&lt;br&gt; &lt;br&gt;  
+
+&lt;table class="table table-striped table-hover" style="font-size: 20px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;font-weight: bold;font-size: 24px;"&gt; Name &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;font-size: 24px;"&gt; Tracer1 &lt;/th&gt;
+   &lt;th style="text-align:left;font-weight: bold;font-size: 24px;"&gt; Tracer2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 240px; "&gt; Region &lt;/td&gt;
+   &lt;td style="text-align:left;width: 240px; "&gt; surface domain &lt;/td&gt;
+   &lt;td style="text-align:left;width: 240px; "&gt; golf course &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 240px; "&gt; Type &lt;/td&gt;
+   &lt;td style="text-align:left;width: 240px; "&gt; concentration &lt;/td&gt;
+   &lt;td style="text-align:left;width: 240px; "&gt; mass rate &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;br&gt; &lt;br&gt; &lt;br&gt;
-.font50[.content-box-purple[`volume`]: source is extensive quantity (molC/s) and evenly distributed across the region] &lt;br&gt;
-.font50[.content-box-yellow[`none`]: source is intensive quantity (molC/m2/s) across the region]
+.font60[.content-box-purple[`volume`]: source is extensive quantity (molC/s) and evenly distributed across the region] &lt;br&gt;
+.font60[.content-box-yellow[`none`]: source is intensive quantity (molC/m2/s) across the region]
 ]
 
 .pull-right[
@@ -370,7 +534,7 @@ $$
 
 # Initial and boundary conditions
 .pull-left[
-#### .blockquote[Initial conditions .gray[(true)]]
+#### .blockquote[Initial conditions]
 .small[
 - located inside each PK in the `xml` file
 - can be:
