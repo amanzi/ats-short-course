@@ -9,6 +9,9 @@
       </ParameterList>
     </ParameterList>
     <ParameterList name="domain" type="ParameterList">
+      <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+      <!-- LOAD MESH FILE IN .EXO FORMAT TO PROVIDE DISCRETIZATION OF THE SIMULATION DOMAIN -->
+      <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
       <Parameter name="mesh type" type="string" value="read mesh file"/>
       <ParameterList name="read mesh file parameters" type="ParameterList">
         <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
@@ -17,7 +20,12 @@
     </ParameterList>
   </ParameterList>
 
+
   <ParameterList name="regions" type="ParameterList">
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+    <!-- REGIONS CAN BE IDENTIFIED USING "LABEL" DEFINED IN THE .EXO FILES                -->
+    <!-- OR THEY CAN BE DEFINED USING SPATIAL COORDINATES IN THE XML INPUT FILE           -->
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
     <ParameterList name="computational domain" type="ParameterList">
       <Parameter name="region type" type="string" value="all"/>
     </ParameterList>
@@ -26,6 +34,7 @@
     </ParameterList>
     <ParameterList name="surface" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
+      <!-- SURFACE DOMAIN BY DEFAULT IS LABELED 2 -->
       <Parameter name="label" type="string" value="2"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
@@ -47,65 +56,78 @@
       <Parameter name="point" type="Array(double)" value="{500.0, 0.0, 0.0}"/>
       <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
     </ParameterList>
+
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+    <!-- WHILE CREATE THE MESH FILE USING WATERSHED WORKFLOW, WE ASSIGNED A VALUE OF 101  -->
+    <!-- TO LAYERS WITH DEPTHS ≤ 1.2 M, AND A VALUE OF 102 TO LAYERS WITH DEPTHS > 1.2 M  -->
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->         
     <ParameterList name="geology" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="102"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
     <ParameterList name="topsoil" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="101"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="cell"/>
     </ParameterList>
-    <ParameterList name="hillslope" type="ParameterList">
+
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+    <!-- WE DEFINE SURFACE REGIONS HERE ...
+        addLabeledSet('hillslope', 11, hillslope)               # x: 0 to 300 [m]
+        addLabeledSet('lake', 12, lake)                         # x: 300 to 400 [m]
+        addLabeledSet('toeslope', 13, toeslope)                 # x: 400 to 500 [m]
+        addLabeledSet('golf course', 14, golf_course)           # x: 100 to 200 [m]
+        addLabeledSet('forested', 15, [forested1, forested2])   # x: 0-200 & 200-300 [m]  -->
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->        
+    <ParameterList name="hillslope" type="ParameterList">      
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="11"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="detention pond" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="12"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="toeslope" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="13"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
-    <ParameterList name="east face" type="ParameterList">
-      <ParameterList name="region: plane" type="ParameterList">
-        <Parameter name="point" type="Array(double)" value="{500.0, 1.0, 0.0}"/>
-        <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
-      </ParameterList>
-    </ParameterList>
-
-
-    <ParameterList name="golf course" type="ParameterList">
+    <ParameterList name="golf course" type="ParameterList">      
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="14"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
     <ParameterList name="forested" type="ParameterList">
       <Parameter name="region type" type="string" value="labeled set"/>
-      <Parameter name="label" type="string" value="15"/>
+      <Parameter name="label" type="string" value="####"/>
       <Parameter name="file" type="string" value="../../shared/hillslope_mesh.exo"/>
       <Parameter name="format" type="string" value="Exodus II"/>
       <Parameter name="entity" type="string" value="face"/>
     </ParameterList>
 
+    <ParameterList name="east face" type="ParameterList">
+      <ParameterList name="region: plane" type="ParameterList">
+        <Parameter name="point" type="Array(double)" value="{500.0, 1.0, 0.0}"/>
+        <Parameter name="normal" type="Array(double)" value="{1.0, 0.0, 0.0}"/>
+      </ParameterList>
+    </ParameterList>
   </ParameterList>
+
 
   <ParameterList name="cycle driver">
     <Parameter name="start time" type="double" value="0.0"/>
@@ -113,32 +135,37 @@
     <Parameter name="end time" type="double" value="30"/>
     <Parameter name="end time units" type="string" value="d"/>
     <ParameterList name="PK tree">
-      <ParameterList name="flow and transport">
-        <Parameter name="PK type" type="string" value="coupled flow and transport"/>
-        <ParameterList name="flow_coupler">
-          <Parameter name="PK type" type="string" value="coupled water"/>
-          <ParameterList name="subsurface flow">
-            <Parameter name="PK type" type="string" value="richards flow"/>
-          </ParameterList>
-          <ParameterList name="surface flow">
-            <Parameter name="PK type" type="string" value="overland flow, pressure basis"/>
-          </ParameterList>
+      <ParameterList name="flow_coupler">
+        <Parameter name="PK type" type="string" value="coupled water"/>
+        <ParameterList name="subsurface flow">
+          <Parameter name="PK type" type="string" value="richards flow"/>
         </ParameterList>
-        <ParameterList name="transport_coupler">
-          <Parameter name="PK type" type="string" value="surface subsurface transport"/>
-          <ParameterList name="subsurface transport">
-            <Parameter name="PK type" type="string" value="transport ATS"/>
-          </ParameterList>
-          <ParameterList name="surface transport">
-            <Parameter name="PK type" type="string" value="transport ATS"/>
-          </ParameterList>
+        <ParameterList name="surface flow">
+          <Parameter name="PK type" type="string" value="overland flow, pressure basis"/>
         </ParameterList>
       </ParameterList>
     </ParameterList>
+
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+    <!-- NEW PKs AND MPCs TO BE ADDED TO THE PK TREE
+    <ParameterList name="flow and transport">
+      <Parameter name="PK type" type="string" value="coupled flow and transport"/>
+    </ParameterList> 
+    <ParameterList name="transport_coupler">
+      <Parameter name="PK type" type="string" value="surface subsurface transport"/>
+    </ParameterList>
+    <ParameterList name="subsurface transport">
+      <Parameter name="PK type" type="string" value="transport ATS"/>
+    </ParameterList>
+    <ParameterList name="surface transport">
+      <Parameter name="PK type" type="string" value="transport ATS"/>
+    </ParameterList>        
+    -->
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->     
   </ParameterList>
   
-  <ParameterList name="PKs" type="ParameterList">
 
+  <ParameterList name="PKs" type="ParameterList">
     <ParameterList name="flow and transport">
       <Parameter name="PK type" type="string" value="coupled flow and transport"/>
       <Parameter name="PKs order" type="Array(string)" value="{flow_coupler, transport_coupler}"/>
@@ -253,7 +280,7 @@
             <Parameter name="regions" type="Array(string)" value="{surface outlet}" />
             <ParameterList name="boundary head">
               <ParameterList name="function-constant">
-                <Parameter name="value" type="double" value=" 0.1" />
+                <Parameter name="value" type="double" value="0.1" />
               </ParameterList>
             </ParameterList>
           </ParameterList>
@@ -275,12 +302,32 @@
     <ParameterList name="subsurface transport">
       <Parameter name="PK type" type="string" value="transport ATS"/>
       <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
-      <Parameter name="advection spatial discretization order" type="int" value="1"/>
-      <Parameter name="temporal discretization order" type="int" value="1"/>
+      <Parameter name="advection spatial discretization order" type="int" value="#####"/>
+      <Parameter name="temporal discretization order" type="int" value="#####"/>
       <Parameter name="cfl" type="double" value="1.0"/>
       <Parameter name="debug cells" type="Array(int)" value="{99}"/>
+      
+      <!-- INITIAL CONDITIONS FOR FOR TRACERS IN SUBSURFACE DOMAIN -->
       <ParameterList name="initial conditions" type="ParameterList">
-        <Parameter name="constant" type="double" value="0.0"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="ic subsurface" type="ParameterList">
+            <Parameter name="regions" type="Array(string)" value="{computational domain}"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <Parameter name="number of dofs" type="int" value="2"/>
+              <ParameterList name="dof 1 function">
+                <ParameterList name="function-constant" type="ParameterList">
+                  <Parameter name="value" type="double" value="#####"/>
+                </ParameterList>
+              </ParameterList>
+              <ParameterList name="dof 2 function">
+                <ParameterList name="function-constant" type="ParameterList">
+                  <Parameter name="value" type="double" value="#####"/>
+                </ParameterList>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
 
       <ParameterList name="diffusion">
@@ -305,6 +352,7 @@
         </ParameterList>
       </ParameterList>
 
+      <!-- BOUNDARY CONDITIONS FOR FOR TRACERS IN SUBSURFACE DOMAIN -->
       <ParameterList name="boundary conditions">
       </ParameterList>
 
@@ -319,15 +367,36 @@
       <Parameter name="domain name" type="string" value="surface"/>
       <Parameter name="water source in meters" type="bool" value="true"/>
       <Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/>
-      <Parameter name="advection spatial discretization order" type="int" value="1"/>
-      <Parameter name="temporal discretization order" type="int" value="1"/>
+      <Parameter name="advection spatial discretization order" type="int" value="#####"/>
+      <Parameter name="temporal discretization order" type="int" value="#####"/>
       <Parameter name="cfl" type="double" value="1.0"/>
       <Parameter name="water tolerance" type="double" value="0.001"/>
       <Parameter name="debug cells" type="Array(int)" value="{0}"/>      
 
+      <!-- INITIAL CONDITIONS FOR FOR TRACERS IN SURFACE DOMAIN -->      
       <ParameterList name="initial conditions" type="ParameterList">
-        <Parameter name="constant" type="double" value="0.0"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="ic surface" type="ParameterList">
+            <Parameter name="regions" type="Array(string)" value="{surface domain}"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <ParameterList name="function" type="ParameterList">
+              <Parameter name="number of dofs" type="int" value="2"/>
+              <ParameterList name="dof 1 function">
+                <ParameterList name="function-constant" type="ParameterList">
+                  <Parameter name="value" type="double" value="#####"/>
+                </ParameterList>
+              </ParameterList>
+              <ParameterList name="dof 2 function">
+                <ParameterList name="function-constant" type="ParameterList">
+                  <Parameter name="value" type="double" value="#####"/>
+                </ParameterList>
+              </ParameterList>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
       </ParameterList>
+
+      <!-- BOUNDARY CONDITIONS ARE NOT SPECIFIED IN THE PK. THIS MEANS NO-FLUX BCs -->
 
       <ParameterList name="source terms">
         <ParameterList name="component mass source">
@@ -338,6 +407,11 @@
             <Parameter name="spatial distribution method" type="string" value="field"/>
             <ParameterList name="field">
               <Parameter name="number of fields" type="int" value="2"/>
+              <!--
+              THIS WILL POINT THE 1st SOURCE TERM TO TWO EVALUATORS DEFINED IN "STATE"
+                - For Tracer1: surface-tracer1_injection_source
+                - For Tracer2: surface-tracer2_zeros
+              -->
               <ParameterList name="field 1 info">
                 <Parameter name="field key" type="string" value="surface-tracer1_injection_source"/>
                 <Parameter name="component" type="string" value="cell"/>
@@ -349,13 +423,13 @@
             </ParameterList>
           </ParameterList>
 
-          <!-- This is an example of injecting by a given mols / m^2 / s -->
           <ParameterList name="Tracer2 source">
             <Parameter name="component names" type="Array(string)" value="{Tracer2}"/>
             <Parameter name="regions" type="Array(string)" value="{golf course}"/>
             <Parameter name="spatial distribution method" type="string" value="none"/>
             <ParameterList name="source function">
               <ParameterList name="function-tabular">
+                <!-- THIS WILL ADD 0.0111 molC/m2/s TO THE GOLF COURSE REGION FOR 86400 x 10 (sec) -->
                 <Parameter name="x values" type="Array(double)" value="{0.0, 864000.0}"/>
                 <Parameter name="y values" type="Array(double)" value="{0.0111, 0.0}"/>
                 <Parameter name="forms" type="Array(string)" value="{constant}"/>
@@ -366,6 +440,7 @@
       </ParameterList>
     </ParameterList>    
   </ParameterList>
+
 
   <ParameterList name="state" type="ParameterList">
     <ParameterList name="evaluators" type="ParameterList">
@@ -540,19 +615,47 @@
       </ParameterList>
 
       <ParameterList name="dispersion_coefficient" type="ParameterList">
+        <!-- WE WILL SET THE DISPERSIVITY alpha = 0.0001 for example -->
         <Parameter name="evaluator type" type="string" value="dispersion tensor"/>
         <ParameterList name="mechanical dispersion parameters" type="ParameterList">
           <ParameterList name="domain" type="ParameterList">
             <Parameter name="region" type="string" value="computational domain"/>
             <Parameter name="mechanical dispersion type" type="string" value="isotropic"/>
             <ParameterList name="isotropic parameters">
-              <Parameter name="alpha" type="double" value="0.0001"/>
+              <Parameter name="alpha" type="double" value="#####"/>
+            </ParameterList>
+          </ParameterList>
+        </ParameterList>
+      </ParameterList>
+           
+      <ParameterList name="surface-tracer1_injection_source" type="ParameterList">
+        <!-- MASS = CONCENTRATION x RAINFALL RATE x MOLAR_DENSITY -->
+        <!-- We include molar_density because rainfall_rate is in meter unit -->
+        <Parameter name="evaluator type" type="string" value="multiplicative reciprocal"/>
+        <Parameter name="multiplicative dependency keys" type="Array(string)" value="{surface-tracer1_injection_source_concentration, surface-water_source, surface-molar_density_liquid}"/>
+      </ParameterList>
+
+      <ParameterList name="surface-tracer1_injection_source_concentration" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="independent variable"/>
+        <ParameterList name="function" type="ParameterList">
+          <ParameterList name="Tracer1 injection concentrations" type="ParameterList">
+            <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
+            <Parameter name="component" type="string" value="cell"/>
+            <Parameter name="region" type="string" value="surface domain"/>
+            <ParameterList name="function" type="ParameterList">
+              <!-- THIS SETS A CONSTANT OF CONCENTRATION FOR TRACER1 for 86400 x 100 (sec) -->
+              <ParameterList name="function-tabular" type="ParameterList">
+                <Parameter name="x values" type="Array(double)" value="{0, 8640000}"/>
+                <Parameter name="y values" type="Array(double)" value="{1e-2, 0.0}"/>
+                <Parameter name="forms" type="Array(string)" value="{constant}"/>
+              </ParameterList>
             </ParameterList>
           </ParameterList>
         </ParameterList>
       </ParameterList>
 
       <ParameterList name="surface-tracer2_zeros" type="ParameterList">
+        <!-- WE SET THE CONCENTRATION OF TRACER2 = 0 since RAINFALL ONLY INCLUDES TRACER1 -->
         <Parameter name="evaluator type" type="string" value="independent variable"/>
         <Parameter name="constant in time" type="bool" value="true"/>
         <ParameterList name="function" type="ParameterList">
@@ -567,29 +670,7 @@
           </ParameterList>
         </ParameterList>
       </ParameterList>
-            
-      <ParameterList name="surface-tracer1_injection_source" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="multiplicative reciprocal"/>
-        <Parameter name="multiplicative dependency keys" type="Array(string)" value="{surface-tracer1_injection_source_concentration, surface-water_source, surface-molar_density_liquid}"/>
-      </ParameterList>
 
-      <ParameterList name="surface-tracer1_injection_source_concentration" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="independent variable"/>
-        <ParameterList name="function" type="ParameterList">
-          <ParameterList name="Tracer1 injection concentrations" type="ParameterList">
-            <Parameter name="component names" type="Array(string)" value="{Tracer1}"/>
-            <Parameter name="component" type="string" value="cell"/>
-            <Parameter name="region" type="string" value="surface domain"/>
-            <ParameterList name="function" type="ParameterList">
-              <ParameterList name="function-tabular" type="ParameterList">
-                <Parameter name="x values" type="Array(double)" value="{0, 8640000}"/>
-                <Parameter name="y values" type="Array(double)" value="{1e-2, 0.0}"/>
-                <Parameter name="forms" type="Array(string)" value="{constant}"/>
-              </ParameterList>
-            </ParameterList>
-          </ParameterList>
-        </ParameterList>
-      </ParameterList>
     </ParameterList>
     <ParameterList name="initial conditions" type="ParameterList">
 
@@ -616,10 +697,12 @@
     </ParameterList>
   </ParameterList>
 
+
   <ParameterList name="checkpoint">
     <Parameter name="times start period stop" type="Array(double)" value="{0, 5, -1}"/>
     <Parameter name="times start period stop units" type="string" value="d"/>
   </ParameterList>
+
 
   <ParameterList name="visualization">
     <ParameterList name="surface">
@@ -631,6 +714,7 @@
       <Parameter name="times start period stop units" type="string" value="h"/>
     </ParameterList>
   </ParameterList>
+
 
   <ParameterList name="observations" type="ParameterList">
     <ParameterList name="fluxes" type="ParameterList">
