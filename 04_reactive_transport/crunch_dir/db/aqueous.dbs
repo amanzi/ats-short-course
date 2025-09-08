@@ -39,5 +39,5 @@
   type          = 'Monod'
   rate25C       =  1.26
   monod_terms   = 'tot_NO3-' 1.0E-05 'tot_DOM1' 1.0E-05
-  inhibition_terms   = 'tot_O2(aq)' 1.0E-07
+  inhibition    = 'tot_O2(aq)' 1.0E-07
 /
