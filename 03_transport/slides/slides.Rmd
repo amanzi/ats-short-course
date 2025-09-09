@@ -2,7 +2,7 @@
 title: "Amanzi-ATS Short Course"
 subtitle: "Transport Hands-on Tutorial"
 author: "Phong Le @ ORNL"
-date: "October 8-10, 2025"
+date: "September 8-10, 2025"
 output:
   xaringan::moon_reader:
     css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
