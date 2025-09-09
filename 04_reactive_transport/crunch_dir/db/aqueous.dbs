@@ -1,0 +1,43 @@
+!
+! This database goes with nitrate input for ats short course, just for demonstration. 
+!
+! -------------------------------------------------------------------------------------------------
+!
+!  reaction stoichiometry
+!
+! -------------------------------------------------------------------------------------------------
+
+&Aqueous
+  name          = 'DOMO2'
+  stoichiometry = 1.0 'H+'  1.0 'HCO3-'  -1.0 'DOM1'  -1.0 'O2(aq)' 
+  keq           = 100.0
+/
+
+&Aqueous
+  name          = 'DOMNO3'
+  stoichiometry =   1.0 'HCO3-' 0.2 'H+' -1.0 'DOM1'  -0.8 'NO3-' 
+  keq           = 100.0
+/
+
+! -------------------------------------------------------------------------------------------------
+!
+!  rate expressions
+!
+! -------------------------------------------------------------------------------------------------
+
+&AqueousKinetics
+  name          = 'DOMO2'
+  label         = 'default'
+  type          = 'Monod'
+  rate25C       =  3.15
+  monod_terms   = 'tot_O2(aq)' 5.0E-06 'tot_DOM1' 1.0E-05
+/
+
+&AqueousKinetics
+  name          = 'DOMNO3'
+  label         = 'default'
+  type          = 'Monod'
+  rate25C       =  1.26
+  monod_terms   = 'tot_NO3-' 1.0E-05 'tot_DOM1' 1.0E-05
+  inhibition    = 'tot_O2(aq)' 1.0E-07
+/

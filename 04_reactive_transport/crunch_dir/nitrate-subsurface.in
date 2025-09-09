@@ -1,0 +1,130 @@
+TITLE
+Nitrate simulation with CrunchFlow
+END
+
+RUNTIME
+time_units      years
+timestep_max    1.0
+timestep_init   1.E-10
+time_tolerance  0.01
+correction_max  1.0
+debye-huckel    true
+database          db/nitrate.dbs
+kinetic_database  db/aqueous.dbs
+master          H+
+speciate_only   false
+database_sweep  false
+screen_output   10
+graphics        tecplot
+gimrt           false
+hindmarsh       false
+duan            false
+END
+
+OUTPUT
+time_units               years
+spatial_profile          10 20 30 40 50
+END
+
+PRIMARY_SPECIES
+DOM1
+O2(aq)
+NO3- 
+HCO3-
+H+ 
+N2(aq) 
+END
+
+SECONDARY_SPECIES
+OH-
+CO2(aq) 
+END
+
+GASES
+CO2(g) 
+N2(g)*
+O2(g) 
+END
+
+MINERALS
+SOM           -label  default -rate  -6.0
+END
+
+AQUEOUS_KINETICS
+DOMO2         -rate 3.15
+DOMNO3        -rate 1.26
+END
+
+Condition fertilizer
+units     mol/kg
+temperature     25.0
+DOM1            1.0e-10
+O2(aq)   O2(g)  0.21 
+pH              6.0
+HCO3-    CO2(g) 400.0e-6 
+NO3-            2.0e-4
+N2(aq)   N2(g)* 0.78 
+END
+
+Condition oc_rich
+units     mol/kg
+temperature     25.0
+DOM1            1.0e-10
+O2(aq)          1.0e-10 
+pH              6.0
+HCO3-    CO2(g) 400.0e-6 
+NO3-            1.0e-10
+N2(aq)          1.0e-10
+SOM             1.0e-2   1.0 
+END
+
+Condition oc_poor
+units     mol/kg
+temperature     25.0
+DOM1            1.0e-10
+O2(aq)          1.0e-10 
+pH              6.0
+HCO3-    CO2(g) 400.0e-6 
+NO3-            1.0e-10
+N2(aq)          1.0e-10
+SOM             1.0e-2   1.0 
+END
+
+POROSITY
+fix_porosity     0.25
+porosity_update  false
+END
+ 
+TEMPERATURE
+set_temperature  25.0
+RunIsothermal   true
+END
+
+DISCRETIZATION
+distance_units  meters
+xzones 100      1.0
+END
+
+INITIAL_CONDITIONS
+oc_rich     1-100
+END
+
+BOUNDARY_CONDITIONS
+X_begin   fertilizer Flux
+X_end     oc_rich    Flux
+END
+
+FLOW
+time_units      seconds
+distance_units  meters 
+constant_flow   7.9274479960d-9  ! m/s
+END
+
+TRANSPORT
+distance_units meters
+time_units     second
+fix_diffusion  1.E-09 ! m2/s
+formation_factor  1.0  
+cementation_exponent  1.0
+dispersivity  0.0 0.0
+END
