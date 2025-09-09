@@ -56,10 +56,10 @@ git clone https://github.com/amanzi/ats-short-course; cd ats-short-course
 3. Download the short course Docker image and run the container 
 
 ```sh
-docker pull metsi/ats-short-course:latest
-docker run -it -v $(pwd):/home/ats_sc_user/short-course:delegated -w /home/ats_sc_user/short-course -p 8899:8899 metsi/ats-short-course:latest
+docker pull metsi/ats-short-course:2025-ats-latest
+docker run -it --init --mount type=bind,source=$(pwd),target=/home/ats_sc_user/work -w /home/ats_sc_user/work -p 8888:8888 metsi/ats-short-course:2025-ats-latest
 ```
-4. Open the [Jupyter lab instance](http://127.0.0.1:8899/lab)
+4. Open the [Jupyter lab instance](http://127.0.0.1:8888/lab)
 
 ## Troubleshoot
 
