@@ -524,6 +524,13 @@
           <Parameter name="EOS type" type="string" value="liquid water"/>
         </ParameterList>
       </ParameterList>
+      <ParameterList name="surface-mass_density_ice" type="ParameterList">
+        <Parameter name="evaluator type" type="string" value="eos"/>
+        <Parameter name="EOS basis" type="string" value="mass"/>
+        <ParameterList name="EOS parameters" type="ParameterList">
+          <Parameter name="EOS type" type="string" value="ice"/>
+        </ParameterList>
+      </ParameterList>
       <ParameterList name="surface-source_molar_density" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="eos"/>
         <Parameter name="EOS basis" type="string" value="molar"/>
@@ -532,7 +539,7 @@
         </ParameterList>
       </ParameterList>
       <ParameterList name="surface-ponded_depth" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="ponded depth"/>
+        <Parameter name="evaluator type" type="string" value="icy ponded depth"/>
       </ParameterList>
       <ParameterList name="surface-slope_magnitude" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="meshed elevation"/>
