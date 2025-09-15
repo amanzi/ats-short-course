@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Amanzi-ATS Short Course</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Phong Le @ ORNL" />
+    <script src="slides_files/header-attrs-2.29/header-attrs.js"></script>
+    <link href="slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } },
+      });
+    </script>
+    <style>
+    .mjx-mrow a {
+      color: black;
+      pointer-events: none;
+      cursor: default;
+    }
+    </style>
+    <link rel="stylesheet" href="assets/sydney-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/sydney.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Amanzi-ATS Short Course
+]
+.subtitle[
+## Transport Hands-on Tutorial
+]
+.author[
+### Phong Le @ ORNL
+]
+.date[
+### October 8-10, 2025
+]
+
+---
+
+
+# Website
+
+&lt;br&gt;
+
+###**Github <svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>:**
+
+[`https://github.com/amanzi/ats-short-course`](https://github.com/amanzi/ats-short-course)
+
+&lt;br&gt;
+
+###**Slides for tutorial:**
+
+[`https://amanzi.github.io/ats-hands-on-transport/slides.html`](https://amanzi.github.io/ats-hands-on-transport/slides.html)
+
+---
+
+# Goals
+
+&lt;br&gt;
+&lt;br&gt;
+
+- ### Understand the basics of the .content-box-purple[`transport PK`]
+- ### Build simple to advanced transport models with .content-box-yellow[`Amanzi-ATS`]
+
+---
+
+# How do we get there?
+
+&lt;br&gt;
+&lt;br&gt;
+
+- ### Review .brand-grey[(non-reactive)] transport modeling .brand-orange[(~10 min)]
+- ### Learn how .content-box-green[`Amanzi-ATS`] simulates transport processes .brand-orange[(~10 min)]
+- ### Build a surface-subsurface transport model step-by-step .brand-orange[(&gt;60 min)]
+
+---
+
+# A model is a mapping from inputs to outputs
+&lt;!-- All models are wrong, but some are useful --&gt;
+&lt;iframe 
+  width="1200" 
+  height="280" 
+  src="imgs/model_diagram.html" 
+  style="border:none; margin-top:-0px;"&gt;
+&lt;/iframe&gt;
+
+&lt;div style="
+  position:absolute;
+  top:100px;   /* distance from top of slide */
+  left:50px;  /* distance from left of slide */
+  width:200px;
+  height:100px;
+  background:white;
+  z-index:2;"&gt;
+&lt;/div&gt;
+
+--
+.pull-left-31[
+.font80[
+- `ATS` is a .content-box-yellow[physics-based model]: <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-blue[solves the governing equations of the processes]
+$$
+\mathcal{F}\left(D^{k} \mathbf{u}(s), D^{k-1} \mathbf{u}(s), \dots, D \mathbf{u}(s), \mathbf{u}(s), s\right) = 0
+$$
+- These equations are derived from .content-box-yellow[physical laws]: <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-blue[high interpretability]
+- Usually, these equations .content-box-yellow[have NO analytical solution]: <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-blue[numerical solutions]
+]]
+
+.pull-right-13[
+&lt;iframe width="350" height="480" src="imgs/discretization.html", frameborder="0", display="block"&gt;&lt;/iframe&gt;
+]
+
+---
+
+# Advection-Dispersion Equation (ADE)
+&lt;br&gt;
+
+.content-box-grey[
+.font120[  
+$$
+    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla (D_i \Theta \nabla C_i) + S_i = 0
+$$
+]]
+
+.font90[
+.pull-left-21[
+- `\(\Theta\)`: mass of water per unit space &lt;br&gt;
+  - `\(\Theta = \eta h \quad \text{for} \quad \partial \Omega \in \mathbb{R}^2\)`
+  - `\(\Theta = \eta \phi S_w \quad \text{for} \quad \Omega \in \mathbb{R}^3\)`   
+- `\(C_i\)`: mole fraction of the solute `\(i\)` `\(\left( \frac{mol_{solute}}{mol_{H_2O}} \right)\)` <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we want it`]
+- `\(S_i\)`: source/sink terms of solute `\(i\)` per unit space <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
+- `\(D_i\)`: diffusion coefficient of solute `\(i\)` (`\(L^2/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg> .brand-red[`we specify it`]
+- `\(\mathbf{u}\)`: the flow velocity field (`\(L/T\)`) <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 288 480 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-370.7 0 73.4-73.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-128 128z"/></svg> .content-box-green[`from the hydrology model`]
+.font60[
+`\(\eta\)`: water molar density (`\(M/L^{3}\)`); 
+`\(\phi\)`: medium's porosity (-); 
+`\(S_w\)`: degree of saturation (-);
+`\(h\)`: water depth on the surface (`\(L\)`)
+]
+]
+
+.pull-right-12[
+&lt;img src="imgs/hydro_domain.png" width="250px"/&gt;
+]
+]
+
+---
+
+# Steps to Construct a Model in Amanzi-ATS
+.pull-left[
+.font80[
+- **.brand-blue[Simulation domains]** <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M565.6 36.2C572.1 40.7 576 48.1 576 56V392c0 10-6.2 18.9-15.5 22.4l-168 64c-5.2 2-10.9 2.1-16.1 .3L192.5 417.5l-160 61c-7.4 2.8-15.7 1.8-22.2-2.7S0 463.9 0 456V120c0-10 6.1-18.9 15.5-22.4l168-64c5.2-2 10.9-2.1 16.1-.3L383.5 94.5l160-61c7.4-2.8 15.7-1.8 22.2 2.7zM48 136.5V421.2l120-45.7V90.8L48 136.5zM360 422.7V137.3l-144-48V374.7l144 48zm48-1.5l120-45.7V90.8L408 136.5V421.2z"/></svg>
+  - Where the processes happen
+
+- .content-box-green[**.brand-blue[Process Kernel Tree]** <svg aria-hidden="true" role="img" viewBox="0 0 576 512" style="height:1em;width:1.12em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M208 80c0-26.5 21.5-48 48-48h64c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-8v40H464c30.9 0 56 25.1 56 56v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H464c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-4.4-3.6-8-8-8H312v40h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H256c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V280H112c-4.4 0-8 3.6-8 8v32h8c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V368c0-26.5 21.5-48 48-48h8V288c0-30.9 25.1-56 56-56H264V192h-8c-26.5 0-48-21.5-48-48V80z"/></svg>]
+  - Which `PKs` to use and how they are coupled
+
+
+- **.brand-blue[Model parameters]** <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M0 416c0 17.7 14.3 32 32 32l54.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 448c17.7 0 32-14.3 32-32s-14.3-32-32-32l-246.7 0c-12.3-28.3-40.5-48-73.3-48s-61 19.7-73.3 48L32 384c-17.7 0-32 14.3-32 32zm128 0a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM320 256a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm32-80c-32.8 0-61 19.7-73.3 48L32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l246.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48l54.7 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-54.7 0c-12.3-28.3-40.5-48-73.3-48zM192 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm73.3-64C253 35.7 224.8 16 192 16s-61 19.7-73.3 48L32 64C14.3 64 0 78.3 0 96s14.3 32 32 32l86.7 0c12.3 28.3 40.5 48 73.3 48s61-19.7 73.3-48L480 128c17.7 0 32-14.3 32-32s-14.3-32-32-32L265.3 64z"/></svg>
+  - Physical and numerical properties
+
+- **.brand-blue[Initial and boundary conditions]** <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M308.5 135.3c7.1-6.3 9.9-16.2 6.2-25c-2.3-5.3-4.8-10.5-7.6-15.5L304 89.4c-3-5-6.3-9.9-9.8-14.6c-5.7-7.6-15.7-10.1-24.7-7.1l-28.2 9.3c-10.7-8.8-23-16-36.2-20.9L199 27.1c-1.9-9.3-9.1-16.7-18.5-17.8C173.9 8.4 167.2 8 160.4 8h-.7c-6.8 0-13.5 .4-20.1 1.2c-9.4 1.1-16.6 8.6-18.5 17.8L115 56.1c-13.3 5-25.5 12.1-36.2 20.9L50.5 67.8c-9-3-19-.5-24.7 7.1c-3.5 4.7-6.8 9.6-9.9 14.6l-3 5.3c-2.8 5-5.3 10.2-7.6 15.6c-3.7 8.7-.9 18.6 6.2 25l22.2 19.8C32.6 161.9 32 168.9 32 176s.6 14.1 1.7 20.9L11.5 216.7c-7.1 6.3-9.9 16.2-6.2 25c2.3 5.3 4.8 10.5 7.6 15.6l3 5.2c3 5.1 6.3 9.9 9.9 14.6c5.7 7.6 15.7 10.1 24.7 7.1l28.2-9.3c10.7 8.8 23 16 36.2 20.9l6.1 29.1c1.9 9.3 9.1 16.7 18.5 17.8c6.7 .8 13.5 1.2 20.4 1.2s13.7-.4 20.4-1.2c9.4-1.1 16.6-8.6 18.5-17.8l6.1-29.1c13.3-5 25.5-12.1 36.2-20.9l28.2 9.3c9 3 19 .5 24.7-7.1c3.5-4.7 6.8-9.5 9.8-14.6l3.1-5.4c2.8-5 5.3-10.2 7.6-15.5c3.7-8.7 .9-18.6-6.2-25l-22.2-19.8c1.1-6.8 1.7-13.8 1.7-20.9s-.6-14.1-1.7-20.9l22.2-19.8zM112 176a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM504.7 500.5c6.3 7.1 16.2 9.9 25 6.2c5.3-2.3 10.5-4.8 15.5-7.6l5.4-3.1c5-3 9.9-6.3 14.6-9.8c7.6-5.7 10.1-15.7 7.1-24.7l-9.3-28.2c8.8-10.7 16-23 20.9-36.2l29.1-6.1c9.3-1.9 16.7-9.1 17.8-18.5c.8-6.7 1.2-13.5 1.2-20.4s-.4-13.7-1.2-20.4c-1.1-9.4-8.6-16.6-17.8-18.5L583.9 307c-5-13.3-12.1-25.5-20.9-36.2l9.3-28.2c3-9 .5-19-7.1-24.7c-4.7-3.5-9.6-6.8-14.6-9.9l-5.3-3c-5-2.8-10.2-5.3-15.6-7.6c-8.7-3.7-18.6-.9-25 6.2l-19.8 22.2c-6.8-1.1-13.8-1.7-20.9-1.7s-14.1 .6-20.9 1.7l-19.8-22.2c-6.3-7.1-16.2-9.9-25-6.2c-5.3 2.3-10.5 4.8-15.6 7.6l-5.2 3c-5.1 3-9.9 6.3-14.6 9.9c-7.6 5.7-10.1 15.7-7.1 24.7l9.3 28.2c-8.8 10.7-16 23-20.9 36.2L315.1 313c-9.3 1.9-16.7 9.1-17.8 18.5c-.8 6.7-1.2 13.5-1.2 20.4s.4 13.7 1.2 20.4c1.1 9.4 8.6 16.6 17.8 18.5l29.1 6.1c5 13.3 12.1 25.5 20.9 36.2l-9.3 28.2c-3 9-.5 19 7.1 24.7c4.7 3.5 9.5 6.8 14.6 9.8l5.4 3.1c5 2.8 10.2 5.3 15.5 7.6c8.7 3.7 18.6 .9 25-6.2l19.8-22.2c6.8 1.1 13.8 1.7 20.9 1.7s14.1-.6 20.9-1.7l19.8 22.2zM464 304a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg> <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+  - State of the system at `\(t=t_0\)`
+  - How system behaves at the boundaries at `\(t \ge t_0\)`
+
+- **.brand-blue[Forcing, sources and sinks]** <svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M294.2 1.2c5.1 2.1 8.7 6.7 9.6 12.1l10.4 62.4c-23.3 10.8-42.9 28.4-56 50.3c-14.6-9-31.8-14.1-50.2-14.1c-53 0-96 43-96 96c0 35.5 19.3 66.6 48 83.2c.8 31.8 13.2 60.7 33.1 82.7l-56 39.2c-4.5 3.2-10.3 3.8-15.4 1.6s-8.7-6.7-9.6-12.1L98.1 317.9 13.4 303.8c-5.4-.9-10-4.5-12.1-9.6s-1.5-10.9 1.6-15.4L52.5 208 2.9 137.2c-3.2-4.5-3.8-10.3-1.6-15.4s6.7-8.7 12.1-9.6L98.1 98.1l14.1-84.7c.9-5.4 4.5-10 9.6-12.1s10.9-1.5 15.4 1.6L208 52.5 278.8 2.9c4.5-3.2 10.3-3.8 15.4-1.6zM208 144c13.8 0 26.7 4.4 37.1 11.9c-1.2 4.1-2.2 8.3-3 12.6c-37.9 14.6-67.2 46.6-77.8 86.4C151.8 243.1 144 226.5 144 208c0-35.3 28.7-64 64-64zm69.4 276c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm96 0c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm96 0c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm96 0c11 7.4 14 22.3 6.7 33.3l-32 48c-7.4 11-22.3 14-33.3 6.7s-14-22.3-6.7-33.3l32-48c7.4-11 22.3-14 33.3-6.7zm74.5-116.1c0 44.2-35.8 80-80 80H288c-53 0-96-43-96-96c0-47.6 34.6-87 80-94.6l0-1.3c0-53 43-96 96-96c34.9 0 65.4 18.6 82.2 46.4c13-9.1 28.8-14.4 45.8-14.4c44.2 0 80 35.8 80 80c0 5.9-.6 11.7-1.9 17.2c37.4 6.7 65.8 39.4 65.8 78.7z"/></svg>
+  - External forces that drive changes in the system
+  - Material or energy added/removed to/from the system
+]]
+
+--
+
+&lt;br&gt;
+
+.pull-right[
+
+**ATS `xml` top level list:**
+.font70[
+```r
+MAIN
+
+*- mesh: ["discretization of physical domains"]
+
+*- regions: ["subsets of the computational domain"]
+
+*- cycle driver: ["manages time and the execution of simulations"]
+
+*- PKs: ["fundamental building blocks used to model processes"]
+
+*- state: ["data manager that enables PKs to operate"]
+
+- visualization: ["simulation data stored for graphical representation"]
+
+- checkpoint: ["snapshots of the simulation state at specific points in time"]
+
+- observations: ["localized-in-space but frequent-in-time view of simulation output"]
+```
+]]
+
+.footnote[[ATS Documentation](https://amanzi.github.io/ats/stable/input_spec/main.html)]
+
+---
+
+# Domain of simulation
+&lt;iframe width="1280" height="500" src="imgs/transport_domain.html", frameborder="0"&gt;&lt;/iframe&gt;
+
+---
+
+# Process Kernel Tree - Transport
+.pull-left-73[
+.small[Let's construct the `PK tree` for an integrated transport model]
+.font40[
+**PK:** [`Process kernels`](https://amanzi.github.io/ats/stable/input_spec/process_kernels/index.html); **MPC:** [`Multi-process-couplers`](https://amanzi.github.io/ats/stable/input_spec/process_kernels/mpcs/index.html)
+]
+ 
+&lt;iframe src="imgs/dependency_hydro.html" width="900" height="500" frameborder="0"&gt;&lt;/iframe&gt;
+]
+
+.footnote[
+  &lt;a href="imgs/dependency_transport.html" target="_blank"&gt;```graph: transport```&lt;/a&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+  &lt;!-- &lt;a href="imgs/dependency_transport_reactive.html" target="_blank"&gt;```graph: reactive transport```&lt;/a&gt; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;
+  &lt;a href="imgs/dependency_transport_reactive_ecohydrology.html" target="_blank"&gt;```graph: reactive transport &amp; ecohydrology```&lt;/a&gt; --&gt;
+]
+
+.pull-right-46[
+&lt;br&gt;
+.font50[
+```xml
+&lt;ParameterList name="Main"&gt;
+
+* &lt;ParameterList name="cycle driver"&gt;
+*   &lt;ParameterList name="PK tree"&gt;
+      &lt;ParameterList name="flow_coupler"&gt;
+        &lt;Parameter name="PK type" type="string" value="coupled water"/&gt;
+        &lt;ParameterList name="subsurface flow"&gt;
+          &lt;Parameter name="PK type" type="string" value="richards flow"/&gt;
+        &lt;/ParameterList&gt;
+        &lt;ParameterList name="surface flow"&gt;
+          &lt;Parameter name="PK type" type="string" value="overland flow, pressure basis"/&gt;
+        &lt;/ParameterList&gt;
+      &lt;/ParameterList&gt;
+    &lt;/ParameterList&gt;
+  &lt;/ParameterList&gt;
+
+* OTHER LISTS...
+
+  &lt;ParameterList name="PKs"&gt;
+*   LIST OF PKS (i.e., flow coupler, subsurface flow, surface flow)
+  &lt;/ParameterList&gt;
+
+&lt;/ParameterList&gt;  
+```
+]]
+
+---
+
+# Transport Model Parameters
+
+&lt;br&gt;
+.content-box-grey[
+$$
+    \frac{\partial (\Theta C_i)}{\partial t} + \nabla \cdot(\mathbf{u} C_i) - \nabla (D_i \Theta \nabla C_i) + S_i = 0
+$$
+]
+
+--
+
+.pull-left[
+.footnotesize[
+- Physical parameters
+
+```xml
+&lt;ParameterList name="state" type="ParameterList"&gt;
+  &lt;ParameterList name="evaluators" type="ParameterList"&gt;
+*   &lt;ParameterList name="dispersion_coefficient" type="ParameterList"&gt;
+      &lt;Parameter name="evaluator type" type="string" value="dispersion tensor"/&gt;
+      &lt;ParameterList name="mechanical dispersion parameters" type="ParameterList"&gt;
+        &lt;ParameterList name="domain" type="ParameterList"&gt;
+*         &lt;Parameter name="region" type="string" value="computational domain"/&gt;
+          &lt;Parameter name="mechanical dispersion type" type="string" value="isotropic"/&gt;
+          &lt;ParameterList name="isotropic parameters"&gt;
+*           &lt;Parameter name="alpha" type="double" value="#####"/&gt;
+          &lt;/ParameterList&gt;
+        &lt;/ParameterList&gt;
+      &lt;/ParameterList&gt;
+    &lt;/ParameterList&gt;
+  &lt;/ParameterList&gt;
+&lt;/ParameterList&gt;  
+```
+]]
+--
+
+.pull-right[
+.footnotesize[
+- Numerical parameters  
+
+```xml
+&lt;ParameterList name="surface transport"&gt;
+  &lt;Parameter name="PK type" type="string" value="transport ATS"/&gt;
+  &lt;Parameter name="domain name" type="string" value="surface"/&gt;
+  &lt;Parameter name="component names" type="Array(string)" value="{NAME1, ...}"/&gt;
+* &lt;Parameter name="advection spatial discretization order" type="int" value="1"/&gt;
+* &lt;Parameter name="temporal discretization order" type="int" value="1"/&gt;
+* &lt;Parameter name="cfl" type="double" value="1.0"/&gt;
+  &lt;Parameter name="water tolerance" type="double" value="0.001"/&gt;
+  ... 
+&lt;/ParameterList&gt;
+```
+]]
+
+---
+
+# Forcings &amp; sources/sinks
+.pull-left[
+&lt;br /&gt;
+&lt;img src="slides_files/figure-html/unnamed-chunk-1-1.png" width="864" style="display: block; margin: auto;" /&gt;
+
+&lt;br&gt; &lt;br&gt; &lt;br&gt;
+.font50[.content-box-purple[`volume`]: source is extensive quantity (molC/s) and evenly distributed across the region] &lt;br&gt;
+.font50[.content-box-yellow[`none`]: source is intensive quantity (molC/m2/s) across the region]
+]
+
+.pull-right[
+.font60[
+```xml
+&lt;ParameterList name="surface transport"&gt;
+  &lt;ParameterList name="source terms"&gt;
+    &lt;ParameterList name="component mass source"&gt;
+
+*     &lt;ParameterList name="Source Rainfall"&gt;
+        &lt;Parameter name="component names" type="Array(string)" value="{Tracer1,Tracer2}"/&gt;
+        &lt;Parameter name="regions" type="Array(string)" value="{surface domain}"/&gt;
+        &lt;Parameter name="convert to field" type="bool" value="true"/&gt;
+        &lt;Parameter name="spatial distribution method" type="string" value="field"/&gt;
+        &lt;ParameterList name="field"&gt;
+          &lt;Parameter name="number of fields" type="int" value="2"/&gt;
+          &lt;ParameterList name="field 1 info"&gt;
+            &lt;Parameter name="field key" type="string" value="surface-tracer1_injection_source"/&gt;
+            &lt;Parameter name="component" type="string" value="cell"/&gt;
+          &lt;/ParameterList&gt;
+          &lt;ParameterList name="field 2 info"&gt;
+            &lt;Parameter name="field key" type="string" value="surface-tracer2_zeros"/&gt;
+            &lt;Parameter name="component" type="string" value="cell"/&gt;
+          &lt;/ParameterList&gt;              
+        &lt;/ParameterList&gt;
+      &lt;/ParameterList&gt;
+
+*     &lt;ParameterList name="Tracer2 source"&gt;
+        &lt;Parameter name="component names" type="Array(string)" value="{Tracer2}"/&gt;
+        &lt;Parameter name="regions" type="Array(string)" value="{golf course}"/&gt;
+        &lt;Parameter name="spatial distribution method" type="string" value="none"/&gt;
+        &lt;ParameterList name="source function"&gt;
+          &lt;ParameterList name="function-tabular"&gt;
+            &lt;Parameter name="x values" type="Array(double)" value="{x1, x2}"/&gt;
+            &lt;Parameter name="y values" type="Array(double)" value="{y1, y2}"/&gt;
+            &lt;Parameter name="forms" type="Array(string)" value="{constant}"/&gt;
+          &lt;/ParameterList&gt;
+        &lt;/ParameterList&gt;
+      &lt;/ParameterList&gt;
+    &lt;/ParameterList&gt;
+
+  &lt;/ParameterList&gt;
+&lt;/ParameterList&gt;  
+```
+]]
+
+---
+
+# Initial and boundary conditions
+.pull-left[
+#### .blockquote[Initial conditions .gray[(true)]]
+.small[
+- located inside each PK in the `xml` file
+- can be:
+  - created from functions
+  - loaded from files (e.g. checkpoints)
+]
+
+#### .blockquote[Boundary conditions]
+.small[
+- located inside each PK in the `xml` file
+- if not specified, no-flux BCs are applied
+]]
+
+.pull-right[
+&lt;br&gt;
+.font70[
+```xml
+*&lt;ParameterList name="PKs" type="ParameterList"&gt;
+
+  &lt;ParameterList name="surface transport"&gt;
+*   &lt;ParameterList name="initial condition"&gt;
+      &lt;Parameter name="constant" type="double" value="###"/&gt;
+    &lt;/ParameterList&gt;
+*   &lt;ParameterList name="boundary conditions"&gt;
+    &lt;/ParameterList&gt;  
+  &lt;/ParameterList&gt;
+
+  ...
+
+  &lt;ParameterList name="subsurface transport"&gt;
+*   &lt;ParameterList name="initial condition"&gt;
+      &lt;Parameter name="constant" type="double" value="###"/&gt;
+    &lt;/ParameterList&gt;
+  &lt;/ParameterList&gt;
+
+&lt;/ParameterList&gt;  
+```
+]]
+
+.footnote[`See the documentation for details about ICs and BCs:` [`https://amanzi.github.io/ats/stable/input_spec/common.html`](https://amanzi.github.io/ats/stable/input_spec/common.html)]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="assets/mermaid-init.js"></script>
+<script>var slideshow = remark.create({
+  "afterInit": "assets/mermaid-panzoom.js",
+  "highlightStyle": "monokai",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9",
+  "navigation": {
+    "scroll": false
+  }
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

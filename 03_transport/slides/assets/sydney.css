@@ -519,6 +519,12 @@ blockquote, .blockquote {
   dominant-baseline: middle;
 }
 
+/* Only apply on slides with the "small-panel-slide" class */
+.small-panel-slide .panelset {
+  max-width: 100%;   /* shrink width */
+  margin: 0 auto;   /* center on slide */
+  font-size: 0.75em; /* optional smaller text */
+}
 
 /* if wanted to change mathjax formatting
 .remark-inline-code .mjx-chtml {

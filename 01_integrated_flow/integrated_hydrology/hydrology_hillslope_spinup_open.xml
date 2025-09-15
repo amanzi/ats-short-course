@@ -93,7 +93,7 @@
   <ParameterList name="cycle driver" type="ParameterList">
     <Parameter name="start time" type="double" value="0.0"/>
     <Parameter name="start time units" type="string" value="s"/>
-    <Parameter name="end time" type="double" value="10000"/>
+    <Parameter name="end time" type="double" value="15000"/>
     <Parameter name="end time units" type="string" value="d"/>
     <ParameterList name="PK tree" type="ParameterList">
       <ParameterList name="Top level MPC" type="ParameterList">

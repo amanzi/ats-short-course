@@ -135,7 +135,7 @@
           <Parameter name="backtrack lag" type="int" value="0"/>
           <Parameter name="backtrack factor" type="double" value="0.5"/>
           <Parameter name="backtrack tolerance" type="double" value="0.0001"/>
-          <Parameter name="nonlinear tolerance" type="double" value="1e-5"/>
+          <Parameter name="nonlinear tolerance" type="double" value="1e-4"/>
           <Parameter name="diverged tolerance" type="double" value="10000000000.0"/>
           <Parameter name="limit iterations" type="int" value="21"/>
         </ParameterList>
