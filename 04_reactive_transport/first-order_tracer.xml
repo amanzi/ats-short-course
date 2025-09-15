@@ -227,7 +227,7 @@
       </ParameterList>
 
       <ParameterList name="initial conditions" type="ParameterList">
-        <Parameter name="restart file" type="string" value="../../01_integrated_flow/run_2c/checkpoint_final.h5"/>
+        <Parameter name="restart file" type="string" value="../../01_integrated_flow/spinup/checkpoint_final.h5"/>
       </ParameterList>
     </ParameterList>
 
