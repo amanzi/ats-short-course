@@ -539,7 +539,7 @@
         </ParameterList>
       </ParameterList>
       <ParameterList name="surface-ponded_depth" type="ParameterList">
-        <Parameter name="evaluator type" type="string" value="icy ponded depth"/>
+        <Parameter name="evaluator type" type="string" value="ponded depth"/>
       </ParameterList>
       <ParameterList name="surface-slope_magnitude" type="ParameterList">
         <Parameter name="evaluator type" type="string" value="meshed elevation"/>
